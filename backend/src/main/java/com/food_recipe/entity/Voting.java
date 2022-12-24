@@ -24,7 +24,7 @@ public class Voting implements Serializable {
     @Column(name = "`stars`", nullable = false)
     private Integer stars;
 
-    @Column(name = "`create_date`", nullable = false)
+    @Column(name = "`createDate`", nullable = false)
     private LocalDate createDate;
 
 

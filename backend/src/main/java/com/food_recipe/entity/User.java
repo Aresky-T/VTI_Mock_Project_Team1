@@ -1,5 +1,8 @@
 package com.food_recipe.entity;
 
+
+
+
 import lombok.Data;
 import org.hibernate.annotations.Formula;
 
@@ -16,53 +19,39 @@ public class User implements Serializable {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "`id`", unique = true, nullable = false)
     private Integer id;
 
-    @Column(name = "`first_name`", nullable = false)
+    @Column(name = "`firstName`", nullable = false)
     private String firstName;
 
-    @Column(name = "`last_name`", nullable = false)
+    @Column(name = "`lastName`", nullable = false)
     private String lastName;
 
-    @Formula("concat(first_name, ' ', last_name)")
+    @Formula("concat(firstName, ' ', lastName)")
     private String fullName;
 
-    @Column(name = "`user_name`", nullable = false, length = 50, unique = true)
+    @Column(name = "`userName`", nullable = false, length = 50, unique = true)
     private String userName;
 
     @Column(name = "`email`", nullable = false, length = 50, unique = true)
     private String email;
 
-    @Column(name = "`password`", nullable = false, length = 100)
+    @Column(name = "`password`", nullable = false, length = 50)
     private String password;
 
-    @Column(name="`birth_date`")
+    @Column(name="`birthDate`", nullable = false )
     private LocalDate birthDate;
 
     @Enumerated(EnumType.ORDINAL)
-    @Column(name = "`gender`")
+    @Column(name = "`gender`", nullable = false)
     private UserGender gender;
 
-    @Column(name = "phone", length = 10 )
+    @Column(name = "phone", nullable = false, length = 10 )
     private Integer phone;
 
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "`status`", nullable = false)
-    private UserStatus status = UserStatus.NOT_ACTIVE;
-
-    @Column(name = "avatar_url")
+    @Column(name = "avatarUrl")
     private String avatarUrl;
 
-    public User() {
-
-    }
-
-    public User(String firstName, String lastName, String userName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
-    }
 }

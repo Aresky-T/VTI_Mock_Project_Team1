@@ -20,13 +20,13 @@ public class Recipes implements Serializable {
     @Column(name = "`name`" ,  nullable = false)
     private String name;
 
-    @Column(name = "`image_url`" ,  nullable = false)
+    @Column(name = "`imageUrl`" ,  nullable = false)
     private String imageUrl;
 
     @Column(name = "`description`" ,  nullable = false)
     private String description;
 
-    @Column(name = "`processing_steps`" ,  nullable = false)
+    @Column(name = "`processingSteps`" ,  nullable = false)
     private String processingSteps;
 
     @ManyToOne
@@ -41,7 +41,7 @@ public class Recipes implements Serializable {
     @Column(name = "`views`")
     private Integer views;
 
-    @Column(name = "`create_date`", nullable = false)
+    @Column(name = "`createDate`", nullable = false)
     private LocalDate createDate;
 
 

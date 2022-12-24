@@ -1,6 +1,5 @@
 package com.food_recipe.entity;
 
-
 import lombok.Data;
 
 import javax.persistence.*;
@@ -26,7 +25,7 @@ public class Comment implements Serializable {
     @Column(name = "`comment`", nullable = false)
     private String comment;
 
-    @Column(name = "`create_date`", nullable = false)
+    @Column(name = "`createDate`", nullable = false)
     private LocalDate createDate;
 
 
