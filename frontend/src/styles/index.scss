@@ -1,0 +1,103 @@
+:root {
+  --background-color: #fff;
+  --background-light: #fff;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --primary-color: rgb(255, 0, 86);
+  --text-color: #0A0A0A;
+  --text-light: #575757;
+  --font-size: 16px;
+  --animation-speed: 1;
+}
+
+@function getAnimationDuration($duration: number) {
+  @return calc($duration * var(--animation-speed));
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: var(--font-size);
+  font-family: 'Roboto', sans-serif;
+  padding-top: 55px;
+  background-color: var(--background-light);
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: .75em 1em;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px var(--shadow-color);
+
+  &:hover {
+    box-shadow: 0 1px 3px var(--shadow-color);
+  }
+}
+
+.main {
+  padding-block: 3vw;
+}
+
+.container {
+  padding-inline: 15vw;
+}
+
+@import "partials/navbar.scss";
+@import "partials/sign_in.scss";
+
+@media screen and (max-width: 1280px) {
+  .container {
+    padding-inline: 18vw;
+    transition: all 0.2s ease;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .container {
+    padding-inline: 12vw;
+    transition: all 0.2s ease;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    .nav-links {
+      display: none;
+    }
+
+    .sidebar-btn {
+      display: block;
+    }
+  }
+
+  .container {
+    padding-inline: 6vw;
+    transition: all 0.2s ease;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding-inline: 3vw;
+  }
+}
