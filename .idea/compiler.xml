@@ -6,14 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="backend" />
+        <module name="HelloWorld" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="backend" target="17" />
+      <module name="HelloWorld" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="HelloWorld" options="-parameters" />
       <module name="backend" options="-parameters" />
     </option>
   </component>
