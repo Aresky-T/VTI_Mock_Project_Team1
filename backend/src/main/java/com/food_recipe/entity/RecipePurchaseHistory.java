@@ -18,7 +18,7 @@ public class RecipePurchaseHistory implements Serializable {
     @ManyToOne
     private Recipes recipes;
 
-    @Column(name = "`purchaseDate`", nullable = false)
+    @Column(name = "`purchase_date`", nullable = false)
     private LocalDate purchaseDate;
 
 }

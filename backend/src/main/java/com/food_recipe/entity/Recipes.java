@@ -20,7 +20,7 @@ public class Recipes implements Serializable {
     @Column(name = "`name`" ,  nullable = false)
     private String name;
 
-    @Column(name = "`imageUrl`" ,  nullable = false)
+    @Column(name = "`image_url`" ,  nullable = false)
     private String imageUrl;
 
     @Column(name = "`description`" ,  nullable = false)
@@ -41,7 +41,7 @@ public class Recipes implements Serializable {
     @Column(name = "`views`")
     private Integer views;
 
-    @Column(name = "`createDate`", nullable = false)
+    @Column(name = "`create_date`", nullable = false)
     private LocalDate createDate;
 
 

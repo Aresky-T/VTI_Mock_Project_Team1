@@ -24,7 +24,7 @@ const SignUp = () => {
             <div className='wrap-signin'>
                 <form className='signin-form'>
                     <span className='signin-form-title'>Sign Up</span>
-                    
+
                     <div className='wrap-input'>
                         <input
                             type="text"
@@ -61,12 +61,12 @@ const SignUp = () => {
                         <span className='btn-eye'
                             onClick={() => setShowPassword(!showPassword)}
                         >
-                        {
-                            showPassword ?
-                                <AiFillEye/>
-                                :
-                                <AiFillEyeInvisible/>
-                        }
+                            {
+                                showPassword ?
+                                    <AiFillEye />
+                                    :
+                                    <AiFillEyeInvisible />
+                            }
                         </span>
                         <label for="username" className='form-label'>Password</label>
                     </div>
@@ -83,19 +83,25 @@ const SignUp = () => {
                         <span className='btn-eye'
                             onClick={() => setShowPassword(!showPassword)}
                         >
-                        {
-                            showPassword ?
-                                <AiFillEye/>
-                                :
-                                <AiFillEyeInvisible/>
-                        }
+                            {
+                                showPassword ?
+                                    <AiFillEye />
+                                    :
+                                    <AiFillEyeInvisible />
+                            }
                         </span>
                         <label for="username" className='form-label'>Confirm password</label>
                     </div>
                     <div className='signin-form-btn'>
                         <button type="submit" className='signin-btn'>Create Account</button>
                     </div>
-                    <span className=''> ⭐ Already have an account? <Link to='/auth/sign-in'>Sign in</Link></span>
+                    <div className='signin-more'>
+                        <ul>
+                            <li>
+                                <span className='txt1'> ⭐ Already have an account? <Link className='txt2' to='/auth/sign-in'>Sign in</Link></span>
+                            </li>
+                        </ul>
+                    </div>
                 </form>
             </div>
         </div>

@@ -1,0 +1,210 @@
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Comment` 
+       add column `create_date` date not null 
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Comment` 
+       add column `recipes_id` integer 
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Comment` 
+       add column `user_id` integer 
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Recipe` 
+       add column `create_date` date not null 
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Recipe` 
+       add column `image_url` varchar(255) not null 
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Recipe` 
+       add column `processing_steps` varchar(255) not null 
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Recipe` 
+       add column `user_id` integer 
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Recipe_Ingredient` 
+       add column `ingredient_id` integer 
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Recipe_Ingredient` 
+       add column `recipe_id` integer 
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    create table `Recipe_Purchase_History` (
+       `purchase_date` date not null,
+        `user_id` integer not null,
+        `recipes_id` integer,
+        primary key (`user_id`)
+    ) engine=InnoDB 
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    create table `Registration_User_Token` (
+       `token_id` integer not null auto_increment,
+        expiry_date datetime(6) not null,
+        `token` varchar(36) not null,
+        user_id integer not null,
+        primary key (`token_id`)
+    ) engine=InnoDB 
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    create table `Reset_Password_Token` (
+       `reset_id` integer not null auto_increment,
+        `expiry_date` datetime(6) not null,
+        `token` varchar(36) not null,
+        `user_id` integer not null,
+        primary key (`reset_id`)
+    ) engine=InnoDB 
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `User` 
+       add column avatar_url varchar(255) 
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `User` 
+       add column `birth_date` date 
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `User` 
+       add column `first_name` varchar(255) not null 
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `User` 
+       add column `last_name` varchar(255) not null 
+2022-12-27 16:45:21 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `User` 
+       add column `status` integer not null 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `User` 
+       add column `user_name` varchar(50) not null 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Voting` 
+       add column `create_date` date not null 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Voting` 
+       add column `recipes_id` integer 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Voting` 
+       add column `user_id` integer 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Wallet` 
+       add column `so_dutk` integer 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Wallet` 
+       add column `user_id` integer not null 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    create table hibernate_sequence (
+       next_val bigint
+    ) engine=InnoDB 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    insert into hibernate_sequence values ( 1 ) 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Registration_User_Token` 
+       drop index UK_ndtney6eldqdld0egulw4wpqn 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Registration_User_Token` 
+       add constraint UK_ndtney6eldqdld0egulw4wpqn unique (`token`) 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Reset_Password_Token` 
+       drop index UK_2junmg5fn8kvo0y8m01aslosd 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Reset_Password_Token` 
+       add constraint UK_2junmg5fn8kvo0y8m01aslosd unique (`token`) 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `User` 
+       drop index UK_bxs8c2q8tbrkh2hdweuly6psa 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `User` 
+       add constraint UK_bxs8c2q8tbrkh2hdweuly6psa unique (`user_name`) 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Comment` 
+       add constraint FK3suevrb09lng9vyf7ktbcx9l4 
+       foreign key (`recipes_id`) 
+       references `Recipe` (`id`) 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Comment` 
+       add constraint FKkf1pjmbmty20wa12ub4lb9ao 
+       foreign key (`user_id`) 
+       references `User` (id) 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Recipe` 
+       add constraint FKhrrhqtg42pehtvqdr5e6dsa9u 
+       foreign key (`user_id`) 
+       references `User` (id) 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Recipe_Ingredient` 
+       add constraint FKnbxln9cruywquqg57ifpt1p3 
+       foreign key (`ingredient_id`) 
+       references `Ingredient` (`id`) 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Recipe_Ingredient` 
+       add constraint FK5t10qgvys86pvey63t9o6s7fj 
+       foreign key (`recipe_id`) 
+       references `Recipe` (`id`) 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Recipe_Purchase_History` 
+       add constraint FKc1dvwqsnpblrupy8fkq1hhwd4 
+       foreign key (`user_id`) 
+       references `User` (id) 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Recipe_Purchase_History` 
+       add constraint FKiyd013aygiuyxklr8ul4ei8t1 
+       foreign key (`recipes_id`) 
+       references `Recipe` (`id`) 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Registration_User_Token` 
+       add constraint FK29nv0qws4gsg394in5x5116qu 
+       foreign key (user_id) 
+       references `User` (id) 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Reset_Password_Token` 
+       add constraint FKkkv6mt2wytakgf9kiy16vj379 
+       foreign key (`user_id`) 
+       references `User` (id) 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Voting` 
+       add constraint FKexykrfjrcllyumufuidnyxgxc 
+       foreign key (`recipes_id`) 
+       references `Recipe` (`id`) 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Voting` 
+       add constraint FK73nuwfiv6cchm7q78fpleuuux 
+       foreign key (`user_id`) 
+       references `User` (id) 
+2022-12-27 16:45:22 [restartedMain] DEBUG o.h.SQL                                            - 
+    
+    alter table `Wallet` 
+       add constraint FK7d6s0n5cmnc2xe8bm8b3f9ro4 
+       foreign key (`user_id`) 
+       references `User` (id) 

@@ -22,11 +22,53 @@ public class ResetPasswordToken implements Serializable {
     private String token;
 
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "user_id")
+    @JoinColumn(nullable = false, name = "`user_id`")
     private User user;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "`expiry_date`", nullable = false)
     private Date expiryDate;
 
+    public ResetPasswordToken() {
+    }
+
+    public ResetPasswordToken(String token, User user) {
+        this.token = token;
+        this.user = user;
+
+        // 1h
+        expiryDate = new Date(System.currentTimeMillis() + 360000);
+    }
+
+    public Integer getResetID() {
+        return resetID;
+    }
+
+    public void setResetID(Integer resetID) {
+        this.resetID = resetID;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Date getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
+    }
 }

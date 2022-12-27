@@ -15,7 +15,7 @@ public class Wallet implements Serializable {
     @ManyToOne
     private User user;
 
-    @Column(name = "`soDuTK`")
+    @Column(name = "`so_dutk`")
     private Integer soDuTK;
 
 
