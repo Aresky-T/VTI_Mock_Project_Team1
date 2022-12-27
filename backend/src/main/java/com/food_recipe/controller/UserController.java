@@ -1,7 +1,6 @@
 package com.food_recipe.controller;
 
-import javax.validation.Valid;
-
+import com.food_recipe.dto.ChangePublicProfileDTO;
 import com.food_recipe.dto.UserDTO;
 import com.food_recipe.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,5 +103,15 @@ public class UserController {
 		return new ResponseEntity<>("Reset Password success!", HttpStatus.OK);
 	}
 
+	@PutMapping("")
+	//validate: check exists, check not expired
+	public ResponseEntity<?> changeUserProfile(Authentication authentication, @RequestBody ChangePublicProfileDTO dto){
 
+		// get username from token
+		String username = authentication.getName();
+
+		userService.ChangePublicProfileDTO(username, dto);
+
+		return new ResponseEntity<>("Change Profile Successfully!", HttpStatus.OK);
+	}
 }

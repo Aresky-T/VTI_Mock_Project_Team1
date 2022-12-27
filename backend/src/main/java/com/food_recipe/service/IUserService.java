@@ -1,6 +1,7 @@
 package com.food_recipe.service;
 
 
+import com.food_recipe.dto.ChangePublicProfileDTO;
 import com.food_recipe.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -29,6 +30,6 @@ public interface IUserService extends UserDetailsService {
 
     void sendResetPasswordViaEmail(String email);
 
-    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 
+    void ChangePublicProfileDTO(String username, ChangePublicProfileDTO dto);
 }

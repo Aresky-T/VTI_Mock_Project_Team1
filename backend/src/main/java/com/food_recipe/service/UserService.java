@@ -1,10 +1,8 @@
 package com.food_recipe.service;
 
 
-import com.food_recipe.entity.RegistrationUserToken;
-import com.food_recipe.entity.ResetPasswordToken;
-import com.food_recipe.entity.User;
-import com.food_recipe.entity.UserStatus;
+import com.food_recipe.dto.ChangePublicProfileDTO;
+import com.food_recipe.entity.*;
 import com.food_recipe.event.OnResetPasswordViaEmailEvent;
 import com.food_recipe.event.OnSendRegistrationUserConfirmViaEmailEvent;
 import com.food_recipe.repository.RegistrationUserTokenRepository;
@@ -19,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Component
@@ -166,5 +165,18 @@ public class UserService implements IUserService {
 				AuthorityUtils.createAuthorityList(user.getUserName()));
 	}
 
+	@Override
+	public void ChangePublicProfileDTO(String username, ChangePublicProfileDTO dto) {
+		User user = userRepository.findByUserName(username);
+
+		user.setFirstName(dto.getFirstName());
+		user.setLastName(dto.getLastName());
+		user.setBirthDate(dto.getBirthDate());
+		user.setGender(dto.getGender());
+		user.setPhone(dto.getPhone());
+		user.setAvatarUrl(dto.getAvatarUrl());
+
+		userRepository.save(user);
+	}
 
 }
