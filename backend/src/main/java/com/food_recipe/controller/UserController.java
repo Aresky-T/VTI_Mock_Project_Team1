@@ -1,7 +1,9 @@
 package com.food_recipe.controller;
 
 import com.food_recipe.dto.ChangePublicProfileDTO;
+import com.food_recipe.dto.ProfileDTO;
 import com.food_recipe.dto.UserDTO;
+import com.food_recipe.entity.User;
 import com.food_recipe.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -103,7 +105,31 @@ public class UserController {
 		return new ResponseEntity<>("Reset Password success!", HttpStatus.OK);
 	}
 
-	@PutMapping("")
+	@GetMapping("/profile")
+	// validate: check exists, check not expired
+	public ResponseEntity<?> getUserProfile(Authentication authentication) {
+
+		// get username from token
+		String username = authentication.getName();
+
+		// get user info
+		User user = userService.findUserByUserName(username);
+
+		// convert user entity to user dto
+		ProfileDTO profileDto = new ProfileDTO(
+				user.getUserName(),
+				user.getEmail(),
+				user.getFirstName(),
+				user.getLastName(),
+				user.getBirthDate(),
+				user.getGender(),
+				user.getPhone(),
+				user.getStatus().toString(),
+				user.getAvatarUrl());
+		return new ResponseEntity<>(profileDto, HttpStatus.OK);
+	}
+
+	@PutMapping("/profile")
 	//validate: check exists, check not expired
 	public ResponseEntity<?> changeUserProfile(Authentication authentication, @RequestBody ChangePublicProfileDTO dto){
 
