@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -77,6 +77,12 @@ public class UserService implements IUserService {
 	public User findUserByUserName(String username) {
 
 		return userRepository.findByUserName(username);
+	}
+
+	@Override
+	public Optional<User> findUserById(Integer id) {
+
+		return userRepository.findById(id);
 	}
 
 

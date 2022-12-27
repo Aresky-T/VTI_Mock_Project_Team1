@@ -3,12 +3,14 @@ package com.food_recipe.service;
 
 import com.food_recipe.dto.ChangePublicProfileDTO;
 import com.food_recipe.entity.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import java.util.Optional;
 
 public interface IUserService extends UserDetailsService {
 
+
+    Optional<User> findUserById(Integer id);
 
     boolean existsUserByEmail(String email);
 
@@ -19,6 +21,7 @@ public interface IUserService extends UserDetailsService {
     void activeUser(String token);
 
     User findUserByEmail(String email);
+
 
     User findUserByUserName(String username);
 
@@ -32,4 +35,6 @@ public interface IUserService extends UserDetailsService {
 
 
     void ChangePublicProfileDTO(String username, ChangePublicProfileDTO dto);
+
+
 }
