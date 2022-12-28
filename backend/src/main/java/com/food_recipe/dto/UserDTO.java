@@ -7,7 +7,7 @@ import lombok.Data;
 public class UserDTO {
 
 	// check not null, check length, check exists, check format (regex)...
-	private String userName;
+	private String username;
 
 	// check not null, check length, check exists on database, check format
 	// (regex)...
@@ -25,6 +25,6 @@ public class UserDTO {
 
 
 	public User toEntity() {
-		return new User( firstName, lastName, userName, email, password);
+		return new User( firstName, lastName, username, email, password);
 	}
 }

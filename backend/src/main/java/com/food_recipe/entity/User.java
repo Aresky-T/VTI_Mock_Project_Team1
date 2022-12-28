@@ -28,8 +28,8 @@ public class User implements Serializable {
     @Formula("concat(first_name, ' ', last_name)")
     private String fullName;
 
-    @Column(name = "`user_name`", nullable = false, length = 50, unique = true)
-    private String userName;
+    @Column(name = "`username`", nullable = false, length = 50, unique = true)
+    private String username;
 
     @Column(name = "`email`", nullable = false, length = 50, unique = true)
     private String email;
@@ -58,10 +58,10 @@ public class User implements Serializable {
 
     }
 
-    public User(String firstName, String lastName, String userName, String email, String password) {
+    public User(String firstName, String lastName, String username, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.username = username;
         this.email = email;
         this.password = password;
     }

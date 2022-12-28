@@ -39,10 +39,10 @@ public class UserController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/userName/{userName}")
-	public ResponseEntity<?> existsByUserName(@PathVariable(name = "userName") String userName){
+	@GetMapping(value = "/username/{username}")
+	public ResponseEntity<?> existsByUsername(@PathVariable(name = "username") String userName){
 		// get entity
-		boolean result = userService.existsUserByUserName(userName);
+		boolean result = userService.existsUserByUsername(userName);
 
 		// return result
 		return new ResponseEntity<>(result, HttpStatus.OK);
@@ -55,7 +55,7 @@ public class UserController {
 		// create User
 		userService.createUser(dto.toEntity());
 
-		return new ResponseEntity<>("We have sent an email. Please check email to active account!", HttpStatus.OK);
+		return new ResponseEntity<>("We have sent an email to you. Please check your email to activate account!", HttpStatus.OK);
 	}
 
 	@GetMapping("/activeUser")
@@ -75,7 +75,7 @@ public class UserController {
 	public ResponseEntity<?> sendConfirmUserRegistrationViaEmail(@RequestParam String email){
 		userService.sendConfirmUserRegistrationViaEmail(email);
 
-		return new ResponseEntity<>("We have sent an email. Please check email to active account!", HttpStatus.OK);
+		return new ResponseEntity<>("We have sent an email to you. Please check your email to activate account!", HttpStatus.OK);
 	}
 
 	// reset password confirm
@@ -114,11 +114,11 @@ public class UserController {
 		String username = authentication.getName();
 
 		// get user info
-		User user = userService.findUserByUserName(username);
+		User user = userService.findUserByUsername(username);
 
 		// convert user entity to user dto
 		ProfileDTO profileDto = new ProfileDTO(
-				user.getUserName(),
+				user.getUsername(),
 				user.getEmail(),
 				user.getFirstName(),
 				user.getLastName(),
