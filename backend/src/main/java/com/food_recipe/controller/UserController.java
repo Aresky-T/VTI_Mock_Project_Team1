@@ -54,7 +54,7 @@ public class UserController {
 		// create User
 		userService.createUser(dto.toEntity());
 
-		return new ResponseEntity<>("We have sent an email. Please check email to active account!", HttpStatus.OK);
+		return new ResponseEntity<>("We have sent an email to you. Please check your email to activate account!", HttpStatus.OK);
 	}
 
 	@GetMapping("/activeUser")
@@ -74,7 +74,7 @@ public class UserController {
 	public ResponseEntity<?> sendConfirmUserRegistrationViaEmail(@RequestParam String email){
 		userService.sendConfirmUserRegistrationViaEmail(email);
 
-		return new ResponseEntity<>("We have sent an email. Please check email to active account!", HttpStatus.OK);
+		return new ResponseEntity<>("We have sent an email to you. Please check your email to activate account!", HttpStatus.OK);
 	}
 
 	// reset password confirm

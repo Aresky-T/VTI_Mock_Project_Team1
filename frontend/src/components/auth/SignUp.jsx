@@ -36,7 +36,8 @@ const SignUp = () => {
             lastName: yup.string().required('Required')
         }),
         onSubmit: values => {
-            signUp(values, dispatch, toast, setShowPopup);
+            const { firstName, lastName, username, email, password } = values;
+            signUp({ firstName, lastName, username, email, password }, dispatch, toast, setShowPopup);
         }
     })
 
@@ -147,7 +148,7 @@ const SignUp = () => {
                 </div>
             </div>}
             <Loading isLoading={isLoading} />
-            {showPopup && <ConfirmSignUpSuccess signUpSuccessMessage={signUpSuccessMessage} setShowPopup={setShowPopup} showPopup={showPopup}/>}
+            {showPopup && <ConfirmSignUpSuccess signUpSuccessMessage={signUpSuccessMessage} setShowPopup={setShowPopup} showPopup={showPopup} />}
             <ToastContainer />
         </>
     )
