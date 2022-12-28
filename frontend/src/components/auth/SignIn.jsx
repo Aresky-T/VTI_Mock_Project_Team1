@@ -2,17 +2,29 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { Link } from 'react-router-dom';
+import * as yup from 'yup';
+import { signIn } from '../../api/auth.api';
+import { useDispatch } from 'react-redux';
 
 const SignIn = () => {
-
     const [showPassword, setShowPassword] = useState(false);
-
+    const dispatch = useDispatch();
     const formik = useFormik({
         initialValues: {
             username: '',
             password: ''
+        },
+        validationSchema: yup.object().shape({
+            username: yup.string().required('Required'),
+            password: yup.string().required('Required')
+        }),
+        onSubmit: values => {
+            console.log(values);
+            signIn(values, dispatch);
         }
     })
+
+    console.log(formik.errors);
 
     return (
         <div className='container-signin'>
@@ -20,7 +32,7 @@ const SignIn = () => {
                 <img src='https://6f3ebe2ff971707.cmccloud.com.vn/tour/wp-content/uploads/2021/12/banh-trang-cuon-thit-heo.jpg' alt="" />
             </div>
             <div className='wrap-signin'>
-                <form className='signin-form'>
+                <form className='signin-form' onSubmit={formik.handleSubmit}>
                     <span className='signin-form-title'>Sign In</span>
                     <span className='signin-form-avatar'>
                         <img src={require('../../imgs/user-128.png')} alt='' />
@@ -35,11 +47,12 @@ const SignIn = () => {
                             className='input'
                             placeholder="Username"
                         />
-                        <label for="username" className='form-label'>Username</label>
+                        <label htmlFor="username" className='form-label'>Username</label>
                     </div>
                     <div className='wrap-input'>
                         <input
                             type={showPassword ? "text" : "password"}
+                            id="password"
                             name='password'
                             value={formik.values.password}
                             className='input'
@@ -56,7 +69,7 @@ const SignIn = () => {
                                 <AiFillEyeInvisible/>
                         }
                         </span>
-                        <label for="username" className='form-label'>Password</label>
+                        <label htmlFor="username" className='form-label'>Password</label>
                     </div>
                     <div className='signin-form-btn'>
                         <button type="submit" className='signin-btn'>Sign In</button>

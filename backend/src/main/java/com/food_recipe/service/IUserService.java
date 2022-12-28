@@ -12,7 +12,7 @@ public interface IUserService extends UserDetailsService {
 
     boolean existsUserByEmail(String email);
 
-    boolean existsUserByUserName(String userName);
+    boolean existsUserByUsername(String username);
 
     void createUser(User user);
 
@@ -20,7 +20,7 @@ public interface IUserService extends UserDetailsService {
 
     User findUserByEmail(String email);
 
-    User findUserByUserName(String username);
+    User findUserByUsername(String username);
 
     void sendConfirmUserRegistrationViaEmail(String email);
 

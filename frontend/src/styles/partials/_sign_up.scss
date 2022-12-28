@@ -3,13 +3,14 @@ $secondary: #d3eedd;
 $white: #fff;
 $gray: #9b9b9b;
 
-.container-signin {
+.container-signup {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: space-between;
+    position: relative;
 
-    .container-signin-img {
+    .container-signup-img {
         width: fit-content;
         height: 500px;
         overflow: hidden;
@@ -22,12 +23,13 @@ $gray: #9b9b9b;
         }
     }
 
-    .wrap-signin {
+    .wrap-signup {
         width: 390px;
         height: 500px;
         background: rgb(255, 255, 255);
+        box-sizing: border-box;
 
-        .signin-form {
+        .signup-form {
             width: 100%;
             height: 100%;
             display: flex;
@@ -39,7 +41,7 @@ $gray: #9b9b9b;
                 border: none;
             }
 
-            .signin-form-title {
+            .signup-form-title {
                 display: block;
                 font-family: Poppins-Bold;
                 font-weight: 700;
@@ -49,41 +51,11 @@ $gray: #9b9b9b;
                 text-align: center;
             }
 
-            &-avatar {
-                display: block;
-                width: 120px;
-                height: 120px;
-                border-radius: 50%;
-                overflow: hidden;
-                margin: 0 auto;
-
-                img {
-                    width: 100%;
-                    background-color: rgb(200, 199, 198);
-                    border-radius: 50%;
-                    padding: 10px
-                }
-            }
-
             .wrap-input {
                 width: 100%;
                 position: relative;
                 padding: 10px 0 0;
                 margin-top: 10px;
-
-                .btn-eye {
-                    position: absolute;
-                    cursor: pointer;
-                    right: 0;
-                    top: 25px;
-                    font-size: 20px;
-                    color: #7c6e6e
-                }
-
-                .btn-eye:hover {
-                    color: #FB1556;
-                    transition: all 0.2s ease-in-out;
-                }
 
                 .input {
                     font-family: Poppins-SemiBold;
@@ -91,7 +63,7 @@ $gray: #9b9b9b;
                     line-height: 1.2;
                     display: block;
                     width: 100%;
-                    height: 52px;
+                    height: 40px;
                     background: transparent;
                     padding: 7px 0;
                     transition: border-color 0.2s;
@@ -149,14 +121,33 @@ $gray: #9b9b9b;
                 }
             }
 
-            .signin-form-btn {
+            .show-password {
+                font-family: 'Times New Roman', Times, serif;
+                color: rgb(66, 189, 75);
+                margin-top: 15px;
+                font-size: 14px;
+                position: relative;
+
+                #show-pass {
+                    margin-right: 5px;
+                    cursor: pointer;
+                    position: absolute;
+                    top: 2px;
+                }
+
+                label {
+                    padding-left: 20px;
+                }
+            }
+
+            .signup-form-btn {
                 margin-top: 20px;
                 width: 100%;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
 
-                .signin-btn {
+                .signup-btn {
                     font-family: Poppins-Medium;
                     font-size: 16px;
                     color: #fff;
@@ -178,21 +169,22 @@ $gray: #9b9b9b;
                     cursor: pointer;
                 }
 
-                .signin-btn:hover {
+                .signup-btn:hover {
                     background-color: #333;
                     box-shadow: 0 10px 30px 0 rgb(51 51 51 / 50%);
                 }
 
-                .signin-btn:active {
+                .signup-btn:active {
                     transform: translateY(3px);
                     transition: all 0.3s;
                 }
             }
 
-            .signin-more {
-                list-style-type: none;
+            .signup-more {
+                margin-top: 20px;
 
                 li {
+                    list-style: none;
                     position: relative;
                     // padding-left: 16px;
                     margin-bottom: 8px;
@@ -211,7 +203,7 @@ $gray: #9b9b9b;
                         line-height: 1.5;
                     }
 
-                    .txt1:hover, .txt2:hover {
+                    .txt2:hover {
                         color: #31e676;
                     }
                 }
@@ -223,7 +215,7 @@ $gray: #9b9b9b;
 
         justify-content: center;
 
-        .container-signin-img {
+        .container-signup-img {
             display: none;
         }
     }

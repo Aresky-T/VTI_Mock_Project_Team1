@@ -24,6 +24,7 @@ body {
   font-family: 'Roboto', sans-serif;
   padding-top: 55px;
   background-color: var(--background-light);
+  position: relative;
 }
 
 a {
@@ -56,8 +57,11 @@ a {
   padding-inline: 15vw;
 }
 
-@import "partials/navbar.scss";
-@import "partials/sign_in.scss";
+@import "partials/navbar";
+@import "partials/sign_in";
+@import "partials/sign_up";
+@import "partials/loading";
+@import "partials/response_sign_up";
 
 @media screen and (max-width: 1280px) {
   .container {

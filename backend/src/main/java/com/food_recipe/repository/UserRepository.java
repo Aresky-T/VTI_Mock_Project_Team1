@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends JpaRepository<User, Integer>, JpaSpecificationExecutor<User> {
 
-	public boolean existsByUserName(String userName);
+	public boolean existsByUsername(String userName);
 
 	public boolean existsByEmail(String email);
 
@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Integer>, JpaSpecifi
 			+ " WHERE 	email = :email")
 	public UserStatus findStatusByEmail(@Param("email") String email);
 
-	public User findByUserName(String name);
+	public User findByUsername(String name);
 	
 	public User findByEmail(String email);
 }
