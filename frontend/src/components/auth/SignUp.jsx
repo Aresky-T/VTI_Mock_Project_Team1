@@ -30,7 +30,7 @@ const SignUp = () => {
         validationSchema: yup.object().shape({
             username: yup.string().min(5, 'Too Short').required('Required'),
             email: yup.string().required('Required').matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Email invalid'),
-            password: yup.string().required('Required').matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/, 'Password must be 8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character!'),
+            password: yup.string().required('Required').matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$/, 'Password must be 8 to 20 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character!'),
             confirmPassword: yup.string().required('Required').oneOf([yup.ref("password"), null], 'Password must match'),
             firstName: yup.string().required('Required'),
             lastName: yup.string().required('Required')
