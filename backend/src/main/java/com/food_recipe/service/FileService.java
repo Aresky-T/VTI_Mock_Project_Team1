@@ -1,5 +1,6 @@
 package com.food_recipe.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
@@ -27,6 +28,14 @@ public class FileService implements IFileService {
 		// TODO save link file to database
 
 		// return link uploaded file
-		return nameImage;
+		return path;
+	}
+
+	@Override
+	public File downloadImage(String nameImage) throws IOException {
+
+		String path = linkFolder + "\\" + nameImage;
+
+		return new File(path);
 	}
 }
