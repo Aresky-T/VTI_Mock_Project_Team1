@@ -14,8 +14,8 @@ const App = () => {
          <div className="container main">
             <Routes>
                <Route path="/" element={<HomeComponent />} />
-               <Route path="/create-recipe" element={<ProfilePage />} />
-               // <Route path="/create-recipe" element={<CreateRecipe />} />
+               <Route path="/profile" element={<ProfilePage />} />
+               <Route path="/create-recipe" element={<CreateRecipe />} />
                <Route path="/auth">
                   <Route path="sign-in" element={<SignIn />} />
                   <Route path="sign-up" element={<SignUp />} />
