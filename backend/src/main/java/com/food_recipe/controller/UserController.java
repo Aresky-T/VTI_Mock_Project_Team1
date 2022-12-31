@@ -118,6 +118,7 @@ public class UserController {
 
 		// convert user entity to user dto
 		ProfileDTO profileDto = new ProfileDTO(
+				user.getId(),
 				user.getUserName(),
 				user.getEmail(),
 				user.getFirstName(),

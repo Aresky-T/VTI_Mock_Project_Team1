@@ -1,0 +1,18 @@
+2022-12-31 15:32:02 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    insert 
+    into
+        `
+        Recipe` (
+            `create_date`, `description`, `image_url`, `name`, `note`, `price`, `processing_steps`, user_id, `views`
+        ) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2022-12-31 15:32:02 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [TIMESTAMP] - [Sat Dec 31 15:32:02 ICT 2022] 
+2022-12-31 15:32:02 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [2] as [VARCHAR] - [1234563] 
+2022-12-31 15:32:02 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [3] as [VARCHAR] - [1672158729741.jpg] 
+2022-12-31 15:32:02 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [4] as [VARCHAR] - [trung ran5] 
+2022-12-31 15:32:02 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [5] as [VARCHAR] - [chú ý lửa7] 
+2022-12-31 15:32:02 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [6] as [FLOAT] - [null] 
+2022-12-31 15:32:02 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [7] as [VARCHAR] - [12343] 
+2022-12-31 15:32:02 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [8] as [INTEGER] - [1] 
+2022-12-31 15:32:02 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [9] as [INTEGER] - [null] 

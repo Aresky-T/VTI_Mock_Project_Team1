@@ -7,7 +7,7 @@ USE RecipeDBTeam1;
 -- Create table user
 DROP TABLE IF EXISTS 	`User`;
 CREATE TABLE IF NOT EXISTS `User` ( 	
-	id 				INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	id 				INT AUTO_INCREMENT PRIMARY KEY,
     `first_name`		VARCHAR(50)	NOT NULL,
     `last_name`		VARCHAR(50)	NOT NULL,
 	`user_name`	 	CHAR(50) 	NOT NULL UNIQUE CHECK (LENGTH(`user_name`) >= 6 AND LENGTH(`user_name`) <= 50),
@@ -29,10 +29,10 @@ CREATE TABLE IF NOT EXISTS `Recipe` (
     `image_url`			VARCHAR(200) NOT NULL,
     `description`		TEXT NOT NULL,
     `processing_steps`	TEXT NOT NULL,
-    `user_id`			INT UNSIGNED NOT NULL,
+    `user_id`			INT NOT NULL,
     `note`				VARCHAR(3000),
     `price`				FLOAT(10,2) default 0,
-    `views`				INT	NOT NULL,
+    `views`				INT	default 0,
     `create_date`		DATETIME default now(),
 	FOREIGN KEY (`user_id`) REFERENCES User(id)
 );
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `Recipe_Ingredient` (
 DROP TABLE IF EXISTS `Voting`;
 CREATE TABLE IF NOT EXISTS `Voting` ( 	
 	id 				INT UNIQUE	AUTO_INCREMENT,
-	`user_id`		INT UNSIGNED NOT NULL,
+	`user_id`		INT NOT NULL,
     `recipes_id`	INT NOT NULL,
     `stars`			INT NOT NULL,
     `create_date`	DATE NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `Voting` (
 DROP TABLE IF EXISTS `Comment`;
 CREATE TABLE IF NOT EXISTS `Comment` ( 	
 	id 				INT 	UNIQUE	AUTO_INCREMENT,
-	`user_id`		INT UNSIGNED NOT NULL,
+	`user_id`		INT NOT NULL,
     `recipes_id`	INT		NOT NULL,
     `comment`		TEXT 	NOT NULL,
     `create_date`	DATE	NOT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `Comment` (
 -- Create table wallet
 DROP TABLE IF EXISTS  `Wallet`;
 CREATE TABLE IF NOT EXISTS `Wallet` (
-	`user_id`			INT UNSIGNED NOT NULL,
+	`user_id`			INT NOT NULL,
     `so_dutk`			INT default 0,
     FOREIGN KEY (`user_id`) REFERENCES `User`(id)
 );
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `Wallet` (
 -- Create table RecipePurchaseHistory
 DROP TABLE IF EXISTS 	`Recipe_Purchase_History`;
 CREATE TABLE IF NOT EXISTS `Recipe_Purchase_History` (
-	`user_id`				INT UNSIGNED NOT NULL,
+	`user_id`				INT NOT NULL,
     `recipes_id`			INT NOT NULL,
     `purchase_date`			DATETIME DEFAULT NOW(),
     FOREIGN KEY (`user_id`) REFERENCES User(id),
@@ -108,9 +108,9 @@ CREATE TABLE IF NOT EXISTS `Recipe_Purchase_History` (
 -- Create table Registration_User_Token
 DROP TABLE IF EXISTS Registration_User_Token;
 CREATE TABLE IF NOT EXISTS Registration_User_Token (
-	token_id				INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	token_id				INT AUTO_INCREMENT PRIMARY KEY,
     token					CHAR(36) NOT NULL UNIQUE,
-    `user_id`				INT UNSIGNED NOT NULL,
+    `user_id`				INT NOT NULL,
     expiry_date				DATETIME NOT NULL,
     FOREIGN KEY(`user_id`)  REFERENCES `User`(id)
 );
@@ -118,9 +118,9 @@ CREATE TABLE IF NOT EXISTS Registration_User_Token (
 -- Create table Reset_Password_Token
 DROP TABLE IF EXISTS Reset_Password_Token;
 CREATE TABLE IF NOT EXISTS Reset_Password_Token (
-	reset_id				INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	reset_id				INT AUTO_INCREMENT PRIMARY KEY,
     token					CHAR(36) NOT NULL UNIQUE,
-    `user_id`				INT UNSIGNED NOT NULL,
+    `user_id`				INT NOT NULL,
     expiry_date				DATETIME NOT NULL,
     FOREIGN KEY(`user_id`) REFERENCES `User`(id)
 );

@@ -80,13 +80,6 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public Optional<User> findUserById(Integer id) {
-
-		return userRepository.findById(id);
-	}
-
-
-	@Override
 	public boolean existsUserByEmail(String email) {
 
 		return userRepository.existsByEmail(email);
