@@ -1,15 +1,15 @@
 import React from "react";
 import ListRecipe from "./ListRecipe";
-import Narbar from "./Narbar";
+import Navbar from "./Navbar";
 
-function Homcomponent(props) {
+function HomeComponent(props) {
    return (
       <div>
-         <Narbar />
+         <Navbar />
          <br></br>
          <ListRecipe />
       </div>
    );
 }
 
-export default Homcomponent;
+export default HomeComponent;

@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.util.Optional;
+
 public interface IUserService extends UserDetailsService {
 
 
@@ -30,6 +32,6 @@ public interface IUserService extends UserDetailsService {
 
     void sendResetPasswordViaEmail(String email);
 
-
+    public Optional<User> findUserById(Integer id);
     void ChangePublicProfileDTO(String username, ChangePublicProfileDTO dto);
 }

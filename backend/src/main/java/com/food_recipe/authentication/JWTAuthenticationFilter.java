@@ -49,7 +49,7 @@ public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFil
             HttpServletResponse response,
             FilterChain chain,
             Authentication authResult) throws IOException, ServletException{
-        // infor user
+        // info user
         User user = userService.findUserByUsername(authResult.getName());
 
         JWTTokenService.addJWTTokenAndUserInfoToBody(response, user);

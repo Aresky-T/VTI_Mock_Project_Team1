@@ -1,12 +1,12 @@
 import React from "react";
 import { Button, Col, Input, Row } from "reactstrap";
 
-function Narbar(props) {
+function Navbar(props) {
    return (
       <div>
          <Row>
             <Col md={4}>
-               <Input type="text" name="" id="input" className="form-control" value="" required="required" pattern="" title=""></Input>
+               <Input type="text" name="" id="input" className="form-control" required="required" pattern="" title=""></Input>
             </Col>
             <Col md={1}>
                <Button>
@@ -33,4 +33,4 @@ function Narbar(props) {
    );
 }
 
-export default Narbar;
+export default Navbar;

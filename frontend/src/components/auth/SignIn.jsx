@@ -4,11 +4,15 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import { signIn } from '../../api/auth.api';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const currentUser = useSelector(state => state.auth.signIn.currentUser);
+    const navigate = useNavigate();
     const dispatch = useDispatch();
+
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -20,11 +24,12 @@ const SignIn = () => {
         }),
         onSubmit: values => {
             console.log(values);
-            signIn(values, dispatch);
+            signIn(values, dispatch, navigate);
         }
     })
 
     console.log(formik.errors);
+    console.log(currentUser)
 
     return (
         <div className='container-signin'>

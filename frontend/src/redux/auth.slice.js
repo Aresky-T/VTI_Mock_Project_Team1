@@ -4,7 +4,7 @@ const authSlice = createSlice({
     name: 'auth',
     initialState: {
         signIn: {
-            currentUser: '',
+            currentUser: JSON.parse(localStorage.getItem('userLoggedIn')),
             isLoading: false,
             isError: false,
             signInErrorMessage: null
