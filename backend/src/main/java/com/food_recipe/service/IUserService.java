@@ -9,6 +9,9 @@ import java.util.Optional;
 
 public interface IUserService extends UserDetailsService {
 
+
+    Optional<User> findUserById(Integer id);
+
     boolean existsUserByEmail(String email);
 
     boolean existsUserByUserName(String userName);

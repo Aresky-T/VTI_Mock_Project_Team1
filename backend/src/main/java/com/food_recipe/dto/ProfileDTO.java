@@ -6,9 +6,7 @@ import java.time.LocalDate;
 
 public class ProfileDTO {
 
-	private Integer id;
-
-	private String userName;
+	private String username;
 
 	private String email;
 
@@ -27,9 +25,8 @@ public class ProfileDTO {
 	private String avatarUrl;
 
 
-	public ProfileDTO(Integer id, String userName, String email, String firstName, String lastName, LocalDate birthDate, UserGender gender, Integer phone, String status, String avatarUrl) {
-		this.id = id;
-		this.userName = userName;
+	public ProfileDTO(String username, String email, String firstName, String lastName, LocalDate birthDate, UserGender gender, Integer phone, String status, String avatarUrl) {
+		this.username = username;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -40,16 +37,8 @@ public class ProfileDTO {
 		this.avatarUrl = avatarUrl;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
 	public String getEmail() {

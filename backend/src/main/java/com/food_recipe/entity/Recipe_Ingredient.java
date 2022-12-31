@@ -1,6 +1,5 @@
 package com.food_recipe.entity;
 
-
 import lombok.Data;
 
 import javax.persistence.*;

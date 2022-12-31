@@ -6,7 +6,7 @@ public class LoginInfoUser {
 
 	private String token;
 
-	private String userName;
+	private String username;
 
 	private String email;
 
@@ -22,9 +22,9 @@ public class LoginInfoUser {
 
 	private Integer phone;
 
-	public LoginInfoUser(String token, String userName, String email, String firstName, String lastName, String status, Integer id, UserGender gender, Integer phone) {
+	public LoginInfoUser(String token, String username, String email, String firstName, String lastName, String status, Integer id, UserGender gender, Integer phone) {
 		this.token = token;
-		this.userName = userName;
+		this.username = username;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -38,8 +38,8 @@ public class LoginInfoUser {
 		return token;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
 	public String getEmail() {

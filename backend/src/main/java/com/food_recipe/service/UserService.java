@@ -74,9 +74,9 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public User findUserByUserName(String username) {
+	public User findUserByUsername(String username) {
 
-		return userRepository.findByUserName(username);
+		return userRepository.findByUsername(username);
 	}
 
 	@Override
@@ -86,9 +86,9 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public boolean existsUserByUserName(String userName){
+	public boolean existsUserByUsername(String username){
 
-		return userRepository.existsByUserName(userName);
+		return userRepository.existsByUsername(username);
 	}
 
 	@Override
@@ -154,19 +154,19 @@ public class UserService implements IUserService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// Check user exists by username
-		User user = userRepository.findByUserName(username);
+		User user = userRepository.findByUsername(username);
 
 		if(user == null) {
 			throw new UsernameNotFoundException(username);
 		}
 
-		return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
-				AuthorityUtils.createAuthorityList(user.getUserName()));
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+				AuthorityUtils.createAuthorityList(user.getUsername()));
 	}
 
 	@Override
 	public void ChangePublicProfileDTO(String username, ChangePublicProfileDTO dto) {
-		User user = userRepository.findByUserName(username);
+		User user = userRepository.findByUsername(username);
 
 		user.setFirstName(dto.getFirstName());
 		user.setLastName(dto.getLastName());
