@@ -10,20 +10,18 @@ import java.util.Optional;
 public interface IUserService extends UserDetailsService {
 
 
-    Optional<User> findUserById(Integer id);
+    User findUserByUsername(String username);
 
     boolean existsUserByEmail(String email);
 
-    boolean existsUserByUserName(String userName);
-
     void createUser(User user);
+
+    boolean existsUserByUsername(String username);
 
     void activeUser(String token);
 
     User findUserByEmail(String email);
 
-
-    User findUserByUserName(String username);
 
     void sendConfirmUserRegistrationViaEmail(String email);
 
@@ -35,6 +33,5 @@ public interface IUserService extends UserDetailsService {
 
 
     void ChangePublicProfileDTO(String username, ChangePublicProfileDTO dto);
-
 
 }

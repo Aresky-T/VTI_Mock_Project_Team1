@@ -16,3 +16,17 @@
 2022-12-31 15:32:02 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [7] as [VARCHAR] - [12343] 
 2022-12-31 15:32:02 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [8] as [INTEGER] - [1] 
 2022-12-31 15:32:02 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [9] as [INTEGER] - [null] 
+2022-12-31 15:41:31 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
