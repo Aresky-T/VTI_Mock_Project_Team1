@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import ListRecipe from "./ListRecipe";
-import Narbar from "../HomeComponents/Navbar";
+import Narbar from "./Navbar";
 
 function HomeComponent(props) {
    let { handleShowRecipeDetail, handleShowListRecipe, handleInputToCart, handleShowCart, handleOnPayment, handlePayment, handleSubmitComment } = props;
