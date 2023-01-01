@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCheck } from "@fortawesome/free-solid-svg-icons"
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react"
-import { changeSettings, changeCurrentList } from "../redux/settings.slice";
+import { changeSettings } from "../redux/settings.slice";
 
 export default function Settings() {
     const dispatch = useDispatch();
@@ -11,7 +11,6 @@ export default function Settings() {
     const primaryColors = useSelector(state => state.settings.primaryColors.primaryColors);
     const fontSizes = useSelector(state => state.settings.fontSizes.fontSizes);
     const animationSpeeds = useSelector(state => state.settings.animationSpeeds.animationSpeeds);
-    const currentListIndex = useSelector(state => state.settings.currentListIndex);
 
     const [theme, setTheme] = useState("light");
     const [primaryColor, setPrimaryColor] = useState(0);
@@ -25,7 +24,6 @@ export default function Settings() {
         }
     }, [settings])
 
-    console.log(currentListIndex);
 
     function changeThemeSystem(i) {
         const _theme = { ...themes[i] }

@@ -3,16 +3,19 @@ import { useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-import { signIn } from '../../api/auth.api';
+import { signInUser } from '../../api/auth.api';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { MdError } from 'react-icons/md';
 
 const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
     const currentUser = useSelector(state => state.auth.signIn.currentUser);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    const errorMessage = useSelector(state => state.auth.signIn.signInErrorMessage)
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -24,11 +27,11 @@ const SignIn = () => {
         }),
         onSubmit: values => {
             console.log(values);
-            signIn(values, dispatch, navigate);
+            signInUser(values, dispatch, navigate, toast);
         }
     })
 
-    console.log(formik.errors);
+    console.log('error: ', formik.errors);
     console.log(currentUser)
 
     return (
@@ -67,14 +70,17 @@ const SignIn = () => {
                         <span className='btn-eye'
                             onClick={() => setShowPassword(!showPassword)}
                         >
-                        {
-                            showPassword ?
-                                <AiFillEye/>
-                                :
-                                <AiFillEyeInvisible/>
-                        }
+                            {
+                                showPassword ?
+                                    <AiFillEye />
+                                    :
+                                    <AiFillEyeInvisible />
+                            }
                         </span>
-                        <label htmlFor="username" className='form-label'>Password</label>
+                        <label htmlFor="password" className='form-label'>Password</label>
+                    </div>
+                    <div className='error-message'>
+                        {errorMessage && <span><MdError /> {errorMessage}</span>}
                     </div>
                     <div className='signin-form-btn'>
                         <button type="submit" className='signin-btn'>Sign In</button>
@@ -91,6 +97,7 @@ const SignIn = () => {
                     </ul>
                 </form>
             </div>
+            <ToastContainer />
         </div>
     )
 }

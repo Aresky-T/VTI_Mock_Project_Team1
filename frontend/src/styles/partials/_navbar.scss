@@ -139,8 +139,13 @@
           }
 
           &:hover {
-            transition: background-color 0.5s;
+            box-shadow: 0 2px 15px -5px rgb(0 0 0 / 50%);
+            transition: all 0.5s ease;
             background-color: #F2F2F2
+          }
+
+          &:active {
+            transform: translateY(10px);
           }
         }
 

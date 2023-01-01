@@ -1,7 +1,7 @@
 import React from "react";
 import { ProfileContainer } from "../Container/ProfileContainer";
 
-function ProfilePage(props) {
+function Profile(props) {
    return (
       <div>
          <ProfileContainer />
@@ -9,4 +9,4 @@ function ProfilePage(props) {
    );
 }
 
-export default ProfilePage;
+export default Profile

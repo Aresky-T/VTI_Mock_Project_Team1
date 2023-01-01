@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { signOutUser } from '../api/auth.api';
 import { HiUser } from 'react-icons/hi';
@@ -7,15 +7,14 @@ import { IoMdSettings } from 'react-icons/io';
 import { IoLogOut } from 'react-icons/io5';
 import { GrFormNext } from 'react-icons/gr';
 import AnimateHeight from 'react-animate-height';
-import { toggleDropdown } from '../redux/dropdown.slice';
 
-const DropdownNavbar = ({ currentUser }) => {
+const DropdownNavbar = ({ height, currentUser , closeDropdown}) => {
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const height = useSelector(state => state.dropdown.height);
 
     const closeDropdownNavbar = () => {
-        dispatch(toggleDropdown(0));
+        closeDropdown(0);
     }
 
     return (

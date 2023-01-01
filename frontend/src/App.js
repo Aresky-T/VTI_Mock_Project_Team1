@@ -5,8 +5,8 @@ import HomeComponent from "./components/HomeComponents/HomeComponent";
 import CreateRecipe from "./pages/CreateRecipe";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
-import ProfilePage from "./pages/ProfilePage";
-import Settings from "./components/Settings";
+import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
 
 const App = () => {
    return (
@@ -15,9 +15,9 @@ const App = () => {
          <div className="container main">
             <Routes>
                <Route path="/" element={<HomeComponent />} />
-               <Route path="/profile" element={<ProfilePage />} />
+               <Route path="/profile" element={<Profile/>} />
                <Route path="/create-recipe" element={<CreateRecipe />} />
-               <Route path="/settings" element={<Settings/>}/>
+               <Route path="/settings" element={<Settings />} />
                <Route path="/auth">
                   <Route path="sign-in" element={<SignIn />} />
                   <Route path="sign-up" element={<SignUp />} />

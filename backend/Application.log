@@ -1,18 +1,4 @@
-2022-12-31 00:46:25 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter             - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Web server failed to start. Port 8080 was already in use.
-
-Action:
-
-Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
- 
-2022-12-31 00:47:20 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+2023-01-01 20:14:44 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
     select
         user0_.id as id1_7_,
         user0_.avatar_url as avatar_u2_7_,
@@ -32,8 +18,8 @@ Identify and stop the process that's listening on port 8080 or configure this ap
         `User` user0_ 
     where
         user0_.`username`=? 
-2022-12-31 00:47:20 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2022-12-31 00:47:20 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+2023-01-01 20:14:44 [http-nio-8080-exec-1] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
+2023-01-01 20:14:53 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
     select
         user0_.id as id1_7_,
         user0_.avatar_url as avatar_u2_7_,
@@ -53,8 +39,8 @@ Identify and stop the process that's listening on port 8080 or configure this ap
         `User` user0_ 
     where
         user0_.`username`=? 
-2022-12-31 00:47:20 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2022-12-31 00:47:56 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+2023-01-01 20:14:53 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
+2023-01-01 20:15:02 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
     select
         user0_.id as id1_7_,
         user0_.avatar_url as avatar_u2_7_,
@@ -74,8 +60,8 @@ Identify and stop the process that's listening on port 8080 or configure this ap
         `User` user0_ 
     where
         user0_.`username`=? 
-2022-12-31 00:47:56 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2022-12-31 00:47:56 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+2023-01-01 20:15:02 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
+2023-01-01 20:15:08 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
     select
         user0_.id as id1_7_,
         user0_.avatar_url as avatar_u2_7_,
@@ -95,8 +81,8 @@ Identify and stop the process that's listening on port 8080 or configure this ap
         `User` user0_ 
     where
         user0_.`username`=? 
-2022-12-31 00:47:56 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2022-12-31 00:55:50 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+2023-01-01 20:15:08 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
+2023-01-01 20:15:08 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
     select
         user0_.id as id1_7_,
         user0_.avatar_url as avatar_u2_7_,
@@ -116,235 +102,4 @@ Identify and stop the process that's listening on port 8080 or configure this ap
         `User` user0_ 
     where
         user0_.`username`=? 
-2022-12-31 00:55:50 [http-nio-8080-exec-10] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2022-12-31 00:55:50 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
-    select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
-    from
-        `User` user0_ 
-    where
-        user0_.`username`=? 
-2022-12-31 00:55:50 [http-nio-8080-exec-10] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2022-12-31 01:19:19 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
-    select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
-    from
-        `User` user0_ 
-    where
-        user0_.`username`=? 
-2022-12-31 01:19:19 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2022-12-31 01:19:19 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
-    select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
-    from
-        `User` user0_ 
-    where
-        user0_.`username`=? 
-2022-12-31 01:19:19 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2022-12-31 01:32:26 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
-    select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
-    from
-        `User` user0_ 
-    where
-        user0_.`username`=? 
-2022-12-31 01:32:26 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2022-12-31 01:32:26 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
-    select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
-    from
-        `User` user0_ 
-    where
-        user0_.`username`=? 
-2022-12-31 01:32:26 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2022-12-31 01:54:42 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
-    select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
-    from
-        `User` user0_ 
-    where
-        user0_.`username`=? 
-2022-12-31 01:54:42 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2022-12-31 01:54:43 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
-    select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
-    from
-        `User` user0_ 
-    where
-        user0_.`username`=? 
-2022-12-31 01:54:43 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2022-12-31 02:34:53 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
-    select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
-    from
-        `User` user0_ 
-    where
-        user0_.`username`=? 
-2022-12-31 02:34:53 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2022-12-31 02:34:54 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
-    select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
-    from
-        `User` user0_ 
-    where
-        user0_.`username`=? 
-2022-12-31 02:34:54 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2022-12-31 04:30:11 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
-    select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
-    from
-        `User` user0_ 
-    where
-        user0_.`username`=? 
-2022-12-31 04:30:11 [http-nio-8080-exec-10] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2022-12-31 04:30:11 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
-    select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
-    from
-        `User` user0_ 
-    where
-        user0_.`username`=? 
-2022-12-31 04:30:11 [http-nio-8080-exec-10] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
+2023-01-01 20:15:08 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
