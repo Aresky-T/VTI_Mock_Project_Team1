@@ -8,7 +8,7 @@ const ConfirmSignUpSuccess = ({ signUpSuccessMessage, setShowPopup, showPopup })
     const closePopup = () => {
         setTimeout(() => {
             setShowPopup(false);
-            navigate('/')
+            navigate('/auth/sign-in')
         }, 300)
     }
 

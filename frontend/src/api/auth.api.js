@@ -11,7 +11,7 @@ import {
 
 const baseURL = 'http://localhost:8080/api/v1';
 
-export const signInUser = async (formData, dispatch, navigate, toast) => {
+export const signInUser = async (formData, dispatch) => {
     dispatch(signInStart());
     try {
         const response = await axios.post(`${baseURL}/login`, formData, {
@@ -19,12 +19,12 @@ export const signInUser = async (formData, dispatch, navigate, toast) => {
                 "Content-Type": "multipart/form-data"
             }
         });
-        localStorage.setItem("userLoggedIn", JSON.stringify(response.data));
-        dispatch(signInSuccess(response.data));
-        navigate("/");
-        console.log('Sign in successfully');
+        // localStorage.setItem("userLoggedIn", JSON.stringify(response.data));
+        // dispatch(signInSuccess(response.data));
+        // navigate("/");
+        // console.log('Sign in successfully');
+        return response.data;
     } catch (err) {
-        toast('❌ Your account invalid. Please try again!')
         dispatch(signInError("Username or password invalid. Please try again!"));
     }
 }

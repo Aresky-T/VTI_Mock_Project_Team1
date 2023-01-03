@@ -6,16 +6,18 @@ import * as yup from 'yup';
 import { signInUser } from '../../api/auth.api';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { MdError } from 'react-icons/md';
+import Loading from '../Loading';
+import { signInSuccess, signInEnd, clearRedux } from '../../redux/auth.slice'
+import swal from 'sweetalert';
 
 const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const currentUser = useSelector(state => state.auth.signIn.currentUser);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const errorMessage = useSelector(state => state.auth.signIn.signInErrorMessage)
+    const isLoading = useSelector(state => state.auth.signIn.isLoading);
+
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -26,13 +28,28 @@ const SignIn = () => {
             password: yup.string().required('Required')
         }),
         onSubmit: values => {
-            console.log(values);
-            signInUser(values, dispatch, navigate, toast);
+            signInUser(values, dispatch)
+                .then(account => {
+                    if (!account.token) {
+                        const warning = "Your account is not active. Please check your email to activate account!"
+                        dispatch(signInEnd());
+                        swal({
+                            title: "Warning!",
+                            text: warning,
+                            icon: "warning",
+                            buttons: "OK",
+                            // timer: 3000,
+                        });
+                    } else {
+                        localStorage.setItem("userLoggedIn", JSON.stringify(account));
+                        dispatch(signInSuccess(account));
+                        navigate("/");
+                        console.log('Sign in successfully');
+                    }
+                })
+                .catch(() => { });
         }
     })
-
-    console.log('error: ', formik.errors);
-    console.log(currentUser)
 
     return (
         <div className='container-signin'>
@@ -51,7 +68,10 @@ const SignIn = () => {
                             id='username'
                             name='username'
                             value={formik.values.username}
-                            onChange={formik.handleChange}
+                            onChange={(e) => {
+                                formik.handleChange(e);
+                                dispatch(clearRedux());
+                            }}
                             className='input'
                             placeholder="Username"
                         />
@@ -64,7 +84,10 @@ const SignIn = () => {
                             name='password'
                             value={formik.values.password}
                             className='input'
-                            onChange={formik.handleChange}
+                            onChange={(e) => {
+                                formik.handleChange(e);
+                                dispatch(clearRedux());
+                            }}
                             placeholder="Password"
                         />
                         <span className='btn-eye'
@@ -97,7 +120,8 @@ const SignIn = () => {
                     </ul>
                 </form>
             </div>
-            <ToastContainer />
+            <Loading isLoading={isLoading} />
+            {/* <ToastContainer /> */}
         </div>
     )
 }

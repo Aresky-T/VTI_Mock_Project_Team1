@@ -13,12 +13,21 @@ const Navbar = () => {
     const location = useLocation();
 
     let dropdownRef = useRef();
+    const sidebarRef = useRef();
 
-    const closeDropdown = () => {
+    //---------------------------Close Dropdown Profile---------------------------
+    function closeDropdown() {
         setHeight(0);
     }
-
+    //------------------------------Close Sidebar Menu----------------------------
+    function closeSidebar() {
+        setShowSidebar(false);
+    }
+    //--------------------------------UseEffect to close dropdown-----------------
     useEffect(() => {
+        /**
+         * If the dropdown menu is open and the user clicks outside of the dropdown, close the dropdown menu.
+         */
         let handler = (e) => {
             if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
                 closeDropdown()
@@ -28,6 +37,23 @@ const Navbar = () => {
         return document.removeEventListener("mousedown", handler, height === 0);
     })
 
+    //------------------------------UseEffect to close Sidebar--------------------
+    useEffect(() => {
+        /**
+         * If the sidebar is open and the user clicks outside of the sidebar, close the sidebar.
+         */
+        let onClick = (e) => {
+            if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+                closeSidebar();
+            }
+        }
+        document.addEventListener('mousedown', onClick,);
+        return () => {
+            document.removeEventListener('mousedown', onClick, true);
+        }
+    })
+
+    //----------------------------------List links for routers--------------------
     const links = [
         {
             name: "Home",
@@ -60,11 +86,6 @@ const Navbar = () => {
             icon: faCog
         }
     ]
-
-
-    function closeSidebar() {
-        setShowSidebar(false);
-    }
 
     return (
         <>
@@ -107,18 +128,20 @@ const Navbar = () => {
                             </>
                         }
                     </div>
-                    {/* <div ref={dropdownRef}>
-                        {currentUser && <DropdownNavbar height={height} currentUser={currentUser} closeDropdown={closeDropdown} />}
-                    </div> */}
                 </div>
-                <div onClick={() => setShowSidebar(!showSidebar)} className={showSidebar ? "sidebar-btn active" : "sidebar-btn"}>
+                <div
+                    ref={sidebarRef}
+                    onClick={() => setShowSidebar(!showSidebar)}
+                    className={showSidebar ? "sidebar-btn active" : "sidebar-btn"}
+                >
                     <div className="bar"></div>
                     <div className="bar"></div>
                     <div className="bar"></div>
                 </div>
             </div>
-
-            {showSidebar && <Sidebar closeSidebar={closeSidebar} links={links} />}
+            <div ref={sidebarRef}>
+                {showSidebar && <Sidebar closeSidebar={closeSidebar} links={links} />}
+            </div>
         </>
     )
 }
