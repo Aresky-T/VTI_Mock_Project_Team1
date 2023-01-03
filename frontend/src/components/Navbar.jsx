@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Sidebar from './Sidebar';
 import DropdownNavbar from './DropdownNavbar';
+import logoUser from '../imgs/user-128.png';
 
 const Navbar = () => {
 
@@ -107,7 +108,7 @@ const Navbar = () => {
                     <div className='nav-links-main'>
                         {currentUser ?
                             <div ref={dropdownRef}>
-                                <img src='http://res.cloudinary.com/tuantea/image/upload/v1671462670/o8xxmzxjbnnof24atjft.jpg'
+                                <img src={currentUser.avatarUrl ? currentUser.avatarUrl : logoUser}
                                     alt=''
                                     className='user-pic'
                                     aria-expanded={height !== 0}

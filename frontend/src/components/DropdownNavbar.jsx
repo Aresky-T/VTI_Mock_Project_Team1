@@ -7,8 +7,9 @@ import { IoMdSettings } from 'react-icons/io';
 import { IoLogOut } from 'react-icons/io5';
 import { GrFormNext } from 'react-icons/gr';
 import AnimateHeight from 'react-animate-height';
+import logo from '../imgs/user-128.png'
 
-const DropdownNavbar = ({ height, currentUser , closeDropdown}) => {
+const DropdownNavbar = ({ height, currentUser, closeDropdown }) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -31,8 +32,8 @@ const DropdownNavbar = ({ height, currentUser , closeDropdown}) => {
                         closeDropdownNavbar();
                     }}
                 >
-                    <img src={currentUser?.avatarUrl} alt="" />
-                    <h3>{currentUser?.username}</h3>
+                    <img src={currentUser.avatarUrl ? currentUser.avatarUrl : logo} alt="" />
+                    <h3>{currentUser.username}</h3>
                 </div>
                 <hr />
 
