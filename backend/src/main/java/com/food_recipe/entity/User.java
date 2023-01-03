@@ -22,7 +22,7 @@ public class User implements Serializable {
     @Column(name = "`first_name`", nullable = false)
     private String firstName;
 
-    @Column(name = "`last_name`", nullable = false)
+    @Column(name = "`last_name`", nullable = false, length = 50)
     private String lastName;
 
     @Formula("concat(first_name, ' ', last_name)")
