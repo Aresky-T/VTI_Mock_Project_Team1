@@ -33,7 +33,6 @@ public interface IUserService extends UserDetailsService {
 
     void sendResetPasswordViaEmail(String email);
 
-    public Optional<User> findUserById(Integer id);
     void ChangePublicProfileDTO(String username, ChangePublicProfileDTO dto);
 
 }

@@ -31,6 +31,9 @@ const authSlice = createSlice({
             state.signIn.isError = true;
             state.signIn.signInErrorMessage = action.payload;
         },
+        signInEnd: (state) => {
+            state.signIn.isLoading = false;
+        },
         signUpStart: state => {
             state.signUp.isLoading = true;
         },
@@ -66,6 +69,7 @@ export const {
     signInStart,
     signInSuccess,
     signInError,
+    signInEnd,
     signUpStart,
     signUpSuccess,
     signUpError,

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { Provider } from "react-redux";
 import "./styles/index.scss";
+import "./styles/swal.scss";
 import store from "./redux/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
