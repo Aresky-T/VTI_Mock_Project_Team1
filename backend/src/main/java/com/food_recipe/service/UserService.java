@@ -17,7 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 @Component
@@ -38,6 +37,9 @@ public class UserService implements IUserService {
 
 	@Autowired
 	private ResetPasswordTokenRepository resetPasswordTokenRepository;
+
+	@Autowired
+	private SendMailService sendMailService;
 
 
 	@Override
@@ -73,12 +75,12 @@ public class UserService implements IUserService {
 		return userRepository.findByEmail(email);
 	}
 
+
 	@Override
-	public User findUserByUserName(String username) {
+	public User findUserByUsername(String username) {
 
-		return userRepository.findByUserName(username);
+		return userRepository.findByUsername(username);
 	}
-
 
 	@Override
 	public boolean existsUserByEmail(String email) {
@@ -87,9 +89,14 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public boolean existsUserByUserName(String userName){
+	public boolean existsUserByUserName(String userName) {
+		return false;
+	}
 
-		return userRepository.existsByUserName(userName);
+	@Override
+	public boolean existsUserByUsername(String username){
+
+		return userRepository.existsByUsername(username);
 	}
 
 	@Override
@@ -155,19 +162,19 @@ public class UserService implements IUserService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// Check user exists by username
-		User user = userRepository.findByUserName(username);
+		User user = userRepository.findByUsername(username);
 
 		if(user == null) {
 			throw new UsernameNotFoundException(username);
 		}
 
-		return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
-				AuthorityUtils.createAuthorityList(user.getUserName()));
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+				AuthorityUtils.createAuthorityList(user.getUsername()));
 	}
 
 	@Override
 	public void ChangePublicProfileDTO(String username, ChangePublicProfileDTO dto) {
-		User user = userRepository.findByUserName(username);
+		User user = userRepository.findByUsername(username);
 
 		user.setFirstName(dto.getFirstName());
 		user.setLastName(dto.getLastName());
@@ -177,6 +184,17 @@ public class UserService implements IUserService {
 		user.setAvatarUrl(dto.getAvatarUrl());
 
 		userRepository.save(user);
+	}
+
+
+	public void forgotPassword(String email) {
+		User user = userRepository.findByEmail(email);
+		if (user != null) {
+			final String newToken = UUID.randomUUID().toString();
+			ResetPasswordToken token = new ResetPasswordToken(newToken, user);
+			resetPasswordTokenRepository.save(token);   // lưu token vào data
+			sendMailService.sendForgotPassword(user.getEmail(), newToken);
+		}
 	}
 
 }

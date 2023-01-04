@@ -25,7 +25,7 @@ public class JWTTokenService {
 
     public static void addJWTTokenAndUserInfoToBody(HttpServletResponse response, User user) throws IOException {
         String JWT = Jwts.builder()
-                .setSubject(user.getUserName())
+                .setSubject(user.getUsername())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
@@ -33,7 +33,7 @@ public class JWTTokenService {
         // convert user entity to user dto
         LoginInfoUser userDto = new LoginInfoUser(
                 user.getStatus().equals(UserStatus.ACTIVE) ? JWT : null,
-                user.getUserName(),
+                user.getUsername(),
                 user.getEmail(),
                 user.getFirstName(),
                 user.getLastName(),
@@ -41,7 +41,6 @@ public class JWTTokenService {
                 user.getId(),
                 user.getGender(),
                 user.getPhone());
-
 
         // convert object to json
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

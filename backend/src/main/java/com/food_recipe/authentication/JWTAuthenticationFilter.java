@@ -15,6 +15,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Collections;
 
@@ -36,7 +37,7 @@ public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFil
 
         return getAuthenticationManager().authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getParameter("userName"),
+                        request.getParameter("username"),
                         request.getParameter("password"),
                         Collections.emptyList()
                 )
@@ -50,7 +51,7 @@ public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFil
             FilterChain chain,
             Authentication authResult) throws IOException, ServletException{
         // infor user
-        User user = userService.findUserByUserName(authResult.getName());
+        User user = userService.findUserByUsername(authResult.getName());
 
         JWTTokenService.addJWTTokenAndUserInfoToBody(response, user);
     }

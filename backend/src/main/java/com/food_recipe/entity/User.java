@@ -16,20 +16,20 @@ public class User implements Serializable {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "`first_name`", nullable = false)
     private String firstName;
 
-    @Column(name = "`last_name`", nullable = false)
+    @Column(name = "`last_name`", nullable = false, length = 50)
     private String lastName;
 
     @Formula("concat(first_name, ' ', last_name)")
     private String fullName;
 
     @Column(name = "`user_name`", nullable = false, length = 50, unique = true)
-    private String userName;
+    private String username;
 
     @Column(name = "`email`", nullable = false, length = 50, unique = true)
     private String email;
@@ -58,11 +58,12 @@ public class User implements Serializable {
 
     }
 
-    public User(String firstName, String lastName, String userName, String email, String password) {
+    public User(String firstName, String lastName, String username, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.username = username;
         this.email = email;
         this.password = password;
     }
+
 }

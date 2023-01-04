@@ -4,6 +4,7 @@ import com.food_recipe.service.IUserService;
 import com.google.common.collect.ImmutableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -36,6 +37,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/api/v1/login").anonymous()
 				.antMatchers("/api/v1/users/profile").authenticated()
 				.antMatchers("/api/v1/users/**").permitAll()
+				.antMatchers(HttpMethod.POST,"/api/v1/users/recipes").authenticated()
+				.antMatchers(HttpMethod.PUT,"/api/v1/users/recipes").authenticated()
+				.antMatchers(HttpMethod.DELETE,"/api/v1/users/recipes").authenticated()
+				.antMatchers(HttpMethod.POST,"/api/v1/users/forgot").permitAll()
+				.antMatchers(HttpMethod.GET).permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.httpBasic()

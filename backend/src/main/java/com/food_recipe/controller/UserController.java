@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 
 @CrossOrigin("*")
 @RestController
@@ -39,22 +41,23 @@ public class UserController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/userName/{userName}")
-	public ResponseEntity<?> existsByUserName(@PathVariable(name = "userName") String userName){
+	@GetMapping(value = "/username/{username}")
+	public ResponseEntity<?> existsByUsername(@PathVariable(name = "username") String userName){
 		// get entity
-		boolean result = userService.existsUserByUserName(userName);
+		boolean result = userService.existsUserByUsername(userName);
 
 		// return result
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
+
 	@PostMapping()
-	public ResponseEntity<?> createUser(@RequestBody UserDTO dto){
+	public ResponseEntity<?> createUser(@RequestBody @Valid UserDTO dto){
 
 		// create User
 		userService.createUser(dto.toEntity());
 
-		return new ResponseEntity<>("We have sent an email. Please check email to active account!", HttpStatus.OK);
+		return new ResponseEntity<>("We have sent an email to you. Please check your email to activate account!", HttpStatus.OK);
 	}
 
 	@GetMapping("/activeUser")
@@ -74,7 +77,7 @@ public class UserController {
 	public ResponseEntity<?> sendConfirmUserRegistrationViaEmail(@RequestParam String email){
 		userService.sendConfirmUserRegistrationViaEmail(email);
 
-		return new ResponseEntity<>("We have sent an email. Please check email to active account!", HttpStatus.OK);
+		return new ResponseEntity<>("We have sent an email to you. Please check your email to activate account!", HttpStatus.OK);
 	}
 
 	// reset password confirm
@@ -96,14 +99,7 @@ public class UserController {
 		return new ResponseEntity<>("We have sent an email. Please check email to reset password!", HttpStatus.OK);
 	}
 
-	@PostMapping("/resetPassword")
-	// validate: check exists, check not expired
-	public ResponseEntity<?> resetPasswordViaEmail(@RequestParam String token, @RequestParam String newPassword){
-		//reset password
-		userService.resetPassword(token, newPassword);
 
-		return new ResponseEntity<>("Reset Password success!", HttpStatus.OK);
-	}
 
 	@GetMapping("/profile")
 	// validate: check exists, check not expired
@@ -113,11 +109,11 @@ public class UserController {
 		String username = authentication.getName();
 
 		// get user info
-		User user = userService.findUserByUserName(username);
+		User user = userService.findUserByUsername(username);
 
 		// convert user entity to user dto
 		ProfileDTO profileDto = new ProfileDTO(
-				user.getUserName(),
+				user.getUsername(),
 				user.getEmail(),
 				user.getFirstName(),
 				user.getLastName(),
@@ -140,4 +136,20 @@ public class UserController {
 
 		return new ResponseEntity<>("Change Profile Successfully!", HttpStatus.OK);
 	}
+
+	@PostMapping("/forgot/{email}")
+	public void forgotPassword(@PathVariable String email) {
+		userService.forgotPassword(email);
+	}
+
+
+	@PostMapping("/resetPassword")
+	// validate: check exists, check not expired
+	public ResponseEntity<?> resetPasswordViaEmail(@RequestParam String token, @RequestParam String newPassword){
+		//reset password
+		userService.resetPassword(token, newPassword);
+
+		return new ResponseEntity<>("Reset Password success!", HttpStatus.OK);
+	}
+
 }

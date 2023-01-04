@@ -1,30 +1,44 @@
 package com.food_recipe.dto;
 
 import com.food_recipe.entity.User;
+import com.food_recipe.validation.EmailNotUnique;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class UserDTO {
 
-	// check not null, check length, check exists, check format (regex)...
-	private String userName;
 
-	// check not null, check length, check exists on database, check format
-	// (regex)...
+	@NotNull
+	@NotBlank
+	@Length(min = 6, max = 50)
+	private String username;
+
+
+	@NotNull
+	@Email
+	@EmailNotUnique
+	@Length(min = 6, max = 50)
 	private String email;
 
-	// check not null, check length, check format (regex)...
+
+	@NotNull
 	private String password;
 
-	// check not null, check length, check format (regex)...
+
+	@NotNull
 	private String firstName;
 
-	// check not null, check length, check format (regex)...
+	@NotNull
 	private String lastName;
 
 
 
 	public User toEntity() {
-		return new User( firstName, lastName, userName, email, password);
+		return new User( firstName, lastName, username, email, password);
 	}
 }

@@ -1,12 +1,18 @@
 package com.food_recipe.dto;
 
 import com.food_recipe.entity.UserGender;
+import com.food_recipe.validation.EmailNotUnique;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
 public class ProfileDTO {
 
-	private String userName;
+	private String username;
+
 
 	private String email;
 
@@ -14,10 +20,12 @@ public class ProfileDTO {
 
 	private String lastName;
 
+	@Past
 	private LocalDate birthDate;
 
 	private UserGender gender;
 
+	@Length(min = 10, max = 12)
 	private Integer phone;
 
 	private String status;
@@ -25,8 +33,8 @@ public class ProfileDTO {
 	private String avatarUrl;
 
 
-	public ProfileDTO(String userName, String email, String firstName, String lastName, LocalDate birthDate, UserGender gender, Integer phone, String status, String avatarUrl) {
-		this.userName = userName;
+	public ProfileDTO(String username, String email, String firstName, String lastName, LocalDate birthDate, UserGender gender, Integer phone, String status, String avatarUrl) {
+		this.username = username;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -37,8 +45,8 @@ public class ProfileDTO {
 		this.avatarUrl = avatarUrl;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
 	public String getEmail() {
