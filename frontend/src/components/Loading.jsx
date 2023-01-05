@@ -1,17 +1,15 @@
-import React from 'react'
-import ConfirmSignUpSuccess from './ConfirmSignUpSuccess'
+import React from "react";
 
 const Loading = ({ isLoading }) => {
+   return (
+      <>
+         {isLoading && (
+            <div className="loading-container">
+               <div className="lds-dual-ring"></div>
+            </div>
+         )}
+      </>
+   );
+};
 
-    return (
-        <>
-            {isLoading &&
-                <div className='loading-container'>
-                    <div className="lds-dual-ring"></div>
-                </div>
-            }
-        </>
-    )
-}
-
-export default Loading
+export default Loading;

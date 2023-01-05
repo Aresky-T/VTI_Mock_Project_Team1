@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import Sidebar from "./Sidebar";
 import DropdownNavbar from "./DropdownNavbar";
+import logoUser from "../imgs/user-128.png";
 
 const Navbar = () => {
    const [showSidebar, setShowSidebar] = useState(false);
@@ -12,12 +13,21 @@ const Navbar = () => {
    const location = useLocation();
 
    let dropdownRef = useRef();
+   const sidebarRef = useRef();
 
-   const closeDropdown = () => {
+   //---------------------------Close Dropdown Profile---------------------------
+   function closeDropdown() {
       setHeight(0);
-   };
-
+   }
+   //------------------------------Close Sidebar Menu----------------------------
+   function closeSidebar() {
+      setShowSidebar(false);
+   }
+   //--------------------------------UseEffect to close dropdown-----------------
    useEffect(() => {
+      /**
+       * If the dropdown menu is open and the user clicks outside of the dropdown, close the dropdown menu.
+       */
       let handler = (e) => {
          if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
             closeDropdown();
@@ -27,6 +37,23 @@ const Navbar = () => {
       return document.removeEventListener("mousedown", handler, height === 0);
    });
 
+   //------------------------------UseEffect to close Sidebar--------------------
+   useEffect(() => {
+      /**
+       * If the sidebar is open and the user clicks outside of the sidebar, close the sidebar.
+       */
+      let onClick = (e) => {
+         if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+            closeSidebar();
+         }
+      };
+      document.addEventListener("mousedown", onClick);
+      return () => {
+         document.removeEventListener("mousedown", onClick, true);
+      };
+   });
+
+   //----------------------------------List links for routers--------------------
    const links = [
       {
          name: "Home",
@@ -36,11 +63,6 @@ const Navbar = () => {
       {
          name: "Create Recipe",
          path: "/create-recipe",
-         icon: faPlusSquare,
-      },
-      {
-         name: "Username1",
-         path: "/userprofile",
          icon: faPlusSquare,
       },
       {
@@ -54,15 +76,16 @@ const Navbar = () => {
          icon: faRegistered,
       },
       {
+         name: "Profile",
+         path: "/profile",
+         icon: faUser,
+      },
+      {
          name: "Setting",
          path: "/settings",
          icon: faCog,
       },
    ];
-
-   function closeSidebar() {
-      setShowSidebar(false);
-   }
 
    return (
       <>
@@ -83,7 +106,7 @@ const Navbar = () => {
                   {currentUser ? (
                      <div ref={dropdownRef}>
                         <img
-                           src="http://res.cloudinary.com/tuantea/image/upload/v1671462670/o8xxmzxjbnnof24atjft.jpg"
+                           src={currentUser.avatarUrl ? currentUser.avatarUrl : logoUser}
                            alt=""
                            className="user-pic"
                            aria-expanded={height !== 0}
@@ -101,18 +124,14 @@ const Navbar = () => {
                      </>
                   )}
                </div>
-               {/* <div ref={dropdownRef}>
-                        {currentUser && <DropdownNavbar height={height} currentUser={currentUser} closeDropdown={closeDropdown} />}
-                    </div> */}
             </div>
-            <div onClick={() => setShowSidebar(!showSidebar)} className={showSidebar ? "sidebar-btn active" : "sidebar-btn"}>
+            <div ref={sidebarRef} onClick={() => setShowSidebar(!showSidebar)} className={showSidebar ? "sidebar-btn active" : "sidebar-btn"}>
                <div className="bar"></div>
                <div className="bar"></div>
                <div className="bar"></div>
             </div>
          </div>
-
-         {showSidebar && <Sidebar closeSidebar={closeSidebar} links={links} />}
+         <div ref={sidebarRef}>{showSidebar && <Sidebar closeSidebar={closeSidebar} links={links} />}</div>
       </>
    );
 };
