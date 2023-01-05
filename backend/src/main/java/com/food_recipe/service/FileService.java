@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileService implements IFileService {
 
 	private FileManager fileManager = new FileManager();
-	private String linkFolder = "C:\\Users\\Admin\\Pictures\\Avatar";
+	private String linkFolder = "C:\\Users\\Admin\\Desktop\\Avatar";
 
 	@Override
 	public String uploadImage(MultipartFile image) throws IOException {

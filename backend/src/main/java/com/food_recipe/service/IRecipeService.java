@@ -17,6 +17,7 @@ public interface IRecipeService{
 
     Page<Recipes> getAllRecipes(Pageable pageable, RecipeFilter filter, String search);
 
+    Recipes getRecipeById(Integer id);
 }
 
 

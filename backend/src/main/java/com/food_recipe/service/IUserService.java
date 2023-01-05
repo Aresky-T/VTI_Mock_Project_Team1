@@ -7,8 +7,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.Optional;
 
-import java.util.Optional;
-
 public interface IUserService extends UserDetailsService {
 
 
@@ -25,6 +23,7 @@ public interface IUserService extends UserDetailsService {
     User findUserByEmail(String email);
 
 
+
     void sendConfirmUserRegistrationViaEmail(String email);
 
     void resetPasswordViaEmail(String email);
@@ -35,4 +34,6 @@ public interface IUserService extends UserDetailsService {
 
     void ChangePublicProfileDTO(String username, ChangePublicProfileDTO dto);
 
+
+    void forgotPassword(String email);
 }

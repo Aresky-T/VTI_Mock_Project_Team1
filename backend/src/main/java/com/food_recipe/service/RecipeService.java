@@ -47,6 +47,9 @@ public class RecipeService implements IRecipeService {
         return recipeRepository.findAll(specificationBuilder.build(), pageable);
     }
 
+    public Recipes getRecipeById(Integer id) {
+        return recipeRepository.findById(id).get();
+    }
 
 
 }

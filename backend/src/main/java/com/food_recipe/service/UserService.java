@@ -38,6 +38,9 @@ public class UserService implements IUserService {
 	@Autowired
 	private ResetPasswordTokenRepository resetPasswordTokenRepository;
 
+	@Autowired
+	private SendMailService sendMailService;
+
 
 	@Override
 	public void createUser(User user) {
@@ -71,6 +74,7 @@ public class UserService implements IUserService {
 
 		return userRepository.findByEmail(email);
 	}
+
 
 	@Override
 	public User findUserByUsername(String username) {
@@ -175,6 +179,17 @@ public class UserService implements IUserService {
 		user.setAvatarUrl(dto.getAvatarUrl());
 
 		userRepository.save(user);
+	}
+
+
+	public void forgotPassword(String email) {
+		User user = userRepository.findByEmail(email);
+		if (user != null) {
+			final String newToken = UUID.randomUUID().toString();
+			ResetPasswordToken token = new ResetPasswordToken(newToken, user);
+			resetPasswordTokenRepository.save(token);   // lưu token vào data
+			sendMailService.sendForgotPassword(user.getEmail(), newToken);
+		}
 	}
 
 }

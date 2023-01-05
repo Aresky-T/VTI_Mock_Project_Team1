@@ -8,16 +8,16 @@ USE RecipeDBTeam1;
 DROP TABLE IF EXISTS 	`User`;
 CREATE TABLE IF NOT EXISTS `User` ( 	
 	id 				INT AUTO_INCREMENT PRIMARY KEY,
-    `first_name`		VARCHAR(50)	NOT NULL,
+    `first_name`	VARCHAR(50)	NOT NULL,
     `last_name`		VARCHAR(50)	NOT NULL,
 	`user_name`	 	CHAR(50) 	NOT NULL UNIQUE CHECK (LENGTH(`user_name`) >= 6 AND LENGTH(`user_name`) <= 50),
 	`email` 		CHAR(50) 	NOT NULL UNIQUE CHECK (LENGTH(`email`) >= 6 AND LENGTH(`email`) <= 50),
 	`password` 		VARCHAR(100) NOT NULL,
-    `birth_date`		DATE,
+    `birth_date`	DATE,
 	`gender`		ENUM('Male','Female','isDifferent'),
     `phone`			VARCHAR(50),
     `status`		TINYINT DEFAULT 0, -- 0: Not Active, 1: Active
-    `avatar_url`		VARCHAR(500)
+    `avatar_url`	VARCHAR(500)
 );
 				
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `Recipe` (
     `user_id`			INT NOT NULL,
     `note`				VARCHAR(3000),
     `price`				FLOAT(10,2) default 0,
-    `views`				INT	default 0,
+    `views`				INT,
     `create_date`		DATETIME default now(),
 	FOREIGN KEY (`user_id`) REFERENCES User(id)
 );

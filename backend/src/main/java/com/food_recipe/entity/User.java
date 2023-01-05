@@ -17,11 +17,13 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "`first_name`", nullable = false)
     private String firstName;
 
+    @Column(name = "`last_name`", nullable = false, length = 50)
     @Column(name = "`last_name`", nullable = false, length = 50)
     private String lastName;
 
@@ -59,10 +61,13 @@ public class User implements Serializable {
     }
 
     public User(String firstName, String lastName, String username, String email, String password) {
+    public User(String firstName, String lastName, String username, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.username = username;
         this.username = username;
         this.email = email;
         this.password = password;
     }
+
 }

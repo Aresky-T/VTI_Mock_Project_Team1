@@ -43,8 +43,14 @@ public class RecipeController {
 
     @GetMapping("/name/{value}")
     ResponseEntity<List<Recipes>> findByRecipeName(
-           @PathVariable(name = "value") String name) {
+            @PathVariable(name = "value") String name) {
         return ResponseEntity.ok().body(recipeService.findByName(name));
-
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getRecipeById(@PathVariable(name = "id") Integer id){
+        return new ResponseEntity<>(recipeService.getRecipeById(id), HttpStatus.OK);
+    }
+
+
 }
