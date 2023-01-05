@@ -254,3 +254,9 @@
         }
     }
 }
+
+@media  screen and (max-width: 768px) {
+    .image-container .image-container-item span {
+        display: none;
+    }
+}

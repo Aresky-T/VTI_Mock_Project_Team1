@@ -152,6 +152,7 @@ a {
 @import "partials/settings";
 @import "partials/sidebar";
 @import "partials/create_recipe";
+@import "partials/modal_login";
 
 
 
@@ -169,13 +170,13 @@ a {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 841px) {
   .sidebar {
     display: none;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 840px) {
   .navbar {
     .nav-links {
       display: none;

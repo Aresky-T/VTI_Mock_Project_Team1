@@ -47,7 +47,9 @@ const SignIn = () => {
                         console.log('Sign in successfully');
                     }
                 })
-                .catch(() => { });
+                .catch((err) => {
+                    console.log(err);
+                });
         }
     })
 

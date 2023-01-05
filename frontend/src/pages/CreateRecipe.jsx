@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { AiOutlineDelete } from 'react-icons/ai'
-import imageUpload from '../imgs/Nem_rán.jpeg';
+import { upLoadFiles } from '../api/file.api'
+import ModalLogin from '../components/auth/ModalLogin'
 
 const CreateRecipe = () => {
 
   const currentUser = useSelector(state => state.auth.signIn.currentUser);
   const uploadRef = useRef();
+  const [showModal, setShowModal] = useState(false);
+  const [imageFile, setImageFile] = useState();
 
-  const [image, setImage] = useState();
-
-  console.log(currentUser);
+  // console.log('Current user: ',currentUser);
 
   const handleFocus = () => {
     console.log('focus input file');
@@ -18,12 +19,26 @@ const CreateRecipe = () => {
     image.click();
   }
 
+  const upLoadFilesForCreate = (formData, token) => {
+    upLoadFiles(formData, token)
+      .then((response) => {
+        return response.data;
+      })
+      .then((data) => {
+        // image.preview = URL.createObjectURL(image);
+      })
+      .catch((err) => {
+        console.log('err: ', err);
+      })
+  }
+
   const handleChangeImage = (event) => {
     const formData = new FormData();
     formData.append("file", event.target.files[0]);
     const file = formData.get("file");
-    file.preview = URL.createObjectURL(file);
-    setImage({name: file.name, url: file.preview});
+    file.url = URL.createObjectURL(file);
+    setImageFile({name: file.name, url: file.url})
+    // upLoadFilesForCreate(file, currentUser.token);
   }
 
   useEffect(() => {
@@ -39,7 +54,12 @@ const CreateRecipe = () => {
     }
   })
 
-  console.log(image);
+  if(!currentUser){
+    console.log("no login")
+    setTimeout(() => {
+      setShowModal(true);
+    }, 500)
+  }
 
   return (
     <div className='create-recipe section'>
@@ -48,12 +68,12 @@ const CreateRecipe = () => {
           <h2>🧑🏻‍🍳 Share your recipe 🍔</h2>
         </div>
         <div className='create-container-form'>
-          <form>
+          <form encType='multipart/form-data'>
             <ul>
               <li className='form-line'>
                 <label className='form-label'>Recipe Name: </label>
                 <div className='form-input'>
-                  <input type="text" placeholder='Enter recipe name'/>
+                  <input type="text" placeholder='Enter recipe name' />
                 </div>
               </li>
               <li className='form-line'>
@@ -106,7 +126,7 @@ const CreateRecipe = () => {
               <li className='form-line'>
                 <label className='form-label'>Price: </label>
                 <div className='form-input'>
-                  <input type="number" placeholder='Ex: 100'/>
+                  <input type="number" placeholder='Ex: 100' />
                 </div>
               </li>
               <li className='form-line'>
@@ -123,20 +143,20 @@ const CreateRecipe = () => {
                     <input type="file"
                       id='input-image'
                       name='file'
-                      multiple="multiple"
+                      // multiple="multiple"
                       onChange={handleChangeImage}
                     />
                   </div>
                   <ul className='upload-list'>
-                    {image && (
+                    {imageFile && (
                       <li className='image-container'>
                         <div className='image-container-item'>
-                          <img src={image.url} alt='' />
+                          <img src={imageFile.url} alt='' />
                         </div>
-                        <span>{image.name}</span>
+                        <span>{imageFile.name}</span>
                         <span
                           className='delete-icon'
-                          onClick={() => setImage(null)}
+                          onClick={() => setImageFile(null)}
                         >
                           <AiOutlineDelete />
                         </span>
@@ -147,11 +167,12 @@ const CreateRecipe = () => {
               </li>
             </ul>
             <div className='submit-button'>
-              <button type='submit'>Submit</button>
+              <button type='button' onClick={upLoadFilesForCreate}>Submit</button>
             </div>
           </form>
         </div>
       </div>
+      {showModal && <ModalLogin setShowModal={setShowModal}/>}
     </div>
   )
 }

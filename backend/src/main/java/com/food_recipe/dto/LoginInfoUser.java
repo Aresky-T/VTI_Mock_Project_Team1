@@ -24,7 +24,7 @@ public class LoginInfoUser {
 
 	private Integer phone;
 
-	public LoginInfoUser(String token, String username, String email, String firstName, String lastName, String status, Integer id, UserGender gender, Integer phone) {
+	public LoginInfoUser(String token, String username, String email, String firstName, String lastName, String avatarUrl ,String status, Integer id, UserGender gender, Integer phone) {
 		this.token = token;
 		this.username = username;
 		this.email = email;
