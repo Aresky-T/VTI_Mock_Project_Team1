@@ -25,6 +25,7 @@ body {
   padding-top: 55px;
   background-color: var(--background-light);
   position: relative;
+  min-width: 700px;
 }
 
 a {
@@ -49,38 +50,38 @@ a {
 //   }
 // }
 
-.section{
+.section {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   margin-bottom: 3vw;
 
-  &.d-block{
-      display: block;
+  &.d-block {
+    display: block;
   }
 
-  .title{
-      color: var(--text-color);
-      font-size: 2.5em;
-      margin-bottom: .25em;
-      font-weight: 900;
+  .title {
+    color: var(--text-color);
+    font-size: 2.5em;
+    margin-bottom: .25em;
+    font-weight: 900;
   }
 
-  .info{
-      color: var(--text-light);
-      font-size: 1em;
-      letter-spacing: 1px;
-      line-height: 1.3;
-      margin-bottom: 1.25em;
+  .info {
+    color: var(--text-light);
+    font-size: 1em;
+    letter-spacing: 1px;
+    line-height: 1.3;
+    margin-bottom: 1.25em;
 
   }
 
-  .col{
-      width: 50%;
+  .col {
+    width: 50%;
   }
 }
 
-.options-container{
+.options-container {
   box-shadow: 0 5px 10px var(--shadow-color);
   padding: 1em;
   border-radius: 5px;
@@ -89,41 +90,48 @@ a {
   margin-top: 1em;
   display: flex;
   gap: 1em;
-  .option{
-      height: 3.5em;
-      width: 3.5em;
-      box-shadow: 0 3px 6px var(--shadow-color);
-      border-radius: 5px;
+
+  .option {
+    height: 3.5em;
+    width: 3.5em;
+    box-shadow: 0 3px 6px var(--shadow-color);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.light {
+      background-color: #fff;
+    }
+
+    &.dark {
+      background-color: rgb(29, 29, 29);
+    }
+
+    .check {
+      height: 2.5em;
+      width: 2.5em;
+      background-color: var(--primary-color);
+      border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      &.light{
-          background-color: #fff;
+      box-shadow: 0 2px 5px var(--shadow-color);
+
+      svg {
+        height: 1.5em;
+        width: 1.5em;
       }
-      &.dark{
-          background-color: rgb(29, 29, 29);
-      }
-      .check{
-          height: 2.5em;
-          width: 2.5em;
-          background-color: var(--primary-color);
-          border-radius: 50%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          box-shadow: 0 2px 5px var(--shadow-color);
-          svg{
-              height: 1.5em;
-              width: 1.5em;
-          }
-      }
+    }
   }
-  .btn span{
-      display: inline-block;
-      margin-left: .5em;
+
+  .btn span {
+    display: inline-block;
+    margin-left: .5em;
   }
 }
-.d-block h2{
+
+.d-block h2 {
   font-size: 1.75em;
   color: var(--text-color)
 }
@@ -143,6 +151,9 @@ a {
 @import "partials/response_sign_up";
 @import "partials/settings";
 @import "partials/sidebar";
+@import "partials/create_recipe";
+
+
 
 @media screen and (max-width: 1280px) {
   .container {
