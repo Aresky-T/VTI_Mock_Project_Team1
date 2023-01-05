@@ -4,9 +4,9 @@
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %-50c{1.} - %msg %n" />
 		</Console>
-		
-		<RollingFile 
-			name="RollingFile" 
+
+		<RollingFile
+			name="RollingFile"
 			filename="./Application.log"
 			filePattern="./logs/$${date:yyyy-MM}/HelloWorld-%d{-dd-MMMM-yyyy}-%i.log.gz">
             <PatternLayout>

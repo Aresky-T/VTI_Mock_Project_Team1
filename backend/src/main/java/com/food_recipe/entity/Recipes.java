@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -17,10 +18,10 @@ public class Recipes implements Serializable {
     @Column(name = "`id`", unique = true, nullable = false)
     private Integer id;
 
-    @Column(name = "`name`" ,  nullable = false)
+    @Column(name = "`name`" ,  nullable = false, length = 200)
     private String name;
 
-    @Column(name = "`image_url`" ,  nullable = false)
+    @Column(name = "`image_url`" ,  nullable = false, length = 200)
     private String imageUrl;
 
     @Column(name = "`description`" ,  nullable = false)
@@ -29,10 +30,11 @@ public class Recipes implements Serializable {
     @Column(name = "`processing_steps`" ,  nullable = false)
     private String processingSteps;
 
-    @ManyToOne
-    private User user;
 
-    @Column(name = "`note`")
+    @Column(name = "user_id", nullable = false)
+    private Integer userId;
+
+    @Column(name = "`note`", length = 3000)
     private String note;
 
     @Column(name = "`price`")
@@ -41,9 +43,30 @@ public class Recipes implements Serializable {
     @Column(name = "`views`")
     private Integer views;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "`create_date`", nullable = false)
-    private LocalDate createDate;
+    private Date createDate;
 
+    public Recipes(String name, String imageUrl, String description, String processingSteps, Integer userId, String note, Float price) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.description = description;
+        this.processingSteps = processingSteps;
+        this.userId = userId;
+        this.note = note;
+        this.price = price;
+        this.createDate = new Date();
+    }
 
+    public Recipes() {
 
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 }

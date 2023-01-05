@@ -14,6 +14,8 @@ public class LoginInfoUser {
 
 	private String lastName;
 
+	private String avatarUrl;
+
 	private String status;
 
 	private Integer id;
@@ -22,12 +24,13 @@ public class LoginInfoUser {
 
 	private Integer phone;
 
-	public LoginInfoUser(String token, String username, String email, String firstName, String lastName, String status, Integer id, UserGender gender, Integer phone) {
+	public LoginInfoUser(String token, String username, String email, String firstName, String lastName, String avatarUrl ,String status, Integer id, UserGender gender, Integer phone) {
 		this.token = token;
 		this.username = username;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.avatarUrl = avatarUrl;
 		this.status = status;
 		this.id = id;
 		this.gender = gender;
@@ -53,7 +56,9 @@ public class LoginInfoUser {
 	public String getLastName() {
 		return lastName;
 	}
-
+	public String getAvatarUrl() {
+		return avatarUrl;
+	}
 	public String getStatus() {
 		return status;
 	}

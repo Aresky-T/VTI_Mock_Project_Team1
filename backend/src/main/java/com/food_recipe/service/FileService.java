@@ -1,5 +1,6 @@
 package com.food_recipe.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
@@ -13,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileService implements IFileService {
 
 	private FileManager fileManager = new FileManager();
-	private String linkFolder = "C:\\Users\\Admin\\Pictures\\Avatar";
+	private String linkFolder = "C:\\Users\\aresky-t\\Desktop\\Avatar";
 
 	@Override
 	public String uploadImage(MultipartFile image) throws IOException {
@@ -27,6 +28,14 @@ public class FileService implements IFileService {
 		// TODO save link file to database
 
 		// return link uploaded file
-		return nameImage;
+		return path;
+	}
+
+	@Override
+	public File downloadImage(String nameImage) throws IOException {
+
+		String path = linkFolder + "\\" + nameImage;
+
+		return new File(path);
 	}
 }

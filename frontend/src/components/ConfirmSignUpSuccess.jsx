@@ -1,6 +1,16 @@
 import React from 'react'
 import { BsCheck } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 const ConfirmSignUpSuccess = ({ signUpSuccessMessage, setShowPopup, showPopup }) => {
+
+    const navigate = useNavigate();
+
+    const closePopup = () => {
+        setTimeout(() => {
+            setShowPopup(false);
+            navigate('/auth/sign-in')
+        }, 300)
+    }
 
     return (
         <>
@@ -17,7 +27,7 @@ const ConfirmSignUpSuccess = ({ signUpSuccessMessage, setShowPopup, showPopup })
                             {signUpSuccessMessage}
                         </div>
                         <div className='accept-btn'>
-                            <button type="button" onClick={() => setShowPopup(false)}>Accept</button>
+                            <button type="button" onClick={closePopup}>Accept</button>
                         </div>
                     </div>
                 </div>

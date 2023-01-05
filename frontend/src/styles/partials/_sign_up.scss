@@ -26,7 +26,7 @@ $gray: #9b9b9b;
     .wrap-signup {
         width: 390px;
         height: 500px;
-        background: rgb(255, 255, 255);
+        // background: rgb(255, 255, 255);
         box-sizing: border-box;
 
         .signup-form {
@@ -46,7 +46,7 @@ $gray: #9b9b9b;
                 font-family: Poppins-Bold;
                 font-weight: 700;
                 font-size: 39px;
-                color: #FB1556;
+                color: var(--primary-color);
                 line-height: 1.2;
                 text-align: center;
             }
@@ -89,16 +89,14 @@ $gray: #9b9b9b;
                         display: block;
                         transition: 0.2s;
                         font-size: 1rem;
-                        // color: $primary;
-                        color: #FB1556;
+                        color: var(--primary-color);
                         font-weight: 700;
                     }
 
                     padding-bottom: 6px;
                     font-weight: 700;
                     border-width: 3px;
-                    // border-image: linear-gradient(to right, $primary, $secondary);
-                    border-image: linear-gradient(to right, #fb1556, $secondary);
+                    border-image: linear-gradient(to right, var(--primary-color), $secondary);
                     border-image-slice: 1;
                 }
 
@@ -119,11 +117,53 @@ $gray: #9b9b9b;
                     color: $gray;
                     font-family: Poppins-Bold;
                 }
+
+                .wrap-input-err {
+                    position: absolute;
+                    top: 22px;
+                    right: 0;
+
+                    .validate-error-icon {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        color: #000000;
+                        transition: color 0.3s ease;
+                        cursor: pointer;
+
+                        &:hover {
+                            color: red;
+                        }
+                    }
+
+                    span.err-text {
+                        position: absolute;
+                        top: 28px;
+                        right: 25px;
+                        font-family: 'Times New Roman', Times, serif;
+                        display: none;
+                        width: 365px;
+                        background: white;
+                        box-shadow: 0px 2px 15px 0px rgb(147 147 147 / 80%);
+                        color: rgb(171, 4, 4);
+                        padding: 10px;
+                        text-align: center;
+                        transition: all 0.5s linear;
+                        border-radius: 10px;
+                        z-index: 100;
+                    }
+
+                    &:hover {
+                        span.err-text {
+                            display: block;
+                        }
+                    }
+                }
             }
 
             .show-password {
                 font-family: 'Times New Roman', Times, serif;
-                color: rgb(66, 189, 75);
+                color: var(--primary-color);
                 margin-top: 15px;
                 font-size: 14px;
                 position: relative;
@@ -159,12 +199,10 @@ $gray: #9b9b9b;
                     padding: 0 20px;
                     width: 100%;
                     height: 50px;
-                    // background-color: #57b846;
-                    background-color: #FB1556;
+                    background-color: var(--primary-color);
                     border: none;
                     border-radius: 25px;
-                    // box-shadow: 0 10px 30px 0 rgb(87 184 70 / 50%);
-                    box-shadow: 0 10px 30px 0 rgba(184, 70, 104, 0.5);
+                    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.5);
                     transition: all .4s;
                     cursor: pointer;
                 }
@@ -175,8 +213,9 @@ $gray: #9b9b9b;
                 }
 
                 .signup-btn:active {
-                    transform: translateY(3px);
+                    transform: scale(0.98);
                     transition: all 0.3s;
+                    box-shadow: none;
                 }
             }
 
@@ -199,12 +238,12 @@ $gray: #9b9b9b;
                     .txt2 {
                         font-family: Poppins-Regular;
                         font-size: 15px;
-                        color: #57b846;
+                        color: var(--primary-color);
                         line-height: 1.5;
                     }
 
                     .txt2:hover {
-                        color: #31e676;
+                        font-weight: 600;
                     }
                 }
             }

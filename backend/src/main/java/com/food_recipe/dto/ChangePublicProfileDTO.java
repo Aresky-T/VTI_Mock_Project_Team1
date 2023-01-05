@@ -24,6 +24,8 @@ public class ChangePublicProfileDTO {
 	public ChangePublicProfileDTO() {
 	}
 
+
+
 	public String getFirstName() {
 		return firstName;
 	}

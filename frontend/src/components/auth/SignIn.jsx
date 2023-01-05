@@ -3,12 +3,21 @@ import { useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-import { signIn } from '../../api/auth.api';
-import { useDispatch } from 'react-redux';
+import { signInUser } from '../../api/auth.api';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { MdError } from 'react-icons/md';
+import Loading from '../Loading';
+import { signInSuccess, signInEnd, clearRedux } from '../../redux/auth.slice'
+import swal from 'sweetalert';
 
 const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
     const dispatch = useDispatch();
+    const errorMessage = useSelector(state => state.auth.signIn.signInErrorMessage)
+    const isLoading = useSelector(state => state.auth.signIn.isLoading);
+
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -19,12 +28,30 @@ const SignIn = () => {
             password: yup.string().required('Required')
         }),
         onSubmit: values => {
-            console.log(values);
-            signIn(values, dispatch);
+            signInUser(values, dispatch)
+                .then(account => {
+                    if (!account.token) {
+                        const warning = "Your account is not active. Please check your email to activate account!"
+                        dispatch(signInEnd());
+                        swal({
+                            title: "Warning!",
+                            text: warning,
+                            icon: "warning",
+                            buttons: "OK",
+                            // timer: 3000,
+                        });
+                    } else {
+                        localStorage.setItem("userLoggedIn", JSON.stringify(account));
+                        dispatch(signInSuccess(account));
+                        navigate("/");
+                        console.log('Sign in successfully');
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         }
     })
-
-    console.log(formik.errors);
 
     return (
         <div className='container-signin'>
@@ -43,7 +70,10 @@ const SignIn = () => {
                             id='username'
                             name='username'
                             value={formik.values.username}
-                            onChange={formik.handleChange}
+                            onChange={(e) => {
+                                formik.handleChange(e);
+                                dispatch(clearRedux());
+                            }}
                             className='input'
                             placeholder="Username"
                         />
@@ -56,20 +86,26 @@ const SignIn = () => {
                             name='password'
                             value={formik.values.password}
                             className='input'
-                            onChange={formik.handleChange}
+                            onChange={(e) => {
+                                formik.handleChange(e);
+                                dispatch(clearRedux());
+                            }}
                             placeholder="Password"
                         />
                         <span className='btn-eye'
                             onClick={() => setShowPassword(!showPassword)}
                         >
-                        {
-                            showPassword ?
-                                <AiFillEye/>
-                                :
-                                <AiFillEyeInvisible/>
-                        }
+                            {
+                                showPassword ?
+                                    <AiFillEye />
+                                    :
+                                    <AiFillEyeInvisible />
+                            }
                         </span>
-                        <label htmlFor="username" className='form-label'>Password</label>
+                        <label htmlFor="password" className='form-label'>Password</label>
+                    </div>
+                    <div className='error-message'>
+                        {errorMessage && <span><MdError /> {errorMessage}</span>}
                     </div>
                     <div className='signin-form-btn'>
                         <button type="submit" className='signin-btn'>Sign In</button>
@@ -86,6 +122,8 @@ const SignIn = () => {
                     </ul>
                 </form>
             </div>
+            <Loading isLoading={isLoading} />
+            {/* <ToastContainer /> */}
         </div>
     )
 }

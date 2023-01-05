@@ -4,7 +4,7 @@ const authSlice = createSlice({
     name: 'auth',
     initialState: {
         signIn: {
-            currentUser: '',
+            currentUser: JSON.parse(localStorage.getItem('userLoggedIn')),
             isLoading: false,
             isError: false,
             signInErrorMessage: null
@@ -30,6 +30,9 @@ const authSlice = createSlice({
             state.signIn.isLoading = false;
             state.signIn.isError = true;
             state.signIn.signInErrorMessage = action.payload;
+        },
+        signInEnd: (state) => {
+            state.signIn.isLoading = false;
         },
         signUpStart: state => {
             state.signUp.isLoading = true;
@@ -66,6 +69,7 @@ export const {
     signInStart,
     signInSuccess,
     signInError,
+    signInEnd,
     signUpStart,
     signUpSuccess,
     signUpError,

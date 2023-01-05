@@ -3,11 +3,12 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-import { signUp } from '../../api/auth.api';
+import { signUpUser } from '../../api/auth.api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../Loading';
 import ConfirmSignUpSuccess from '../ConfirmSignUpSuccess';
+import { MdError } from 'react-icons/md';
 
 const SignUp = () => {
 
@@ -28,16 +29,16 @@ const SignUp = () => {
             lastName: '',
         },
         validationSchema: yup.object().shape({
-            username: yup.string().min(5, 'Too Short').required('Required'),
+            username: yup.string().min(5, 'Too Short').required('Required').matches(/^[a-z0-9_-]{5,30}$/, 'Username may include _ and – having a length of 5 to 30 characters'),
             email: yup.string().required('Required').matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Email invalid'),
             password: yup.string().required('Required').matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$/, 'Password must be 8 to 20 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character!'),
-            confirmPassword: yup.string().required('Required').oneOf([yup.ref("password"), null], 'Password must match'),
+            confirmPassword: yup.string().required('Required').oneOf([yup.ref("password"), null], 'Confirmed password must match password'),
             firstName: yup.string().required('Required'),
             lastName: yup.string().required('Required')
         }),
         onSubmit: values => {
             const { firstName, lastName, username, email, password } = values;
-            signUp({ firstName, lastName, username, email, password }, dispatch, toast, setShowPopup);
+            signUpUser({ firstName, lastName, username, email, password }, dispatch, toast, setShowPopup);
         }
     })
 
@@ -66,6 +67,14 @@ const SignUp = () => {
                                 placeholder="Username"
                             />
                             <label htmlFor="username" className='form-label'>Username</label>
+                            {formik.errors.username &&
+                                (
+                                    <div className='wrap-input-err'>
+                                        <MdError className='validate-error-icon' />
+                                        <span className="err-text">{formik.errors.username}</span>
+                                    </div>
+                                )
+                            }
                         </div>
                         <div className='wrap-input'>
                             <input
@@ -77,18 +86,35 @@ const SignUp = () => {
                                 className='input'
                                 placeholder="Enter your email"
                             />
-                            <label htmlFor="username" className='form-label'>Email</label>
+                            <label htmlFor="email" className='form-label'>Email</label>
+                            {formik.errors.email &&
+                                (
+                                    <div className='wrap-input-err'>
+                                        <MdError className='validate-error-icon' />
+                                        <span className="err-text">{formik.errors.email}</span>
+                                    </div>
+                                )
+                            }
                         </div>
                         <div className='wrap-input'>
                             <input
                                 type={showPassword ? "text" : "password"}
+                                id='password'
                                 name='password'
                                 value={formik.values.password}
                                 className='input'
                                 onChange={formik.handleChange}
                                 placeholder="Password"
                             />
-                            <label htmlFor="username" className='form-label'>Password</label>
+                            <label htmlFor="password" className='form-label'>Password</label>
+                            {formik.errors.password &&
+                                (
+                                    <div className='wrap-input-err'>
+                                        <MdError className='validate-error-icon' />
+                                        <span className="err-text">{formik.errors.password}</span>
+                                    </div>
+                                )
+                            }
                         </div>
                         <div className='wrap-input'>
                             <input
@@ -100,7 +126,15 @@ const SignUp = () => {
                                 onChange={formik.handleChange}
                                 placeholder="Confirm Password"
                             />
-                            <label htmlFor="username" className='form-label'>Confirm password</label>
+                            <label htmlFor="confirmPassword" className='form-label'>Confirm password</label>
+                            {formik.errors.confirmPassword &&
+                                (
+                                    <div className='wrap-input-err'>
+                                        <MdError className='validate-error-icon' />
+                                        <span className="err-text">{formik.errors.confirmPassword}</span>
+                                    </div>
+                                )
+                            }
                         </div>
                         <div className='wrap-input'>
                             <input
@@ -113,6 +147,14 @@ const SignUp = () => {
                                 placeholder='Enter your first name'
                             />
                             <label htmlFor="firstName" className='form-label'>First Name</label>
+                            {formik.errors.firstName &&
+                                (
+                                    <div className='wrap-input-err'>
+                                        <MdError className='validate-error-icon' />
+                                        <span className="err-text">{formik.errors.firstName}</span>
+                                    </div>
+                                )
+                            }
                         </div>
                         <div className='wrap-input'>
                             <input
@@ -125,6 +167,14 @@ const SignUp = () => {
                                 placeholder='Enter your last name'
                             />
                             <label htmlFor="lastName" className='form-label'>Last Name</label>
+                            {formik.errors.lastName &&
+                                (
+                                    <div className='wrap-input-err'>
+                                        <MdError className='validate-error-icon' />
+                                        <span className="err-text">{formik.errors.lastName}</span>
+                                    </div>
+                                )
+                            }
                         </div>
                         <div className='show-password'>
                             <input type='checkbox'
