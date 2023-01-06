@@ -1,9 +1,10 @@
 import React from "react";
+import Cart from "../../components/HomeComponents/Cart";
 import RecipeDetail from "../../components/HomeComponents/RecipeDetail";
 
 const initallState = {
    homeItem: 1,
-   listRecipes: "abc",
+   listRecipes: "",
    recipeDetail: "",
    cart: "",
 };
@@ -20,6 +21,11 @@ function HomeReducer(state = initallState, acction) {
             ...state,
             homeItem: <RecipeDetail />,
             recipeDetail: acction.payload,
+         };
+      case "SHOWCART":
+         return {
+            ...state,
+            homeItem: <Cart />,
          };
 
       default:

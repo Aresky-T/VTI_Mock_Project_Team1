@@ -10,6 +10,7 @@ import {
    acctionShowListRecipe,
    acctionSubmitComment,
    acctionShowRecipeDetail,
+   acctionSearchByName,
 } from "../redux/Acction/HomeAcction";
 import HomeComponent from "../components/HomeComponents/HomeComponent";
 function HomeContainer(props) {
@@ -38,6 +39,9 @@ function HomeContainer(props) {
    let handleSubmitComment = () => {
       dispathRedux(acctionSubmitComment());
    };
+   let handleSearch = (NameParam) => {
+      dispathRedux(acctionSearchByName(NameParam));
+   };
 
    return (
       <Container>
@@ -50,6 +54,7 @@ function HomeContainer(props) {
                handleSubmitComment={handleSubmitComment}
                handleShowListRecipe={handleShowListRecipe}
                handleShowRecipeDetail={handleShowRecipeDetail}
+               handleSearch={handleSearch}
             />
          </div>
       </Container>

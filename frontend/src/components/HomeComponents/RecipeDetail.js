@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Button, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
 
 function RecipeDetail(props) {
-   let { handleShowListRecipe, handleInputToCart, handleShowCart, handleOnPayment, handlePayment, handleSubmitComment } = props;
+   let { handleInputToCart, handleOnPayment, handleSubmitComment } = props;
    let recipeSate = useSelector((state) => state.homeRedux.recipeDetail);
    console.log("recipeSate", recipeSate);
    let inputToCart = (recipeParam) => {
@@ -11,6 +11,9 @@ function RecipeDetail(props) {
    };
    let onpayment = (recipeParam) => {
       handleOnPayment(recipeParam);
+   };
+   let submitComment = () => {
+      handleSubmitComment();
    };
 
    return (
@@ -38,16 +41,25 @@ function RecipeDetail(props) {
                {recipeSate.ingridient}
             </FormGroup>
             <FormGroup>
+               <h4>Các bước thực hiện</h4>
+               <Input id="exampleText" name="text" type="textarea" />
+            </FormGroup>
+            <FormGroup>
+               <h4>Lưu ý</h4>
+               <Input id="exampleText" name="text" type="textarea" />
+            </FormGroup>
+            <FormGroup>
                <Label for="exampleSelect">Video</Label>
                {recipeSate.videoUrl}
             </FormGroup>
             <Label for="exampleSelect">Price: {recipeSate.price} VNĐ</Label>
+
             <FormGroup>
                <Label for="exampleSelect">Vote</Label>
                <Row>
                   <Col md={2}>
                      <Input id="exampleSelect" name="select" type="select">
-                        <option>5 *</option>
+                        <option>5*</option>
                         <option>4*</option>
                         <option>3*</option>
                         <option>2*</option>
@@ -63,7 +75,7 @@ function RecipeDetail(props) {
                      <Input id="exampleText" name="text" type="textarea" />
                   </Col>
                   <Col md={1}>
-                     <Button>Submit</Button>
+                     <Button onClick={submitComment}>Submit</Button>
                   </Col>
                </Row>
             </FormGroup>

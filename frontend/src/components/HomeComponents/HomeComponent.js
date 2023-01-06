@@ -1,28 +1,21 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import ListRecipe from "./ListRecipe";
-import Narbar from "../HomeComponents/Navbar";
+import Narbar from "./Navbar";
 
 function HomeComponent(props) {
-   let { handleShowRecipeDetail, handleShowListRecipe, handleInputToCart, handleShowCart, handleOnPayment, handlePayment, handleSubmitComment } = props;
+   let { handleSearch, handleShowRecipeDetail, handleShowListRecipe, handleShowCart } = props;
    let homeItem = useSelector((state) => state.homeRedux.homeItem);
+
    if (homeItem === 1) {
-      homeItem = (
-         <ListRecipe
-            handleInputToCart={handleInputToCart}
-            handleOnPayment={handleOnPayment}
-            handlePayment={handlePayment}
-            handleSubmitComment={handleSubmitComment}
-            handleShowListRecipe={handleShowListRecipe}
-            handleShowRecipeDetail={handleShowRecipeDetail}
-         />
-      );
+      homeItem = <ListRecipe handleShowRecipeDetail={handleShowRecipeDetail} />;
    }
+
    console.log("homeItem: ", homeItem);
 
    return (
       <div>
-         <Narbar handleShowCart={handleShowCart} />
+         <Narbar handleShowListRecipe={handleShowListRecipe} handleSearch={handleSearch} handleShowCart={handleShowCart} />
          <br></br>
          {homeItem}
       </div>

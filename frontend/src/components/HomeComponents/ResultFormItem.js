@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Button, Col } from "reactstrap";
-import Cachepomdua from "../../imgs/Cachepomdua.jpeg";
 
 function ResultFormItem(props) {
    let { handleShowRecipeDetail } = props;
@@ -30,17 +29,68 @@ function ResultFormItem(props) {
       id: 1,
       recipeName: "RecipeName1",
       ingridient: ingridientItem,
+      imageUrl: <iframe src="https://drive.google.com/file/d/1hRfNlSyg9i9wYbAfmRIGqejX65eZwaKu/preview" width="160" height="80" title="1"></iframe>,
       videoUrl: (
-         <iframe src="https://drive.google.com/file/d/1bgbgFaph2T3WbdrqgJSTH1ne59f9w_Uh/preview" width="1200" height="480" allow="autoplay" title="1"></iframe>
+         <iframe src="https://drive.google.com/file/d/1bgbgFaph2T3WbdrqgJSTH1ne59f9w_Uh/preview" width="800" height="240" allow="autoplay" title="1"></iframe>
       ),
       Createby: "Username1",
       vote: "5*",
       price: 0,
    };
-   let recipe2 = { id: 2, recipeName: "RecipeName2", Createby: "Username2", vote: "5*", price: 300000 };
-   let recipe3 = { id: 3, recipeName: "RecipeName3", Createby: "Username3", vote: "5*", price: 300000 };
-   let recipe4 = { id: 3, recipeName: "RecipeName3", Createby: "Username3", vote: "5*", price: 300000 };
-   let recipe5 = { id: 3, recipeName: "RecipeName3", Createby: "Username3", vote: "5*", price: 300000 };
+   let recipe2 = {
+      id: 2,
+      recipeName: "RecipeName2",
+      ingridient: ingridientItem,
+      imageUrl: (
+         <iframe src="https://drive.google.com/file/d/1w7N7yBoh58YNRlL9nUIkJ8K_utCTT9Ar/preview" width="160" height="80" allow="autoplay" title="1"></iframe>
+      ),
+      videoUrl: "",
+      Createby: "Username2",
+      vote: "5*",
+      price: 300000,
+   };
+   let recipe3 = {
+      id: 3,
+      recipeName: "RecipeName3",
+      ingridient: ingridientItem,
+      imageUrl: (
+         <iframe src="https://drive.google.com/file/d/1w7N7yBoh58YNRlL9nUIkJ8K_utCTT9Ar/preview" width="160" height="80" allow="autoplay" title="1"></iframe>
+      ),
+      videoUrl: (
+         <iframe src="https://drive.google.com/file/d/1bgbgFaph2T3WbdrqgJSTH1ne59f9w_Uh/preview" width="800" height="240" allow="autoplay" title="1"></iframe>
+      ),
+      Createby: "Username3",
+      vote: "5*",
+      price: 300000,
+   };
+   let recipe4 = {
+      id: 3,
+      recipeName: "RecipeName3",
+      ingridient: ingridientItem,
+      imageUrl: (
+         <iframe src="https://drive.google.com/file/d/1w7N7yBoh58YNRlL9nUIkJ8K_utCTT9Ar/preview" width="160" height="80" allow="autoplay" title="1"></iframe>
+      ),
+      videoUrl: (
+         <iframe src="https://drive.google.com/file/d/1bgbgFaph2T3WbdrqgJSTH1ne59f9w_Uh/preview" width="800" height="240" allow="autoplay" title="1"></iframe>
+      ),
+      Createby: "Username3",
+      vote: "5*",
+      price: 300000,
+   };
+   let recipe5 = {
+      id: 3,
+      recipeName: "RecipeName3",
+      ingridient: ingridientItem,
+      imageUrl: (
+         <iframe src="https://drive.google.com/file/d/1w7N7yBoh58YNRlL9nUIkJ8K_utCTT9Ar/preview" width="160" height="80" allow="autoplay" title="1"></iframe>
+      ),
+      videoUrl: (
+         <iframe src="https://drive.google.com/file/d/1bgbgFaph2T3WbdrqgJSTH1ne59f9w_Uh/preview" width="800" height="240" allow="autoplay" title="1"></iframe>
+      ),
+      Createby: "Username3",
+      vote: "5*",
+      price: 300000,
+   };
 
    listRecipesredux = [recipe1, recipe2, recipe3, recipe4, recipe5];
 
@@ -49,7 +99,7 @@ function ResultFormItem(props) {
       return (
          <Col md={4} key={index}>
             <Button onClick={() => showDetail(recipe)}>
-               <img src={Cachepomdua} alt="Không có ảnh" />
+               {recipe.imageUrl}
                <h4>{recipe.recipeName}</h4>
                Createby: {recipe.Createby}
                <br></br>

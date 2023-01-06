@@ -1,32 +1,53 @@
-import React from "react";
-import { Button, Col, Input, Row } from "reactstrap";
+import React, { useState } from "react";
+import { Button, ButtonGroup, Col, FormGroup, Input, Row } from "reactstrap";
 
 function Navbar(props) {
+   let { handleSearch, handleShowCart, handleShowListRecipe } = props;
+   let [NameParam, setNameParam] = useState("");
+   let viewAll = () => {
+      handleShowListRecipe();
+   };
+   let search = () => {
+      console.log("nameParam", NameParam);
+      handleSearch(NameParam);
+   };
+   let showCart = () => {
+      handleShowCart();
+   };
    return (
       <div>
          <Row>
-            <Col md={4}>
-               <Input type="text" name="" id="input" className="form-control" required="required" pattern="" title=""></Input>
+            <Col md={3}>
+               <FormGroup>
+                  <Input
+                     id="NameParam"
+                     name="NameParam"
+                     placeholder="Input key word"
+                     type="text"
+                     value={NameParam}
+                     onChange={(event) => {
+                        setNameParam(event.target.value);
+                     }}
+                  />
+               </FormGroup>
             </Col>
             <Col md={1}>
-               <Button>
+               <Button onClick={search}>
                   <i className="glyphicon glyphicon-search"></i>
                </Button>
             </Col>
-            <Col md={1}>
-               <Button>Món Á </Button>
-            </Col>
-            <Col md={2}>
-               <Button>Món Âu </Button>
-            </Col>
-            <Col md={2}>
-               <Button>CreateDate </Button>
-            </Col>
-            <Col md={1}>
-               <Button>Vote </Button>
-            </Col>
-            <Col md={1}>
-               <i className="glyphicon glyphicon-filter"></i>
+            <Col md={8}>
+               <ButtonGroup>
+                  <Button onClick={viewAll}>View All</Button>
+                  <Button>Món Á</Button>
+                  <Button>Món Âu</Button>
+                  <Button>Free</Button>
+                  <Button>New</Button>
+                  <Button>Vote</Button>
+                  <Button onClick={showCart}>
+                     <i className="glyphicon glyphicon-shopping-cart"></i>
+                  </Button>
+               </ButtonGroup>
             </Col>
          </Row>
       </div>

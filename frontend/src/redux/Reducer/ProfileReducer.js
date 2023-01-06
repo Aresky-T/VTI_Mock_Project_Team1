@@ -1,16 +1,16 @@
 import React from "react";
-import CreateRecipe from "../../Component/UserProfileComponent/CreateRecipe";
-import UserInfor from "../../Component/UserProfileComponent/UserInfor";
-import ChangePassword from "../../Component/UserProfileComponent/ChangePassword";
-import RechargeMoney from "../../Component/UserProfileComponent/RechargeMoney";
-import WithdrawMoney from "../../Component/UserProfileComponent/WithdrawMoney";
-import TransactionHistory from "../../Component/UserProfileComponent/TransactionHistory";
-import UserRecipeDetail from "../../Component/UserProfileComponent/UserRecipeDetail";
+import CreateRecipe from "../../components/UserProfileComponent/CreateRecipe";
+import UserInfor from "../../components/UserProfileComponent/UserInfor";
+import ChangePassword from "../../components/UserProfileComponent/ChangePassword";
+import RechargeMoney from "../../components/UserProfileComponent/RechargeMoney";
+import WithdrawMoney from "../../components/UserProfileComponent/WithdrawMoney";
+import TransactionHistory from "../../components/UserProfileComponent/TransactionHistory";
+import UserRecipeDetail from "../../components/UserProfileComponent/UserRecipeDetail";
 
 const initallState = {
    profileRightItem: <UserInfor />,
 };
-function HomePageReducer(state = initallState, acction) {
+function ProfileReducer(state = initallState, acction) {
    switch (acction.type) {
       case "SHOWINFOR":
          return {
@@ -57,4 +57,4 @@ function HomePageReducer(state = initallState, acction) {
    }
 }
 
-export default HomePageReducer;
+export default ProfileReducer;

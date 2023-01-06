@@ -1,29 +1,39 @@
 import { api } from "./api";
 
-// get listAccount API
-const getListRecipeAPI = () => {
+// export const getListRecipeAPI = async (file, token) => {
+//    const config = {
+//       headers: {
+//          "Content-Type": "multipart/form-data",
+//          Authorization: `Bearer ${token}`,
+//       },
+//    };
+
+//    return await axios.post(`${baseURL}`, config);
+// };
+
+// getlist API
+export const getListRecipeAPI = () => {
+   alert("listRecipesParam");
    return api("GET", "recipes/", null);
 };
 
-// get listAccount API
-export const getRecipeByNameAPI = (id) => {
-   return api("GET", "recipes/" + id, null);
+// getByName API
+export const getRecipeByNameAPI = (nameParam) => {
+   return api("GET", "recipes/" + nameParam, null);
 };
 
-// Add New Account
-export const addRecipeNewAPI = (AccountNew) => {
-   return api("POST", "recipes/", AccountNew);
+export const addRecipeNewAPI = (RecipeNew) => {
+   return api("POST", "recipes/", RecipeNew);
 };
 
-// Delete Account
+// Delete
 export const deleteRecipeAPI = (id) => {
    let url = "recipes/" + id;
    return api("DELETE", url, null);
 };
 
-// Update Account
+// Update
 export const updateRecipeAPI = (id, recipeUpdate) => {
    let url = "recipes/" + id;
    return api("PUT", url, recipeUpdate);
 };
-export default getListRecipeAPI;
