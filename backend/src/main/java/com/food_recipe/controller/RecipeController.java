@@ -2,6 +2,7 @@ package com.food_recipe.controller;
 
 import com.food_recipe.dto.RecipeDTO;
 import com.food_recipe.dto.RecipeFormForCreating;
+import com.food_recipe.dto.Recipe_IngredientDTO;
 import com.food_recipe.dto.filter.RecipeFilter;
 import com.food_recipe.entity.Recipes;
 import com.food_recipe.service.IRecipeService;
@@ -52,5 +53,9 @@ public class RecipeController {
         return new ResponseEntity<>(recipeService.getRecipeById(id), HttpStatus.OK);
     }
 
-
+    @PostMapping("/recipe-ingredients")
+    public ResponseEntity<?> createRecipeIngredient(@RequestBody Recipe_IngredientDTO recipe_ingredientDTO){
+        recipeService.createRecipeIngredient(recipe_ingredientDTO.toEntity());
+        return new ResponseEntity<>("Create recipe-ingredient successfully", HttpStatus.OK);
+    }
 }

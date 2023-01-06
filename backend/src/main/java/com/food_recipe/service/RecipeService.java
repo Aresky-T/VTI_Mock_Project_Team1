@@ -3,8 +3,11 @@ package com.food_recipe.service;
 
 
 import com.food_recipe.dto.RecipeFormForCreating;
+import com.food_recipe.dto.Recipe_IngredientDTO;
 import com.food_recipe.dto.filter.RecipeFilter;
+import com.food_recipe.entity.Recipe_Ingredient;
 import com.food_recipe.entity.Recipes;
+import com.food_recipe.repository.RecipeIngredientRepository;
 import com.food_recipe.repository.RecipeRepository;
 import com.food_recipe.specification.RecipeSpecificationBuilder;
 import org.springframework.data.domain.Page;
@@ -22,9 +25,11 @@ import java.util.List;
 public class RecipeService implements IRecipeService {
 
     private final RecipeRepository recipeRepository;
+    private final RecipeIngredientRepository recipeIngredientRepository;
 
-    public RecipeService(RecipeRepository recipeRepository) {
+    public RecipeService(RecipeRepository recipeRepository, RecipeIngredientRepository recipeIngredientRepository) {
         this.recipeRepository = recipeRepository;
+        this.recipeIngredientRepository = recipeIngredientRepository;
     }
 
 
@@ -51,5 +56,8 @@ public class RecipeService implements IRecipeService {
         return recipeRepository.findById(id).get();
     }
 
+    public void createRecipeIngredient(Recipe_Ingredient recipe_ingredient){
+         recipeIngredientRepository.save(recipe_ingredient);
+    }
 
 }

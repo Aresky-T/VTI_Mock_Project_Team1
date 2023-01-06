@@ -1,0 +1,12 @@
+2023-01-06 18:42:22 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    insert 
+    into
+        `
+        Recipe_Ingredient` (
+            `amount`, `ingredient_id`, `recipe_id`
+        ) 
+    values
+        (?, ?, ?) 
+2023-01-06 18:42:22 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [FLOAT] - [100.0] 
+2023-01-06 18:42:22 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [2] as [INTEGER] - [1001] 
+2023-01-06 18:42:22 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [3] as [INTEGER] - [1] 

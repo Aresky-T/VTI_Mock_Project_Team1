@@ -37,7 +37,7 @@ const CreateRecipe = () => {
     formData.append("file", event.target.files[0]);
     const file = formData.get("file");
     file.url = URL.createObjectURL(file);
-    setImageFile({name: file.name, url: file.url})
+    setImageFile({ name: file.name, url: file.url })
     // upLoadFilesForCreate(file, currentUser.token);
   }
 
@@ -54,7 +54,7 @@ const CreateRecipe = () => {
     }
   })
 
-  if(!currentUser){
+  if (!currentUser) {
     console.log("no login")
     setTimeout(() => {
       setShowModal(true);
@@ -99,12 +99,13 @@ const CreateRecipe = () => {
               <li className='form-line'>
                 <label className='form-label'>Ingredients:</label>
                 <div className='form-input'>
-                  <select className='form-select'>
+                  {/* <select className='form-select'>
                     <option>Please Select</option>
                     <option>Ingredient 1</option>
                     <option>Ingredient 2</option>
                     <option>Ingredient 3</option>
-                  </select>
+                  </select> */}
+                  <textarea placeholder='Enter Ingredient'></textarea>
                 </div>
               </li>
               <li className='form-line'>
@@ -172,7 +173,7 @@ const CreateRecipe = () => {
           </form>
         </div>
       </div>
-      {showModal && <ModalLogin setShowModal={setShowModal}/>}
+      {showModal && <ModalLogin setShowModal={setShowModal} />}
     </div>
   )
 }
