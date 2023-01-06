@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -46,6 +47,9 @@ public class Recipes implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "`create_date`", nullable = false)
     private Date createDate;
+
+    @OneToMany(mappedBy = "recipes")
+    private List<RecipeIngredient> recipeIngredients;
 
     public Recipes(String name, String imageUrl, String description, String processingSteps, Integer userId, String note, Float price) {
         this.name = name;

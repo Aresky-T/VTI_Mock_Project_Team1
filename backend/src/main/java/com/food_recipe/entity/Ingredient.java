@@ -23,5 +23,7 @@ public class Ingredient implements Serializable {
     private String unit;
 
 
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "recipes_id")
+    private RecipeIngredient recipesIngredient;
 }
