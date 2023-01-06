@@ -1,15 +1,4 @@
 <component name="libraryTable">
-<<<<<<<< HEAD:.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jpa_2_7_2.xml
-  <library name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.7.2">
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-data-jpa/2.7.2/spring-boot-starter-data-jpa-2.7.2.jar!/" />
-    </CLASSES>
-    <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-data-jpa/2.7.2/spring-boot-starter-data-jpa-2.7.2-javadoc.jar!/" />
-    </JAVADOC>
-    <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-data-jpa/2.7.2/spring-boot-starter-data-jpa-2.7.2-sources.jar!/" />
-========
   <library name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.6.0">
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-data-jpa/2.6.0/spring-boot-starter-data-jpa-2.6.0.jar!/" />
@@ -19,7 +8,6 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-data-jpa/2.6.0/spring-boot-starter-data-jpa-2.6.0-sources.jar!/" />
->>>>>>>> origin/HieuNB:.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jpa_2_6_0.xml
     </SOURCES>
   </library>
 </component>
