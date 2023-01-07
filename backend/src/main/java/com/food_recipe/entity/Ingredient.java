@@ -1,9 +1,11 @@
 package com.food_recipe.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 @Entity
@@ -21,7 +23,5 @@ public class Ingredient implements Serializable {
 
     @Column(name = "`unit`", nullable = false)
     private String unit;
-
-
-
+    
 }

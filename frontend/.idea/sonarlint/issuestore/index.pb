@@ -1,6 +1,4 @@
 
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 N
 src/components/auth/SignUp.jsx,6\2\62847afe75866eb30d68e93fc73a8ee982ed21a9
 N
@@ -15,6 +13,6 @@ P
 E
 src/styles/index.scss,4\1\41e30fba9abaa1ac1dfe02388867cd3b5883c5d3
 I
-src/components/Sidebar.js,c\b\cb3b0578344e2e841c2d61813dd0515ed723e2b5
-I
 src/components/Navbar.jsx,d\1\d1eb1e252fd507134cfc95e08757d087da9b650a
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d

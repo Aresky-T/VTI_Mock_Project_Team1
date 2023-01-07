@@ -1,11 +1,14 @@
 package com.food_recipe.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,16 +21,16 @@ public class Recipes implements Serializable {
     @Column(name = "`id`", unique = true, nullable = false)
     private Integer id;
 
-    @Column(name = "`name`" ,  nullable = false, length = 200)
+    @Column(name = "`name`", nullable = false, unique = true, length = 200)
     private String name;
 
-    @Column(name = "`image_url`" ,  nullable = false, length = 200)
+    @Column(name = "`image_url`", nullable = false, length = 200)
     private String imageUrl;
 
-    @Column(name = "`description`" ,  nullable = false)
+    @Column(name = "`description`", nullable = false)
     private String description;
 
-    @Column(name = "`processing_steps`" ,  nullable = false)
+    @Column(name = "`processing_steps`", nullable = false)
     private String processingSteps;
 
 
@@ -41,11 +44,15 @@ public class Recipes implements Serializable {
     private Float price;
 
     @Column(name = "`views`")
-    private Integer views;
+    private Integer views = 0;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "`create_date`", nullable = false)
     private Date createDate;
+
+    @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<RecipeIngredient> recipeIngredients;
 
     public Recipes(String name, String imageUrl, String description, String processingSteps, Integer userId, String note, Float price) {
         this.name = name;

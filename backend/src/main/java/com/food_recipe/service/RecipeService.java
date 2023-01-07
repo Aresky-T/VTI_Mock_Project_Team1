@@ -1,11 +1,10 @@
 package com.food_recipe.service;
 
 
-
 import com.food_recipe.dto.RecipeFormForCreating;
-import com.food_recipe.dto.Recipe_IngredientDTO;
+import com.food_recipe.dto.RecipeIngredientDTO;
 import com.food_recipe.dto.filter.RecipeFilter;
-import com.food_recipe.entity.Recipe_Ingredient;
+import com.food_recipe.entity.RecipeIngredient;
 import com.food_recipe.entity.Recipes;
 import com.food_recipe.repository.RecipeIngredientRepository;
 import com.food_recipe.repository.RecipeRepository;
@@ -39,8 +38,8 @@ public class RecipeService implements IRecipeService {
     }
 
     @Override
-    public void createRecipe(RecipeFormForCreating form) {
-        recipeRepository.save(form.toEntity());
+    public Recipes createRecipe(RecipeFormForCreating form) {
+        return recipeRepository.save(form.toEntity());
     }
 
 
@@ -56,8 +55,8 @@ public class RecipeService implements IRecipeService {
         return recipeRepository.findById(id).get();
     }
 
-    public void createRecipeIngredient(Recipe_Ingredient recipe_ingredient){
-         recipeIngredientRepository.save(recipe_ingredient);
+    public void createRecipeIngredient(RecipeIngredient recipeIngredient) {
+        recipeIngredientRepository.save(recipeIngredient);
     }
 
 }
