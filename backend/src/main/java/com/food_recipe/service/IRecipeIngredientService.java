@@ -10,5 +10,5 @@ public interface IRecipeIngredientService {
 
     List<RecipeIngredient> getAll();
 
-    void createRecipeIngredient(RecipeIngredientDTO form);
+    void createRecipeIngredient(RecipeIngredientDTO list);
 }

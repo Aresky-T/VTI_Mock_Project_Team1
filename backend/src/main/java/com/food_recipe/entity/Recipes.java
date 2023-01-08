@@ -52,7 +52,7 @@ public class Recipes implements Serializable {
 
     @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER)
     @JsonManagedReference
-    private List<RecipeIngredient> recipeIngredients;
+    private List<RecipeIngredient> ingredients;
 
     public Recipes(String name, String imageUrl, String description, String processingSteps, Integer userId, String note, Float price) {
         this.name = name;

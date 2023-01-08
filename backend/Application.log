@@ -1,28 +1,1270 @@
-2023-01-06 18:42:22 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
-    insert 
-    into
-        `
-        Recipe_Ingredient` (
-            `amount`, `ingredient_id`, `recipe_id`
-        ) 
-    values
-        (?, ?, ?) 
-2023-01-06 18:42:22 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [FLOAT] - [100.0] 
-2023-01-06 18:42:22 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [2] as [INTEGER] - [1001] 
-2023-01-06 18:42:22 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [3] as [INTEGER] - [1] 
-2023-01-06 18:43:15 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
-    insert 
-    into
-        `
-        Recipe_Ingredient` (
-            `amount`, `ingredient_id`, `recipe_id`
-        ) 
-    values
-        (?, ?, ?) 
-2023-01-06 18:43:15 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [FLOAT] - [100.0] 
-2023-01-06 18:43:15 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [2] as [INTEGER] - [1018] 
-2023-01-06 18:43:15 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [3] as [INTEGER] - [1] 
-2023-01-06 18:50:42 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+2023-01-08 18:44:59 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ 
+    where
+        recipes0_.`name` like ? limit ? 
+2023-01-08 18:44:59 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [%mon an%] 
+2023-01-08 18:44:59 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:44:59 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:49:12 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:49:12 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:49:12 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:49:12 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:49:12 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:49:12 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:49:16 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:49:16 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:49:16 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:49:16 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:49:16 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:49:16 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:50:52 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:50:52 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:50:52 [http-nio-8080-exec-10] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:50:52 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:50:52 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:50:52 [http-nio-8080-exec-1] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:51:16 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:51:16 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:51:16 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:51:16 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:51:16 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:51:16 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:52:38 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:52:38 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:52:38 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:52:38 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:52:38 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:52:38 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:53:19 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:53:19 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:53:19 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:53:19 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:53:19 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:53:19 [http-nio-8080-exec-9] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:53:40 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:53:40 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:53:40 [http-nio-8080-exec-10] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:54:03 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:54:03 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:54:03 [http-nio-8080-exec-1] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:54:10 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:54:10 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:54:10 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:54:10 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:54:10 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:54:10 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:54:23 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:54:23 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:54:23 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:54:48 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:54:48 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:54:48 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:54:54 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:54:54 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:54:54 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:54:54 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:54:54 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:54:54 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:55:14 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:55:14 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:55:14 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:55:21 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:55:21 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:55:21 [http-nio-8080-exec-9] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:55:52 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:55:52 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:55:52 [http-nio-8080-exec-10] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:55:52 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:55:52 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:55:52 [http-nio-8080-exec-1] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:55:57 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`id` as id1_1_,
+        ingredient0_.`name` as name2_1_,
+        ingredient0_.`unit` as unit3_1_ 
+    from
+        `Ingredient` ingredient0_ 
+2023-01-08 18:55:57 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`id` as id1_1_,
+        ingredient0_.`name` as name2_1_,
+        ingredient0_.`unit` as unit3_1_ 
+    from
+        `Ingredient` ingredient0_ 
+2023-01-08 18:56:03 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:56:03 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:56:03 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:56:03 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:56:03 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:56:03 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:56:24 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:56:24 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:56:24 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:56:29 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:56:29 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:56:29 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:57:39 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:57:39 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:57:39 [http-nio-8080-exec-10] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:57:39 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:57:39 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:57:39 [http-nio-8080-exec-1] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:58:06 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:58:06 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:58:06 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:58:06 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:58:06 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:58:06 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:58:45 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:58:45 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:58:45 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:58:45 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:58:45 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:58:45 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:59:04 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`id` as id1_1_,
+        ingredient0_.`name` as name2_1_,
+        ingredient0_.`unit` as unit3_1_ 
+    from
+        `Ingredient` ingredient0_ 
+2023-01-08 18:59:04 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`id` as id1_1_,
+        ingredient0_.`name` as name2_1_,
+        ingredient0_.`unit` as unit3_1_ 
+    from
+        `Ingredient` ingredient0_ 
+2023-01-08 18:59:05 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:59:05 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:59:05 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:59:05 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:59:05 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:59:05 [http-nio-8080-exec-9] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:59:07 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`id` as id1_1_,
+        ingredient0_.`name` as name2_1_,
+        ingredient0_.`unit` as unit3_1_ 
+    from
+        `Ingredient` ingredient0_ 
+2023-01-08 18:59:07 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`id` as id1_1_,
+        ingredient0_.`name` as name2_1_,
+        ingredient0_.`unit` as unit3_1_ 
+    from
+        `Ingredient` ingredient0_ 
+2023-01-08 18:59:47 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
     insert 
     into
         `
@@ -31,16 +1273,16 @@
         ) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?) 
-2023-01-06 18:50:42 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [TIMESTAMP] - [Fri Jan 06 18:50:42 ICT 2023] 
-2023-01-06 18:50:42 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [2] as [VARCHAR] - [description_2] 
-2023-01-06 18:50:42 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [3] as [VARCHAR] - [url_2] 
-2023-01-06 18:50:42 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [4] as [VARCHAR] - [recipe2] 
-2023-01-06 18:50:42 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [5] as [VARCHAR] - [note 1] 
-2023-01-06 18:50:42 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [6] as [FLOAT] - [100.0] 
-2023-01-06 18:50:42 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [7] as [VARCHAR] - [processing steps 2] 
-2023-01-06 18:50:42 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [8] as [INTEGER] - [1] 
-2023-01-06 18:50:42 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [9] as [INTEGER] - [null] 
-2023-01-06 18:51:05 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+2023-01-08 18:59:47 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [TIMESTAMP] - [Sun Jan 08 18:59:47 ICT 2023] 
+2023-01-08 18:59:47 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [2] as [VARCHAR] - [mô tả 2] 
+2023-01-08 18:59:47 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [3] as [VARCHAR] - [https://res.cloudinary.com/dmdozqjdg/image/upload/v1673179186/wsx2d66ierndrv2dq6g1.jpg] 
+2023-01-08 18:59:47 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [4] as [VARCHAR] - [món ăn 2] 
+2023-01-08 18:59:47 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [5] as [VARCHAR] - [lưu ý ] 
+2023-01-08 18:59:47 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [6] as [FLOAT] - [0.0] 
+2023-01-08 18:59:47 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [7] as [VARCHAR] - [các bước ] 
+2023-01-08 18:59:47 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [8] as [INTEGER] - [1] 
+2023-01-08 18:59:47 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [9] as [INTEGER] - [0] 
+2023-01-08 18:59:48 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
     insert 
     into
         `
@@ -49,10 +1291,597 @@
         ) 
     values
         (?, ?, ?) 
-2023-01-06 18:51:05 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [FLOAT] - [100.0] 
-2023-01-06 18:51:05 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [2] as [INTEGER] - [1001] 
-2023-01-06 18:51:05 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [3] as [INTEGER] - [2] 
-2023-01-06 18:51:27 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+2023-01-08 18:59:48 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [FLOAT] - [50.0] 
+2023-01-08 18:59:48 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [2] as [INTEGER] - [1018] 
+2023-01-08 18:59:48 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [3] as [INTEGER] - [295] 
+2023-01-08 18:59:50 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:59:50 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:59:50 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [295] 
+2023-01-08 18:59:50 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:59:50 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 18:59:50 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 18:59:50 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:59:50 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [295] 
+2023-01-08 18:59:50 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 18:59:50 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 19:00:02 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`id` as id1_1_,
+        ingredient0_.`name` as name2_1_,
+        ingredient0_.`unit` as unit3_1_ 
+    from
+        `Ingredient` ingredient0_ 
+2023-01-08 19:00:02 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`id` as id1_1_,
+        ingredient0_.`name` as name2_1_,
+        ingredient0_.`unit` as unit3_1_ 
+    from
+        `Ingredient` ingredient0_ 
+2023-01-08 19:00:34 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 19:00:34 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 19:00:34 [http-nio-8080-exec-1] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [295] 
+2023-01-08 19:00:34 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 19:00:34 [http-nio-8080-exec-1] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 19:00:34 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 19:00:34 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 19:00:34 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [295] 
+2023-01-08 19:00:34 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 19:00:34 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 19:01:00 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`id` as id1_1_,
+        ingredient0_.`name` as name2_1_,
+        ingredient0_.`unit` as unit3_1_ 
+    from
+        `Ingredient` ingredient0_ 
+2023-01-08 19:01:01 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`id` as id1_1_,
+        ingredient0_.`name` as name2_1_,
+        ingredient0_.`unit` as unit3_1_ 
+    from
+        `Ingredient` ingredient0_ 
+2023-01-08 19:01:34 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    insert 
+    into
+        `
+        Recipe` (
+            `create_date`, `description`, `image_url`, `name`, `note`, `price`, `processing_steps`, user_id, `views`
+        ) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2023-01-08 19:01:34 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [TIMESTAMP] - [Sun Jan 08 19:01:34 ICT 2023] 
+2023-01-08 19:01:34 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [2] as [VARCHAR] - [mô tả 3] 
+2023-01-08 19:01:34 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [3] as [VARCHAR] - [null] 
+2023-01-08 19:01:34 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [4] as [VARCHAR] - [món ăn 3] 
+2023-01-08 19:01:34 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [5] as [VARCHAR] - [lưu ý 1...] 
+2023-01-08 19:01:34 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [6] as [FLOAT] - [100.0] 
+2023-01-08 19:01:34 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [7] as [VARCHAR] - [bước 1...] 
+2023-01-08 19:01:34 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [8] as [INTEGER] - [1] 
+2023-01-08 19:01:34 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [9] as [INTEGER] - [0] 
+2023-01-08 19:01:34 [http-nio-8080-exec-6] ERROR o.h.e.j.s.SqlExceptionHelper                       - Column 'image_url' cannot be null 
+2023-01-08 19:01:34 [http-nio-8080-exec-6] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet]                - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [null]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement] with root cause 
+java.sql.SQLIntegrityConstraintViolationException: Column 'image_url' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1098) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1046) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1371) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1031) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-4.0.3.jar:?]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.dialect.identity.GetGeneratedKeysDelegate.executeAndExtract(GetGeneratedKeysDelegate.java:57) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:43) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3279) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3885) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:84) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:645) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:282) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:263) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:317) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:330) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:287) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:193) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:123) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:185) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:128) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:55) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:107) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:774) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:760) ~[hibernate-core-5.6.1.Final.jar:5.6.1.Final]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:362) ~[spring-orm-5.3.13.jar:5.3.13]
+	at com.sun.proxy.$Proxy137.persist(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:311) ~[spring-orm-5.3.13.jar:5.3.13]
+	at com.sun.proxy.$Proxy137.persist(Unknown Source) ~[?:?]
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:624) ~[spring-data-jpa-2.6.0.jar:2.6.0]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:289) ~[spring-data-commons-2.6.0.jar:2.6.0]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137) ~[spring-data-commons-2.6.0.jar:2.6.0]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121) ~[spring-data-commons-2.6.0.jar:2.6.0]
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:529) ~[spring-data-commons-2.6.0.jar:2.6.0]
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285) ~[spring-data-commons-2.6.0.jar:2.6.0]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:638) ~[spring-data-commons-2.6.0.jar:2.6.0]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:163) ~[spring-data-commons-2.6.0.jar:2.6.0]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:138) ~[spring-data-commons-2.6.0.jar:2.6.0]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:80) ~[spring-data-commons-2.6.0.jar:2.6.0]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.13.jar:5.3.13]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.13.jar:5.3.13]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.13.jar:5.3.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.13.jar:5.3.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:174) ~[spring-data-jpa-2.6.0.jar:2.6.0]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215) ~[spring-aop-5.3.13.jar:5.3.13]
+	at com.sun.proxy.$Proxy152.save(Unknown Source) ~[?:?]
+	at com.food_recipe.service.RecipeService.createRecipe(RecipeService.java:42) ~[classes/:?]
+	at com.food_recipe.service.RecipeService$$FastClassBySpringCGLIB$$9c7aa062.invoke(<generated>) ~[classes/:?]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.13.jar:5.3.13]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:783) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.13.jar:5.3.13]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.13.jar:5.3.13]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.13.jar:5.3.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:698) ~[spring-aop-5.3.13.jar:5.3.13]
+	at com.food_recipe.service.RecipeService$$EnhancerBySpringCGLIB$$e4dbf88.createRecipe(<generated>) ~[classes/:?]
+	at com.food_recipe.controller.RecipeController.createRecipe(RecipeController.java:28) ~[classes/:?]
+	at com.food_recipe.controller.RecipeController$$FastClassBySpringCGLIB$$e21217b0.invoke(<generated>) ~[classes/:?]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.13.jar:5.3.13]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:783) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.validation.beanvalidation.MethodValidationInterceptor.invoke(MethodValidationInterceptor.java:123) ~[spring-context-5.3.13.jar:5.3.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753) ~[spring-aop-5.3.13.jar:5.3.13]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:698) ~[spring-aop-5.3.13.jar:5.3.13]
+	at com.food_recipe.controller.RecipeController$$EnhancerBySpringCGLIB$$9ea4cdba.createRecipe(<generated>) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.13.jar:5.3.13]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681) ~[tomcat-embed-core-9.0.55.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.55.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.55.jar:9.0.55]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:150) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.13.jar:5.3.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at com.food_recipe.authentication.JWTAuthorizationFilter.doFilter(JWTAuthorizationFilter.java:28) ~[classes/:?]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:219) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:213) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-5.3.13.jar:5.3.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.13.jar:5.3.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.13.jar:5.3.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.13.jar:5.3.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183) ~[spring-security-web-5.6.0.jar:5.6.0]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.3.13.jar:5.3.13]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.3.13.jar:5.3.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.13.jar:5.3.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.13.jar:5.3.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.13.jar:5.3.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.13.jar:5.3.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.13.jar:5.3.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.13.jar:5.3.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.55.jar:9.0.55]
+	at com.food_recipe.authentication.WebCorsFilter.doFilter(WebCorsFilter.java:32) ~[classes/:?]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) [tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) [tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540) [tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) [tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) [tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357) [tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382) [tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895) [tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722) [tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) [tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) [tomcat-embed-core-9.0.55.jar:9.0.55]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.55.jar:9.0.55]
+	at java.lang.Thread.run(Thread.java:829) [?:?]
+2023-01-08 19:02:03 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 19:02:03 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 19:02:03 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [295] 
+2023-01-08 19:02:03 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 19:02:03 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 19:02:03 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
+    from
+        `Recipe` recipes0_ limit ? 
+2023-01-08 19:02:03 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 19:02:03 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [295] 
+2023-01-08 19:02:03 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 19:02:03 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 19:02:37 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`id` as id1_1_,
+        ingredient0_.`name` as name2_1_,
+        ingredient0_.`unit` as unit3_1_ 
+    from
+        `Ingredient` ingredient0_ 
+2023-01-08 19:02:38 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`id` as id1_1_,
+        ingredient0_.`name` as name2_1_,
+        ingredient0_.`unit` as unit3_1_ 
+    from
+        `Ingredient` ingredient0_ 
+2023-01-08 19:05:25 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    insert 
+    into
+        `
+        Recipe` (
+            `create_date`, `description`, `image_url`, `name`, `note`, `price`, `processing_steps`, user_id, `views`
+        ) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2023-01-08 19:05:25 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [TIMESTAMP] - [Sun Jan 08 19:05:25 ICT 2023] 
+2023-01-08 19:05:25 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [2] as [VARCHAR] - [mô tả 3] 
+2023-01-08 19:05:25 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [3] as [VARCHAR] - [https://res.cloudinary.com/dmdozqjdg/image/upload/v1673179521/ojetpz8qefcvvcysbwxz.jpg] 
+2023-01-08 19:05:25 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [4] as [VARCHAR] - [món ăn 3] 
+2023-01-08 19:05:25 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [5] as [VARCHAR] - [lưu ý] 
+2023-01-08 19:05:25 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [6] as [FLOAT] - [0.0] 
+2023-01-08 19:05:25 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [7] as [VARCHAR] - [bước 1...
+bước 2...] 
+2023-01-08 19:05:25 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [8] as [INTEGER] - [1] 
+2023-01-08 19:05:25 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [9] as [INTEGER] - [0] 
+2023-01-08 19:05:25 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
     insert 
     into
         `
@@ -61,132 +1890,188 @@
         ) 
     values
         (?, ?, ?) 
-2023-01-06 18:51:27 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [FLOAT] - [50.0] 
-2023-01-06 18:51:27 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [2] as [INTEGER] - [1018] 
-2023-01-06 18:51:27 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [3] as [INTEGER] - [2] 
-2023-01-06 19:12:13 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+2023-01-08 19:05:25 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [FLOAT] - [4.0] 
+2023-01-08 19:05:25 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    insert 
+    into
+        `
+        Recipe_Ingredient` (
+            `amount`, `ingredient_id`, `recipe_id`
+        ) 
+    values
+        (?, ?, ?) 
+2023-01-08 19:05:25 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [2] as [INTEGER] - [1001] 
+2023-01-08 19:05:25 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [3] as [INTEGER] - [296] 
+2023-01-08 19:05:25 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [FLOAT] - [9.0] 
+2023-01-08 19:05:25 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [2] as [INTEGER] - [1018] 
+2023-01-08 19:05:25 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [3] as [INTEGER] - [296] 
+2023-01-08 19:05:27 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
     select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
     from
-        `User` user0_ 
-    where
-        user0_.`username`=? 
-2023-01-06 19:12:13 [http-nio-8080-exec-10] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2023-01-06 19:12:13 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+        `Recipe` recipes0_ limit ? 
+2023-01-08 19:05:27 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
     select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
     from
-        `User` user0_ 
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
     where
-        user0_.`username`=? 
-2023-01-06 19:12:13 [http-nio-8080-exec-10] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2023-01-06 19:33:12 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+        ingredient0_.`recipe_id`=? 
+2023-01-08 19:05:27 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [296] 
+2023-01-08 19:05:27 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
     select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
     from
-        `User` user0_ 
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
     where
-        user0_.`username`=? 
-2023-01-06 19:33:12 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky2] 
-2023-01-06 19:33:12 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+        ingredient0_.`recipe_id`=? 
+2023-01-08 19:05:27 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [295] 
+2023-01-08 19:05:27 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
     select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
     from
-        `User` user0_ 
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
     where
-        user0_.`username`=? 
-2023-01-06 19:33:12 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky2] 
-2023-01-06 19:33:22 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+        ingredient0_.`recipe_id`=? 
+2023-01-08 19:05:27 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 19:05:27 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
     select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
+        recipes0_.`id` as id1_2_,
+        recipes0_.`create_date` as create_d2_2_,
+        recipes0_.`description` as descript3_2_,
+        recipes0_.`image_url` as image_ur4_2_,
+        recipes0_.`name` as name5_2_,
+        recipes0_.`note` as note6_2_,
+        recipes0_.`price` as price7_2_,
+        recipes0_.`processing_steps` as processi8_2_,
+        recipes0_.user_id as user_id9_2_,
+        recipes0_.`views` as views10_2_ 
     from
-        `User` user0_ 
-    where
-        user0_.`username`=? 
-2023-01-06 19:33:22 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
-2023-01-06 19:33:22 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+        `Recipe` recipes0_ limit ? 
+2023-01-08 19:05:27 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
     select
-        user0_.id as id1_7_,
-        user0_.avatar_url as avatar_u2_7_,
-        user0_.`birth_date` as birth_da3_7_,
-        user0_.`email` as email4_7_,
-        user0_.`first_name` as first_na5_7_,
-        user0_.`gender` as gender6_7_,
-        user0_.`last_name` as last_nam7_7_,
-        user0_.`password` as password8_7_,
-        user0_.phone as phone9_7_,
-        user0_.`status` as status10_7_,
-        user0_.`username` as usernam11_7_,
-        concat(user0_.first_name,
-        ' ',
-        user0_.last_name) as formula1_ 
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
     from
-        `User` user0_ 
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
     where
-        user0_.`username`=? 
-2023-01-06 19:33:22 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [aresky1105] 
+        ingredient0_.`recipe_id`=? 
+2023-01-08 19:05:27 [http-nio-8080-exec-9] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [296] 
+2023-01-08 19:05:27 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 19:05:27 [http-nio-8080-exec-9] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [295] 
+2023-01-08 19:05:27 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i4_3_0_,
+        ingredient0_.`id` as id1_3_0_,
+        ingredient0_.`id` as id1_3_1_,
+        ingredient0_.`amount` as amount2_3_1_,
+        ingredient0_.`ingredient_id` as ingredie3_3_1_,
+        ingredient0_.`recipe_id` as recipe_i4_3_1_,
+        ingredient1_.`id` as id1_1_2_,
+        ingredient1_.`name` as name2_1_2_,
+        ingredient1_.`unit` as unit3_1_2_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    left outer join
+        `Ingredient` ingredient1_ 
+            on ingredient0_.`ingredient_id`=ingredient1_.`id` 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-01-08 19:05:27 [http-nio-8080-exec-9] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [294] 
+2023-01-08 19:06:42 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`id` as id1_1_,
+        ingredient0_.`name` as name2_1_,
+        ingredient0_.`unit` as unit3_1_ 
+    from
+        `Ingredient` ingredient0_ 
+2023-01-08 19:06:42 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`id` as id1_1_,
+        ingredient0_.`name` as name2_1_,
+        ingredient0_.`unit` as unit3_1_ 
+    from
+        `Ingredient` ingredient0_ 
+2023-01-08 19:11:14 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`id` as id1_1_,
+        ingredient0_.`name` as name2_1_,
+        ingredient0_.`unit` as unit3_1_ 
+    from
+        `Ingredient` ingredient0_ 
+2023-01-08 19:11:14 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`id` as id1_1_,
+        ingredient0_.`name` as name2_1_,
+        ingredient0_.`unit` as unit3_1_ 
+    from
+        `Ingredient` ingredient0_ 

@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileService implements IFileService {
 
 	private FileManager fileManager = new FileManager();
-	private String linkFolder = "C:\\Users\\aresky-t\\Desktop\\Avatar";
+	private String linkFolder = "https://drive.google.com/drive/folders/1ExH5m0q0nBkts39sF3ddTT0z8AcLH8fK?usp=share_link";
 
 	@Override
 	public String uploadImage(MultipartFile image) throws IOException {

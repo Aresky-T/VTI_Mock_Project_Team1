@@ -26,9 +26,9 @@ public class RecipeIngredientController {
     }
 
     @PostMapping()
-    public ResponseEntity<?> createRecipeIngredient(@RequestBody RecipeIngredientDTO form) {
+    public ResponseEntity<?> createRecipeIngredient(@RequestBody RecipeIngredientDTO data) {
         // create Recipe
-        recipeIngredientService.createRecipeIngredient(form);
-        return new ResponseEntity<String>("Create Recipe successfully!", HttpStatus.OK);
+        recipeIngredientService.createRecipeIngredient(data);
+        return new ResponseEntity<>("Create Recipe successfully!", HttpStatus.OK);
     }
 }

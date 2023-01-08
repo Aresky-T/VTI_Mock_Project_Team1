@@ -3,7 +3,10 @@ package com.food_recipe.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Map;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.food_recipe.service.IFileService;
 import com.food_recipe.utils.FileManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,9 @@ public class FileController {
 
 	@Autowired
 	private IFileService fileService;
+
+	@Autowired
+	private Cloudinary cloudinary;
 
 	@PostMapping(value = "/image")
 	public ResponseEntity<?> upLoadImage(@RequestParam(name = "image") MultipartFile image) throws IOException {
@@ -55,5 +61,20 @@ public class FileController {
 				.contentLength(nameImage.length())
 				.contentType(MediaType.parseMediaType("application/txt"))
 				.body(imageStream);
+	}
+
+	@PostMapping("/cloudinary/upload")
+	public ResponseEntity<?> uploadImageCloudinary (@RequestParam(name = "image") MultipartFile image) throws IOException {
+		String img = null;
+		try {
+			Map r = this.cloudinary.uploader().upload(image.getBytes(),
+					ObjectUtils.asMap("resource_type", "auto")
+					);
+
+			img = (String) r.get("secure_url");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<>(img, HttpStatus.OK);
 	}
 }

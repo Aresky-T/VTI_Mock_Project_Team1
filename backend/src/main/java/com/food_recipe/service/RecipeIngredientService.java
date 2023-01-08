@@ -26,8 +26,8 @@ public class RecipeIngredientService implements IRecipeIngredientService {
     }
 
     @Override
-    public void createRecipeIngredient(RecipeIngredientDTO form) {
-        recipeIngredientRepository.save(form.toEntity());
+    public void createRecipeIngredient(RecipeIngredientDTO obj) {
+        recipeIngredientRepository.save(obj.toEntity());
     }
 
 }

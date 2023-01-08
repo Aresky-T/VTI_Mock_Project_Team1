@@ -18,6 +18,4 @@ public class RecipeIngredientDTO {
     public RecipeIngredient toEntity() {
         return new RecipeIngredient(recipes, ingredient, amount);
     }
-
-
 }
