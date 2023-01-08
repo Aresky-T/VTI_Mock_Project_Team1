@@ -1,14 +1,32 @@
 import axios from "axios";
 
-const baseURL = "localhost:8080/api/v1/recipes";
+const baseURL = "http://localhost:8080/api/v1";
 
 export const createRecipe = async (dataObj, tokenUser) => {
     const config = {
-        Authorization: `Bearer ${tokenUser}`
+        headers: {
+            // 'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${tokenUser}`
+        }
     }
-    return await axios.post(baseURL, dataObj);
+
+    return await axios.post(`${baseURL}/recipes`, dataObj, config);
+}
+
+export const createRecipeIngredient = async (dataObj, tokenUser) => {
+    const config = {
+        headers: {
+            // 'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${tokenUser}`
+        }
+    }
+    return await axios.post(`${baseURL}/recipe-ingredient`, dataObj, config);
 }
 
 export const getRecipe = async (id, tokenUser) => {
-    
+    return axios.get(baseURL);
+}
+
+export const getAllRecipes = async () => {
+    return await axios.get(`${baseURL}/recipes`);
 }

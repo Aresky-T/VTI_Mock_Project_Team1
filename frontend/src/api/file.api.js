@@ -22,3 +22,16 @@ export const getImage = async (imageName) => {
         }
     })
 }
+
+export const uploadImageCloudinary = async (file, token) => {
+    const config = {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const body = {
+        'image': file
+    }
+    return await axios.post(`${baseURL}/cloudinary/upload`, body, config);
+}

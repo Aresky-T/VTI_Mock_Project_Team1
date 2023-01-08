@@ -7,6 +7,7 @@ import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
+import Home from "./pages/Home";
 
 const App = () => {
    return (
@@ -14,7 +15,8 @@ const App = () => {
          <Navbar />
          <div className="container main">
             <Routes>
-               <Route path="/" element={<HomeComponent />} />
+               {/* <Route path="/" element={<HomeComponent />} /> */}
+               <Route path="/" element={<Home/>}/>
                <Route path="/profile" element={<Profile/>} />
                <Route path="/create-recipe" element={<CreateRecipe />} />
                <Route path="/settings" element={<Settings />} />
