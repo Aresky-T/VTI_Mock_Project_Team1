@@ -30,17 +30,11 @@ const CreateRecipe = () => {
     const [note, setNote] = useState("");
     const [price, setPrice] = useState(1);
 
-    console.log(currentUser);
-
-    // console.log('Current user: ',currentUser);
-    console.log('List ingredient for add: ', listIngreForAdd);
-
     const mockup_ingredients = listIngreDropBox.map((item) => ({
         value: item.id, label: item.name
     }))
 
     const handleFocus = () => {
-        console.log('focus input file');
         const image = document.getElementById('input-image');
         image.click();
     }
@@ -48,7 +42,6 @@ const CreateRecipe = () => {
     const upLoadFilesForCreate = (formData, token) => {
         uploadImageCloudinary(formData, token)
             .then((response) => {
-                console.log(response.data);
                 setImageURL(response.data);
             })
             .catch((err) => {
@@ -66,8 +59,6 @@ const CreateRecipe = () => {
         let listIngreForAdd2 = listIngreForAdd.filter((item, i) => i !== index);
         setListIngreForAdd(listIngreForAdd2);
     }
-
-    console.log('ingredient: ', ingredient)
 
     const handleChangeAmount = (event) => {
         setAmount(Number(event.target.value));
@@ -104,8 +95,6 @@ const CreateRecipe = () => {
         }
     }
 
-    console.log(name)
-
     const handleCreateRecipe = () => {
         createRecipe({
             name: name,
@@ -117,7 +106,6 @@ const CreateRecipe = () => {
             price: price,
         }, currentUser.token)
             .then((response) => {
-                console.log('New recipe: ', response.data);
                 const listIngredientNew = listIngreForAdd.map((item) => ({
                     recipes: Number(response.data.id),
                     ingredient: Number(item.ingredient),
@@ -127,7 +115,6 @@ const CreateRecipe = () => {
                 return listShare;
             })
             .then((res) => {
-                console.log(res);
                 res.map((item) => {
                     createRecipeIngredient(item, currentUser.token).then((response) => {
                         console.log(response);
@@ -149,16 +136,6 @@ const CreateRecipe = () => {
                 console.log(err);
             });
     }
-
-    console.log({
-        name: name,
-        description: description,
-        imageUrl: imageURL,
-        processingSteps: processingSteps,
-        userId: currentUser.id,
-        note: note,
-        price: price,
-    })
 
     useEffect(() => {
         const handler = (e) => {
@@ -188,7 +165,6 @@ const CreateRecipe = () => {
     }, [setAmount, amount]);
 
     if (!currentUser) {
-        console.log("no login")
         setTimeout(() => {
             setShowModal(true);
         }, 500)

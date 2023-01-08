@@ -10,7 +10,7 @@ function Home(props) {
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
 
-    const itemsPerPage = 16;
+    const itemsPerPage = 6;
 
     useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
