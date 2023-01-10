@@ -17,7 +17,7 @@ import java.util.List;
 @Component
 @Transactional
 @Service
-public class IngredientService implements IIngerdientService{
+public class IngredientService implements IIngredientService {
 
     private final IngredientRepository ingredientRepository;
 
@@ -38,12 +38,16 @@ public class IngredientService implements IIngerdientService{
         return ingredientRepository.existsByName(name);
     }
 
+    @Override
+    public List<Ingredient> getAllIngredients(String search) {
+        return ingredientRepository.findAll();
+    }
 
     @Override
     public void createIngredient(IngredientCreatingFromDTO form) {
 
         TypeMap<IngredientCreatingFromDTO, Ingredient> typeMap = modelMapper.getTypeMap(IngredientCreatingFromDTO.class, Ingredient.class);
-        if(typeMap == null) {
+        if (typeMap == null) {
             modelMapper.addMappings(new PropertyMap<IngredientCreatingFromDTO, Ingredient>() {
 
                 @Override

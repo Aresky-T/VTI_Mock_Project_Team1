@@ -1,6 +1,5 @@
 package com.food_recipe.controller;
 
-import com.food_recipe.dto.RecipeDTO;
 import com.food_recipe.dto.RecipeFormForCreating;
 import com.food_recipe.dto.filter.RecipeFilter;
 import com.food_recipe.entity.Recipes;
@@ -25,10 +24,8 @@ public class RecipeController {
     private IRecipeService recipeService;
 
     @PostMapping()
-    public ResponseEntity<?> createRecipe(@RequestBody RecipeFormForCreating form){
-        // create Recipe
-        recipeService.createRecipe(form);
-        return new ResponseEntity<String>("Create successfully!", HttpStatus.OK);
+    public Recipes createRecipe(@RequestBody RecipeFormForCreating form) {
+        return recipeService.createRecipe(form);
     }
 
     @GetMapping()
@@ -48,9 +45,8 @@ public class RecipeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getRecipeById(@PathVariable(name = "id") Integer id){
+    public ResponseEntity<?> getRecipeById(@PathVariable(name = "id") Integer id) {
         return new ResponseEntity<>(recipeService.getRecipeById(id), HttpStatus.OK);
     }
-
-
+    
 }

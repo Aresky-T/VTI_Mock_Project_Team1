@@ -3,7 +3,7 @@ package com.food_recipe.controller;
 import com.food_recipe.dto.IngredientCreatingFromDTO;
 import com.food_recipe.dto.IngredientDTO;
 import com.food_recipe.entity.Ingredient;
-import com.food_recipe.service.IIngerdientService;
+import com.food_recipe.service.IIngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,20 +16,25 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1/ingredient")
 @Validated
-public class IngrementController {
+public class IngredientController {
 
     @Autowired
-    private IIngerdientService ingredientService;
+    private IIngredientService ingredientService;
+
+    @GetMapping()
+    public List<Ingredient> getAll(String search) {
+        return ingredientService.getAllIngredients(search);
+    }
 
     @PostMapping()
-    public ResponseEntity<?> createIngredient(@RequestBody IngredientCreatingFromDTO form){
+    public ResponseEntity<?> createIngredient(@RequestBody IngredientCreatingFromDTO form) {
         // create Recipe
         ingredientService.createIngredient(form);
         return new ResponseEntity<String>("Create Ingredient successfully!", HttpStatus.OK);
     }
 
     @GetMapping(value = "/exists/{name}")
-    public ResponseEntity<?> existsByName(@PathVariable(name = "name") String name){
+    public ResponseEntity<?> existsByName(@PathVariable(name = "name") String name) {
         // get entity
         boolean result = ingredientService.existsIngredientByName(name);
 
@@ -44,7 +49,7 @@ public class IngrementController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<?> updateIngredient (@PathVariable(name = "id") Integer id, @RequestBody IngredientDTO form) {
+    public ResponseEntity<?> updateIngredient(@PathVariable(name = "id") Integer id, @RequestBody IngredientDTO form) {
         ingredientService.updateIngredient(id, form);
         return new ResponseEntity<String>("Update Ingredient successfully!", HttpStatus.OK);
     }

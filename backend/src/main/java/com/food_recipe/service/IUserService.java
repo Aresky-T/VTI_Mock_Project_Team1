@@ -5,8 +5,6 @@ import com.food_recipe.dto.ChangePublicProfileDTO;
 import com.food_recipe.entity.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import java.util.Optional;
-
 public interface IUserService extends UserDetailsService {
 
 

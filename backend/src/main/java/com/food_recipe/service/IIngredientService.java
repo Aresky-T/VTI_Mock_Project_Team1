@@ -6,7 +6,9 @@ import com.food_recipe.entity.Ingredient;
 
 import java.util.List;
 
-public interface IIngerdientService {
+public interface IIngredientService {
+
+    List<Ingredient> getAllIngredients(String search);
 
     void createIngredient(IngredientCreatingFromDTO form);
 

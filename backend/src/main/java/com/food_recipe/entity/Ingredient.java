@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 @Entity
@@ -22,8 +23,7 @@ public class Ingredient implements Serializable {
     @Column(name = "`unit`", nullable = false)
     private String unit;
 
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "recipes_id")
-    private RecipeIngredient recipesIngredient;
+    @OneToMany(mappedBy = "ingredient", fetch = FetchType.EAGER)
+    private List<RecipeIngredient> ingredients;
+    
 }

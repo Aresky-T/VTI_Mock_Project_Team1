@@ -1,12 +1,12 @@
 package com.food_recipe.service;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-
 import com.food_recipe.utils.FileManager;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 
 
 
@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileService implements IFileService {
 
 	private FileManager fileManager = new FileManager();
-	private String linkFolder = "C:\\Users\\aresky-t\\Desktop\\Avatar";
+	private String linkFolder = "https://drive.google.com/drive/folders/1ExH5m0q0nBkts39sF3ddTT0z8AcLH8fK?usp=share_link";
 
 	@Override
 	public String uploadImage(MultipartFile image) throws IOException {
