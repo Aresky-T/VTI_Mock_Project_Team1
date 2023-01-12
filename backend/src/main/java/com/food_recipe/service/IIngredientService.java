@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IIngredientService {
 
-    List<Ingredient> getAllIngredients();
+    List<Ingredient> getAllIngredients(String search);
 
     void createIngredient(IngredientCreatingFromDTO form);
 

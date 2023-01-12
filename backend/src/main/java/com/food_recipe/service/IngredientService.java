@@ -39,7 +39,7 @@ public class IngredientService implements IIngredientService {
     }
 
     @Override
-    public List<Ingredient> getAllIngredients() {
+    public List<Ingredient> getAllIngredients(String search) {
         return ingredientRepository.findAll();
     }
 

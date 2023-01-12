@@ -22,8 +22,8 @@ public class IngredientController {
     private IIngredientService ingredientService;
 
     @GetMapping()
-    public List<Ingredient> getAll() {
-        return ingredientService.getAllIngredients();
+    public List<Ingredient> getAll(String search) {
+        return ingredientService.getAllIngredients(search);
     }
 
     @PostMapping()

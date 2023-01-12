@@ -28,7 +28,7 @@ public class User implements Serializable {
     @Formula("concat(first_name, ' ', last_name)")
     private String fullName;
 
-    @Column(name = "`username`", nullable = false, length = 50, unique = true)
+    @Column(name = "`user_name`", nullable = false, length = 50, unique = true)
     private String username;
 
     @Column(name = "`email`", nullable = false, length = 50, unique = true)

@@ -23,5 +23,8 @@ public class Ingredient implements Serializable {
 
     @Column(name = "`unit`", nullable = false)
     private String unit;
+
+    @OneToMany(mappedBy = "ingredient", fetch = FetchType.EAGER)
+    private List<RecipeIngredient> ingredients;
     
 }

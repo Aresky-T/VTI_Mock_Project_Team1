@@ -1,12 +1,9 @@
 package com.food_recipe.dto;
 
-import com.food_recipe.entity.User;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.food_recipe.entity.RecipeIngredient;
 
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
 import java.time.LocalDate;
+import java.util.List;
 
 public class RecipeDTO {
 	
@@ -27,6 +24,8 @@ public class RecipeDTO {
 	private Float price;
 
 	private LocalDate createDate;
+
+	private List<RecipeIngredient> ingredients;
 
 	public RecipeDTO(Integer id, String name, String imageUrl, String description, String processingSteps, Integer userId, String note, Float price, LocalDate createDate) {
 		this.id = id;

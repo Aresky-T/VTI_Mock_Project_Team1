@@ -1,13 +1,15 @@
 package com.food_recipe.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "`Recipe_Ingredient`")
 public class RecipeIngredient implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -26,7 +28,6 @@ public class RecipeIngredient implements Serializable {
     //    @ManyToOne(fetch = FetchType.LAZY)
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`ingredient_id`")
-//    @JsonBackReference
     private Ingredient ingredient;
 
     @Column(name = "`amount`", nullable = false)
@@ -44,12 +45,12 @@ public class RecipeIngredient implements Serializable {
 
     }
 
-    @Embeddable
-    public static class RecipeIngredientKey implements Serializable {
-        @Column(name = "`recipe_id`")
-        Integer recipeId;
-
-        @Column(name = "`ingredient_id`")
-        Integer ingredientId;
-    }
+//    @Embeddable
+//    public static class RecipeIngredientKey implements Serializable {
+//        @Column(name = "`recipe_id`")
+//        Integer recipeId;
+//
+//        @Column(name = "`ingredient_id`")
+//        Integer ingredientId;
+//    }
 }

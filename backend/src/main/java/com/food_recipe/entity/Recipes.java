@@ -1,17 +1,16 @@
 package com.food_recipe.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
-import org.springframework.boot.context.properties.bind.DefaultValue;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "`Recipe`")
 public class Recipes implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -51,7 +50,6 @@ public class Recipes implements Serializable {
     private Date createDate;
 
     @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER)
-    @JsonManagedReference
     private List<RecipeIngredient> ingredients;
 
     public Recipes(String name, String imageUrl, String description, String processingSteps, Integer userId, String note, Float price) {

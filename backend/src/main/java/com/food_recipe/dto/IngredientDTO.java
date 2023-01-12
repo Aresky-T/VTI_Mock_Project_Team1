@@ -14,4 +14,11 @@ public class IngredientDTO {
 
     private Float amount;
 
+    public Ingredient toEntity(){
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName(name);
+        ingredient.setUnit(unit);
+        return ingredient;
+    }
+
 }
