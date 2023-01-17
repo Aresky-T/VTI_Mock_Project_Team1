@@ -1,12 +1,6 @@
 
-Ajavascript:S125"Remove this commented out code.(ƒºğÉ8çÇË„Ù0
-Fjavascript:S1250"Remove this commented out code.(Çç…¡ûÿÿÿÿ8êÇË„Ù0
-Fjavascript:S125N"Remove this commented out code.(ÃĞ÷Œşÿÿÿÿ8êÇË„Ù0
-_javascript:S1481Q"7Remove the declaration of the unused 'formik' variable.(†´¿Äıÿÿÿÿ8ëÇË„Ù0
-\javascript:S1854Q"4Remove this useless assignment to variable "formik".(†´¿Äıÿÿÿÿ8ëÇË„Ù0
-kjavascript:S1481k"CRemove the declaration of the unused 'handleCreateRecipe' variable.(²¡¢øÿÿÿÿ8ëÇË„Ù0
-hjavascript:S1854k"@Remove this useless assignment to variable "handleCreateRecipe".(²¡¢øÿÿÿÿ8ëÇË„Ù0
-javascript:S3699„"XRemove this use of the output from "handleFocus"; "handleFocus" doesn't return anything.(šáşşÿÿÿÿ8ìÇË„Ù0
-Qjavascript:S6480Ì"(JSX props should not use arrow functions(—Î‚šüÿÿÿÿ8ìÇË„Ù0
-Ajavascript:S6479ğ"Do not use Array index in keys(–ıİ'8ìÇË„Ù0
-Qjavascript:S6480÷"(JSX props should not use arrow functions(ÙçÇúùÿÿÿÿ8íÇË„Ù0
+Fjavascript:S125F"Remove this commented out code.(Šü¼Óşÿÿÿÿ8§•¯„Û0
+javascript:S3699"XRemove this use of the output from "handleFocus"; "handleFocus" doesn't return anything.(šáşşÿÿÿÿ8ìÇË„Ù0
+Qjavascript:S6480Õ"(JSX props should not use arrow functions(—Î‚šüÿÿÿÿ8ìÇË„Ù0
+Ajavascript:S6479ù"Do not use Array index in keys(–ıİ'8ìÇË„Ù0
+Qjavascript:S6480€"(JSX props should not use arrow functions(ÙçÇúùÿÿÿÿ8íÇË„Ù0

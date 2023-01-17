@@ -6,3 +6,7 @@ export const getAllIngredients = async () => {
     console.log("call api getAllIngredients...")
     return await axios.get(baseURL);
 }
+
+export const createNewIngredient = (data) => {
+    return axios.post(baseURL, data)
+}

@@ -8,6 +8,7 @@ import SignUp from "./components/auth/SignUp";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import Home from "./pages/Home";
+import Ingredient from "./pages/Ingredient";
 
 const App = () => {
    return (
@@ -24,6 +25,7 @@ const App = () => {
                   <Route path="sign-in" element={<SignIn />} />
                   <Route path="sign-up" element={<SignUp />} />
                </Route>
+               <Route path="/ingredient" element={<Ingredient/>}/>
             </Routes>
          </div>
       </Router>

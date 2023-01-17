@@ -1,6 +1,6 @@
 package com.food_recipe.controller;
 
-import com.food_recipe.dto.RecipeIngredientDTO;
+import com.food_recipe.dto.RecipeIngredientFormCreating;
 import com.food_recipe.entity.RecipeIngredient;
 import com.food_recipe.service.IRecipeIngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +20,9 @@ public class RecipeIngredientController {
     @Autowired
     private IRecipeIngredientService recipeIngredientService;
 
-    @GetMapping
-    public List<RecipeIngredient> getAll() {
-        return recipeIngredientService.getAll();
-    }
-
     @PostMapping()
-    public ResponseEntity<?> createRecipeIngredient(@RequestBody RecipeIngredientDTO data) {
-        // create Recipe
+    public ResponseEntity<?> createRecipeIngredient(@RequestBody List<RecipeIngredientFormCreating> data) {
         recipeIngredientService.createRecipeIngredient(data);
-        return new ResponseEntity<>("Create Recipe successfully!", HttpStatus.OK);
+        return new ResponseEntity<>("Add List Ingredients successfully!", HttpStatus.OK);
     }
 }
