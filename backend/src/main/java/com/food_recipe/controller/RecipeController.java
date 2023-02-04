@@ -30,6 +30,9 @@ public class RecipeController {
 
     @PostMapping()
     public ResponseEntity<?> createRecipe(@RequestBody RecipeFormForCreating form) {
+        if (recipeService.existRecipeByName(form.getName())){
+            return new ResponseEntity<>("This recipe already exists!", HttpStatus.OK);
+        }
         return new ResponseEntity<>(recipeService.createRecipe(form).getId(), HttpStatus.OK);
     }
 

@@ -21,6 +21,7 @@
     "react-animate-height": "^3.1.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.0",
     "react-icons": "^4.7.1",
     "react-paginate": "^8.1.4",
     "react-redux": "^8.0.5",

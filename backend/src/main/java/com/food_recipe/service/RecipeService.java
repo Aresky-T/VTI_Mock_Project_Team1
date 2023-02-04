@@ -37,6 +37,11 @@ public class RecipeService implements IRecipeService {
     }
 
     @Override
+    public Boolean existRecipeByName(String name) {
+        return recipeRepository.existsByName(name);
+    }
+
+    @Override
     public Recipe createRecipe(RecipeFormForCreating form) {
         return recipeRepository.save(form.toEntity());
     }

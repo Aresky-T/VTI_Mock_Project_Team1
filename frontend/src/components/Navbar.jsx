@@ -66,11 +66,6 @@ const Navbar = () => {
             icon: faPlusSquare
         },
         {
-            name: "Ingredient",
-            path: "/ingredient",
-            icon: ""
-        },
-        {
             name: "Sign in",
             path: "/auth/sign-in",
             icon: faSignInAlt
@@ -99,7 +94,7 @@ const Navbar = () => {
 
                 <div className='nav-links'>
                     <div className='nav-links-items'>
-                        {[links[0], links[1], links[2]].map(link => (
+                        {[links[0], links[1]].map(link => (
                             <Link
                                 to={link.path}
                                 key={link.name}

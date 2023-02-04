@@ -11,5 +11,5 @@ import java.util.List;
 public interface RecipeRepository extends JpaRepository<Recipe, Integer>, JpaSpecificationExecutor<Recipe> {
     List<Recipe> findByNameLike(String name);
 
-    boolean existsById(Integer id);
+    boolean existsByName(String name);
 }

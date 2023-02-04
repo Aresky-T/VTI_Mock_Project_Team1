@@ -8,7 +8,9 @@ import SignUp from "./components/auth/SignUp";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import Home from "./pages/Home";
-import Ingredient from "./pages/Ingredient";
+import CreateRecipe2 from "./pages/CreateRecipe2";
+import Home2 from "./pages/Home2";
+import Footer from "./components/Footer";
 
 const App = () => {
    return (
@@ -17,17 +19,17 @@ const App = () => {
          <div className="container main">
             <Routes>
                {/* <Route path="/" element={<HomeComponent />} /> */}
-               <Route path="/" element={<Home/>}/>
+               <Route path="/" element={<Home2/>}/>
                <Route path="/profile" element={<Profile/>} />
-               <Route path="/create-recipe" element={<CreateRecipe />} />
+               <Route path="/create-recipe" element={<CreateRecipe2 />} />
                <Route path="/settings" element={<Settings />} />
                <Route path="/auth">
                   <Route path="sign-in" element={<SignIn />} />
                   <Route path="sign-up" element={<SignUp />} />
                </Route>
-               <Route path="/ingredient" element={<Ingredient/>}/>
             </Routes>
          </div>
+         <Footer/>
       </Router>
    );
 };

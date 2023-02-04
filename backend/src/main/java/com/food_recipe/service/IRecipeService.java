@@ -14,6 +14,8 @@ public interface IRecipeService {
 
     List<Recipe> findByName(String name);
 
+    Boolean existRecipeByName(String name);
+
     Recipe createRecipe(RecipeFormForCreating form);
 
     Page<Recipe> getAllRecipes(Pageable pageable, RecipeFilter filter, String search);

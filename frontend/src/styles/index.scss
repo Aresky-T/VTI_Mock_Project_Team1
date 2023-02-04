@@ -32,6 +32,10 @@ a {
   text-decoration: none;
 }
 
+img {
+  object-fit: cover;
+}
+
 // .btn {
 //   border: none;
 //   outline: none;
@@ -144,6 +148,7 @@ a {
   padding-inline: 15vw;
 }
 
+@import "partials/animations";
 @import "partials/navbar";
 @import "partials/sign_in";
 @import "partials/sign_up";
@@ -154,6 +159,8 @@ a {
 @import "partials/create_recipe";
 @import "partials/modal_login";
 @import "partials/home";
+@import "partials/home_header";
+@import "partials/footer";
 
 
 
@@ -191,6 +198,15 @@ a {
   .container {
     padding-inline: 6vw;
     transition: all 0.2s ease;
+  }
+
+  .section {
+    .col {
+      width: 100%;
+      padding: 0 !important;
+      text-align: center;
+      margin-bottom: 2em;
+    }
   }
 }
 
