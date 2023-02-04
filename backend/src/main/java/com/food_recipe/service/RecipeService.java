@@ -32,8 +32,8 @@ public class RecipeService implements IRecipeService {
 
 
     @Override
-    public List<Recipe> findByName(String name) {
-        return recipeRepository.findByNameLike(name);
+    public List<Recipe> findByNameLike(String name) {
+        return recipeRepository.findAllByNameLike(name);
     }
 
     @Override

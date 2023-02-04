@@ -19,34 +19,34 @@ public class RecipeSpecificationBuilder {
 	@SuppressWarnings("deprecation")
 	public Specification<Recipe> build() {
 
-		SearchCriteria seachCriteria = new SearchCriteria("name", "Like", search);
-		SearchCriteria minTotalRecipeCriteria = new SearchCriteria("totalRecipe", ">=", filter.getMinTotalRecipe());
-		SearchCriteria maxTotalRecipeCriteria = new SearchCriteria("totalRecipe", "<=", filter.getMaxTotalRecipe());
+		SearchCriteria searchCriteria = new SearchCriteria("name", "Like", search);
+//		SearchCriteria minTotalRecipeCriteria = new SearchCriteria("totalRecipe", ">=", filter.getMinTotalRecipe());
+//		SearchCriteria maxTotalRecipeCriteria = new SearchCriteria("totalRecipe", "<=", filter.getMaxTotalRecipe());
 
 		Specification<Recipe> where = null;
 
 		// search
 		if (!StringUtils.isEmpty(search)) {
-			where = new RecipeSpecification(seachCriteria);
+			where = new RecipeSpecification(searchCriteria);
 		}
 
-		// min totalRecipe filter
-		if (filter.getMinTotalRecipe() != 0) {
-			if (where != null) {
-				where = where.and(new RecipeSpecification(minTotalRecipeCriteria));
-			} else {
-				where = new RecipeSpecification(minTotalRecipeCriteria);
-			}
-		}
-
-		// max totalRecipe filter
-		if (filter.getMaxTotalRecipe() != 0) {
-			if (where != null) {
-				where = where.and(new RecipeSpecification(maxTotalRecipeCriteria));
-			} else {
-				where = new RecipeSpecification(maxTotalRecipeCriteria);
-			}
-		}
+//		// min totalRecipe filter
+//		if (filter.getMinTotalRecipe() != 0) {
+//			if (where != null) {
+//				where = where.and(new RecipeSpecification(minTotalRecipeCriteria));
+//			} else {
+//				where = new RecipeSpecification(minTotalRecipeCriteria);
+//			}
+//		}
+//
+//		// max totalRecipe filter
+//		if (filter.getMaxTotalRecipe() != 0) {
+//			if (where != null) {
+//				where = where.and(new RecipeSpecification(maxTotalRecipeCriteria));
+//			} else {
+//				where = new RecipeSpecification(maxTotalRecipeCriteria);
+//			}
+//		}
 
 		return where;
 	}

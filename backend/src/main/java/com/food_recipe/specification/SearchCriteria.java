@@ -1,5 +1,12 @@
 package com.food_recipe.specification;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 public class SearchCriteria {
 	private String key;
 	private String operator;
@@ -10,17 +17,4 @@ public class SearchCriteria {
 		this.operator = operator;
 		this.value = value;
 	}
-
-	public String getKey() {
-		return key;
-	}
-
-	public String getOperator() {
-		return operator;
-	}
-
-	public Object getValue() {
-		return value;
-	}
-
 }

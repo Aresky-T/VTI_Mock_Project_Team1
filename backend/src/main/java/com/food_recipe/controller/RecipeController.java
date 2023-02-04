@@ -6,11 +6,13 @@ import com.food_recipe.dto.filter.RecipeFilter;
 import com.food_recipe.entity.Recipe;
 import com.food_recipe.service.IRecipeService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,10 +48,15 @@ public class RecipeController {
         return new ResponseEntity<>(entities, HttpStatus.OK);
     }
 
-    @GetMapping("/name/{value}")
-    ResponseEntity<List<Recipe>> findByRecipeName(
-            @PathVariable(name = "value") String name) {
-        return ResponseEntity.ok().body(recipeService.findByName(name));
+    @GetMapping("/search-by-name")
+    ResponseEntity<?> findByRecipeName(
+            @RequestParam(name = "name") String name) {
+        if (!name.isEmpty()) {
+            List<Recipe> entity = recipeService.findByNameLike("%" + name + "%");
+            List<RecipeDTO> dto = modelMapper.map(entity, new TypeToken<List<RecipeDTO>>(){}.getType());
+            return new ResponseEntity<>(dto, HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Please enter a string for search by recipe name!", HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

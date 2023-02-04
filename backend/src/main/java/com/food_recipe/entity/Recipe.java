@@ -1,9 +1,7 @@
 package com.food_recipe.entity;
 
 import com.fasterxml.jackson.annotation.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -12,9 +10,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 @Table(name = "`Recipe`")
 public class Recipe implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -66,5 +63,9 @@ public class Recipe implements Serializable {
 
     public Recipe(Integer recipeId) {
         this.id = recipeId;
+    }
+
+    public Recipe() {
+
     }
 }

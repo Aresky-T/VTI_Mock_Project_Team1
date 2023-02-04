@@ -12,7 +12,7 @@ import java.util.List;
 public interface IRecipeService {
 
 
-    List<Recipe> findByName(String name);
+    List<Recipe> findByNameLike(String name);
 
     Boolean existRecipeByName(String name);
 

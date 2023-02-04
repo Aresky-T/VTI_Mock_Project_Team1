@@ -32,6 +32,8 @@ public class RecipeDTO {
 
 	private List<RecipeIngredientDTO> ingredients;
 
+	private List<CommentDTO> comments;
+
 	@Data
 	@NoArgsConstructor
 	static class RecipeIngredientDTO {
@@ -46,5 +48,22 @@ public class RecipeDTO {
 		private Integer id;
 		private String fullName;
 		private String avatarUrl;
+	}
+
+	@Data
+	@NoArgsConstructor
+	static class CommentDTO {
+		private com.food_recipe.dto.CommentDTO.UserDTO user;
+		private String comment;
+		private Date createDate;
+		private Date updateDate;
+
+		@Data
+		@NoArgsConstructor
+		static class UserDTO {
+			private Integer id;
+			private String avatarUrl;
+			private String fullName;
+		}
 	}
 }
