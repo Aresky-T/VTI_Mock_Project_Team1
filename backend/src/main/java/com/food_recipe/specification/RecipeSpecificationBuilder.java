@@ -19,7 +19,7 @@ public class RecipeSpecificationBuilder {
 	@SuppressWarnings("deprecation")
 	public Specification<Recipes> build() {
 
-		SearchCriteria seachCriteria = new SearchCriteria("name", "Like", search);
+		SearchCriteria searchCriteria = new SearchCriteria("name", "Like", search);
 		SearchCriteria minTotalRecipeCriteria = new SearchCriteria("totalRecipe", ">=", filter.getMinTotalRecipe());
 		SearchCriteria maxTotalRecipeCriteria = new SearchCriteria("totalRecipe", "<=", filter.getMaxTotalRecipe());
 
@@ -27,7 +27,7 @@ public class RecipeSpecificationBuilder {
 
 		// search
 		if (!StringUtils.isEmpty(search)) {
-			where = new RecipeSpecification(seachCriteria);
+			where = new RecipeSpecification(searchCriteria);
 		}
 
 		// min totalRecipe filter
