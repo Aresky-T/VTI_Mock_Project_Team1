@@ -2,10 +2,7 @@ package com.food_recipe.service;
 
 
 import com.food_recipe.dto.ChangePublicProfileDTO;
-import com.food_recipe.entity.RegistrationUserToken;
-import com.food_recipe.entity.ResetPasswordToken;
-import com.food_recipe.entity.User;
-import com.food_recipe.entity.UserStatus;
+import com.food_recipe.entity.*;
 import com.food_recipe.event.OnResetPasswordViaEmailEvent;
 import com.food_recipe.event.OnSendRegistrationUserConfirmViaEmailEvent;
 import com.food_recipe.repository.RegistrationUserTokenRepository;

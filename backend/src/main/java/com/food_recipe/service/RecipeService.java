@@ -3,7 +3,6 @@ package com.food_recipe.service;
 
 import com.food_recipe.dto.RecipeFormForCreating;
 import com.food_recipe.dto.filter.RecipeFilter;
-import com.food_recipe.entity.Ingredient;
 import com.food_recipe.entity.RecipeIngredient;
 import com.food_recipe.entity.Recipe;
 import com.food_recipe.repository.RecipeIngredientRepository;
@@ -15,9 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 @Component
@@ -28,12 +25,9 @@ public class RecipeService implements IRecipeService {
     private final RecipeRepository recipeRepository;
     private final RecipeIngredientRepository recipeIngredientRepository;
 
-    private final IngredientRepository ingredientRepository;
-
-    public RecipeService(RecipeRepository recipeRepository, RecipeIngredientRepository recipeIngredientRepository, IngredientRepository ingredientRepository) {
+    public RecipeService(RecipeRepository recipeRepository, RecipeIngredientRepository recipeIngredientRepository) {
         this.recipeRepository = recipeRepository;
         this.recipeIngredientRepository = recipeIngredientRepository;
-        this.ingredientRepository = ingredientRepository;
     }
 
 
