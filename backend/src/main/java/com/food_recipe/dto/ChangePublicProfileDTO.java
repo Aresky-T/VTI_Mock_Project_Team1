@@ -17,7 +17,7 @@ public class ChangePublicProfileDTO {
 
 	private UserGender gender;
 
-	private Integer phone;
+	private String phone;
 
 	private String avatarUrl;
 
@@ -58,11 +58,11 @@ public class ChangePublicProfileDTO {
 		this.gender = gender;
 	}
 
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

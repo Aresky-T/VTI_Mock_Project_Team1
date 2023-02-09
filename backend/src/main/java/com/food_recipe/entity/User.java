@@ -28,7 +28,7 @@ public class User implements Serializable {
     private String password;
     @Column(name = "avatar_url", columnDefinition = "TEXT")
     private String avatarUrl;
-    @Column(name = "`first_name`", nullable = false)
+    @Column(name = "`first_name`", nullable = false, length = 50)
     private String firstName;
     @Column(name = "`last_name`", nullable = false, length = 50)
     private String lastName;
@@ -37,8 +37,8 @@ public class User implements Serializable {
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "`gender`")
     private UserGender gender;
-    @Column(name = "phone", length = 10 )
-    private Integer phone;
+    @Column(name = "phone", length = 50 )
+    private String phone;
 
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "`status`", nullable = false)
