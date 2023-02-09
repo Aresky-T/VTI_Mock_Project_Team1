@@ -54,4 +54,18 @@
             }
         }
     }
+
+    .btn-search-now {
+        padding: 10px 20px;
+        border: 1px dashed #ccc;
+        text-transform: uppercase;
+        font-weight: 550;
+        border-radius: 10px;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--primary-color);
+            border-style: solid;
+        }
+    }
 }

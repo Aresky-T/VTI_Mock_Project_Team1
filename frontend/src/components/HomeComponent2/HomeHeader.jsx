@@ -1,7 +1,7 @@
 import React from 'react'
 import CustomImage from '../CustomImage'
 
-const HomeHeader = () => {
+const HomeHeader = ({handleClickToScroll}) => {
 
     const images = [
         "/img/gallery/img_1.jpg",
@@ -24,6 +24,7 @@ const HomeHeader = () => {
                 <p className="info">
                 FoodRecipe is a place where you can please your soul and tummy with delicious food recepies of all cuisine. And our service is absolutely free. So start exploring now.
                 </p>
+                <button onClick={handleClickToScroll} className="btn-search-now">Search now</button>
             </div>
             <div className="col gallery">
                 {images.map((src, index) => (

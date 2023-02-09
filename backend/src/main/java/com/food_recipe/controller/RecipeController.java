@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +46,9 @@ public class RecipeController {
             @RequestParam(required = false)
             String search) {
         Page<Recipe> entities = recipeService.getAllRecipes(pageable, filter, search);
-        return new ResponseEntity<>(entities, HttpStatus.OK);
+        List<RecipeDTO> dtos = modelMapper.map(entities.getContent(), new TypeToken<List<RecipeDTO>>(){}.getType());
+        Page<RecipeDTO> dtoPage = new PageImpl<>(dtos, pageable, entities.getTotalElements());
+        return new ResponseEntity<>(dtoPage, HttpStatus.OK);
     }
 
     @GetMapping("/search-by-name")

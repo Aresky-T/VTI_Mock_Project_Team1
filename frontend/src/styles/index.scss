@@ -1,7 +1,8 @@
 :root {
   --background-color: #fff;
   --background-light: #fff;
-  --shadow-color: rgba(0, 0, 0, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color-2: rgba(0, 0, 0, 0.4);
   --primary-color: rgb(255, 0, 86);
   --text-color: #0A0A0A;
   --text-light: #575757;
@@ -145,7 +146,7 @@ img {
 }
 
 .container {
-  padding-inline: 15vw;
+  padding-inline: 25vw;
 }
 
 @import "partials/animations";
@@ -161,6 +162,8 @@ img {
 @import "partials/home";
 @import "partials/home_header";
 @import "partials/footer";
+@import "partials/previous_searches";
+@import "partials/recipes_section";
 
 
 
@@ -210,7 +213,7 @@ img {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 390px) {
   .container {
     padding-inline: 3vw;
   }

@@ -1,11 +1,44 @@
-import React from 'react'
+import React, { forwardRef, useEffect, useState } from 'react'
+import { getAllRecipes } from '../../api/recipe.api';
+import PreviousSearch from './PreviousSearch'
+import RecipeCard from './RecipeCard';
 
-const HomeBody = () => {
+const HomeBody = (props, ref) => {
+
+  const [recipes, setRecipes] = useState([]);
+  const [search, setSearch] = useState('');
+
+  function getAllRecipesForShow() {
+    getAllRecipes(search)
+      .then(res => {
+        // console.log(res.data.content);
+        setRecipes(res.data.content);
+      })
+      .catch()
+  }
+
+  // console.log("search", search)
+
+  useEffect(() => {
+    getAllRecipesForShow();
+  }, [search])
+
   return (
-    <div>
-      
+    <div ref={ref} style={{paddingTop:'60px'}}>
+      <PreviousSearch search={search} setSearch={setSearch}/>
+      <div className="recipes-container">
+        {/* <RecipeCard /> */}
+        {recipes.map((recipe, index) => (
+          <RecipeCard key={index} recipe={recipe} />
+        ))}
+      </div>
+      <div className="show-more">
+        <button className="btn-show-more">
+          Show more
+        </button>
+      </div>
     </div>
   )
 }
 
-export default HomeBody
+export default forwardRef(HomeBody);

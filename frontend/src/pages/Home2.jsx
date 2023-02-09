@@ -1,18 +1,19 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import HomeBody from '../components/HomeComponent2/HomeBody'
 import HomeHeader from '../components/HomeComponent2/HomeHeader'
-import {useSelector} from 'react-redux';
 
 const Home2 = () => {
 
-  const recipes = useSelector(state => state.recipes.list);
-  
-  console.log(recipes);
+  const ref = useRef(null);
+
+  const handleClickToScroll = () => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  }
 
   return (
     <div>
-        <HomeHeader/>
-        <HomeBody/>
+      <HomeHeader handleClickToScroll={handleClickToScroll} />
+      <HomeBody ref={ref}/>
     </div>
   )
 }
