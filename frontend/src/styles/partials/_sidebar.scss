@@ -17,8 +17,10 @@
         color: var(--text-color);
         font-size: 1.1em;
         cursor: pointer;
+        transform: translateX(-100%);
+        animation: getAnimationDuration(.3s) slideInLeft forwards;
 
-        @for $i from 1 through 3 {
+        @for $i from 1 through 5 {
             &:nth-child(#{$i}) {
                 animation-delay: #{$i * .1}s;
             }
@@ -40,3 +42,5 @@
         }
     }
 }
+
+

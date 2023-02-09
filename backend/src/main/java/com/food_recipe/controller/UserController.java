@@ -2,7 +2,7 @@ package com.food_recipe.controller;
 
 import com.food_recipe.dto.ChangePublicProfileDTO;
 import com.food_recipe.dto.ProfileDTO;
-import com.food_recipe.dto.UserDTO;
+import com.food_recipe.dto.UserFormForCreating;
 import com.food_recipe.entity.User;
 import com.food_recipe.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public class UserController {
 
 
 	@PostMapping()
-	public ResponseEntity<?> createUser(@RequestBody @Valid UserDTO dto){
+	public ResponseEntity<?> createUser(@RequestBody @Valid UserFormForCreating dto){
 
 		// create User
 		userService.createUser(dto.toEntity());

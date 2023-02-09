@@ -22,15 +22,14 @@ public class ProfileDTO {
 
 	private UserGender gender;
 
-	@Length(min = 10, max = 12)
-	private Integer phone;
+	private String phone;
 
 	private String status;
 
 	private String avatarUrl;
 
 
-	public ProfileDTO(String username, String email, String firstName, String lastName, LocalDate birthDate, UserGender gender, Integer phone, String status, String avatarUrl) {
+	public ProfileDTO(String username, String email, String firstName, String lastName, LocalDate birthDate, UserGender gender, String phone, String status, String avatarUrl) {
 		this.username = username;
 		this.email = email;
 		this.firstName = firstName;
@@ -66,7 +65,7 @@ public class ProfileDTO {
 		return gender;
 	}
 
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 

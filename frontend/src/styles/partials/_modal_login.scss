@@ -98,11 +98,18 @@
             button {
                 -webkit-user-select: none;
                 user-select: none;
+                padding: 5px 20px;
+                outline: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: 550;
+                border: 1px solid #ccc;
             }
 
             .btn-close {
                 background-color: rgb(90, 90, 90);
                 box-shadow: none;
+                color: #fff;
 
                 &:hover {
                     background-color: rgb(243, 243, 243);
@@ -114,7 +121,7 @@
 
             .btn-submit:hover {
                 background-color: rgba(237, 255, 170, 0.5);
-                color: rgb(103, 102, 102)
+                color: rgb(59, 59, 59);
             }
 
         }

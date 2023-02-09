@@ -1,7 +1,8 @@
 :root {
   --background-color: #fff;
   --background-light: #fff;
-  --shadow-color: rgba(0, 0, 0, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color-2: rgba(0, 0, 0, 0.4);
   --primary-color: rgb(255, 0, 86);
   --text-color: #0A0A0A;
   --text-light: #575757;
@@ -30,6 +31,10 @@ body {
 
 a {
   text-decoration: none;
+}
+
+img {
+  object-fit: cover;
 }
 
 // .btn {
@@ -141,9 +146,10 @@ a {
 }
 
 .container {
-  padding-inline: 15vw;
+  padding-inline: 25vw;
 }
 
+@import "partials/animations";
 @import "partials/navbar";
 @import "partials/sign_in";
 @import "partials/sign_up";
@@ -154,6 +160,10 @@ a {
 @import "partials/create_recipe";
 @import "partials/modal_login";
 @import "partials/home";
+@import "partials/home_header";
+@import "partials/footer";
+@import "partials/previous_searches";
+@import "partials/recipes_section";
 
 
 
@@ -192,9 +202,18 @@ a {
     padding-inline: 6vw;
     transition: all 0.2s ease;
   }
+
+  .section {
+    .col {
+      width: 100%;
+      padding: 0 !important;
+      text-align: center;
+      margin-bottom: 2em;
+    }
+  }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 390px) {
   .container {
     padding-inline: 3vw;
   }

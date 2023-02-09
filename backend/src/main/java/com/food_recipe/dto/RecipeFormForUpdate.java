@@ -1,6 +1,6 @@
 package com.food_recipe.dto;
 
-import com.food_recipe.entity.Recipes;
+import com.food_recipe.entity.Recipe;
 
 import javax.persistence.Column;
 import javax.persistence.Temporal;
@@ -26,11 +26,6 @@ public class RecipeFormForUpdate {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "`create_date`", nullable = false)
     private Date createDate;
-
-
-    public Recipes toEntity() {
-        return new Recipes(name, imageUrl, description, processingSteps, userId, note, price);
-    }
 
     public String getName() {
         return name;

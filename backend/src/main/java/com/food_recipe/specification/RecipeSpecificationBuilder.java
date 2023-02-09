@@ -1,7 +1,7 @@
 package com.food_recipe.specification;
 
 import com.food_recipe.dto.filter.RecipeFilter;
-import com.food_recipe.entity.Recipes;
+import com.food_recipe.entity.Recipe;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 
@@ -17,36 +17,36 @@ public class RecipeSpecificationBuilder {
 	}
 
 	@SuppressWarnings("deprecation")
-	public Specification<Recipes> build() {
+	public Specification<Recipe> build() {
 
 		SearchCriteria searchCriteria = new SearchCriteria("name", "Like", search);
-		SearchCriteria minTotalRecipeCriteria = new SearchCriteria("totalRecipe", ">=", filter.getMinTotalRecipe());
-		SearchCriteria maxTotalRecipeCriteria = new SearchCriteria("totalRecipe", "<=", filter.getMaxTotalRecipe());
+//		SearchCriteria minTotalRecipeCriteria = new SearchCriteria("totalRecipe", ">=", filter.getMinTotalRecipe());
+//		SearchCriteria maxTotalRecipeCriteria = new SearchCriteria("totalRecipe", "<=", filter.getMaxTotalRecipe());
 
-		Specification<Recipes> where = null;
+		Specification<Recipe> where = null;
 
 		// search
 		if (!StringUtils.isEmpty(search)) {
 			where = new RecipeSpecification(searchCriteria);
 		}
 
-		// min totalRecipe filter
-		if (filter.getMinTotalRecipe() != 0) {
-			if (where != null) {
-				where = where.and(new RecipeSpecification(minTotalRecipeCriteria));
-			} else {
-				where = new RecipeSpecification(minTotalRecipeCriteria);
-			}
-		}
-
-		// max totalRecipe filter
-		if (filter.getMaxTotalRecipe() != 0) {
-			if (where != null) {
-				where = where.and(new RecipeSpecification(maxTotalRecipeCriteria));
-			} else {
-				where = new RecipeSpecification(maxTotalRecipeCriteria);
-			}
-		}
+//		// min totalRecipe filter
+//		if (filter.getMinTotalRecipe() != 0) {
+//			if (where != null) {
+//				where = where.and(new RecipeSpecification(minTotalRecipeCriteria));
+//			} else {
+//				where = new RecipeSpecification(minTotalRecipeCriteria);
+//			}
+//		}
+//
+//		// max totalRecipe filter
+//		if (filter.getMaxTotalRecipe() != 0) {
+//			if (where != null) {
+//				where = where.and(new RecipeSpecification(maxTotalRecipeCriteria));
+//			} else {
+//				where = new RecipeSpecification(maxTotalRecipeCriteria);
+//			}
+//		}
 
 		return where;
 	}

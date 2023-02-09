@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import Sidebar from './Sidebar';
 import DropdownNavbar from './DropdownNavbar';
 import logoUser from '../imgs/user-128.png';
-
 const Navbar = () => {
 
     const [showSidebar, setShowSidebar] = useState(false);

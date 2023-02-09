@@ -2,12 +2,10 @@ package com.food_recipe.service;
 
 
 import com.food_recipe.dto.RecipeFormForCreating;
-import com.food_recipe.dto.RecipeIngredientDTO;
 import com.food_recipe.dto.filter.RecipeFilter;
 import com.food_recipe.entity.Ingredient;
 import com.food_recipe.entity.RecipeIngredient;
-import com.food_recipe.entity.Recipes;
-import com.food_recipe.repository.IngredientRepository;
+import com.food_recipe.entity.Recipe;
 import com.food_recipe.repository.RecipeIngredientRepository;
 import com.food_recipe.repository.RecipeRepository;
 import com.food_recipe.specification.RecipeSpecificationBuilder;
@@ -40,41 +38,30 @@ public class RecipeService implements IRecipeService {
 
 
     @Override
-    public List<Recipes> findByName(String name) {
-        return null;
+    public List<Recipe> findByNameLike(String name) {
+        return recipeRepository.findAllByNameLike(name);
     }
 
     @Override
-    public Recipes createRecipe(RecipeFormForCreating form) {
-        // Lưu công thwucs vào DB
-        Recipes recipes = form.toEntity();
-        recipes =  recipeRepository.save(recipes);
+    public Boolean existRecipeByName(String name) {
+        return recipeRepository.existsByName(name);
+    }
 
-        List<RecipeIngredient> recipeIngredients = new ArrayList<>();
-        // for lấy id nguyên liệu đã tồn tại -> tạo ra bảng công thức nguyên liệu -> lưu vào DB
-        for (Map.Entry<Integer, Float> entry : form.getIngredientIds().entrySet()){
-            Ingredient ingredient = ingredientRepository.findById(entry.getKey()).orElse(null);
-            RecipeIngredient recipeIngredient = new RecipeIngredient();
-            recipeIngredient.setRecipe(recipes);
-            recipeIngredient.setAmount(entry.getValue());
-            recipeIngredient.setIngredient(ingredient);
-            recipeIngredients.add(recipeIngredient);
-        }
-
-        recipes.setIngredients( recipeIngredientRepository.saveAll(recipeIngredients));
-        return recipes;
+    @Override
+    public Recipe createRecipe(RecipeFormForCreating form) {
+        return recipeRepository.save(form.toEntity());
     }
 
 
     @Override
-    public Page<Recipes> getAllRecipes(Pageable pageable, RecipeFilter filter, String search) {
+    public Page<Recipe> getAllRecipes(Pageable pageable, RecipeFilter filter, String search) {
 
         RecipeSpecificationBuilder specificationBuilder = new RecipeSpecificationBuilder(filter, search);
 
         return recipeRepository.findAll(specificationBuilder.build(), pageable);
     }
 
-    public Recipes getRecipeById(Integer id) {
+    public Recipe getRecipeById(Integer id) {
         return recipeRepository.findById(id).get();
     }
 

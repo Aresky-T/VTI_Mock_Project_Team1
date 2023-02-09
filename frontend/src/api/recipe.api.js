@@ -27,6 +27,6 @@ export const getRecipe = async (id, tokenUser) => {
     return axios.get(baseURL);
 }
 
-export const getAllRecipes = async () => {
-    return await axios.get(`${baseURL}/recipes`);
+export const getAllRecipes = async (search) => {
+    return await axios.get(`${baseURL}/recipes`, {params: {search}});
 }
