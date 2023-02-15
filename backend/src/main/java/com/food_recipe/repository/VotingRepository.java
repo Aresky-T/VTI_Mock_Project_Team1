@@ -1,16 +1,16 @@
 package com.food_recipe.repository;
 
 import com.food_recipe.entity.Recipe;
+import com.food_recipe.entity.Voting;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface RecipeRepository extends JpaRepository<Recipe, Integer>, JpaSpecificationExecutor<Recipe> {
+public interface VotingRepository extends
+        JpaRepository<Voting, Integer>,
+        JpaSpecificationExecutor<Voting> {
+    void deleteByRecipeId(Recipe recipeId);
 
-    List<Recipe> findAllByNameLike(String name);
-
-    boolean existsByName(String name);
+    Voting findByRecipeId(Recipe recipeId);
 }

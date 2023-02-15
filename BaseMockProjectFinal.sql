@@ -1,126 +1,146 @@
--- Drop the database if it already exists
-DROP DATABASE IF EXISTS RecipeDBTeam1;
--- Create database
-CREATE DATABASE IF NOT EXISTS RecipeDBTeam1;
-USE RecipeDBTeam1;
+DROP DATABASE IF EXISTS `MockProjectDB_Team1`;
+CREATE DATABASE `MockProjectDB_Team1`;
+USE `MockProjectDB_Team1`;
 
--- Create table user
-DROP TABLE IF EXISTS 	`User`;
-CREATE TABLE IF NOT EXISTS `User` ( 	
-	id 				INT AUTO_INCREMENT PRIMARY KEY,
-    `first_name`	VARCHAR(50)	NOT NULL,
-    `last_name`		VARCHAR(50)	NOT NULL,
-	`user_name`	 	CHAR(50) 	NOT NULL UNIQUE CHECK (LENGTH(`user_name`) >= 6 AND LENGTH(`user_name`) <= 50),
-	`email` 		CHAR(50) 	NOT NULL UNIQUE CHECK (LENGTH(`email`) >= 6 AND LENGTH(`email`) <= 50),
-	`password` 		VARCHAR(100) NOT NULL,
-    `birth_date`	DATE,
-	`gender`		ENUM('Male','Female','isDifferent'),
-    `phone`			VARCHAR(50),
-    `status`		TINYINT DEFAULT 0, -- 0: Not Active, 1: Active
-    `avatar_url`	VARCHAR(500)
-);
-				
 
--- Create table Recipe
-DROP TABLE IF EXISTS 	`Recipe`;
-CREATE TABLE IF NOT EXISTS `Recipe` ( 	
-	id 					INT AUTO_INCREMENT PRIMARY KEY,
-    `name`				VARCHAR(200) NOT NULL,
-    `image_url`			VARCHAR(200) NOT NULL,
-    `description`		TEXT NOT NULL,
-    `processing_steps`	TEXT NOT NULL,
-    `user_id`			INT NOT NULL,
-    `note`				VARCHAR(3000),
-    `price`				FLOAT(10,2) default 0,
-    `views`				INT,
-    `create_date`		DATETIME default now(),
-	FOREIGN KEY (`user_id`) REFERENCES User(id)
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` 				INT AUTO_INCREMENT PRIMARY KEY,
+  `user_name`	 	CHAR(50) 	NOT NULL UNIQUE CHECK (LENGTH(`user_name`) >= 6 AND LENGTH(`user_name`) <= 50),
+  `email` 			CHAR(50) 	NOT NULL UNIQUE CHECK (LENGTH(`email`) >= 6 AND LENGTH(`email`) <= 50),
+  `password` 		VARCHAR(100) NOT NULL,
+  `avatar_url` 		TEXT NULL,
+  `birth_date` 		DATE NULL,
+  `first_name` 		VARCHAR(50) NOT NULL,
+  `gender` 			TINYINT NULL,
+  `last_name` 		VARCHAR(50) NOT NULL,
+  `phone`			VARCHAR(50) NULL,
+  `status` 			TINYINT DEFAULT 0 NOT NULL
 );
 
--- Create table `Ingredient`
+--
+-- Table structure for table `recipe`
+--
 
-DROP TABLE IF EXISTS `Ingredient`;
-CREATE TABLE IF NOT EXISTS `Ingredient` ( 	
-	id		INT		NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    `name`	VARCHAR(100)	NOT NULL,
-    `unit`	VARCHAR(50)		NOT NULL
+DROP TABLE IF EXISTS `recipe`;
+CREATE TABLE `recipe` (
+  `id` 			INT NOT NULL AUTO_INCREMENT,
+  `name` 		VARCHAR(200) NOT NULL,
+  `image_url` 	TEXT NOT NULL,
+  `description` TEXT NOT NULL,
+  `processing_steps` text NOT NULL,
+  `note` 		TEXT NOT NULL,
+  `views` 		INT NOT NULL DEFAULT '0',
+  `point` 		INT NOT NULL DEFAULT '0',
+  `creator_id` 	INT NOT NULL,
+  `create_date` DATETIME NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`creator_id`) REFERENCES `user` (`id`)
 );
 
--- Create table `Recipe_Ingredient`
+--
+-- Table structure for table `recipe_ingredient`
+--
 
-DROP TABLE IF EXISTS `Recipe_Ingredient`;
-CREATE TABLE IF NOT EXISTS `Recipe_Ingredient` ( 	
-	id 				INT UNIQUE	AUTO_INCREMENT,
-	`recipe_id`		INT NOT NULL,
-    `ingredient_id`	INT NOT NULL,
-    `amount`		FLOAT(10,2)	NOT NULL,
-    FOREIGN KEY	(`recipe_id`) REFERENCES `Recipe`(id),
-    FOREIGN KEY (`ingredient_id`)	REFERENCES `Ingredient`(id),
-    PRIMARY KEY(`recipe_id`, `ingredient_id`)
+DROP TABLE IF EXISTS `recipe_ingredient`;
+CREATE TABLE `recipe_ingredient` (
+  `id` 		INT NOT NULL AUTO_INCREMENT,
+  `amount`	FLOAT NOT NULL,
+  `name` 	VARCHAR(100) NOT NULL,
+  `unit` 	VARCHAR(50) NOT NULL,
+  `recipe_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`)
 );
 
--- Create table `Voting`
+--
+-- Table structure for table `comment`
+--
 
-DROP TABLE IF EXISTS `Voting`;
-CREATE TABLE IF NOT EXISTS `Voting` ( 	
-	id 				INT UNIQUE	AUTO_INCREMENT,
-	`user_id`		INT NOT NULL,
-    `recipes_id`	INT NOT NULL,
-    `stars`			INT NOT NULL,
-    `create_date`	DATE NOT NULL,
-    FOREIGN KEY	(`user_id`) REFERENCES `User`(id),
-    FOREIGN KEY (`recipes_id`)	REFERENCES `Recipe`(id),
-    PRIMARY KEY(`user_id`, `recipes_id`)
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment` (
+  `recipe_id` 	int NOT NULL,
+  `user_id` 	int NOT NULL,
+  `comment` 	text NOT NULL,
+  `create_date` datetime NOT NULL DEFAULT NOW(),
+  `update_date` datetime NULL,
+  PRIMARY KEY (`recipe_id`,`user_id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`)
 );
 
--- Create table `Comment`
+--
+-- Table structure for table `point`
+--
 
-DROP TABLE IF EXISTS `Comment`;
-CREATE TABLE IF NOT EXISTS `Comment` ( 	
-	id 				INT 	UNIQUE	AUTO_INCREMENT,
-	`user_id`		INT NOT NULL,
-    `recipes_id`	INT		NOT NULL,
-    `comment`		TEXT 	NOT NULL,
-    `create_date`	DATE	NOT NULL,
-    FOREIGN KEY	(`user_id`) 	REFERENCES `User`(id),
-    FOREIGN KEY (`recipes_id`)	REFERENCES `Recipe`(id),
-    PRIMARY KEY(`user_id`, `recipes_id`)
+DROP TABLE IF EXISTS `point`;
+CREATE TABLE `point` (
+  `id` 		int NOT NULL AUTO_INCREMENT,
+  `point` 	int NOT NULL DEFAULT '0',
+  `user_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 );
 
+--
+-- Table structure for table `recipe_exchange_history`
+--
 
--- Create table wallet
-DROP TABLE IF EXISTS  `Wallet`;
-CREATE TABLE IF NOT EXISTS `Wallet` (
-	`user_id`			INT NOT NULL,
-    `so_dutk`			INT default 0,
-    FOREIGN KEY (`user_id`) REFERENCES `User`(id)
+DROP TABLE IF EXISTS `recipe_exchange_history`;
+CREATE TABLE `recipe_exchange_history` (
+  `recipe_id` 	INT NOT NULL,
+  `user_id` 	INT NOT NULL,
+  `exchange_date` DATETIME NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (`recipe_id`,`user_id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`)
 );
 
--- Create table RecipePurchaseHistory
-DROP TABLE IF EXISTS 	`Recipe_Purchase_History`;
-CREATE TABLE IF NOT EXISTS `Recipe_Purchase_History` (
-	`user_id`				INT NOT NULL,
-    `recipes_id`			INT NOT NULL,
-    `purchase_date`			DATETIME DEFAULT NOW(),
-    FOREIGN KEY (`user_id`) REFERENCES User(id),
-    FOREIGN KEY (`recipes_id`) REFERENCES `Recipe`(id)
-);
--- Create table Registration_User_Token
-DROP TABLE IF EXISTS Registration_User_Token;
-CREATE TABLE IF NOT EXISTS Registration_User_Token (
-	token_id				INT AUTO_INCREMENT PRIMARY KEY,
-    token					CHAR(36) NOT NULL UNIQUE,
-    `user_id`				INT NOT NULL,
-    expiry_date				DATETIME NOT NULL,
-    FOREIGN KEY(`user_id`)  REFERENCES `User`(id)
+--
+-- Table structure for table `voting`
+--
+
+DROP TABLE IF EXISTS `voting`;
+CREATE TABLE `voting` (
+  `recipe_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `create_date` datetime(6) NOT NULL,
+  `stars` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`recipe_id`,`user_id`),
+  FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 );
 
--- Create table Reset_Password_Token
-DROP TABLE IF EXISTS Reset_Password_Token;
-CREATE TABLE IF NOT EXISTS Reset_Password_Token (
-	reset_id				INT AUTO_INCREMENT PRIMARY KEY,
-    token					CHAR(36) NOT NULL UNIQUE,
-    `user_id`				INT NOT NULL,
-    expiry_date				DATETIME NOT NULL,
-    FOREIGN KEY(`user_id`) REFERENCES `User`(id)
+--
+-- Table structure for table `registration_user_token`
+--
+
+DROP TABLE IF EXISTS `registration_user_token`;
+CREATE TABLE `registration_user_token` (
+  `token_id` int NOT NULL AUTO_INCREMENT,
+  `token` 	char(36) NOT NULL,
+  `user_id` int NOT NULL,
+  `expiry_date` datetime NOT NULL,
+  PRIMARY KEY (`token_id`),
+  UNIQUE KEY `UK_token` (`token`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+);
+
+--
+-- Table structure for table `reset_password_token`
+--
+
+DROP TABLE IF EXISTS `reset_password_token`;
+CREATE TABLE `reset_password_token` (
+  `reset_id` int NOT NULL AUTO_INCREMENT,
+  `token` 	char(36) NOT NULL,
+  `user_id` int NOT NULL,
+  `expiry_date` datetime NOT NULL,
+  PRIMARY KEY (`reset_id`),
+  UNIQUE KEY `UK_token` (`token`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 );

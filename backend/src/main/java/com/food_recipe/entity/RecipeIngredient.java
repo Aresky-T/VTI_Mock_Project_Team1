@@ -1,56 +1,41 @@
 package com.food_recipe.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Getter;
-import lombok.Setter;
-
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 @Table(name = "`Recipe_Ingredient`")
 public class RecipeIngredient implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "`id`", unique = true, nullable = false)
     private Integer id;
-
-    //    @ManyToOne(fetch = FetchType.LAZY)
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`recipe_id`")
+    @ManyToOne
+    @JoinColumn(name = "`recipe_id`", nullable = false)
     @JsonBackReference
-    private Recipes recipe;
+    private Recipe recipe;
 
-    //    @ManyToOne(fetch = FetchType.LAZY)
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "`ingredient_id`")
-    private Ingredient ingredient;
+    @Column(name = "`name`", nullable = false)
+    private String name;
 
     @Column(name = "`amount`", nullable = false)
     private Float amount;
 
-    public RecipeIngredient(Integer recipe_id, Integer ingredient_id, Float amount) {
-        ingredient = new Ingredient();
-        recipe = new Recipes();
-        this.ingredient.setId(ingredient_id);
-        this.recipe.setId(recipe_id);
+    @Column(name = "`unit`", length = 50, nullable = false)
+    private String unit;
+
+    public RecipeIngredient(Integer recipeId, String name, Float amount, String unit) {
+        Recipe rec = new Recipe();
+        rec.setId(recipeId);
+        this.recipe = rec;
+        this.name = name;
         this.amount = amount;
+        this.unit = unit;
     }
-
-    public RecipeIngredient() {
-
-    }
-
-//    @Embeddable
-//    public static class RecipeIngredientKey implements Serializable {
-//        @Column(name = "`recipe_id`")
-//        Integer recipeId;
-//
-//        @Column(name = "`ingredient_id`")
-//        Integer ingredientId;
-//    }
 }

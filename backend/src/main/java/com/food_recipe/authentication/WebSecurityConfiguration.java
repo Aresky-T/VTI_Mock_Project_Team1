@@ -1,7 +1,9 @@
 package com.food_recipe.authentication;
 
 import com.food_recipe.service.IUserService;
+import com.google.common.collect.ImmutableList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Component
 @EnableWebSecurity
@@ -32,9 +37,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/api/v1/login").anonymous()
 				.antMatchers("/api/v1/users/profile").authenticated()
 				.antMatchers("/api/v1/users/**").permitAll()
-				.antMatchers(HttpMethod.POST,"/api/v1/users/recipes").authenticated()
-				.antMatchers(HttpMethod.PUT,"/api/v1/users/recipes").authenticated()
-				.antMatchers(HttpMethod.DELETE,"/api/v1/users/recipes").authenticated()
+				.antMatchers(HttpMethod.POST,"/api/v1/recipes").authenticated()
+				.antMatchers(HttpMethod.PUT,"/api/v1/recipes").authenticated()
+				.antMatchers(HttpMethod.DELETE,"/api/v1/recipes").authenticated()
+				.antMatchers(HttpMethod.GET, "/api/v1/comment").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/v1/comment").authenticated()
+				.antMatchers(HttpMethod.PUT, "/api/v1/comment").authenticated()
+				.antMatchers(HttpMethod.DELETE, "/api/v1/comment").authenticated()
 				.antMatchers(HttpMethod.POST,"/api/v1/users/forgot").permitAll()
 				.antMatchers(HttpMethod.GET).permitAll()
 				.anyRequest().authenticated()

@@ -1,32 +1,42 @@
 package com.food_recipe.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
 @Table(name = "`Voting`")
 public class Voting implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+
+    @EmbeddedId
+    private VotingPK id;
 
     @ManyToOne
+    @MapsId("userId")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     @ManyToOne
-    private Recipes recipes;
+    @MapsId("recipeId")
+    @JoinColumn(name = "recipe_id", referencedColumnName = "id")
+    private Recipe recipe;
 
-    @Column(name = "`stars`", nullable = false)
+    @Column(name = "`stars`", nullable = false, columnDefinition = "int default 0")
     private Integer stars;
 
     @Column(name = "`create_date`", nullable = false)
-    private LocalDate createDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
+    private Date createDate;
 
+    public Voting() {
+    }
 
-
+    public Voting(Integer userId, Integer recipeId, Integer stars) {
+    }
 }

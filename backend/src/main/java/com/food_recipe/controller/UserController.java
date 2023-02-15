@@ -2,7 +2,7 @@ package com.food_recipe.controller;
 
 import com.food_recipe.dto.ChangePublicProfileDTO;
 import com.food_recipe.dto.ProfileDTO;
-import com.food_recipe.dto.UserDTO;
+import com.food_recipe.dto.UserFormForCreating;
 import com.food_recipe.entity.User;
 import com.food_recipe.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
@@ -44,7 +52,7 @@ public class UserController {
 
 
 	@PostMapping()
-	public ResponseEntity<?> createUser(@RequestBody @Valid UserDTO dto){
+	public ResponseEntity<?> createUser(@RequestBody @Valid UserFormForCreating dto){
 
 		// create User
 		userService.createUser(dto.toEntity());

@@ -1,8 +1,12 @@
 package com.food_recipe.dto;
 
 import com.food_recipe.entity.UserGender;
+import lombok.Data;
 
+@Data
 public class LoginInfoUser {
+
+	private Integer id;
 
 	private String token;
 
@@ -17,8 +21,6 @@ public class LoginInfoUser {
 	private String avatarUrl;
 
 	private String status;
-
-	private Integer id;
 
 	private UserGender gender;
 
@@ -37,41 +39,4 @@ public class LoginInfoUser {
 		this.phone = phone;
 	}
 
-	public String getToken() {
-		return token;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-	public String getAvatarUrl() {
-		return avatarUrl;
-	}
-	public String getStatus() {
-		return status;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public UserGender getGender() {
-		return gender;
-	}
-
-	public Integer getPhone() {
-		return phone;
-	}
 }

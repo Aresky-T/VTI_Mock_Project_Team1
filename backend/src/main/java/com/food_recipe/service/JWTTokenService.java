@@ -41,7 +41,8 @@ public class JWTTokenService {
                 user.getStatus().toString(),
                 user.getId(),
                 user.getGender(),
-                user.getPhone());
+                user.getPhone()
+        );
 
         // convert object to json
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

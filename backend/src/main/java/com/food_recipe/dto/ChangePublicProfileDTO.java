@@ -1,7 +1,10 @@
 package com.food_recipe.dto;
 
 import com.food_recipe.entity.UserGender;
+import com.food_recipe.entity.UserStatus;
+import org.hibernate.annotations.Formula;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 public class ChangePublicProfileDTO {
