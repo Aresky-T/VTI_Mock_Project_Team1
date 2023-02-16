@@ -1,17 +1,21 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const RecipeCard = ({ recipe }) => {
     const chefImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAhFBMVEX///8AAADm5uafn5+UlJTV1dXCwsJra2u2trbZ2dkrKyv6+vro6Ojv7+/Kysrd3d1JSUn09PRYWFh8fHypqak5OTlycnKNjY0cHBxkZGSCgoKwsLDPz89EREQuLi6lpaWampokJCQMDAw7OzsUFBRTU1MdHR2IiIhubm4RERF3d3clJSU0Uw/aAAAKNklEQVR4nO1dZ3fiOhCNKcbEDUwn9BKyyf//fw8euzCjaqtYYtf3w56zBMu6SBpNld7eGjRo8M8gTvMs+gi76dB1T6wgGfcmwW98Lra56/6YRngOCAwi130yiWxP8rvh9NdwTHssfjecW677ZgThLx7BKz5c984AtgJ+V8xc908bMzHBIOi57qEm2jKCQbB03ceKaIW7xeCKYvSxenuL5ASDoP2WhJ3e+frQeXp7yGe0OifU968yBINggv539ncTyQblCMkx81Ktyxfyni86WZ6vdoX0i4exazo0SoiU0WN/T5fSLx9Tl2xoxPIVt0e6dnKUPpC5IsPCcC3t74BcWlxV7gGfZqp8QI6U7Ijlq9Efla6EjGGYg6n8KV8m6kje1Q7rubHSD+MAobyjAXt/O0ifW9fMhQ26n59FsUEfTNlPokH8XC8Yy3lbLxcmyDlahPH/n/eBVcHb2x5K0Dq6P5TvTkRz7rdFQl4M+s8/xZf7Z/Mu7+F4eucXgs92uMGRxb6XA9ZlCEuotTzuBzuRkpnvRjNCYvbnqEnXKmqMFhzDYI+rt4mnhet9fwU7wxEolZGgeW+oUVV0QF/mCuPFBvLtOJY1UJ0xaLnCue/W6o9BT/YGZQLcKZn6UG2AK8bUKrTZbnVkoCcmLYEYqDduRQ30pXH3dRWA9f1ust3KaBgqA5jHG5PtVgZkaNTNufaFYQ4YmtSRU2CSLQy2Wx1wP9wYU2nw3LiYa1YFUPkw6FWBqpJj1Rvav+Y2ri5oNXAcJ0bBJWO/NgzVTAxOfhWkyEtjSEmewjadB4lRbw5Z0pIgkQ8JDmo4dyj2g4rYn0NhgynOvClq4iFACYc3CVHonvS+Oh9CvOmXBX9tZcQ3PRjCEtkWDCS8xkinMPeLtWLCJCEEb18hJ4Qn0adcHn8gwZumRO7Gd608BFixaQjA871ghl4swjtI+SAFT4VFDF17ShEIT7wME147kKE3U/SOkrlBv9HnNQMZerATQsjzDp4Y8P0dkCH3Z3ADwHDeEWIrUs9fg6GOX+U1GOp4/xqGDtEwLImGoUM0DEuiYegQDcOSaBg6RMOwJBqGDvFvMZQFZwRhm+1LMDSFhmHNaBgqwGgGkj4sMHScZULCAkM/qkke+DbP0JPY4R9YGEOziXK6iBWipFI4zzOBSOT9rQ6PwocqMdIycM0KAuqTS3FkRozdxFOGMB9DTwR2jLVkFpdnt056NS4wY8inEyRAKppmLiFk6EsZ8A0LYwxh0oM4Aa5egNR6TRlvq0ZFF4ChZo6Ir2MIUjEMzlKf1iGQNJop+y8gSzV3Mag7+HTWWcdYv6AZ5jiHHQHOLT35AM8DMdQ5I4C2hZb3Ybh/NnQ21TsTgAXmWh3rm/qpjAMegqVTDwxPVHBdiY8BhamOKgJ/KZ9MC7xRa2g1LdCM63IgAuikB/X9Ak4FzzJo32Cli3J9OSxn9EorvQFlaKsOInQV7P2apFdAhoondiKPnX9HYiKvt5rOjNzKnoWe3ogitrlKC6ioi5vO7xDohDmFAmx88I5vcuYGXFZSXSFBRV1HCx3UR6E1CAutp+sBUXhWLYaLa/y8ClkAXNQpEgea+mTdQ8RE9VP5qUYUFXkVV0Mga9ja5R4bEgcQ+7hT/AFZMVuUsRWp2j7ParowyEse5tKZOryQBL2KblMYUoWIhXhEoj35gL+L8I4W2eGrfsPnGL3T366xs2ro0hSD9ZgRVIxzan6+BEFeTL+4rFpPmmn+8b1hfs07q5AF7ikLn+vi/PU9LQYTXtnwq1wFkTCHpwT8s3p5GMrP6mbBLwepBCWO2Sex8c+qF6JLHnksw/QlZAzCTs7qiaNn+bLlkJQ+nOfkw7HdSshLJWWe2q7Pe9ZBIk2tfX8pCcpEWPDPr/lZem0plUaaLRmX7ByKdv/15Ccfw+6409vccys3xbITJa+8+Br8rWitwmi7u4ymvelythtHWdf9zQ7GkG17x0+GrHk/z6LVq0ubYdiRVSr8zF6XZT6TXwR1R2/sq5tbgNZOfg0URBG91EgOx9Xo3TF6GROxVeIKKDbWfobVCOTVDm8jOfrt8r6ir3BkK8bGpwx2Cqk2vxvmPmV4Y5S4Sq0cen7qO91Su9/8U3TJ8wM+OjaEAvRwvmzDPI3j66Z3/SdOulF7KtR2Jr4ZxzkdRvqN02DHXVet6IvvIPfLv8G723g+WsmWVL7lXbP75ZGVPGV3cRGW08SYgbbAIz94wpyh822VIcjIAPkdfuyNzJPnq+smfeZEcHuh1R2sc5LPSnt2wroJ2f0NiCwZo6xbthhxOdeBb0YcTWtiZfSapm5LrhUdqj+FrrVOB63o+5LrA62IGtC2+tQwuju8nFqDPw9VK4s0DAQqnuNqLVJS9JFqcJ9pJTP3GAjJaI6b+hIqOeghQv9IRPVMWEqJcFHJlpKh+se0fIqfnXLr1N3rDrQbQl/ePGrNQHHPp4aHkNz+a/eoErmk6ycXOHt1VGdi2zB5sVsZZPzXw9IQrRwLYrOt90ZSYhH+wD3ZGEMyN77WpYgX4Tuycs0xJNdijY4NdOtycMAFrRyGwzzPKy8lnK9SX477EP+0hPbCZJiObhHE91lFjsQpYrW5bvAvS6qiLIaPpNNNxQJmfIzYoSY/KpajlIhjMATp3+8VR1HyMjtAkTP6fEMGQ+jsr5qMj7fFWg48wWKGlm80Q1xbWPV9yJVexwXIqOKaZdDTDD/QI1X1HFzhUEOEEQ0hS37TDNt6fdzJ3mgYyHRj7eg0Q+wKqL6U0Dy1PojIrmdm19MMsUe1ugaNChysn+qCIinM7YkhS+G+reKRQIFzy+IUDSHbb8hgCD9SUS6RsLFcQ4tMb/Z8Y+k0T/GktoyQb8qqLYyUKI6niamXhvdKINW4J3qv1VgGNEp/cUQGx7bI2rOtujGF7CjlVkrgB7yH5/4yaB8+gcSpRVmDHIi8CWeFIdoTLXpPYTYCV6TZYQhbPdkLZMAh5ApFDsM8bIc6UhC+21pqGKwP/cX9FpNh/+7ZKdRP8ILuS2tmIpSk/HJIFsOI+qQyoKyxdhAYzCbgh5YYDOHgq45iDEMZljZ95CTlf43BEDoflWcY3BItuaTgSAiKkmmGuPhZdYZBj42l/QKudYE0k9mHqisRHdig2IYEUOsWuPWM2/is91s5VTEGKptImNkaQyTKrVj60NMtOhuAZoh9ScqSHjZsRdRAX4TIgGHIUrjNqCc5tYy0IgD0CYq0ewZD8OPMNRzzwAlm5aId6NQTGbIsneb5mU5UGGyrB41muIAXqIuUe6Ze2rpP1J6WVQBNGxsxGqA1Cd2yHNsizcJM0+rZsls2BtD8MRXc8QfXa5g8P79B/erAWwtwX7VRkxF4hb+foY0t3zUnDAtmfix/a52wUFRj5WIudVhwC3NPuHIDC4dKpfK31omdeYaeSRobu0Wlc5FsY2+BIHlSsFvYSXGLlWu0TcNecWIStT3A+CVPBmvQoEGDBg0aNGggxn962XobUWztdQAAAABJRU5ErkJggg==";
     return (
         <div className="recipe-card">
-            <div className='custom-image-card'>
+            <Link to={`recipe/${recipe.id}`} className='custom-image-card'
+                style={{ display: "block" }}
+            >
                 <img src={recipe.imageUrl} alt="" />
-            </div>
+                <div className='darken'></div>
+            </Link>
             <div className="recipe-card-info">
                 <img className="auther-img" src={recipe.creator.avatarUrl ? recipe.creator.avatarUrl : chefImage} alt="" />
                 <p className="recipe-title">{recipe.name}</p>
                 <p className="recipe-desc">Author: {recipe.creator.fullName}</p>
-                <a className="view-btn" href="#!">VIEW RECIPE</a>
+                <Link className="view-btn" to={`recipe/${recipe.id}`}>VIEW RECIPE</Link>
             </div>
         </div>
     )

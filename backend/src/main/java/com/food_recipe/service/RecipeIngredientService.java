@@ -23,8 +23,8 @@ public class RecipeIngredientService implements IRecipeIngredientService {
     }
 
     @Override
-    public List<RecipeIngredient> getAll() {
-        return recipeIngredientRepository.findAll();
+    public List<RecipeIngredient> getAllById(List<Integer> ids) {
+        return recipeIngredientRepository.findAllById(ids);
     }
 
     @Override

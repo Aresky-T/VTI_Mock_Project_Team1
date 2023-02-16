@@ -47,10 +47,10 @@ public class User implements Serializable {
     @Formula("concat(first_name, ' ', last_name)")
     private String fullName;
 
-    @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToOne(mappedBy = "user")
     private Point point;
 
-    @OneToMany(mappedBy="user" , cascade = {CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="user")
     private List<Comment> comments;
 
     public User() {

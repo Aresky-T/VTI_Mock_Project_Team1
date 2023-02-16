@@ -10,7 +10,7 @@ USE `MockProjectDB_Team1`;
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` 				INT AUTO_INCREMENT PRIMARY KEY,
-  `username`	 	CHAR(50) 	NOT NULL UNIQUE CHECK (LENGTH(`user_name`) >= 6 AND LENGTH(`user_name`) <= 50),
+  `username`	 	CHAR(50) 	NOT NULL UNIQUE CHECK (LENGTH(`username`) >= 6 AND LENGTH(`username`) <= 50),
   `email` 			CHAR(50) 	NOT NULL UNIQUE CHECK (LENGTH(`email`) >= 6 AND LENGTH(`email`) <= 50),
   `password` 		VARCHAR(100) NOT NULL,
   `avatar_url` 		TEXT NULL,
@@ -39,8 +39,8 @@ CREATE TABLE `recipe` (
   `creator_id` 	INT NOT NULL,
   `create_date` DATETIME NOT NULL DEFAULT NOW(),
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_name` (`name`),
-  CONSTRAINT `FK_user` FOREIGN KEY (`creator_id`) REFERENCES `user` (`id`)
+  UNIQUE KEY  (`name`),
+  FOREIGN KEY (`creator_id`) REFERENCES `user` (`id`)
 );
 
 --
@@ -55,7 +55,7 @@ CREATE TABLE `recipe_ingredient` (
   `unit` 	VARCHAR(50) NOT NULL,
   `recipe_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `FK_recipe` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`)
+  FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`)
 );
 
 --
@@ -70,8 +70,8 @@ CREATE TABLE `comment` (
   `create_date` datetime NOT NULL DEFAULT NOW(),
   `update_date` datetime NULL,
   PRIMARY KEY (`recipe_id`,`user_id`),
-  CONSTRAINT `FK1_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `FK2_recipe` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`)
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`)
 );
 
 --
@@ -84,7 +84,7 @@ CREATE TABLE `point` (
   `point` 	int NOT NULL DEFAULT '0',
   `user_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `FK_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 );
 
 --
@@ -97,8 +97,8 @@ CREATE TABLE `recipe_exchange_history` (
   `user_id` 	INT NOT NULL,
   `exchange_date` DATETIME NOT NULL DEFAULT NOW(),
   PRIMARY KEY (`recipe_id`,`user_id`),
-  CONSTRAINT `FK1_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `FK2_recipe` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`)
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`)
 );
 
 --
@@ -112,8 +112,8 @@ CREATE TABLE `voting` (
   `create_date` datetime(6) NOT NULL,
   `stars` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`recipe_id`,`user_id`),
-  CONSTRAINT `FK1_recipe` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`),
-  CONSTRAINT `FK2_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 );
 
 --
@@ -127,8 +127,8 @@ CREATE TABLE `registration_user_token` (
   `user_id` int NOT NULL,
   `expiry_date` datetime NOT NULL,
   PRIMARY KEY (`token_id`),
-  UNIQUE KEY `UK_token` (`token`),
-  CONSTRAINT `FK_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  UNIQUE KEY  (`token`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 );
 
 --
@@ -142,6 +142,6 @@ CREATE TABLE `reset_password_token` (
   `user_id` int NOT NULL,
   `expiry_date` datetime NOT NULL,
   PRIMARY KEY (`reset_id`),
-  UNIQUE KEY `UK_token` (`token`),
-  CONSTRAINT `FK_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  UNIQUE KEY  (`token`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 );

@@ -10,6 +10,8 @@ const settingsSlice = createSlice({
             "--primary-color": "rgb(255, 0, 86)",
             "--shadow-color": "rgba(0,0,0,0.2)",
             "--text-color": "#0A0A0A",
+            "--text-color-2": "#333333",
+            "--text-color-3": "#757575",
             "--text-light": "#575757",
             "--font-size": "16px",
             "--animation-speed": 1
@@ -21,6 +23,8 @@ const settingsSlice = createSlice({
                     "--background-light": "#fff",
                     "--shadow-color": "rgba(0,0,0,0.2)",
                     "--text-color": "#0A0A0A",
+                    "--text-color-2": "#333333",
+                    "--text-color-3": "#757575",
                     "--text-light": "#575757"
                 },
                 {
@@ -28,6 +32,8 @@ const settingsSlice = createSlice({
                     "--background-light": "rgb(77, 77, 77)",
                     "--shadow-color": "rgba(0,0,0,0.2)",
                     "--text-color": "#ffffff",
+                    "--text-color-2": "#ffffff",
+                    "--text-color-3": "#ffffff",
                     "--text-light": "#eceaea",
                 }
             ]

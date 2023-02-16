@@ -2,9 +2,12 @@ package com.food_recipe.controller;
 
 import com.food_recipe.dto.ChangePublicProfileDTO;
 import com.food_recipe.dto.ProfileDTO;
+import com.food_recipe.dto.UserDTO;
 import com.food_recipe.dto.UserFormForCreating;
 import com.food_recipe.entity.User;
 import com.food_recipe.service.IUserService;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +34,9 @@ public class UserController {
 
 	@Autowired
 	private IUserService userService;
+
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@GetMapping(value = "/email/{email}")
 	public  ResponseEntity<?> existsUserByEmail(@PathVariable(name = "email") String email) {
@@ -112,17 +118,19 @@ public class UserController {
 		User user = userService.findUserByUsername(username);
 
 		// convert user entity to user dto
-		ProfileDTO profileDto = new ProfileDTO(
-				user.getUsername(),
-				user.getEmail(),
-				user.getFirstName(),
-				user.getLastName(),
-				user.getBirthDate(),
-				user.getGender(),
-				user.getPhone(),
-				user.getStatus().toString(),
-				user.getAvatarUrl());
-		return new ResponseEntity<>(profileDto, HttpStatus.OK);
+		// ProfileDTO profileDto = new ProfileDTO(
+		// 		user.getUsername(),
+		// 		user.getEmail(),
+		// 		user.getFirstName(),
+		// 		user.getLastName(),
+		// 		user.getBirthDate(),
+		// 		user.getGender(),
+		// 		user.getPhone(),
+		// 		user.getStatus().toString(),
+		// 		user.getAvatarUrl());
+		// return new ResponseEntity<>(profileDto, HttpStatus.OK);
+		UserDTO dto = modelMapper.map(user, UserDTO.class);
+		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
 
 	@PutMapping("/profile")

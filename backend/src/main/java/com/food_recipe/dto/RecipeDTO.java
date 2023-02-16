@@ -47,6 +47,7 @@ public class RecipeDTO {
 	static class UserDTO {
 		private Integer id;
 		private String fullName;
+		private String gender;
 		private String avatarUrl;
 	}
 

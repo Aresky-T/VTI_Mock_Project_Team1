@@ -1,10 +1,12 @@
 import React from "react";
-import { ProfileContainer } from "../Container/ProfileContainer";
+import { Outlet } from "react-router-dom";
+import LeftProfile from "../components/ProfileComponent/LeftProfile";
 
 function Profile(props) {
    return (
-      <div>
-         <ProfileContainer />
+      <div className="profile-container">
+         <LeftProfile/>
+         <Outlet/>
       </div>
    );
 }

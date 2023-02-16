@@ -1,3 +1,5 @@
 {
-    "java.compile.nullAnalysis.mode": "automatic"
+    "java.compile.nullAnalysis.mode": "automatic",
+    "docwriter.style": "Auto-detect",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

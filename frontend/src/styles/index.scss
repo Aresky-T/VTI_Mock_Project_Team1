@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&family=Source+Serif+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Gafata|Montez|Averia+Sans+Libre|Vampiro+One');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Dancing+Script:wght@500;600;700&family=Poppins:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Dancing+Script:wght@500;600;700&family=Poppins:wght@100&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
 :root {
   --background-color: #fff;
   --background-light: #fff;
@@ -5,6 +11,8 @@
   --shadow-color-2: rgba(0, 0, 0, 0.4);
   --primary-color: rgb(255, 0, 86);
   --text-color: #0A0A0A;
+  --text-color-2: #333333;
+  --text-color-3: #757575;
   --text-light: #575757;
   --font-size: 16px;
   --animation-speed: 1;
@@ -164,6 +172,8 @@ img {
 @import "partials/footer";
 @import "partials/previous_searches";
 @import "partials/recipes_section";
+@import "partials/recipe_detail"; 
+@import "partials/profile_management";
 
 
 

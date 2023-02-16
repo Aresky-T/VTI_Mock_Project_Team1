@@ -1,0 +1,116 @@
+.recipe-detail-container {
+    .information {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+
+        .recipe-info{
+            .recipe-name{
+                // font-family: SourceSerif;
+                font-family: 'Montez';
+                // font-family: 'Cormorant Garamond', serif;
+                white-space: pre-wrap;
+                // color:var(--text-color-2);
+                color: var(--primary-color);
+                // display: inline;
+                font-size: 30px;
+                font-weight: 700;
+                word-spacing: 0px;
+                text-align: center;
+                text-transform: uppercase;
+            }
+        }
+
+        .author {
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            margin: 30px auto;
+            height: 125px;
+            width: 100%;
+
+            .author-name {
+                font-family:  'Times New Roman', Times, serif;
+                font-size: 11px;
+                line-height: 15px;
+                text-align: center;
+                word-spacing: 0;
+                color: var(--text-color-3);
+            }
+            .author-avatar {
+                overflow: hidden;
+                width: 66px;
+                height: 66px;
+                border-radius: 50%;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            .recipe-create-date {
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                font-size: 11px;
+                line-height: 15px;
+                text-align: center;
+                word-spacing: 0;
+                color: var(--text-color-3);
+            }
+        }
+
+        .recipe-image {
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            // border: 20px solid var(--primary-color);
+            
+        }
+    }
+
+    .recipe-detail {
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        h3.h3-title {
+            // font-family: SourceSerif;
+            font-family: 'Dancing Script', cursive;
+            font-size: 30px;
+            margin-top: 20px;
+            padding: 5px 0;
+            height: fit-content;
+            color: var(--text-color);
+
+            span {
+                color: var(--primary-color);
+            }
+        }
+
+        p.p-content-detail {
+            white-space: pre-line;
+            // font-family: 'Times New Roman', Times, serif;
+            // font-family: 'Cormorant Garamond', serif;
+            font-family: 'Spectral', serif;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 18px;
+            line-height: 25px;
+            color: var(--text-color-3);
+            padding-left: 10px;
+            
+        }
+
+    }
+}
+
+.horizontal-line {
+    color: var(--text-color-3);
+}

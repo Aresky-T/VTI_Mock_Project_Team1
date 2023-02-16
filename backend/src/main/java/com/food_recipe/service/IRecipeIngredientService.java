@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IRecipeIngredientService {
 
-    List<RecipeIngredient> getAll();
+    List<RecipeIngredient> getAllById(List<Integer> ids);
 
     void createRecipeIngredient(List<RecipeIngredientFormCreating> list);
 }

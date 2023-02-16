@@ -25,4 +25,9 @@ public class RecipeIngredientController {
         recipeIngredientService.createRecipeIngredient(data);
         return new ResponseEntity<>("Add List Ingredients successfully!", HttpStatus.OK);
     }
+
+    @GetMapping()
+    public ResponseEntity<?> getAllIngredients(@RequestBody List<Integer> ids) {
+        return new ResponseEntity<> (recipeIngredientService.getAllById(ids), HttpStatus.OK);
+    }
 }

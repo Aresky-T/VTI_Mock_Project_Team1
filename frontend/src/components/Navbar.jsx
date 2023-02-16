@@ -77,7 +77,7 @@ const Navbar = () => {
         },
         {
             name: "Profile",
-            path: "/profile",
+            path: "/profile/information",
             icon: faUser
         },
         {
