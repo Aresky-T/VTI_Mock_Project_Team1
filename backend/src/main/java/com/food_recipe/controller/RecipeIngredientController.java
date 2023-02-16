@@ -1,20 +1,13 @@
 package com.food_recipe.controller;
 
 import com.food_recipe.dto.*;
-import com.food_recipe.entity.Recipe;
-import com.food_recipe.entity.RecipeIngredient;
 import com.food_recipe.service.IRecipeIngredientService;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.AbstractList;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @CrossOrigin("*")
