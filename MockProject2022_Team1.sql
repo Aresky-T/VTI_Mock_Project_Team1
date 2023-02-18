@@ -82,7 +82,7 @@ DROP TABLE IF EXISTS `point`;
 CREATE TABLE `point` (
   `id` 		int NOT NULL AUTO_INCREMENT,
   `point` 	int NOT NULL DEFAULT '0',
-  `user_id` int NOT NULL,
+  `user_id` int NOT NULL UNIQUE,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 );

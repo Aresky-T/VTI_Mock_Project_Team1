@@ -1,6 +1,9 @@
 package com.food_recipe.service;
 
+import com.food_recipe.dto.CommentDTO;
+import com.food_recipe.dto.RecipeIngredientDTO;
 import com.food_recipe.dto.RecipeIngredientFormCreating;
+import com.food_recipe.entity.Comment;
 import com.food_recipe.entity.Recipe;
 import com.food_recipe.entity.RecipeIngredient;
 import com.food_recipe.repository.RecipeIngredientRepository;
@@ -22,10 +25,6 @@ public class RecipeIngredientService implements IRecipeIngredientService {
         this.recipeIngredientRepository = recipeIngredientRepository;
     }
 
-    @Override
-    public List<RecipeIngredient> getAllById(List<Integer> ids) {
-        return recipeIngredientRepository.findAllById(ids);
-    }
 
     @Override
     public void createRecipeIngredient(List<RecipeIngredientFormCreating> obj) {
@@ -38,4 +37,34 @@ public class RecipeIngredientService implements IRecipeIngredientService {
         recipeIngredientRepository.saveAll(list);
     }
 
+//    @Override
+//    public void updateRecipeIngredient(Integer id, RecipeIngredientDTO form) {
+//        RecipeIngredient recipeIngredient = recipeIngredientRepository.findById(id).orElse(null);
+//            recipeIngredient.setName(form.getName());
+//            recipeIngredient.setAmount(form.getAmount());
+//            recipeIngredient.setUnit(form.getUnit());
+//        recipeIngredientRepository.save(recipeIngredient);
+//    }
+
+    @Override
+    public void deleteRecipeIngredient(List<Integer> ids) {
+        recipeIngredientRepository.deleteAllByIdInBatch(ids);
+    }
+
+    @Override
+    public void updateRecipeIngredient(List<Integer> ids, List<RecipeIngredientDTO> list) {
+        List<RecipeIngredient> ingredients = new ArrayList<>();
+        var ingredient = recipeIngredientRepository.findAllById(ids);
+        for (RecipeIngredient recipeIngredient : ingredient) {
+            for (RecipeIngredientDTO dto : list) {
+                if(recipeIngredient.getId().equals(dto.getId())) {
+                    recipeIngredient.setName(dto.getName());
+                    recipeIngredient.setAmount(dto.getAmount());
+                    recipeIngredient.setUnit(dto.getUnit());
+                    ingredients.add(recipeIngredient);
+                }
+            }
+        }
+        recipeIngredientRepository.saveAll(ingredients);
+    }
 }

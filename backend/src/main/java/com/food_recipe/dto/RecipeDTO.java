@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.List;
 
+import com.food_recipe.entity.UserGender;
+
 @Data
 @NoArgsConstructor
 public class RecipeDTO {
@@ -37,6 +39,7 @@ public class RecipeDTO {
 	@Data
 	@NoArgsConstructor
 	static class RecipeIngredientDTO {
+		private Integer id;
 		private String name;
 		private Float amount;
 		private String unit;
@@ -47,8 +50,8 @@ public class RecipeDTO {
 	static class UserDTO {
 		private Integer id;
 		private String fullName;
-		private String gender;
 		private String avatarUrl;
+		private UserGender gender;
 	}
 
 	@Data

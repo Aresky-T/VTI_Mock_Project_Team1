@@ -1,6 +1,8 @@
 package com.food_recipe.service;
 
+import com.food_recipe.dto.CommentDTO;
 import com.food_recipe.dto.CommentFormCreating;
+import com.food_recipe.dto.CommentFormForUpdate;
 import com.food_recipe.entity.Comment;
 
 import java.util.List;
@@ -22,4 +24,12 @@ public interface ICommentService {
     String createComment (CommentFormCreating obj);
 
     // ------------- Update comment ----------------------------
+
+    void updateComment(CommentFormForUpdate form);
+
+    // ------------- Delete comment ----------------------------
+
+    void deleteComment(Integer userId, Integer recipeId);
+
+
 }

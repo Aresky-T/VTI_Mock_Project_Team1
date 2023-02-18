@@ -1,6 +1,8 @@
 package com.food_recipe.service;
 
+import com.food_recipe.dto.CommentDTO;
 import com.food_recipe.dto.CommentFormCreating;
+import com.food_recipe.dto.CommentFormForUpdate;
 import com.food_recipe.entity.Comment;
 import com.food_recipe.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +47,18 @@ public class CommentService implements ICommentService {
             System.err.println(e.getMessage());
             return "An error has occurred!";
         }
+    }
+
+    @Override
+    public void updateComment(CommentFormForUpdate form) {
+        Comment comment = commentRepository.findCommentByUserIdAndRecipeId(form.getUserId(), form.getRecipeId());
+        comment.setComment(form.getComment());
+
+        commentRepository.save(comment);
+    }
+
+    @Override
+    public void deleteComment(Integer userId, Integer recipeId) {
+        commentRepository.deleteByUserIdAndRecipeId(userId, recipeId);
     }
 }

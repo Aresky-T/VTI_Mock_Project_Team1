@@ -22,8 +22,6 @@ public interface IUserService extends UserDetailsService {
 
     User findUserByEmail(String email);
 
-
-
     void sendConfirmUserRegistrationViaEmail(String email);
 
     void resetPasswordViaEmail(String email);
@@ -32,8 +30,9 @@ public interface IUserService extends UserDetailsService {
 
     void sendResetPasswordViaEmail(String email);
 
-    void ChangePublicProfileDTO(String username, ChangePublicProfileDTO dto);
+    User ChangePublicProfileDTO(String username, ChangePublicProfileDTO dto);
 
+    User updateUserAvatar(Integer userId, String avatar);
 
     void forgotPassword(String email);
 }

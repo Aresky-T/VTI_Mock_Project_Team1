@@ -33,4 +33,14 @@ public class Voting implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date createDate;
+
+    public Voting() {
+    }
+
+    public Voting(Integer userId, Integer recipeId, Integer stars) {
+        this.id = new VotingPK(userId, recipeId);
+        this.user = new User(userId);
+        this.recipe = new Recipe(recipeId);
+        this.stars = stars;
+    }
 }

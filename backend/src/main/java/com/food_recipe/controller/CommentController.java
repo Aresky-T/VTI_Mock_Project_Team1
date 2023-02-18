@@ -2,6 +2,7 @@ package com.food_recipe.controller;
 
 import com.food_recipe.dto.CommentDTO;
 import com.food_recipe.dto.CommentFormCreating;
+import com.food_recipe.dto.CommentFormForUpdate;
 import com.food_recipe.entity.Comment;
 import com.food_recipe.service.ICommentService;
 import org.modelmapper.ModelMapper;
@@ -42,5 +43,17 @@ public class CommentController {
     @PostMapping
     public ResponseEntity<String> createComment (@RequestBody CommentFormCreating data) {
         return new ResponseEntity<>(commentService.createComment(data), HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updateComment(@RequestBody CommentFormForUpdate form) {
+        commentService.updateComment(form);
+        return new ResponseEntity<String>("Update Comment successfully!", HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteComment(@RequestParam Integer userId, @RequestParam Integer recipeId ) {
+        commentService.deleteComment(userId, recipeId);
+        return new ResponseEntity<String>("Delete Comment successfully!", HttpStatus.OK);
     }
 }

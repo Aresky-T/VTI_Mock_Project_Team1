@@ -1,7 +1,9 @@
 package com.food_recipe.controller;
 
+import com.food_recipe.dto.CommentDTO;
 import com.food_recipe.dto.RecipeDTO;
 import com.food_recipe.dto.RecipeFormForCreating;
+import com.food_recipe.dto.RecipeFormForUpdate;
 import com.food_recipe.dto.filter.RecipeFilter;
 import com.food_recipe.entity.Recipe;
 import com.food_recipe.service.IRecipeService;
@@ -68,5 +70,16 @@ public class RecipeController {
         RecipeDTO dto = modelMapper.map(entity, RecipeDTO.class);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
-    
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<?> updateRecipe(@PathVariable(name = "id") Integer id, @RequestBody RecipeFormForUpdate form) {
+        recipeService.updateRecipe(id, form);
+        return new ResponseEntity<String>("Update Recipe successfully!", HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/{ids}")
+    public ResponseEntity<?> deleteRecipe(@PathVariable(name = "ids") List<Integer> ids) {
+        recipeService.deleteRecipe(ids);
+        return new ResponseEntity<String>("Delete Recipe successfully!", HttpStatus.OK);
+    }
 }

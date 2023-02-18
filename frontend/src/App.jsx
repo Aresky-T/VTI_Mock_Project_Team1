@@ -9,7 +9,7 @@ import CreateRecipe2 from "./pages/CreateRecipe2";
 import Home2 from "./pages/Home2";
 import Footer from "./components/Footer";
 import RecipeDetail from "./pages/RecipeDetail";
-import UserInfor from "./components/ProfileComponent/UserInfor";
+import UserInfo from "./components/ProfileComponent/UserInfo";
 import Account from "./components/ProfileComponent/Account";
 import RecipeManagement from "./components/ProfileComponent/RecipeManagement";
 import ExchangeHistory from "./components/ProfileComponent/ExchangeHistory";
@@ -23,7 +23,7 @@ const App = () => {
                {/* <Route path="/" element={<HomeComponent />} /> */}
                <Route path="/" element={<Home2/>}/>
                <Route path="/profile" element={<Profile/>}>
-                  <Route path="information" element={<UserInfor/>}/>
+                  <Route path="information" element={<UserInfo/>}/>
                   <Route path="account" element={<Account/>}/>
                   <Route path="recipes" element={<RecipeManagement/>}/>
                   <Route path="exchange-history" element={<ExchangeHistory/>}/>

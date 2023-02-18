@@ -23,7 +23,7 @@ export const getImage = async (imageName) => {
     })
 }
 
-export const uploadImageCloudinary = async (file, token) => {
+export const uploadImageCloudinaryApi = async (file, token) => {
     const config = {
         headers: {
             'Content-Type': 'multipart/form-data',

@@ -19,7 +19,7 @@ public class ChangePublicProfileDTO {
 
 	private String phone;
 
-	private String avatarUrl;
+	// private String avatarUrl;
 
 	public ChangePublicProfileDTO() {
 	}
@@ -66,11 +66,11 @@ public class ChangePublicProfileDTO {
 		this.phone = phone;
 	}
 
-	public String getAvatarUrl() {
-		return avatarUrl;
-	}
+	// public String getAvatarUrl() {
+	// 	return avatarUrl;
+	// }
 
-	public void setAvatarUrl(String avatarUrl) {
-		this.avatarUrl = avatarUrl;
-	}
+	// public void setAvatarUrl(String avatarUrl) {
+	// 	this.avatarUrl = avatarUrl;
+	// }
 }

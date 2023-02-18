@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { MdDelete } from 'react-icons/md'
-import { uploadImageCloudinary } from '../api/file.api';
+import { uploadImageCloudinaryApi } from '../api/file.api';
 import ModalLogin from '../components/auth/ModalLogin'
 import { createRecipe } from "../api/recipe.api";
 import swal from 'sweetalert';
@@ -27,7 +27,7 @@ const CreateRecipe2 = () => {
     }
 
     const upLoadFilesForCreate = (formData, token) => {
-        uploadImageCloudinary(formData, token)
+        uploadImageCloudinaryApi(formData, token)
             .then((response) => {
                 setImageURL(response.data);
             })
@@ -94,20 +94,20 @@ const CreateRecipe2 = () => {
                     })
                     .then(() => {
                         addListIngredients(ingredients, currentUser.token)
-                        .then((res) => {
-                            console.log(res.data)
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                        })
-                        ;
+                            .then((res) => {
+                                console.log(res.data)
+                            })
+                            .catch((err) => {
+                                console.log(err);
+                            })
+                            ;
                     })
                     .then(() => {
                         swal({
                             icon: "success",
                             title: "Success",
                             text: "Your recipe has been successfully created!",
-                        }).then (() => {
+                        }).then(() => {
                             navigate('/')
                         })
                     })
@@ -222,7 +222,7 @@ const CreateRecipe2 = () => {
                                                     <td>{ingredient.amount}</td>
                                                     <td>{ingredient.unit}</td>
                                                     <td>
-                                                        <MdDelete id='btn-ingredient-remove' 
+                                                        <MdDelete id='btn-ingredient-remove'
                                                             onClick={() => removeIngredient(ingredient.name)}
                                                         />
                                                     </td>

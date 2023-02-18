@@ -1,14 +1,20 @@
 package com.food_recipe.controller;
 
-import com.food_recipe.dto.RecipeIngredientFormCreating;
+import com.food_recipe.dto.*;
+import com.food_recipe.entity.Recipe;
 import com.food_recipe.entity.RecipeIngredient;
 import com.food_recipe.service.IRecipeIngredientService;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -20,14 +26,28 @@ public class RecipeIngredientController {
     @Autowired
     private IRecipeIngredientService recipeIngredientService;
 
+
     @PostMapping()
     public ResponseEntity<?> createRecipeIngredient(@RequestBody List<RecipeIngredientFormCreating> data) {
         recipeIngredientService.createRecipeIngredient(data);
         return new ResponseEntity<>("Add List Ingredients successfully!", HttpStatus.OK);
     }
 
-    @GetMapping()
-    public ResponseEntity<?> getAllIngredients(@RequestBody List<Integer> ids) {
-        return new ResponseEntity<> (recipeIngredientService.getAllById(ids), HttpStatus.OK);
+    @PutMapping(value = "/{ids}")
+    public ResponseEntity<?> updateRecipe(@RequestBody List<RecipeIngredientDTO> list) {
+        List<Integer> ids = new ArrayList<>();
+        for (RecipeIngredientDTO dto : list) {
+            ids.add(dto.getId());
+        }
+        recipeIngredientService.updateRecipeIngredient(ids, list);
+        return new ResponseEntity<String>("Update RecipeIngredient successfully!", HttpStatus.OK);
     }
+
+    @DeleteMapping(value = "/{ids}")
+    public ResponseEntity<?> deleteRecipe(@PathVariable(name = "ids") List<Integer> ids) {
+        recipeIngredientService.deleteRecipeIngredient(ids);
+        return new ResponseEntity<String>("Delete RecipeIngredient successfully!", HttpStatus.OK);
+    }
+
+    
 }

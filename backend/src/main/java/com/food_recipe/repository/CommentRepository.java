@@ -17,4 +17,8 @@ public interface CommentRepository extends
     public List<Comment> findCommentByRecipeId(Integer id);
 
     public List<Comment> findCommentByUserId(Integer id);
+
+    Comment findCommentByUserIdAndRecipeId(Integer userId, Integer recipeId);
+
+    void  deleteByUserIdAndRecipeId(Integer userId, Integer recipeId);
 }

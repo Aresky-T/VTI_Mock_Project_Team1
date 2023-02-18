@@ -1,115 +1,3157 @@
-2023-02-16 09:17:39 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
     select
-        recipeingr0_.id as id1_4_,
-        recipeingr0_.`amount` as amount2_4_,
-        recipeingr0_.`name` as name3_4_,
-        recipeingr0_.`recipe_id` as recipe_i5_4_,
-        recipeingr0_.`unit` as unit4_4_ 
+        recipe0_.`id` as id1_2_,
+        recipe0_.`create_date` as create_d2_2_,
+        recipe0_.`creator_id` as creator10_2_,
+        recipe0_.`description` as descript3_2_,
+        recipe0_.`image_url` as image_ur4_2_,
+        recipe0_.`name` as name5_2_,
+        recipe0_.`note` as note6_2_,
+        recipe0_.`point` as point7_2_,
+        recipe0_.`processing_steps` as processi8_2_,
+        recipe0_.`views` as views9_2_ 
     from
-        `Recipe_Ingredient` recipeingr0_ 
+        `Recipe` recipe0_ limit ? 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
     where
-        recipeingr0_.id in (
-            ? , ?
+        user0_.id=? 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [5] 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:43:44 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:43:45 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:43:45 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:43:45 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:43:45 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [5] 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        recipe0_.`id` as id1_2_,
+        recipe0_.`create_date` as create_d2_2_,
+        recipe0_.`creator_id` as creator10_2_,
+        recipe0_.`description` as descript3_2_,
+        recipe0_.`image_url` as image_ur4_2_,
+        recipe0_.`name` as name5_2_,
+        recipe0_.`note` as note6_2_,
+        recipe0_.`point` as point7_2_,
+        recipe0_.`processing_steps` as processi8_2_,
+        recipe0_.`views` as views9_2_ 
+    from
+        `Recipe` recipe0_ limit ? 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [5] 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [5] 
+2023-02-18 22:43:45 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username3] 
+2023-02-18 22:43:45 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:43:45 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username3] 
+2023-02-18 22:43:45 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:43:45 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:44:00 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:44:00 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username3] 
+2023-02-18 22:44:00 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:44:00 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:44:00 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:44:00 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username3] 
+2023-02-18 22:44:00 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:44:00 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:44:21 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:44:21 [http-nio-8080-exec-10] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username3] 
+2023-02-18 22:44:21 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:44:21 [http-nio-8080-exec-10] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:45:00 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:45:00 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username3] 
+2023-02-18 22:45:00 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:45:00 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:45:00 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:45:00 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username3] 
+2023-02-18 22:45:00 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:45:00 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:45:04 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:45:04 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username3] 
+2023-02-18 22:45:04 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:45:04 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:45:04 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:45:04 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username3] 
+2023-02-18 22:45:04 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:45:04 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:45:05 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:45:05 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username3] 
+2023-02-18 22:45:05 [http-nio-8080-exec-7] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:45:05 [http-nio-8080-exec-7] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:45:05 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:45:05 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username3] 
+2023-02-18 22:45:05 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:45:05 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:45:06 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:45:06 [http-nio-8080-exec-9] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username3] 
+2023-02-18 22:45:06 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:45:06 [http-nio-8080-exec-9] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:45:06 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:45:06 [http-nio-8080-exec-9] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username3] 
+2023-02-18 22:45:06 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:45:06 [http-nio-8080-exec-9] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:45:07 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:45:07 [http-nio-8080-exec-1] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username3] 
+2023-02-18 22:45:07 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:45:07 [http-nio-8080-exec-1] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:45:07 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:45:07 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username3] 
+2023-02-18 22:45:07 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:45:07 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        recipe0_.`id` as id1_2_,
+        recipe0_.`create_date` as create_d2_2_,
+        recipe0_.`creator_id` as creator10_2_,
+        recipe0_.`description` as descript3_2_,
+        recipe0_.`image_url` as image_ur4_2_,
+        recipe0_.`name` as name5_2_,
+        recipe0_.`note` as note6_2_,
+        recipe0_.`point` as point7_2_,
+        recipe0_.`processing_steps` as processi8_2_,
+        recipe0_.`views` as views9_2_ 
+    from
+        `Recipe` recipe0_ limit ? 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [5] 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [5] 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        recipe0_.`id` as id1_2_,
+        recipe0_.`create_date` as create_d2_2_,
+        recipe0_.`creator_id` as creator10_2_,
+        recipe0_.`description` as descript3_2_,
+        recipe0_.`image_url` as image_ur4_2_,
+        recipe0_.`name` as name5_2_,
+        recipe0_.`note` as note6_2_,
+        recipe0_.`point` as point7_2_,
+        recipe0_.`processing_steps` as processi8_2_,
+        recipe0_.`views` as views9_2_ 
+    from
+        `Recipe` recipe0_ limit ? 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [5] 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:50:08 [http-nio-8080-exec-6] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [5] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        count(user0_.id)=0 as col_0_0_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`email`=? 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [email4@gmail.com] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        count(user0_.id)=0 as col_0_0_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`email`=? 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [email4@gmail.com] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    insert 
+    into
+        `
+        User` (
+            avatar_url, `birth_date`, `email`, `first_name`, `gender`, `last_name`, `password`, phone, `status`, `username`
         ) 
-2023-02-16 09:17:39 [http-nio-8080-exec-1] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
-2023-02-16 09:17:39 [http-nio-8080-exec-1] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [2] as [INTEGER] - [2] 
-2023-02-16 09:17:39 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [null] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [2] as [DATE] - [null] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [3] as [VARCHAR] - [email4@gmail.com] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [4] as [VARCHAR] - [user] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [5] as [INTEGER] - [null] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [6] as [VARCHAR] - [name 4] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [7] as [VARCHAR] - [$2a$10$aF92JwfpQ1InM0ev3CJCP.naN3yq7rkO5vXef6EIzFBR.YNA6lcqS] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [8] as [VARCHAR] - [null] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [9] as [INTEGER] - [0] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [10] as [VARCHAR] - [username4] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    insert 
+    into
+        `
+        Registration_User_Token` (
+            expiry_date, `token`, user_id
+        ) 
+    values
+        (?, ?, ?) 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [TIMESTAMP] - [Sat Feb 18 22:56:38 ICT 2023] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [2] as [VARCHAR] - [0185460b-c70b-42b4-802f-83f22903d351] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [3] as [INTEGER] - [4] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
     select
-        recipe0_.`id` as id1_2_0_,
-        recipe0_.`create_date` as create_d2_2_0_,
-        recipe0_.`creator_id` as creator10_2_0_,
-        recipe0_.`description` as descript3_2_0_,
-        recipe0_.`image_url` as image_ur4_2_0_,
-        recipe0_.`name` as name5_2_0_,
-        recipe0_.`note` as note6_2_0_,
-        recipe0_.`point` as point7_2_0_,
-        recipe0_.`processing_steps` as processi8_2_0_,
-        recipe0_.`views` as views9_2_0_,
-        user1_.id as id1_7_1_,
-        user1_.avatar_url as avatar_u2_7_1_,
-        user1_.`birth_date` as birth_da3_7_1_,
-        user1_.`email` as email4_7_1_,
-        user1_.`first_name` as first_na5_7_1_,
-        user1_.`gender` as gender6_7_1_,
-        user1_.`last_name` as last_nam7_7_1_,
-        user1_.`password` as password8_7_1_,
-        user1_.phone as phone9_7_1_,
-        user1_.`status` as status10_7_1_,
-        user1_.`username` as usernam11_7_1_,
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`email`=? 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [email4@gmail.com] 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] DEBUG o.h.SQL                                            - 
+    select
+        registrati0_.`token` as col_0_0_ 
+    from
+        `Registration_User_Token` registrati0_ 
+    where
+        registrati0_.user_id=? 
+2023-02-18 22:50:38 [http-nio-8080-exec-8] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:51:23 [http-nio-8080-exec-10] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:51:23 [http-nio-8080-exec-10] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [usename4] 
+2023-02-18 22:51:29 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:51:29 [http-nio-8080-exec-9] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username4] 
+2023-02-18 22:51:29 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
         concat(user1_.first_name,
         ' ',
-        user1_.last_name) as formula1_1_,
-        point2_.id as id1_1_2_,
-        point2_.point as point2_1_2_,
-        point2_.user_id as user_id3_1_2_,
-        ingredient3_.`recipe_id` as recipe_i5_4_3_,
-        ingredient3_.id as id1_4_3_,
-        ingredient3_.id as id1_4_4_,
-        ingredient3_.`amount` as amount2_4_4_,
-        ingredient3_.`name` as name3_4_4_,
-        ingredient3_.`recipe_id` as recipe_i5_4_4_,
-        ingredient3_.`unit` as unit4_4_4_ 
+        user1_.last_name) as formula1_0_ 
     from
-        `Recipe` recipe0_ 
+        `Point` point0_ 
     inner join
         `User` user1_ 
-            on recipe0_.`creator_id`=user1_.id 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:51:29 [http-nio-8080-exec-9] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:51:29 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:51:29 [http-nio-8080-exec-9] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username4] 
+2023-02-18 22:51:29 [http-nio-8080-exec-9] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:51:29 [http-nio-8080-exec-9] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:51:29 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:51:29 [http-nio-8080-exec-1] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username4] 
+2023-02-18 22:51:29 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:51:29 [http-nio-8080-exec-1] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:51:29 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        recipe0_.`id` as id1_2_,
+        recipe0_.`create_date` as create_d2_2_,
+        recipe0_.`creator_id` as creator10_2_,
+        recipe0_.`description` as descript3_2_,
+        recipe0_.`image_url` as image_ur4_2_,
+        recipe0_.`name` as name5_2_,
+        recipe0_.`note` as note6_2_,
+        recipe0_.`point` as point7_2_,
+        recipe0_.`processing_steps` as processi8_2_,
+        recipe0_.`views` as views9_2_ 
+    from
+        `Recipe` recipe0_ limit ? 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [5] 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
     left outer join
         `Point` point2_ 
             on user1_.id=point2_.user_id 
-    left outer join
-        `Recipe_Ingredient` ingredient3_ 
-            on recipe0_.`id`=ingredient3_.`recipe_id` 
     where
-        recipe0_.`id`=? 
-2023-02-16 09:17:39 [http-nio-8080-exec-1] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
-2023-02-16 09:17:39 [http-nio-8080-exec-1] DEBUG o.h.SQL                                            - 
+        comments0_.recipe_id=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
     select
-        recipe0_.`id` as id1_2_0_,
-        recipe0_.`create_date` as create_d2_2_0_,
-        recipe0_.`creator_id` as creator10_2_0_,
-        recipe0_.`description` as descript3_2_0_,
-        recipe0_.`image_url` as image_ur4_2_0_,
-        recipe0_.`name` as name5_2_0_,
-        recipe0_.`note` as note6_2_0_,
-        recipe0_.`point` as point7_2_0_,
-        recipe0_.`processing_steps` as processi8_2_0_,
-        recipe0_.`views` as views9_2_0_,
-        user1_.id as id1_7_1_,
-        user1_.avatar_url as avatar_u2_7_1_,
-        user1_.`birth_date` as birth_da3_7_1_,
-        user1_.`email` as email4_7_1_,
-        user1_.`first_name` as first_na5_7_1_,
-        user1_.`gender` as gender6_7_1_,
-        user1_.`last_name` as last_nam7_7_1_,
-        user1_.`password` as password8_7_1_,
-        user1_.phone as phone9_7_1_,
-        user1_.`status` as status10_7_1_,
-        user1_.`username` as usernam11_7_1_,
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
         concat(user1_.first_name,
         ' ',
-        user1_.last_name) as formula1_1_,
-        point2_.id as id1_1_2_,
-        point2_.point as point2_1_2_,
-        point2_.user_id as user_id3_1_2_,
-        ingredient3_.`recipe_id` as recipe_i5_4_3_,
-        ingredient3_.id as id1_4_3_,
-        ingredient3_.id as id1_4_4_,
-        ingredient3_.`amount` as amount2_4_4_,
-        ingredient3_.`name` as name3_4_4_,
-        ingredient3_.`recipe_id` as recipe_i5_4_4_,
-        ingredient3_.`unit` as unit4_4_4_ 
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
     from
-        `Recipe` recipe0_ 
+        `Comment` comments0_ 
     inner join
         `User` user1_ 
-            on recipe0_.`creator_id`=user1_.id 
+            on comments0_.user_id=user1_.id 
     left outer join
         `Point` point2_ 
             on user1_.id=point2_.user_id 
-    left outer join
-        `Recipe_Ingredient` ingredient3_ 
-            on recipe0_.`id`=ingredient3_.`recipe_id` 
     where
-        recipe0_.`id`=? 
-2023-02-16 09:17:39 [http-nio-8080-exec-1] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+        comments0_.recipe_id=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-3] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [5] 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        recipe0_.`id` as id1_2_,
+        recipe0_.`create_date` as create_d2_2_,
+        recipe0_.`creator_id` as creator10_2_,
+        recipe0_.`description` as descript3_2_,
+        recipe0_.`image_url` as image_ur4_2_,
+        recipe0_.`name` as name5_2_,
+        recipe0_.`note` as note6_2_,
+        recipe0_.`point` as point7_2_,
+        recipe0_.`processing_steps` as processi8_2_,
+        recipe0_.`views` as views9_2_ 
+    from
+        `Recipe` recipe0_ limit ? 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_0_,
+        user0_.avatar_url as avatar_u2_7_0_,
+        user0_.`birth_date` as birth_da3_7_0_,
+        user0_.`email` as email4_7_0_,
+        user0_.`first_name` as first_na5_7_0_,
+        user0_.`gender` as gender6_7_0_,
+        user0_.`last_name` as last_nam7_7_0_,
+        user0_.`password` as password8_7_0_,
+        user0_.phone as phone9_7_0_,
+        user0_.`status` as status10_7_0_,
+        user0_.`username` as usernam11_7_0_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_0_,
+        point1_.id as id1_1_1_,
+        point1_.point as point2_1_1_,
+        point1_.user_id as user_id3_1_1_ 
+    from
+        `User` user0_ 
+    left outer join
+        `Point` point1_ 
+            on user0_.id=point1_.user_id 
+    where
+        user0_.id=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [5] 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        ingredient0_.`recipe_id` as recipe_i5_4_0_,
+        ingredient0_.id as id1_4_0_,
+        ingredient0_.id as id1_4_1_,
+        ingredient0_.`amount` as amount2_4_1_,
+        ingredient0_.`name` as name3_4_1_,
+        ingredient0_.`recipe_id` as recipe_i5_4_1_,
+        ingredient0_.`unit` as unit4_4_1_ 
+    from
+        `Recipe_Ingredient` ingredient0_ 
+    where
+        ingredient0_.`recipe_id`=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [1] 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [2] 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [3] 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] DEBUG o.h.SQL                                            - 
+    select
+        comments0_.recipe_id as recipe_i1_0_0_,
+        comments0_.user_id as user_id2_0_0_,
+        comments0_.recipe_id as recipe_i1_0_1_,
+        comments0_.user_id as user_id2_0_1_,
+        comments0_.`comment` as comment3_0_1_,
+        comments0_.`create_date` as create_d4_0_1_,
+        comments0_.`update_date` as update_d5_0_1_,
+        user1_.id as id1_7_2_,
+        user1_.avatar_url as avatar_u2_7_2_,
+        user1_.`birth_date` as birth_da3_7_2_,
+        user1_.`email` as email4_7_2_,
+        user1_.`first_name` as first_na5_7_2_,
+        user1_.`gender` as gender6_7_2_,
+        user1_.`last_name` as last_nam7_7_2_,
+        user1_.`password` as password8_7_2_,
+        user1_.phone as phone9_7_2_,
+        user1_.`status` as status10_7_2_,
+        user1_.`username` as usernam11_7_2_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_2_,
+        point2_.id as id1_1_3_,
+        point2_.point as point2_1_3_,
+        point2_.user_id as user_id3_1_3_ 
+    from
+        `Comment` comments0_ 
+    inner join
+        `User` user1_ 
+            on comments0_.user_id=user1_.id 
+    left outer join
+        `Point` point2_ 
+            on user1_.id=point2_.user_id 
+    where
+        comments0_.recipe_id=? 
+2023-02-18 22:51:30 [http-nio-8080-exec-2] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [5] 
+2023-02-18 22:51:32 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:51:32 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username4] 
+2023-02-18 22:51:32 [http-nio-8080-exec-5] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:51:32 [http-nio-8080-exec-5] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 
+2023-02-18 22:51:32 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        user0_.id as id1_7_,
+        user0_.avatar_url as avatar_u2_7_,
+        user0_.`birth_date` as birth_da3_7_,
+        user0_.`email` as email4_7_,
+        user0_.`first_name` as first_na5_7_,
+        user0_.`gender` as gender6_7_,
+        user0_.`last_name` as last_nam7_7_,
+        user0_.`password` as password8_7_,
+        user0_.phone as phone9_7_,
+        user0_.`status` as status10_7_,
+        user0_.`username` as usernam11_7_,
+        concat(user0_.first_name,
+        ' ',
+        user0_.last_name) as formula1_ 
+    from
+        `User` user0_ 
+    where
+        user0_.`username`=? 
+2023-02-18 22:51:32 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [VARCHAR] - [username4] 
+2023-02-18 22:51:32 [http-nio-8080-exec-4] DEBUG o.h.SQL                                            - 
+    select
+        point0_.id as id1_1_1_,
+        point0_.point as point2_1_1_,
+        point0_.user_id as user_id3_1_1_,
+        user1_.id as id1_7_0_,
+        user1_.avatar_url as avatar_u2_7_0_,
+        user1_.`birth_date` as birth_da3_7_0_,
+        user1_.`email` as email4_7_0_,
+        user1_.`first_name` as first_na5_7_0_,
+        user1_.`gender` as gender6_7_0_,
+        user1_.`last_name` as last_nam7_7_0_,
+        user1_.`password` as password8_7_0_,
+        user1_.phone as phone9_7_0_,
+        user1_.`status` as status10_7_0_,
+        user1_.`username` as usernam11_7_0_,
+        concat(user1_.first_name,
+        ' ',
+        user1_.last_name) as formula1_0_ 
+    from
+        `Point` point0_ 
+    inner join
+        `User` user1_ 
+            on point0_.user_id=user1_.id 
+    where
+        point0_.user_id=? 
+2023-02-18 22:51:32 [http-nio-8080-exec-4] TRACE o.h.t.d.s.BasicBinder                              - binding parameter [1] as [INTEGER] - [4] 

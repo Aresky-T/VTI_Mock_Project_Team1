@@ -1,9 +1,6 @@
 package com.food_recipe.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import lombok.ToString;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;

@@ -1,6 +1,5 @@
 package com.food_recipe.service;
 
-
 import com.food_recipe.dto.ChangePublicProfileDTO;
 import com.food_recipe.entity.*;
 import com.food_recipe.event.OnResetPasswordViaEmailEvent;
@@ -41,7 +40,6 @@ public class UserService implements IUserService {
 	@Autowired
 	private SendMailService sendMailService;
 
-
 	@Override
 	public void createUser(User user) {
 		// encode password
@@ -75,7 +73,6 @@ public class UserService implements IUserService {
 		return userRepository.findByEmail(email);
 	}
 
-
 	@Override
 	public User findUserByUsername(String username) {
 
@@ -89,7 +86,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public boolean existsUserByUsername(String username){
+	public boolean existsUserByUsername(String username) {
 
 		return userRepository.existsByUsername(username);
 	}
@@ -153,13 +150,12 @@ public class UserService implements IUserService {
 
 	}
 
-
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// Check user exists by username
 		User user = userRepository.findByUsername(username);
 
-		if(user == null) {
+		if (user == null) {
 			throw new UsernameNotFoundException(username);
 		}
 
@@ -168,7 +164,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void ChangePublicProfileDTO(String username, ChangePublicProfileDTO dto) {
+	public User ChangePublicProfileDTO(String username, ChangePublicProfileDTO dto) {
 		User user = userRepository.findByUsername(username);
 
 		user.setFirstName(dto.getFirstName());
@@ -176,19 +172,35 @@ public class UserService implements IUserService {
 		user.setBirthDate(dto.getBirthDate());
 		user.setGender(dto.getGender());
 		user.setPhone(dto.getPhone());
-		user.setAvatarUrl(dto.getAvatarUrl());
+		// user.setAvatarUrl(dto.getAvatarUrl());
 
-		userRepository.save(user);
+		return userRepository.save(user);
 	}
-
 
 	public void forgotPassword(String email) {
 		User user = userRepository.findByEmail(email);
 		if (user != null) {
 			final String newToken = UUID.randomUUID().toString();
 			ResetPasswordToken token = new ResetPasswordToken(newToken, user);
-			resetPasswordTokenRepository.save(token);   // lưu token vào data
+			resetPasswordTokenRepository.save(token); // lưu token vào data
 			sendMailService.sendForgotPassword(user.getEmail(), newToken);
+		}
+	}
+
+	@Override
+	public User updateUserAvatar(Integer userId, String avatar) {
+		Boolean userExists = userRepository.existsById(userId);
+		if (!userExists) {
+			return null;
+		} else {
+			User user = userRepository.findById(userId).get();
+			String avatarURL = avatar.trim();
+			if (avatarURL.length() < 1) {
+				return null;
+			} else {
+				user.setAvatarUrl(avatarURL);
+				return userRepository.save(user);
+			}
 		}
 	}
 

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getRecipeDetail } from '../api/recipe.api';
+import { userImage, chefMan, chefWoman } from '../constant/Image';
 
 const RecipeDetail = () => {
 
     let { id } = useParams();
     const [recipe, setRecipe] = useState();
-    const chefMan = "https://image.similarpng.com/very-thumbnail/2021/06/Cartoon-chef-man-with-thumb-finger-on-transparent-background-PNG.png";
-    const chefWoman = "https://static.vecteezy.com/system/resources/previews/015/723/965/original/cute-girl-cooking-woman-cook-restaurant-in-chef-costume-free-png.png"
 
     useEffect(() => {
         getRecipeDetail(id)
@@ -32,6 +31,7 @@ const RecipeDetail = () => {
                         <div className="author-avatar">
                             {recipe.creator.gender === "MALE" && <><img src={recipe.creator.avatarUrl ? recipe.creator.avatarUrl : chefMan} alt="" /></>}
                             {recipe.creator.gender === "FEMALE" && <><img src={recipe.creator.avatarUrl ? recipe.creator.avatarUrl : chefWoman} alt="" /></>}
+                            {!recipe.creator.gender && <><img src={userImage} alt="" /></>}
                         </div>
                         <p className="recipe-create-date">
                             Date: {new Date(recipe.createDate).toLocaleDateString()}

@@ -44,7 +44,6 @@ const SignIn = () => {
                         localStorage.setItem("userLoggedIn", JSON.stringify(account));
                         dispatch(signInSuccess(account));
                         navigate("/");
-                        console.log('Sign in successfully');
                     }
                 })
                 .catch((err) => {

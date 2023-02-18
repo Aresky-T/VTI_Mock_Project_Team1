@@ -30,10 +30,6 @@ const SideBarProfile = () => {
         }
     ]
 
-    useEffect(() => {
-        console.log(location.pathname);
-    })
-
     return (
         <div className='profile-header'>
             <div className="profile-header-links">

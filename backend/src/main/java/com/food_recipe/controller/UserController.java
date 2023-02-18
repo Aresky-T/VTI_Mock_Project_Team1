@@ -2,6 +2,7 @@ package com.food_recipe.controller;
 
 import com.food_recipe.dto.ChangePublicProfileDTO;
 import com.food_recipe.dto.ProfileDTO;
+import com.food_recipe.dto.UserAvatarUpdate;
 import com.food_recipe.dto.UserDTO;
 import com.food_recipe.dto.UserFormForCreating;
 import com.food_recipe.entity.User;
@@ -140,9 +141,16 @@ public class UserController {
 		// get username from token
 		String username = authentication.getName();
 
-		userService.ChangePublicProfileDTO(username, dto);
+		User user = userService.ChangePublicProfileDTO(username, dto);
+		UserDTO profile = modelMapper.map(user, UserDTO.class);
 
-		return new ResponseEntity<>("Change Profile Successfully!", HttpStatus.OK);
+		return new ResponseEntity<>(profile, HttpStatus.OK);
+	}
+
+	@PutMapping("/profile/avatar")
+	public ResponseEntity<?> changeUserAvatar(@RequestBody UserAvatarUpdate form){
+		User response = userService.updateUserAvatar(form.getUserId(), form.getAvatar());
+		return new ResponseEntity<>(response.getAvatarUrl(), HttpStatus.OK);
 	}
 
 	@PostMapping("/forgot/{email}")
