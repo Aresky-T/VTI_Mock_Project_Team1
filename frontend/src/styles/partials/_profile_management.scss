@@ -414,12 +414,10 @@
                     text-align: center;
                     cursor: pointer;
 
-                    &:hover {
-                        background-color: #f6f6f6;
-                    }
-
-                    &:active {
-                        background-color: #e4e4e4;
+                    &:hover,  &:active {
+                        background-color: var(--primary-color);
+                        color: #fff;
+                        border-color: var(--primary-color)
                     }
                 }
             }
@@ -456,12 +454,10 @@
                     text-align: center;
                     cursor: pointer;
 
-                    &:hover {
-                        background-color: #f6f6f6;
-                    }
-
-                    &:active {
-                        background-color: #e4e4e4;
+                    &:hover,  &:active {
+                        background-color: var(--primary-color);
+                        color: #fff;
+                        border-color: var(--primary-color)
                     }
                 }
 

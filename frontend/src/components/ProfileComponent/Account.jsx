@@ -6,7 +6,7 @@ const Account = () => {
 
   return (
     <div className='profile-body account'>
-      <div className="change-username">
+      {/* <div className="change-username">
         <div className='change-username-top'>
           Change Username
           <hr />
@@ -19,7 +19,7 @@ const Account = () => {
             Change username
           </button>
         </div>
-      </div>
+      </div> */}
       <div className="change-password">
         <div className='change-password-top'>
           Change password

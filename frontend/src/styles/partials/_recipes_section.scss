@@ -121,3 +121,57 @@
     font-size: 15px;
     color: var(--text-color);
 }
+
+.pagination {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    gap: 5px;
+    margin-top: 60px;
+
+    li {
+        margin: 0 3px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        border-radius: 5px;
+        outline: 1px solid #ccc;
+        transition: background 0.2s ease-in-out;
+
+        &:hover {
+            background: var(--primary-color);
+            border-radius: 10px;
+            outline: none;
+
+            a.page-num {
+                color: #fff;
+            }
+        }
+    }
+
+    li>a.page-num {
+        padding: 8px 15px;
+        cursor: pointer;
+        font-weight: 400;
+        text-decoration: none;
+        color: var(--text-color);
+        background: transparent;
+        user-select: none;
+    }
+
+    li.active {
+        width: fit-content;
+        background: var(--primary-color);
+        outline: none;
+
+        a.page-num {
+            color: #fff;
+        }
+    }
+}
