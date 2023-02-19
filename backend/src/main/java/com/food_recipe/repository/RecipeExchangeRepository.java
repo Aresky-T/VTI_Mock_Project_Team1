@@ -1,7 +1,9 @@
 package com.food_recipe.repository;
 
 import com.food_recipe.entity.Comment;
+import com.food_recipe.entity.Recipe;
 import com.food_recipe.entity.RecipeExchangeHistory;
+import com.food_recipe.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;

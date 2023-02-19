@@ -42,7 +42,8 @@ public class UserDTO {
 	@NoArgsConstructor
 	static class PointDTO {
 		private Integer point;
-	}
+
+    }
 
 
 

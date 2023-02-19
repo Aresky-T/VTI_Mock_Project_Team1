@@ -99,7 +99,10 @@ public class UserController {
 		return new ResponseEntity<>("We have sent an email. Please check email to reset password!", HttpStatus.OK);
 	}
 
-
+//	@GetMapping("/getPointsByUser")
+//	public ResponseEntity<?> findPointsByUser(@RequestParam String username){
+//		return new ResponseEntity<>(userService.findPointByUserName(username), HttpStatus.OK);
+//	}
 
 	@GetMapping("/profile")
 	// validate: check exists, check not expired

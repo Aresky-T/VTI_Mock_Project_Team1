@@ -6,4 +6,6 @@ import com.food_recipe.entity.RecipeExchangeHistory;
 public interface IRecipeExchangeService {
 
     String createExchange(RecipeExchangeFormForCreating data);
+
+    boolean isExistsExchange(Integer userId, Integer recipeId);
 }

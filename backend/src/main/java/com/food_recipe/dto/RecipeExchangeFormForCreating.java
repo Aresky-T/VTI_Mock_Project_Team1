@@ -1,17 +1,15 @@
 package com.food_recipe.dto;
 
-import com.food_recipe.entity.Recipe;
 import com.food_recipe.entity.RecipeExchangeHistory;
-import com.food_recipe.entity.User;
 import lombok.Data;
 
 
 @Data
 public class RecipeExchangeFormForCreating {
 
-    private User userId;
+    private Integer userId;
 
-    private Recipe recipeId;
+    private Integer recipeId;
 
     public RecipeExchangeHistory toEntity() {
         return new RecipeExchangeHistory(userId, recipeId);

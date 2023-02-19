@@ -14,19 +14,15 @@ import org.springframework.web.bind.annotation.*;
 public class PointController {
 
     @Autowired
-    private final IPointService pointService;
-
-    @Autowired
-    private final ModelMapper modelMapper;
-
-    public PointController(IPointService pointService, ModelMapper modelMapper) {
-        this.pointService = pointService;
-        this.modelMapper = modelMapper;
-    }
-
+    private IPointService pointService;
 
     @PostMapping
-    public ResponseEntity<?> createPoint (@RequestBody PointDTO pointDTO) {
-        return new ResponseEntity<>(pointService.createPoint(pointDTO), HttpStatus.OK);
+    public ResponseEntity<?> createPoint(@RequestParam Integer userId) {
+        return new ResponseEntity<>(pointService.createPoint(userId), HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updatePoint(@RequestParam Integer userId) {
+        return new ResponseEntity<>(pointService.updatePoint(userId), HttpStatus.OK);
     }
 }

@@ -46,7 +46,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.DELETE, "/api/v1/comment").authenticated()
 				.antMatchers(HttpMethod.POST,"/api/v1/users/forgot").permitAll()
 				.antMatchers(HttpMethod.GET).permitAll()
-				.anyRequest().authenticated()
+				.anyRequest().permitAll()
 				.and()
 				.httpBasic()
 				.and()

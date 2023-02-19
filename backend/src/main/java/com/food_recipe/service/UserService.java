@@ -2,6 +2,7 @@ package com.food_recipe.service;
 
 
 import com.food_recipe.dto.ChangePublicProfileDTO;
+import com.food_recipe.dto.UserDTO;
 import com.food_recipe.entity.*;
 import com.food_recipe.event.OnResetPasswordViaEmailEvent;
 import com.food_recipe.event.OnSendRegistrationUserConfirmViaEmailEvent;

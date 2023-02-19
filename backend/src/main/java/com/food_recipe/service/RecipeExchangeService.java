@@ -1,18 +1,16 @@
 package com.food_recipe.service;
 
-import com.food_recipe.dto.CommentFormCreating;
-import com.food_recipe.dto.RecipeExchangeDTO;
 import com.food_recipe.dto.RecipeExchangeFormForCreating;
+import com.food_recipe.entity.Point;
 import com.food_recipe.entity.Recipe;
-import com.food_recipe.entity.RecipeExchangeHistory;
 import com.food_recipe.entity.User;
+import com.food_recipe.repository.PointRepository;
 import com.food_recipe.repository.RecipeExchangeRepository;
-import org.modelmapper.ModelMapper;
+import com.food_recipe.repository.RecipeRepository;
+import com.food_recipe.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 public class RecipeExchangeService implements IRecipeExchangeService{
@@ -21,13 +19,14 @@ public class RecipeExchangeService implements IRecipeExchangeService{
     private RecipeExchangeRepository recipeExchangeRepository;
 
     @Autowired
-    private UserService userService;
+    private PointRepository pointRepository;
 
     @Autowired
-    private RecipeService recipeService;
+    private UserRepository userRepository;
 
     @Autowired
-    private ModelMapper modelMapper;
+    private RecipeRepository recipeRepository;
+
 
     @Override
     @Transactional
@@ -36,6 +35,21 @@ public class RecipeExchangeService implements IRecipeExchangeService{
             if (isExistsExchange(obj.getUserId(), obj.getRecipeId())){
                 return "This exchange already existed!";
             } else {
+//                Integer userPoint = pointRepository.getPointByUserId(obj.getUserId());
+                Recipe recipe = recipeRepository.findById(obj.getRecipeId()).get();
+                Integer recipePoint = recipe.getPoint();
+
+                User user = userRepository.findById(obj.getUserId()).get();
+                Point point = pointRepository.findByUserId(obj.getUserId());
+                point.setPoint(user.getPoint().getPoint() - recipePoint);
+
+                User userAuthor = userRepository.findById(recipe.getCreator().getId()).get();
+                Point pointAuthor = pointRepository.findByUserId(recipe.getCreator().getId());
+                pointAuthor.setPoint(userAuthor.getPoint().getPoint() + recipePoint);
+
+                pointRepository.save(point);
+                pointRepository.save(pointAuthor);
+
                 recipeExchangeRepository.save(obj.toEntity());
                 return "Create Exchange successfully!";
             }
@@ -45,7 +59,11 @@ public class RecipeExchangeService implements IRecipeExchangeService{
         }
     }
 
-    private boolean isExistsExchange(User userId, Recipe recipeId) {
-        recipeExchangeRepository.existsByUserIdAndRecipeId(userId, recipeId);
+    @Override
+    public boolean isExistsExchange(Integer userId, Integer recipeId) {
+        return recipeExchangeRepository.existsByUserIdAndRecipeId(userId, recipeId);
     }
+
+
+
 }

@@ -6,7 +6,11 @@ import com.food_recipe.dto.RecipeFormForCreating;
 import com.food_recipe.dto.RecipeFormForUpdate;
 import com.food_recipe.dto.filter.RecipeFilter;
 import com.food_recipe.entity.Recipe;
+import com.food_recipe.entity.User;
+import com.food_recipe.service.IRecipeExchangeService;
 import com.food_recipe.service.IRecipeService;
+import com.food_recipe.service.IUserService;
+import com.food_recipe.service.RecipeExchangeService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +34,12 @@ public class RecipeController {
 
     @Autowired
     private IRecipeService recipeService;
+
+    @Autowired
+    private IUserService userService;
+
+    @Autowired
+    private IRecipeExchangeService recipeExchangeService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -64,11 +75,33 @@ public class RecipeController {
         return new ResponseEntity<>("Please enter a string for search by recipe name!", HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getRecipeById(@PathVariable(name = "id") Integer id) {
-        Recipe entity = recipeService.getRecipeById(id);
-        RecipeDTO dto = modelMapper.map(entity, RecipeDTO.class);
-        return new ResponseEntity<>(dto, HttpStatus.OK);
+    @GetMapping("/before-login/{id}")
+    public ResponseEntity<?> findRecipeById(@PathVariable(name = "id") Integer id) {
+        Recipe recipe = recipeService.getRecipeById(id);
+        if(recipe.getPoint() == 0) {
+            RecipeDTO dto = modelMapper.map(recipe, RecipeDTO.class);
+            return new ResponseEntity<>(dto, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("Vui lòng đăng nhập ", HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/after-login/{id}")
+    public ResponseEntity<?> getRecipeById(@PathVariable(name = "id") Integer id, Authentication authentication) {
+        Recipe recipe = recipeService.getRecipeById(id);
+        String username = authentication.getName();
+        User user = userService.findUserByUsername(username);
+        Integer point = user.getPoint().getPoint();
+
+        RecipeDTO dto = modelMapper.map(recipe, RecipeDTO.class);
+
+        if(recipeExchangeService.isExistsExchange(user.getId(), id) == true){
+            return new ResponseEntity<>(dto, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("Bạn phải giao dịch Recipe, thì mới xem được Recipe", HttpStatus.OK);
+        }
+
+
     }
 
     @PutMapping(value = "/{id}")
@@ -82,4 +115,6 @@ public class RecipeController {
         recipeService.deleteRecipe(ids);
         return new ResponseEntity<String>("Delete Recipe successfully!", HttpStatus.OK);
     }
+
+
 }
