@@ -12,7 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class PointService implements IPointService {
 
     @Autowired
-    private PointRepository pointRepository;
+    private final PointRepository pointRepository;
+
+    public PointService(PointRepository pointRepository) {
+        this.pointRepository = pointRepository;
+    }
 
 
     @Override

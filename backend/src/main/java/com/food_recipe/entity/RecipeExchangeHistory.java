@@ -27,4 +27,11 @@ public class RecipeExchangeHistory implements Serializable {
 
     @Column(name = "`exchange_date`", nullable = false, columnDefinition = "datetime default now()")
     private LocalDate exchangeDate;
+
+    public RecipeExchangeHistory(User userId, Recipe recipeId) {
+    }
+
+    public RecipeExchangeHistory() {
+
+    }
 }
