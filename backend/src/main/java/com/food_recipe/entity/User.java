@@ -2,6 +2,7 @@ package com.food_recipe.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.ToString;
 import org.hibernate.annotations.Formula;
@@ -49,6 +50,9 @@ public class User implements Serializable {
 
     @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Point point;
+
+    @OneToMany(mappedBy = "creator")
+    private List<Recipe> recipes;
 
     @OneToMany(mappedBy="user" , cascade = {CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private List<Comment> comments;

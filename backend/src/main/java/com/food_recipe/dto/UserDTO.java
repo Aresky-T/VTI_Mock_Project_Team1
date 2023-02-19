@@ -13,6 +13,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -38,6 +40,8 @@ public class UserDTO {
 
 	private PointDTO point;
 
+	private List<RecipeDTO> recipes;
+
 	@Data
 	@NoArgsConstructor
 	static class PointDTO {
@@ -45,6 +49,28 @@ public class UserDTO {
 
     }
 
+	@Data
+	@NoArgsConstructor
+	static class RecipeDTO {
+		private Integer id;
+
+		private String name;
+
+		private String description;
+
+		private String imageUrl;
+
+		private String processingSteps;
+
+		private String note;
+
+		private Integer point;
+
+		private Integer views;
+
+		private Date createDate;
+
+	}
 
 
 	public User toEntity() {
