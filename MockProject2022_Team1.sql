@@ -34,8 +34,8 @@ CREATE TABLE `recipe` (
   `description` TEXT NOT NULL,
   `processing_steps` text NOT NULL,
   `note` 		TEXT NOT NULL,
-  `views` 		INT NOT NULL DEFAULT '0',
-  `point` 		INT NOT NULL DEFAULT '0',
+  `views` 		INT NOT NULL DEFAULT 0,
+  `point` 		INT NOT NULL DEFAULT 0,
   `creator_id` 	INT NOT NULL,
   `create_date` DATETIME NOT NULL DEFAULT NOW(),
   PRIMARY KEY (`id`),
@@ -80,7 +80,7 @@ CREATE TABLE `comment` (
 
 DROP TABLE IF EXISTS `point`;
 CREATE TABLE `point` (
-  `id` 		int NOT NULL AUTO_INCREMENT,
+  `id` 		INT AUTO_INCREMENT ,
   `point` 	int NOT NULL DEFAULT '0',
   `user_id` int NOT NULL UNIQUE,
   PRIMARY KEY (`id`),

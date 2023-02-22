@@ -11,6 +11,8 @@ import * as yup from 'yup';
 import { Toaster, toast } from 'react-hot-toast';
 import { addListIngredients } from '../api/recipeIngredient.api';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../components/Loading';
+import { RiErrorWarningFill } from 'react-icons/ri';
 
 const CreateRecipe2 = () => {
 
@@ -20,6 +22,7 @@ const CreateRecipe2 = () => {
     const [showModal, setShowModal] = useState(false);
     const [imageURL, setImageURL] = useState('');
     const [ingredients, setIngredients] = useState([]);
+    const [isLoading, setLoading] = useState(false);
 
     const handleFocus = () => {
         const image = document.getElementById('input-image');
@@ -27,9 +30,13 @@ const CreateRecipe2 = () => {
     }
 
     const upLoadFilesForCreate = (formData, token) => {
+        setLoading(true);
         uploadImageCloudinaryApi(formData, token)
             .then((response) => {
                 setImageURL(response.data);
+            })
+            .then(() => {
+                setLoading(false);
             })
             .catch((err) => {
                 console.log('err: ', err);
@@ -188,6 +195,7 @@ const CreateRecipe2 = () => {
                                         value={formikRecipe.values.name}
                                         onChange={formikRecipe.handleChange}
                                         placeholder='Enter recipe name' />
+                                        {formikRecipe.errors.name && <p className='warning'><RiErrorWarningFill/></p>}
                                 </div>
                             </li>
                             <li className='form-line'>
@@ -201,6 +209,7 @@ const CreateRecipe2 = () => {
                                         onChange={formikRecipe.handleChange}
                                     >
                                     </textarea>
+                                    {formikRecipe.errors.description && <p className='warning textarea'><RiErrorWarningFill/></p>}
                                 </div>
                             </li>
                             <li className='form-line'>
@@ -278,6 +287,7 @@ const CreateRecipe2 = () => {
                                             value={formikRecipe.values.processingSteps}
                                             onChange={formikRecipe.handleChange}
                                         ></textarea>
+                                        {formikRecipe.errors.processingSteps && <p className='warning textarea'><RiErrorWarningFill/></p>}
                                     </div>
                                 </div>
                             </li>
@@ -290,6 +300,7 @@ const CreateRecipe2 = () => {
                                         value={formikRecipe.values.note}
                                         onChange={formikRecipe.handleChange}
                                     ></textarea>
+                                    {formikRecipe.errors.note && <p className='warning textarea'><RiErrorWarningFill/></p>}
                                 </div>
                             </li>
                             <li className='form-line'>
@@ -302,6 +313,7 @@ const CreateRecipe2 = () => {
                                         value={formikRecipe.values.point}
                                         onChange={formikRecipe.handleChange}
                                     />
+                                    {formikRecipe.errors.point && <p className='warning'><RiErrorWarningFill/></p>}
                                 </div>
                             </li>
                             <li className='form-line'>
@@ -348,6 +360,7 @@ const CreateRecipe2 = () => {
                 </div>
             </div>
             {showModal && <ModalLogin setShowModal={setShowModal} />}
+            {isLoading && <Loading isLoading={isLoading} />}
             <Toaster
                 position='top-right'
                 reverseOrder={true}

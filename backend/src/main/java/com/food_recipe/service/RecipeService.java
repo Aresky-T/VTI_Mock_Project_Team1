@@ -1,13 +1,13 @@
 package com.food_recipe.service;
 
 
-import com.food_recipe.dto.CommentDTO;
 import com.food_recipe.dto.RecipeFormForCreating;
 import com.food_recipe.dto.RecipeFormForUpdate;
 import com.food_recipe.dto.filter.RecipeFilter;
-import com.food_recipe.entity.Comment;
+import com.food_recipe.entity.RecipeExchangeHistory;
 import com.food_recipe.entity.RecipeIngredient;
 import com.food_recipe.entity.Recipe;
+import com.food_recipe.repository.RecipeExchangeRepository;
 import com.food_recipe.repository.RecipeIngredientRepository;
 import com.food_recipe.repository.RecipeRepository;
 import com.food_recipe.specification.RecipeSpecificationBuilder;
@@ -27,10 +27,12 @@ public class RecipeService implements IRecipeService {
 
     private final RecipeRepository recipeRepository;
     private final RecipeIngredientRepository recipeIngredientRepository;
+    private final RecipeExchangeRepository recipeExchangeRepository;
 
-    public RecipeService(RecipeRepository recipeRepository, RecipeIngredientRepository recipeIngredientRepository) {
+    public RecipeService(RecipeRepository recipeRepository, RecipeIngredientRepository recipeIngredientRepository, RecipeExchangeRepository recipeExchangeRepository) {
         this.recipeRepository = recipeRepository;
         this.recipeIngredientRepository = recipeIngredientRepository;
+        this.recipeExchangeRepository = recipeExchangeRepository;
     }
 
 
@@ -60,6 +62,11 @@ public class RecipeService implements IRecipeService {
 
     public Recipe getRecipeById(Integer id) {
         return recipeRepository.findById(id).get();
+    }
+
+    @Override
+    public RecipeExchangeHistory findByUserId(Integer userId) {
+        return recipeExchangeRepository.findByUserId(userId);
     }
 
     public void createRecipeIngredient(RecipeIngredient recipeIngredient) {

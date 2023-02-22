@@ -1,10 +1,11 @@
 package com.food_recipe.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -26,5 +27,17 @@ public class RecipeExchangeHistory implements Serializable {
     private Recipe recipe;
 
     @Column(name = "`exchange_date`", nullable = false, columnDefinition = "datetime default now()")
-    private LocalDate exchangeDate;
+    @CreationTimestamp()
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date exchangeDate;
+
+    public RecipeExchangeHistory() {
+
+    }
+
+    public RecipeExchangeHistory(Integer userId, Integer recipeId) {
+        this.id = new RecipeExchangeHistoryPK(userId, recipeId);
+        this.user = new User(userId);
+        this.recipe = new Recipe(recipeId);
+    }
 }

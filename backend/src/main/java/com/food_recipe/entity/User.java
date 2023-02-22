@@ -1,5 +1,8 @@
 package com.food_recipe.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import org.hibernate.annotations.Formula;
 
@@ -46,6 +49,9 @@ public class User implements Serializable {
 
     @OneToOne(mappedBy = "user")
     private Point point;
+
+    @OneToMany(mappedBy = "creator")
+    private List<Recipe> recipes;
 
     @OneToMany(mappedBy="user")
     private List<Comment> comments;

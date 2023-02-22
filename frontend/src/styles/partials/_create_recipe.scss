@@ -85,6 +85,7 @@
 
           .form-input {
             width: 70%;
+            position: relative;
 
             input,
             textarea,
@@ -219,6 +220,17 @@
                   color: var(--primary-color);
                 }
               }
+            }
+
+            .warning{
+              position: absolute;
+              top: 40%;
+              right: 10px;
+              color: red;
+            }
+
+            .warning.textarea{
+              top: 10px;
             }
           }
 

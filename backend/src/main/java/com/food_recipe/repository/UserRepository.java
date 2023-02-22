@@ -26,8 +26,4 @@ public interface UserRepository extends JpaRepository<User, Integer>, JpaSpecifi
 
 	@Query("SELECT (count(a) = 0) from User a where a.email = :email")    // SQL
 	boolean isEmailNotExists(String email);
-
-	@Query("UPDATE User a SET a.avatarUrl = NULL WHERE a.username = :username")
-	void deleteAvatarForUser(String username);
-
 }
