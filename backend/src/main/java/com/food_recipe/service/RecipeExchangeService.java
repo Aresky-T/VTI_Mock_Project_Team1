@@ -3,6 +3,7 @@ package com.food_recipe.service;
 import com.food_recipe.dto.RecipeExchangeFormForCreating;
 import com.food_recipe.entity.Point;
 import com.food_recipe.entity.Recipe;
+import com.food_recipe.entity.RecipeExchangeHistory;
 import com.food_recipe.entity.User;
 import com.food_recipe.repository.PointRepository;
 import com.food_recipe.repository.RecipeExchangeRepository;
@@ -11,6 +12,8 @@ import com.food_recipe.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class RecipeExchangeService implements IRecipeExchangeService{
@@ -74,6 +77,15 @@ public class RecipeExchangeService implements IRecipeExchangeService{
         return recipeExchangeRepository.existsByUserIdAndRecipeId(userId, recipeId);
     }
 
+    @Override
+    public List<RecipeExchangeHistory> getRecipeExchangeByRecipeId(Integer recipeId) {
+        return recipeExchangeRepository.findExchangeByRecipeId(recipeId);
+    }
+
+    @Override
+    public List<RecipeExchangeHistory> getRecipeExchangeByUserId(Integer userId) {
+        return recipeExchangeRepository.findExchangeByUserId(userId);
+    }
 
 
 }

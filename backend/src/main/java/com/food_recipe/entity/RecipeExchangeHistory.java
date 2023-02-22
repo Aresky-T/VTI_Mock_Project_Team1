@@ -31,6 +31,8 @@ public class RecipeExchangeHistory implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date exchangeDate;
 
+
+
     public RecipeExchangeHistory() {
 
     }
