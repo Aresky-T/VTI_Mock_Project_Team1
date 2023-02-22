@@ -16,4 +16,6 @@ public interface RecipeExchangeRepository extends
         JpaSpecificationExecutor<RecipeExchangeHistory> {
 
     public boolean existsByUserIdAndRecipeId(Integer userId, Integer recipeId);
+
+    RecipeExchangeHistory findByUserId(Integer userId);
 }

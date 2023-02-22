@@ -22,8 +22,6 @@ public interface IUserService extends UserDetailsService {
 
     User findUserByEmail(String email);
 
-    //Integer findPointByUserName(String username);
-
     void sendConfirmUserRegistrationViaEmail(String email);
 
     void resetPasswordViaEmail(String email);

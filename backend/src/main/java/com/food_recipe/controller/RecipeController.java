@@ -6,6 +6,7 @@ import com.food_recipe.dto.RecipeFormForCreating;
 import com.food_recipe.dto.RecipeFormForUpdate;
 import com.food_recipe.dto.filter.RecipeFilter;
 import com.food_recipe.entity.Recipe;
+import com.food_recipe.entity.RecipeExchangeHistory;
 import com.food_recipe.entity.User;
 import com.food_recipe.service.IRecipeExchangeService;
 import com.food_recipe.service.IRecipeService;
@@ -88,14 +89,15 @@ public class RecipeController {
 
     @GetMapping("/after-login/{id}")
     public ResponseEntity<?> getRecipeById(@PathVariable(name = "id") Integer id, Authentication authentication) {
+
         Recipe recipe = recipeService.getRecipeById(id);
         String username = authentication.getName();
         User user = userService.findUserByUsername(username);
-        Integer point = user.getPoint().getPoint();
 
         RecipeDTO dto = modelMapper.map(recipe, RecipeDTO.class);
-
-        if(recipeExchangeService.isExistsExchange(user.getId(), id) == true){
+        if(recipeExchangeService.isExistsExchange(user.getId(), id) == true) {
+            return new ResponseEntity<>(dto, HttpStatus.OK);
+        }else if(recipe.getCreator().getId() == user.getId()){
             return new ResponseEntity<>(dto, HttpStatus.OK);
         }else{
             return new ResponseEntity<>("Bạn phải giao dịch Recipe, thì mới xem được Recipe", HttpStatus.OK);
