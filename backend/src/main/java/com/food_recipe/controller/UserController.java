@@ -168,4 +168,10 @@ public class UserController {
 		return new ResponseEntity<>("Reset Password success!", HttpStatus.OK);
 	}
 
+	@PutMapping("/delete-avatar/{userId}")
+	public ResponseEntity<?> deleteAvatar(@PathVariable Integer userId) {
+		String response = userService.deleteAvatarForUser(userId);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
 }

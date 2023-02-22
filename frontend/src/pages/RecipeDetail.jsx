@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getRecipeDetail } from '../api/recipe.api';
 import { userImage, chefMan, chefWoman } from '../constant/Image';
+import Voting from '../components/RecipeDetailComponent/Voting';
+import Reviews from '../components/RecipeDetailComponent/Reviews';
+import { toast, Toaster } from 'react-hot-toast';
 
 const RecipeDetail = () => {
 
@@ -16,11 +19,9 @@ const RecipeDetail = () => {
             .catch()
     }, [id])
 
-    console.log(recipe);
-
     return (
-        <>
-            {recipe && <div className='recipe-detail-container'>
+        <div className='recipe-detail-container'>
+            {recipe && <>
                 <div className="information">
                     <div className="recipe-info">
                         <p className="recipe-name">
@@ -52,7 +53,7 @@ const RecipeDetail = () => {
                     <div className="description">
                         <h3 className='h3-title'>Ingredients - {recipe.ingredients.length} </h3>
                         {recipe.ingredients && recipe.ingredients.map((ingredient, index) => (
-                            <p 
+                            <p
                                 className='p-content-detail'
                                 key={index}
                             >
@@ -73,8 +74,11 @@ const RecipeDetail = () => {
                         {/* <p className='p-content-detail'>{recipe.point}</p> */}
                     </div>
                 </div>
-            </div>}
-        </>
+                <Voting recipe={recipe} toast={toast} />
+                <Reviews recipe={recipe} toast={toast} />
+                <Toaster />
+            </>}
+        </div>
     )
 }
 

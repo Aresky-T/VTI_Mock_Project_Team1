@@ -35,3 +35,12 @@ export const updateAvatarApi = (data, token, dispatch) => {
     dispatch(updateAvatarStart());
     return axios.put(`${baseUrl}/profile/avatar`, data, config);
 }
+
+export const deleteAvatarApi = (userId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    return axios.put(`${baseUrl}/delete-avatar/${userId}`, config);
+}

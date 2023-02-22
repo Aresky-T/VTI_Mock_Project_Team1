@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfile, updateProfile } from "../../api/user.api";
+import {deleteAvatarApi, getProfile, updateProfile} from "../../api/user.api";
 import { MdEdit } from "react-icons/md";
 import { GoPrimitiveDot } from "react-icons/go";
 import { REGEX_PHONE } from "../../constant/Regex";
@@ -12,13 +12,12 @@ import Loading from "../Loading";
 import {
    uploadImageToCloudStart,
    uploadImageToCloudSuccess,
-   getProfileStart,
    getProfileSuccess,
    getProfileError,
-   updateProfileStart,
    updateProfileSuccess,
    updateProfileError
 } from "../../redux/user.slice";
+import AvatarDeleteConfirmPopup from "./AvatarDeleteConfirmPopup";
 
 function UserInfo() {
 
@@ -27,7 +26,6 @@ function UserInfo() {
    const profile = useSelector(state => state.user.user.data);
    const avatarUrl = useSelector(state => state.user.user.avatarUrl);
    const isLoading = useSelector(state => state.user.user.isLoading);
-   // const [profile, setProfile] = useState();
    const [firstName, setFirstName] = useState("");
    const [lastName, setLastName] = useState("");
    const [gender, setGender] = useState("");
@@ -44,6 +42,7 @@ function UserInfo() {
    const [updateAvatar, setUpdateAvatar] = useState(false);
    const [updated, setUpdated] = useState(false);
    const [showPopup, setShowPopup] = useState(false);
+   const [showDeleteAvatarPopup, setShowDeleteAvatarPopup] = useState(false);
    const avatarRef = useRef();
    const uploadRef = useRef();
 
@@ -90,7 +89,7 @@ function UserInfo() {
     * It uploads an image to cloudinary, then sets the avatar to the response data, then sets the
     * showPopup to true.
     */
-   function uploadImageCloudinary (formData, token) {
+   function uploadImageCloudinary(formData, token) {
       dispatch(uploadImageToCloudStart());
       uploadImageCloudinaryApi(formData, token)
          .then((response) => {
@@ -113,7 +112,6 @@ function UserInfo() {
       const formData = new FormData();
       formData.append("avatar", event.target.files[0]);
       const file = formData.get("avatar");
-      // const file = event.target.files[0];
       file.url = URL.createObjectURL(file);
       uploadImageCloudinary(file, currentUser.token);
       setUpdateAvatar(false);
@@ -204,7 +202,7 @@ function UserInfo() {
             dispatch(getProfileError("Getting profile failed!"))
             console.log(err);
          })
-   }, [currentUser])
+   }, [currentUser, showDeleteAvatarPopup])
 
    //------------------------------------Show or hidden upload avatar popup--------------------------
    useEffect(() => {
@@ -342,6 +340,14 @@ function UserInfo() {
                         <p>Your account has been activated!</p>
                      </dd>
                   </dl>
+                  <dl className="point">
+                     <dt>
+                        <label>Point</label>
+                     </dt>
+                     <dd>
+                        <p>Your point: <span>{profile.point?.point}</span></p>
+                     </dd>
+                  </dl>
                </div>
                <div className="update-profile-button">
                   <button
@@ -380,7 +386,9 @@ function UserInfo() {
                               onChange={e => handleChangeImage(e)}
                            />
                         </div>
-                        <div className="edit-picture-item remove">
+                        <div className="edit-picture-item remove"
+                           onClick={() => setShowDeleteAvatarPopup(true)}
+                        >
                            Remove photo
                         </div>
                      </div>}
@@ -394,6 +402,7 @@ function UserInfo() {
          />
          {showPopup && <AvatarUpdateConfirmPopup setShowPopup={setShowPopup} avatar={avatar} toast={toast} />}
          {isLoading && <Loading isLoading={isLoading} />}
+         {showDeleteAvatarPopup && <AvatarDeleteConfirmPopup setShowDeleteAvatarPopup={setShowDeleteAvatarPopup}/>}
       </div>
    );
 }

@@ -10,9 +10,16 @@ public interface IVotingService {
     Voting createVoting (VotingDTO votingDTO);
     // ------------- Update voting ----------------------------
 
-    void updateVoting(Recipe recipeId, VotingFormForUpdate form);
+    String updateVoting(VotingDTO votingDTO);
 
     // ------------- Delete voting ----------------------------
 
-    void deleteVoting(Recipe recipeId);
+    void deleteVoting(Integer recipeId, Integer userId);
+
+    Integer getStars (Integer userId, Integer recipeId);
+
+    Float getAverageStarsForRecipe (Integer recipeId);
+
+    Integer getAllUsersVotedForRecipe (Integer recipeId);
+
 }

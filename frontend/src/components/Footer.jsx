@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="footer-section">
         <p className="title">FoodRecipe.com</p>
         <p>
-          FoodRecipe is a place where you can please your soul and tummy with delicious food recepies of all cuisine. And our service is absolutely free. So start exploring now.
+          FoodRecipe is a place where you can please your soul and tummy with delicious food recipes of all cuisine. Let's start exploring now.
         </p>
         <p>&copy; 2023 | All Rights Reserved</p>
       </div>

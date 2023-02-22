@@ -35,4 +35,6 @@ public interface IUserService extends UserDetailsService {
     User updateUserAvatar(Integer userId, String avatar);
 
     void forgotPassword(String email);
+
+    String deleteAvatarForUser(Integer userId);
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import CustomImage from '../CustomImage'
 
-const HomeHeader = ({handleClickToScroll}) => {
+const HomeHeader = ({ handleClickToScroll }) => {
 
     const images = [
         "/img/gallery/img_1.jpg",
@@ -22,7 +22,7 @@ const HomeHeader = ({handleClickToScroll}) => {
                     What Are We About
                 </h1>
                 <p className="info">
-                FoodRecipe is a place where you can please your soul and tummy with delicious food recepies of all cuisine. And our service is absolutely free. So start exploring now.
+                    FoodRecipe is a place where you can please your soul and tummy with delicious food recipes of all cuisine. Let's start exploring now.
                 </p>
                 <button onClick={handleClickToScroll} className="btn-search-now">Search now</button>
             </div>

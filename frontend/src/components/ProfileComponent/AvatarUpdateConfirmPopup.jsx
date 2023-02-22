@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updateAvatarApi } from '../../api/user.api';
 import { updateAvatarSuccess } from '../../redux/user.slice';
 
-const AvatarUpdateConfirmPopup = ({ avatar, setShowPopup, toast}) => {
+const AvatarUpdateConfirmPopup = ({ avatar, setShowPopup, toast }) => {
 
     const currentUser = useSelector(state => state.auth.signIn.currentUser);
     const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const AvatarUpdateConfirmPopup = ({ avatar, setShowPopup, toast}) => {
                 toast.success("Avatar updated successfully!");
             })
             .then(() => {
-                setTimeout(() => {setShowPopup(false)}, 500);
+                setTimeout(() => { setShowPopup(false) }, 500);
             })
             .catch(err => {
                 toast.error("Update avatar failed!")
@@ -31,18 +31,18 @@ const AvatarUpdateConfirmPopup = ({ avatar, setShowPopup, toast}) => {
     }
 
     return (
-        <div className='avatar-update-confirm-popup'>
-            <div className='avatar-update-confirm'>
-                <div className="update-confirm-header">
+        <div className='confirm_popup'>
+            <div className='avatar-update'>
+                <div className="confirm-header">
                     <p>Confirm update your new profile picture</p>
                     <MdClose id='close-popup-btn'
                         onClick={() => setShowPopup(false)}
                     />
                 </div>
-                <div className="update-confirm-body">
+                <div className="confirm-body">
                     <img src={avatar} alt="" />
                 </div>
-                <div className="update-confirm-footer">
+                <div className="confirm-footer">
                     <button className="confirm-update"
                         onClick={() => confirmUpdateAvatar()}
                     >

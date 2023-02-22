@@ -26,23 +26,45 @@ public class VotingController {
     @Autowired
     private ModelMapper modelMapper;
 
+    @GetMapping
+    public ResponseEntity<?> getStars (@RequestParam Integer userId, @RequestParam Integer recipeId){
+        Integer stars = votingService.getStars(userId, recipeId);
+        if(stars == null){
+            return new ResponseEntity<>("You have never rated this recipe before!", HttpStatus.OK);
+        }
+        return new ResponseEntity<>(votingService.getStars(userId, recipeId), HttpStatus.OK);
+    }
+
+    @GetMapping("/average-stars/{recipeId}")
+    public ResponseEntity<?> getAverageStars(@PathVariable(name = "recipeId") Integer recipeId){
+        return new ResponseEntity<>(votingService.getAverageStarsForRecipe(recipeId), HttpStatus.OK);
+    }
+
+    @GetMapping("/all-users-voted/{recipeId}")
+    public ResponseEntity<?> getAllUsersVotedForRecipe(@PathVariable(name = "recipeId") Integer recipe){
+        return new ResponseEntity<>(votingService.getAllUsersVotedForRecipe(recipe), HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<?> createVoting (@RequestBody VotingDTO voting) {
         Voting obj = votingService.createVoting(voting);
+        if (obj == null) {
+            return new ResponseEntity<>("Failed", HttpStatus.OK);
+        }
         VotingDTO dto = modelMapper.map(obj, VotingDTO.class);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/{recipeId}")
-    public ResponseEntity<?> updateVoting(@PathVariable(name = "recipeId")Recipe recipe, VotingFormForUpdate form) {
-        votingService.updateVoting(recipe, form);
-        return new ResponseEntity<String>("Update Voting successfully!", HttpStatus.OK);
+    @PutMapping
+    public ResponseEntity<?> updateVoting(@RequestBody VotingDTO voting) {
+        String response = votingService.updateVoting(voting);
+        return new ResponseEntity<String>(response, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/{recipeId}")
-    public ResponseEntity<?> deleteVoting(@PathVariable(name = "recipeId") Recipe recipeId) {
-        votingService.deleteVoting(recipeId);
+    @DeleteMapping
+    public ResponseEntity<?> deleteVoting(@RequestParam(name = "recipeId") Integer recipeId,
+                                          @RequestParam(name = "userId") Integer userId) {
+        votingService.deleteVoting(recipeId, userId);
         return new ResponseEntity<String>("Delete Voting successfully!", HttpStatus.OK);
     }
 }

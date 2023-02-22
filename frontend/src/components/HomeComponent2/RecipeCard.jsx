@@ -14,6 +14,7 @@ const RecipeCard = ({ recipe }) => {
             <div className="recipe-card-info">
                 <img className="auther-img" src={recipe.creator.avatarUrl ? recipe.creator.avatarUrl : chefImage} alt="" />
                 <p className="recipe-title">{recipe.name}</p>
+                <p className="recipe-point">Point: {recipe.point}</p>
                 <p className="recipe-desc">Author: {recipe.creator.fullName}</p>
                 <Link className="view-btn" to={`recipe/${recipe.id}`}>VIEW RECIPE</Link>
             </div>

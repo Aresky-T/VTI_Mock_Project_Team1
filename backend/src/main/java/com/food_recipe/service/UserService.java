@@ -188,6 +188,22 @@ public class UserService implements IUserService {
 	}
 
 	@Override
+	public String deleteAvatarForUser (Integer userId) {
+		Boolean exists = userRepository.existsById(userId);
+		try {
+			if (Boolean.FALSE.equals(exists)) {
+				return "Deleted fail!";
+			}
+			User user = userRepository.findById(userId).get();
+			user.setAvatarUrl(null);
+			userRepository.save(user);
+			return "Delete avatar successfully!";
+		} catch (Exception e) {
+			return "Delete failed!";
+		}
+	}
+
+	@Override
 	public User updateUserAvatar(Integer userId, String avatar) {
 		Boolean userExists = userRepository.existsById(userId);
 		if (!userExists) {
