@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { signInUser } from '../../api/auth.api'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
-import { signInEnd, signInSuccess, clearRedux } from '../../redux/auth.slice'
+import { signInEnd, signInSuccess, clearRedux, hiddenSignInPopup} from '../../redux/auth.slice'
 import Loading from '../Loading'
 import swal from 'sweetalert'
 import * as yup from 'yup'
 
-const ModalLogin = ({ setShowModal }) => {
+const ModalLogin = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const isLoading = useSelector(state => state.auth.signIn.isLoading);
     const errorMessage = useSelector(state => state.auth.signIn.signInErrorMessage)
     const navigate = useNavigate();
     const dispatch = useDispatch()
+    const location = useLocation();
 
     if(errorMessage){
         setTimeout(() => {
@@ -24,8 +25,10 @@ const ModalLogin = ({ setShowModal }) => {
     }
 
     const closeModal = () => {
-        setShowModal(false);
-        navigate(-1);
+        dispatch(hiddenSignInPopup());
+        if(location.pathname === "/create-recipe"){
+            navigate(-1);
+        }
     }
 
     const onClickToSignIn = () => {
@@ -42,10 +45,8 @@ const ModalLogin = ({ setShowModal }) => {
             password: yup.string().required("required")
         }),
         onSubmit: (values) => {
-            console.log(values);
             signInUser(values, dispatch)
                 .then((account) => {
-                    console.log(account);
                     if (!account.token) {
                         dispatch(signInEnd());
                         const warning = "Your account is not active. Please check your email to activate account!"
@@ -58,7 +59,7 @@ const ModalLogin = ({ setShowModal }) => {
                     } else {
                         localStorage.setItem("userLoggedIn", JSON.stringify(account));
                         dispatch(signInSuccess(account));
-                        setShowModal(false);
+                        dispatch(hiddenSignInPopup())
                     }
                 })
                 .catch((err) => {
@@ -73,7 +74,7 @@ const ModalLogin = ({ setShowModal }) => {
                 className='modal-container'
             >
                 <div className='modal-header'>
-                    You must login if you want to create a recipe
+                    SIGN IN
                 </div>
                 <div className='modal-body'>
                     <div>

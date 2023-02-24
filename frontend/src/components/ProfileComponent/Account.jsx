@@ -45,8 +45,7 @@ const Account = () => {
       </div> */}
       <div className="change-password">
         <div className='change-password-top'>
-          Change password
-          <hr />
+          <h3>Change password</h3>
         </div>
         <form className='change-password-bottom'
           onSubmit={passFormik.handleSubmit}

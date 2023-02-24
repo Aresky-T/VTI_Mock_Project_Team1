@@ -81,7 +81,7 @@ public class RecipeService implements IRecipeService {
         recipe.setImageUrl(form.getImageUrl());
         recipe.setProcessingSteps(form.getProcessingSteps());
         recipe.setNote(form.getNote());
-        recipe.setPoint(form.getPoints());
+        recipe.setPoint(form.getPoint());
         recipeRepository.save(recipe);
     }
 

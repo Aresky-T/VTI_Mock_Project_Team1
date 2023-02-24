@@ -1,5 +1,4 @@
 .profile-container {
-    
     .profile-header {
         display: flex;
         flex-direction: column;
@@ -15,14 +14,15 @@
                 border: 1px solid #ccc;
                 border-radius: 10px;
                 color: var(--text-color);
-                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+                    "Open Sans", "Helvetica Neue", sans-serif;
 
                 &:hover {
                     // color: var(--primary-color);
-                    box-shadow: 0 0 5px rgba($color: #000000, $alpha: .3);
+                    box-shadow: 0 0 5px rgba($color: #000000, $alpha: 0.3);
                 }
 
-                .profile-icon{
+                .profile-icon {
                     margin-right: 10px;
                 }
             }
@@ -38,11 +38,12 @@
         margin-top: 50px;
         border: 1px dashed #ccc;
         border-radius: 10px;
-        padding: 20px;
+        padding: 0 50px 50px;
         min-height: 500px;
 
-        .confirm_popup{
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        .confirm_popup {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+                "Open Sans", "Helvetica Neue", sans-serif;
             position: fixed;
             top: 0;
             left: 0;
@@ -66,7 +67,7 @@
                 cursor: pointer;
 
                 &:hover {
-                    background-color: #0969DA;
+                    background-color: #0969da;
                 }
             }
         }
@@ -74,11 +75,11 @@
 
     .profile-body.information {
         padding: 50px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+            "Open Sans", "Helvetica Neue", sans-serif;
         display: flex;
         justify-content: space-between;
         .profile-left {
-
             .profile-left-top {
                 padding-bottom: 8px;
                 border-bottom: 1px solid #ccc;
@@ -87,7 +88,8 @@
                 h3 {
                     font-size: 24px;
                     line-height: 36px;
-                    font-weight: 400;
+                    font-weight: 500;
+                    user-select: none;
                 }
             }
 
@@ -102,7 +104,7 @@
                     padding: 5px 10px;
                     border: 1px solid #ccc;
                     border-radius: 7px;
-                    outline-color: #0969DA;
+                    outline-color: #0969da;
                     color: #494949;
                     font-size: 12px;
                 }
@@ -119,7 +121,7 @@
                     // margin-left: 30px;
                 }
 
-                dd>.validate-err {
+                dd > .validate-err {
                     font-size: 12px;
                     color: red;
                     // text-align: center;
@@ -145,7 +147,7 @@
                     p.birth-date-data {
                         font-size: 12px;
                         margin-bottom: 20px;
-                        
+
                         span {
                             border: 1px solid #e4dddd;
                             padding: 5px;
@@ -173,20 +175,21 @@
                         margin-left: 10px;
                         padding: 5px;
                         cursor: pointer;
-                        outline-color: #0969DA;
+                        outline-color: #0969da;
                         border: 1px solid #ccc;
                         border-radius: 5px;
                     }
                 }
 
-                .status, .point {
+                .status,
+                .point {
                     p {
                         font-size: 12px;
                         margin-bottom: 10px;
                         span {
                             font-size: 16px;
                             font-weight: 600;
-                            color: var(--primary-color)
+                            color: var(--primary-color);
                         }
                     }
                 }
@@ -218,7 +221,6 @@
         }
 
         .profile-right {
-
             .profile-picture-title {
                 font-size: 14px;
                 font-weight: 600;
@@ -232,7 +234,7 @@
                 overflow: hidden;
                 width: 150px;
                 height: 150px;
-                
+
                 img {
                     width: 100%;
                     height: 100%;
@@ -259,7 +261,8 @@
                     vertical-align: middle;
                     position: relative;
 
-                    &:hover, &:active {
+                    &:hover,
+                    &:active {
                         background-color: var(--primary-color);
                         color: #fff;
                         border-color: var(--primary-color);
@@ -280,9 +283,9 @@
                         padding: 5px 15px;
                         font-size: 14px;
                         white-space: nowrap;
-                        
+
                         &:hover {
-                            background-color: #0969DA;
+                            background-color: #0969da;
                             color: #fff;
                         }
                     }
@@ -295,7 +298,8 @@
         }
 
         .confirm_popup {
-            .avatar-update, .avatar-delete{
+            .avatar-update,
+            .avatar-delete {
                 border-radius: 7px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
                 width: 400px;
@@ -308,7 +312,7 @@
                 align-items: center;
                 transform: translateY(0);
                 opacity: 1;
-                animation: dropdownAnimation .5s 1 alternate;
+                animation: dropdownAnimation 0.5s 1 alternate;
 
                 button {
                     cursor: pointer;
@@ -324,7 +328,7 @@
                     font-weight: 550;
                     color: #24242f;
                     background-color: #f6f8fa;
-                    border-bottom: 1px solid #D0D7DE;
+                    border-bottom: 1px solid #d0d7de;
                     border-radius: 6px 6px 0 0;
 
                     #close-popup-btn {
@@ -332,7 +336,7 @@
                         font-size: 20px;
 
                         &:hover {
-                            color: #0969DA;
+                            color: #0969da;
                         }
                     }
                 }
@@ -360,11 +364,10 @@
                     width: 100%;
                     padding: 16px;
                     background-color: #f6f8fa;
-                    border-top: 1px solid #D0D7DE;
+                    border-top: 1px solid #d0d7de;
                     border-radius: 0 0 6px 6px;
                 }
             }
-
             .avatar-delete {
                 height: 50px;
             }
@@ -374,72 +377,22 @@
     .profile-body.account {
         padding: 50px;
         margin-bottom: 20px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
-        hr {
-            margin-top: 15px;
-            border-top: 1px dashed #ccc;
-        }
-        
-        .change-username {
-            display: flex;
-            flex-direction: column;
-            min-height: 100px;
-            justify-content: space-between;
-            margin-bottom: 30px;
-
-            &-top {
-                user-select: none;
-                font-size: 24px;
-                line-height: 36px;
-                font-weight: 500;
-            }
-
-            &-bottom {
-                margin-top: 20px;
-                padding-left: 30px;
-                border-left: 3px solid var(--primary-color);
-
-                p.change-username-warning {
-                    font-size: 12px;
-                    line-height: 18px;
-                    color: #57606a;
-                    margin-bottom: 20px;
-                }
-
-                .change-username-btn {
-                    background-color: transparent;
-                    color:#24292F;
-                    font-weight: 500;
-                    font-size: 14px;
-                    line-height: 20px;
-                    padding: 5px 16px;
-                    outline: none;
-                    border: 1px solid #ccc;
-                    border-radius: 6px;
-                    vertical-align: middle;
-                    white-space: nowrap;
-                    user-select: none;
-                    text-align: center;
-                    cursor: pointer;
-
-                    &:hover,  &:active {
-                        background-color: var(--primary-color);
-                        color: #fff;
-                        border-color: var(--primary-color)
-                    }
-                }
-            }
-        }
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+            "Open Sans", "Helvetica Neue", sans-serif;
 
         .change-password {
             min-height: 300px;
 
             &-top {
-                user-select: none;
-                font-size: 24px;
-                line-height: 36px;
-                font-weight: 500;
+                border-bottom: 1px solid #ccc;
+                padding-bottom: 8px;
+
+                h3 {
+                    user-select: none;
+                    font-size: 24px;
+                    line-height: 36px;
+                    font-weight: 500;
+                }
             }
 
             &-bottom {
@@ -449,7 +402,7 @@
 
                 .update-password-btn {
                     background-color: transparent;
-                    color:#24292F;
+                    color: #24292f;
                     font-weight: 500;
                     font-size: 14px;
                     line-height: 20px;
@@ -463,10 +416,11 @@
                     text-align: center;
                     cursor: pointer;
 
-                    &:hover,  &:active {
+                    &:hover,
+                    &:active {
                         background-color: var(--primary-color);
                         color: #fff;
-                        border-color: var(--primary-color)
+                        border-color: var(--primary-color);
                     }
                 }
 
@@ -480,19 +434,19 @@
                     input {
                         padding: 5px 12px;
                         width: 440px;
-                        border: 1px solid #D0D7DE;
+                        border: 1px solid #d0d7de;
                         border-radius: 5px;
                         outline: none;
 
                         &:focus {
-                            border: 2px solid #0969DA;
+                            border: 2px solid #0969da;
                         }
                     }
 
                     label {
                         font-size: 14px;
                         font-weight: 600;
-                        color : #24292F;
+                        color: #24292f;
                     }
                 }
 
@@ -503,12 +457,12 @@
                     margin-bottom: 20px;
                 }
 
-                .password>label {
+                .password > label {
                     margin-bottom: 5px;
-                    color: var(--text-color)
+                    color: var(--text-color);
                 }
 
-                .password>.error-message {
+                .password > .error-message {
                     font-size: 12px;
                     color: rgb(212, 0, 0);
                     margin-top: 5px;
@@ -518,15 +472,16 @@
                     margin-bottom: 15px;
                 }
 
-                .show-password{
+                .show-password {
                     display: flex;
                     align-items: center;
                     margin-bottom: 20px;
 
-                    input, label {
+                    input,
+                    label {
                         cursor: pointer;
                     }
-                    
+
                     label {
                         font-size: 12px;
                         margin-left: 6px;
@@ -553,8 +508,9 @@
             align-items: center;
             transform: translateY(0);
             opacity: 1;
-            animation: dropdownAnimation .5s 1 alternate;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            animation: dropdownAnimation 0.5s 1 alternate;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+                "Open Sans", "Helvetica Neue", sans-serif;
 
             .password-update-top {
                 display: flex;
@@ -567,7 +523,7 @@
                 font-weight: 550;
                 color: #24242f;
                 background-color: #f6f8fa;
-                border-bottom: 1px solid #D0D7DE;
+                border-bottom: 1px solid #d0d7de;
                 border-radius: 6px 6px 0 0;
 
                 #close-popup-btn {
@@ -575,7 +531,7 @@
                     font-size: 20px;
 
                     &:hover {
-                        color: #0969DA;
+                        color: #0969da;
                     }
                 }
 
@@ -594,6 +550,264 @@
             }
         }
     }
+
+    .profile-body.recipes-management {
+        min-height: 300px;
+
+        div.recipe-image {
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+
+            img {
+                width: 50%;
+                height: 100%;
+                border: 2px solid #ccc;
+                border-radius: 5px;
+            }
+        }
+
+        span.row-recipe-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            text-align: center;
+            transition: all 0.1s linear;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #ccc;
+                box-shadow: 0 0 5px 5px rgba(103, 103, 103, 0.3) inset;
+                svg {
+                    color: var(--text-color);
+                }
+            }
+        }
+
+        span.row-recipe-name {
+            text-overflow: ellipsis;
+        }
+
+        .recipes-manage-top {
+            margin-bottom: 20px;
+            padding-top: 50px;
+            border-bottom: 1px solid #ccc;
+
+            h3 {
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+                    "Open Sans", "Helvetica Neue", sans-serif;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 36px;
+                user-select: none;
+                padding-bottom: 8px;
+            }
+        }
+
+        .confirm_popup.recipe-update{
+            .confirm_popup_wrapper{
+                margin: 80px 320px;
+                width: 900px;
+                height: 600px;
+                background-color: #fff;
+                border-radius: 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                .confirm_popup_header {
+                    width: 100%;
+                    height: 60px;
+                    padding: 0 21px;
+                    border-radius: 5px 5px 0 0;
+                    border-bottom: 1px solid #ccc;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    h2 {
+                        font-weight: 500;
+                        line-height: 26px;
+                        font-size: 20px;
+                    }
+
+                    .btn-close-popup{
+                        cursor: pointer;
+                        width: 35px;
+                        height: 35px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        &:hover {
+                            background-color: #ccc;
+                            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) inset;
+                        }
+                    }
+                }
+
+                .confirm_popup_body {
+                    width: 100%;
+                    height: calc(100% - 60px * 2);
+                    padding: 21px;
+                    display: flex;
+                    flex-direction: row;
+                    background-color: #ebebeb;
+
+                    .image-update{
+                        margin-right: 30px;
+                        height: 100%;
+                        background-color: #ebebeb;
+                        
+                        &>div {
+                            overflow: hidden;
+                            border: 3px solid #ccc;
+                            width: 300px;
+                            height: 80%;
+                            margin-bottom: 20px;
+
+                            img {
+                                object-fit: cover;
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                    }
+
+                    form#update-recipe-form {
+                        width: 100%;
+                        min-height: 100%;
+                        overflow-y: scroll;
+                        background-color: #ffffff;
+
+                        .form-input{
+                            display: flex;
+                            flex-direction: column;
+
+                            .text-div {
+                                padding: 15px;
+                                width: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                background-color: #ccc;
+                                position: relative;
+
+                                label {
+                                    padding-bottom:10px;
+                                    font-size: 15px;
+                                    font-weight: 550;
+                                    color: #707070;
+                                }
+
+                                input, textarea {
+                                    padding: 20px 10px;
+                                    outline: none;
+                                    border-radius: 5px;
+                                    border: none;
+                                    font-family: 'Times New Roman', Times, serif;
+                                    &:focus {
+                                        outline: 1px solid var(--primary-color);
+                                    }
+                                }
+
+                                textarea {
+                                    font-feature-settings: normal;
+                                    font-style: normal;
+                                    line-break: auto;
+                                    overflow-wrap: normal;
+                                    transition-property: color, background, border;
+                                    transition-duration: 200ms;
+                                    transition-timing-function: ease-in;
+                                    background-color: rgb(255, 255, 255);
+                                    color: rgb(117, 117, 117);
+                                    max-width: 100%;
+                                    resize: none;
+                                    overflow: auto;
+                                }
+
+                                .error-btn{
+                                    position: absolute;
+                                    top: 50px;
+                                    right: 25px;
+                                    color: red;
+                                }
+                            }
+                        }
+
+                        &::-webkit-scrollbar {
+                            width: 9px;
+                            background-color: #e7e7e7;
+                        }
+    
+                        &::-webkit-scrollbar-thumb {
+                            background-color: #ababab;
+                        }
+                    }
+                }
+
+                .confirm_popup_footer{
+                    width: 100%;
+                    height: 60px;
+                    padding: 0 21px;
+                    border-radius: 0 0 5px 5px;
+                    border-top: 1px solid #ccc;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+
+
+                    button.confirm-update-recipe{
+                        padding: 8px 25px;
+                        border-radius: 6px;
+                        border: none;
+                        outline: none;
+                        font-weight: 550;
+                        cursor: pointer;
+                        background-color: var(--primary-color);
+                        color: #fff;
+
+                        &:hover {
+                            background-color: #ffffff;
+                            outline: 1px solid #ccc;
+                            color: #000000;
+                            box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.3);
+                        }
+
+                        &:active{
+                            box-shadow: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.MuiTableHead-root > tr.MuiTableRow-head {
+    th {
+        background-color: #ccc;
+        color: var(--text-color);
+        font-weight: 550;
+    }
+}
+
+.MuiPaper-root {
+    th,
+    td {
+        user-select: none;
+    }
+}
+
+.css-1q1u3t4-MuiTableRow-root:hover {
+    background-color: #eeeeee;
 }
 
 @media screen and (max-width: 1140px) {
@@ -602,13 +816,21 @@
             .profile-header-links {
                 flex-direction: column;
                 align-items: flex-start;
-                 .profile-link {
+                .profile-link {
                     // width: 250px;
                     margin-bottom: 15px;
                     text-align: left;
                     vertical-align: middle;
-                 }
+                }
             }
         }
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .confirm_popup_body{
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
     }
 }

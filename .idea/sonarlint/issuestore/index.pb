@@ -19,3 +19,9 @@ r
 Bbackend/src/main/java/com/food_recipe/config/AppConfiguration.java,f\a\fac6a1a4466beda295ad7e696c6f3fbd2bf86ab7
 ?
 backend/pom.xml,f\9\f9590cd73598b6f2427c8b1327d922c50d1dc504
+w
+Gbackend/src/main/java/com/food_recipe/controller/CommentController.java,0\d\0de206625356e515c5c222790786b31124e20181
+t
+Dbackend/src/main/java/com/food_recipe/repository/UserRepository.java,a\a\aac425084911980e70856c78cfdd19d9e2767b68
+t
+Dbackend/src/main/java/com/food_recipe/controller/UserController.java,2\b\2bae81cdba2271f3c7225c7846b3964a7dff08fd

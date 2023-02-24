@@ -1,18 +1,19 @@
 import React from 'react'
 import { MdClose } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
-import {deleteAvatarApi, updateAvatarApi} from '../../api/user.api';
+import {deleteAvatarApi} from '../../api/user.api';
 import { updateAvatarSuccess } from '../../redux/user.slice';
 import {toast} from "react-hot-toast";
 
 const AvatarUpdateConfirmPopup = ({setShowDeleteAvatarPopup}) => {
 
     const currentUser = useSelector(state => state.auth.signIn.currentUser);
+    const dispatch = useDispatch();
 
     function handleDeleteAvatar() {
         deleteAvatarApi(currentUser.id, currentUser.token)
             .then(res => {
-                console.log(res.data);
+                dispatch(updateAvatarSuccess(null));
                 setTimeout(() => {setShowDeleteAvatarPopup(false)}, 200);
             })
             .then(() => {

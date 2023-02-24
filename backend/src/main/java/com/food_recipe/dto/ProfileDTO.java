@@ -1,82 +1,56 @@
 package com.food_recipe.dto;
 
-import com.food_recipe.entity.UserGender;
-import com.food_recipe.validation.EmailNotUnique;
-import org.hibernate.validator.constraints.Length;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
+import com.food_recipe.entity.UserGender;
+import com.food_recipe.entity.UserStatus;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class ProfileDTO {
-
 	private String username;
-
-
 	private String email;
-
-	private String firstName;
-
-	private String lastName;
-
-	@Past
-	private LocalDate birthDate;
-
-	private UserGender gender;
-
-	private String phone;
-
-	private String status;
-
 	private String avatarUrl;
+	private String firstName;
+	private String lastName;
+	private LocalDate birthDate;
+	private UserGender gender;
+	private String phone;
+	private UserStatus status;
+	private PointDTO point;
+	private List<UserDTO.RecipeDTO> recipes;
 
-
-	public ProfileDTO(String username, String email, String firstName, String lastName, LocalDate birthDate, UserGender gender, String phone, String status, String avatarUrl) {
-		this.username = username;
-		this.email = email;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.birthDate = birthDate;
-		this.gender = gender;
-		this.phone = phone;
-		this.status = status;
-		this.avatarUrl = avatarUrl;
+	@Data
+	@NoArgsConstructor
+	static class PointDTO {
+		private Integer point;
 	}
 
-	public String getUsername() {
-		return username;
-	}
+	@Data
+	@NoArgsConstructor
+	static class RecipeDTO {
+		private Integer id;
 
-	public String getEmail() {
-		return email;
-	}
+		private String name;
 
-	public String getFirstName() {
-		return firstName;
-	}
+		private String description;
 
-	public String getLastName() {
-		return lastName;
-	}
+		private String imageUrl;
 
-	public LocalDate getBirthDate() {
-		return birthDate;
-	}
+		private String processingSteps;
 
-	public UserGender getGender() {
-		return gender;
-	}
+		private String note;
 
-	public String getPhone() {
-		return phone;
-	}
+		private Integer point;
 
-	public String getStatus() {
-		return status;
-	}
+		private Integer views;
 
-	public String getAvatarUrl() {
-		return avatarUrl;
+		private Date createDate;
+
 	}
 }

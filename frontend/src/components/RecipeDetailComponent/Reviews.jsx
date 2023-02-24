@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createCommentApi, getCommentsApi } from '../../api/comment.api';
-import { IoMdArrowDropup } from 'react-icons/io';
-import { userImage } from '../../constant/Image';
 import ReviewType from './ReviewType';
+import { showSignInPopup } from '../../redux/auth.slice';
+import { compareDate } from '../../utils/compare';
 
-const Reviews = ({ recipe, toast }) => {
+const Reviews = ({ recipe, toast, toggleScroll }) => {
 
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState([]);
   const [currentUserList, setCurrentUserList] = useState([]);
   const [otherUserList, setOtherUserList] = useState([]);
   const currentUser = useSelector(state => state.auth.signIn.currentUser);
+  const dispatch = useDispatch();
   let commentValid = comment.trim().length;
 
   const handleChangeComment = (event) => {
@@ -33,9 +34,9 @@ const Reviews = ({ recipe, toast }) => {
           }
         });
 
-        setComments(list)
-        setCurrentUserList([...list1])
-        setOtherUserList([...list2])
+        setComments([...list].sort(compareDate("updateDate", "desc")))
+        setCurrentUserList([...list1].sort(compareDate("updateDate", "desc")))
+        setOtherUserList([...list2].sort(compareDate("updateDate", "desc")))
       })
       .catch(err => {
         console.log(err)
@@ -44,52 +45,54 @@ const Reviews = ({ recipe, toast }) => {
 
   async function handleSubmitComment(e) {
     e.preventDefault();
-
-    const data = {
-      userId: currentUser.id,
-      recipeId: recipe.id,
-      comment: comment
-    };
-
-    await createCommentApi(data, currentUser.token)
-      .then(res => {
-        if (res.data === "This comment already existed!") {
-          toast.error('You have commented before!',
-            {
-              style: {
-                fontSize: '13px',
-                borderRadius: '15px',
-                background: '#333',
-                color: '#fff',
-              },
-            }
-          );
-        } else {
-          toast('Comment successfully!',
-            {
-              icon: '✅',
-              style: {
-                borderRadius: '10px',
-                background: '#333',
-                color: '#fff',
-              },
-            }
-          );
-        }
-      })
-      .then(() => {
-        getComments(recipe);
-      })
-      .catch(err => {
-        toast.error('Comment Failed!');
-      })
-
+    if(currentUser){
+      const data = {
+        userId: currentUser.id,
+        recipeId: recipe.id,
+        comment: comment
+      };
+    
+      await createCommentApi(data, currentUser.token)
+        .then(res => {
+          if (res.data === "This comment already existed!") {
+            toast.error('You have commented before!',
+              {
+                style: {
+                  fontSize: '13px',
+                  borderRadius: '15px',
+                  background: '#333',
+                  color: '#fff',
+                },
+              }
+            );
+          } else {
+            toast('Comment successfully!',
+              {
+                icon: '✅',
+                style: {
+                  borderRadius: '10px',
+                  background: '#333',
+                  color: '#fff',
+                },
+              }
+            );
+          }
+        })
+        .then(() => {
+          getComments(recipe);
+        })
+        .catch(err => {
+          toast.error('Comment Failed!');
+        }) 
+    } else {
+      dispatch(showSignInPopup());
+    }
     setComment('');
   }
 
   useEffect(() => {
     recipe && getComments(recipe);
-  }, [recipe])
+  }, [recipe, currentUser])
 
   return (
     <div className='reviews'>
@@ -112,7 +115,7 @@ const Reviews = ({ recipe, toast }) => {
       </form>
       {currentUser &&
         <>
-          <ReviewType list={currentUserList} label="Your" recipe={recipe}/>
+          <ReviewType list={currentUserList} label="Your" recipe={recipe} toggleScroll={toggleScroll}/>
           <ReviewType list={otherUserList} label="Other" />
         </>
       }

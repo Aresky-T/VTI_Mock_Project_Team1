@@ -13,8 +13,13 @@ import UserInfo from "./components/ProfileComponent/UserInfo";
 import Account from "./components/ProfileComponent/Account";
 import RecipeManagement from "./components/ProfileComponent/RecipeManagement";
 import ExchangeHistory from "./components/ProfileComponent/ExchangeHistory";
+import { useSelector } from "react-redux";
+import ModalLogin from "./components/auth/ModalLogin";
 
 const App = () => {
+
+   const isShowPopup = useSelector(state => state.auth.signIn.isShowPopup);
+
    return (
       <Router>
          <Navbar />
@@ -38,6 +43,7 @@ const App = () => {
             </Routes>
          </div>
          <Footer/>
+         {isShowPopup && <ModalLogin/>}
       </Router>
    );
 };

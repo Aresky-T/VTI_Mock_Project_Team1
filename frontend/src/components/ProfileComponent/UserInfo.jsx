@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {deleteAvatarApi, getProfile, updateProfile} from "../../api/user.api";
+import { getProfile, updateProfile } from "../../api/user.api";
 import { MdEdit } from "react-icons/md";
 import { GoPrimitiveDot } from "react-icons/go";
 import { REGEX_PHONE } from "../../constant/Regex";
@@ -402,7 +402,7 @@ function UserInfo() {
          />
          {showPopup && <AvatarUpdateConfirmPopup setShowPopup={setShowPopup} avatar={avatar} toast={toast} />}
          {isLoading && <Loading isLoading={isLoading} />}
-         {showDeleteAvatarPopup && <AvatarDeleteConfirmPopup setShowDeleteAvatarPopup={setShowDeleteAvatarPopup}/>}
+         {showDeleteAvatarPopup && <AvatarDeleteConfirmPopup setShowDeleteAvatarPopup={setShowDeleteAvatarPopup} />}
       </div>
    );
 }

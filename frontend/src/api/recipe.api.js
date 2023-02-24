@@ -23,8 +23,17 @@ export const createRecipeIngredient = async (dataObj, tokenUser) => {
     return await axios.post(`${baseURL}/recipe-ingredient`, dataObj, config);
 }
 
-export const getRecipeDetail = async (id) => {
-    return axios.get(`${baseURL}/recipes/${id}`);
+export const getRecipeDetailBeforeLoginApi = async (id) => {
+    return axios.get(`${baseURL}/recipes/before-login/${id}`);
+}
+
+export const getRecipeDetailAfterLoginApi = async (id, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    return axios.get(`${baseURL}/recipes/after-login/${id}`, config);
 }
 
 export const getAllRecipes = async (search, page, size) => {

@@ -1,3 +1,6 @@
+--
+-- DATABASE ACTION
+--
 DROP DATABASE IF EXISTS `MockProjectDB_Team1`;
 CREATE DATABASE `MockProjectDB_Team1`;
 USE `MockProjectDB_Team1`;
@@ -40,7 +43,7 @@ CREATE TABLE `recipe` (
   `create_date` DATETIME NOT NULL DEFAULT NOW(),
   PRIMARY KEY (`id`),
   UNIQUE KEY  (`name`),
-  FOREIGN KEY (`creator_id`) REFERENCES `user` (`id`)
+  FOREIGN KEY (`creator_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 );
 
 --
@@ -55,7 +58,7 @@ CREATE TABLE `recipe_ingredient` (
   `unit` 	VARCHAR(50) NOT NULL,
   `recipe_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`)
+  FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`) ON DELETE CASCADE
 );
 
 --
@@ -70,8 +73,8 @@ CREATE TABLE `comment` (
   `create_date` datetime NOT NULL DEFAULT NOW(),
   `update_date` datetime NULL,
   PRIMARY KEY (`recipe_id`,`user_id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`)
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`) ON DELETE CASCADE
 );
 
 --
@@ -84,7 +87,7 @@ CREATE TABLE `point` (
   `point` 	int NOT NULL DEFAULT '0',
   `user_id` int NOT NULL UNIQUE,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 );
 
 --
@@ -97,8 +100,8 @@ CREATE TABLE `recipe_exchange_history` (
   `user_id` 	INT NOT NULL,
   `exchange_date` DATETIME NOT NULL DEFAULT NOW(),
   PRIMARY KEY (`recipe_id`,`user_id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`)
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`) ON DELETE CASCADE
 );
 
 --
@@ -112,8 +115,8 @@ CREATE TABLE `voting` (
   `create_date` datetime(6) NOT NULL,
   `stars` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`recipe_id`,`user_id`),
-  FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 );
 
 --
@@ -128,7 +131,7 @@ CREATE TABLE `registration_user_token` (
   `expiry_date` datetime NOT NULL,
   PRIMARY KEY (`token_id`),
   UNIQUE KEY  (`token`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 );
 
 --
@@ -143,5 +146,5 @@ CREATE TABLE `reset_password_token` (
   `expiry_date` datetime NOT NULL,
   PRIMARY KEY (`reset_id`),
   UNIQUE KEY  (`token`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 );

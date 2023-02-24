@@ -1,14 +1,17 @@
-import React, {useState, useEffect} from 'react';
-import {MdClose} from "react-icons/md";
-import {useSelector} from "react-redux";
-import {updateCommentApi} from "../../api/comment.api";
-import {Toaster, toast} from "react-hot-toast";
+import React, { useState } from 'react';
+import { MdClose } from "react-icons/md";
+import { useSelector, useDispatch } from "react-redux";
+import { updateCommentApi } from "../../api/comment.api";
+import { toast } from "react-hot-toast";
+import { updateTime } from '../../redux/realtime.slice';
 
 
-const UpdateReviewPopup = ({setShowPopup, comment, recipe}) => {
+const UpdateReviewPopup = ({ setShowPopup, comment, recipe }) => {
 
     const [newComment, setNewComment] = useState(comment);
     const currentUser = useSelector(state => state.auth.signIn.currentUser)
+    const dispatch = useDispatch();
+    
     let commentValid = newComment.trim().length
 
     const handleChangeNewComment = (e) => {
@@ -21,16 +24,14 @@ const UpdateReviewPopup = ({setShowPopup, comment, recipe}) => {
             comment: newComment
         }, currentUser.token)
             .then((res) => {
-                console.log(res)
                 toast.success(res.data);
-                setTimeout(() => {setShowPopup(false)}, 200)
+                dispatch(updateTime());
+                setTimeout(() => { setShowPopup(false) }, 200)
             })
             .catch(err => {
                 toast.error("Update failed!")
             })
     }
-
-    console.log(recipe)
 
     return (
         <div className='confirm_popup'>
@@ -38,7 +39,7 @@ const UpdateReviewPopup = ({setShowPopup, comment, recipe}) => {
                 <div className="update-confirm-header">
                     <p>Confirm update your review</p>
                     <MdClose id='close-popup-btn'
-                             onClick={() => setShowPopup(false)}
+                        onClick={() => setShowPopup(false)}
                     />
                 </div>
                 <div className="update-confirm-body">
@@ -53,8 +54,8 @@ const UpdateReviewPopup = ({setShowPopup, comment, recipe}) => {
                 </div>
                 <div className="update-confirm-footer">
                     <button className="confirm-update"
-                            onClick={() => confirmUpdateComment()}
-                            style={commentValid < 1 ? {pointerEvents: "none", background: "#ccc"} : {pointerEvents: "auto"}}
+                        onClick={() => confirmUpdateComment()}
+                        style={commentValid < 1 ? { pointerEvents: "none", background: "#ccc" } : { pointerEvents: "auto" }}
                     >
                         Set new profile picture
                     </button>
@@ -64,4 +65,4 @@ const UpdateReviewPopup = ({setShowPopup, comment, recipe}) => {
     )
 }
 
-export default  UpdateReviewPopup;
+export default UpdateReviewPopup;

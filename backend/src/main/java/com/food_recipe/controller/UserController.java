@@ -120,7 +120,7 @@ public class UserController {
 
 		// get user info
 		User user = userService.findUserByUsername(username);
-		UserDTO dto = modelMapper.map(user, UserDTO.class);
+		ProfileDTO dto = modelMapper.map(user, ProfileDTO.class);
 		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
 
@@ -132,7 +132,7 @@ public class UserController {
 		String username = authentication.getName();
 
 		User user = userService.ChangePublicProfileDTO(username, dto);
-		UserDTO profile = modelMapper.map(user, UserDTO.class);
+		ProfileDTO profile = modelMapper.map(user, ProfileDTO.class);
 
 		return new ResponseEntity<>(profile, HttpStatus.OK);
 	}

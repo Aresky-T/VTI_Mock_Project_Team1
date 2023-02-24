@@ -3,12 +3,14 @@ import authReducer from "./auth.slice";
 import settingsReducer from "./settings.slice";
 import recipesReducer from "./recipes.slide";
 import userReducer from "./user.slice";
+import timeReducer from "./realtime.slice";
 
 const rootReducer = {
    auth: authReducer,
    settings: settingsReducer,
    recipes: recipesReducer,
-   user: userReducer
+   user: userReducer,
+   time: timeReducer
 };
 
 const store = configureStore({

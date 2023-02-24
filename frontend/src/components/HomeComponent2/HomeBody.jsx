@@ -10,7 +10,7 @@ const HomeBody = (props, ref) => {
   const [search, setSearch] = useState('');
   const [totalPage, setTotalPage] = useState(0);
   const [pageId, setPageId] = useState(1);
-  const itemsPerPage = 3;
+  const itemsPerPage = 9;
 
   function getAllRecipesForShow() {
     getAllRecipes(search, pageId, itemsPerPage)

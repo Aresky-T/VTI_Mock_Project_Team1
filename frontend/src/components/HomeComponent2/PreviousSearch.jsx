@@ -2,21 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
 
-const PreviousSearch = ({search, setSearch}) => {
+const PreviousSearch = ({ search, setSearch }) => {
 
-    const searches = ['pizza', 'burger', 'cookies', 'juice', 'biriyani', 'salad', 'ice cream', 'lasagna', 'pudding', 'soup'];    
-    const [ text, setText ] = useState(search);
+    const searches = ['pizza', 'kẹo', 'cơm', 'bún', 'thịt', 'Súp'];
+    const [text, setText] = useState(search);
 
-    function handleChangeSearch (text) {
+    function handleChangeSearch(text) {
         setSearch(text);
     }
 
     useEffect(() => {
-        if(text.length < 1) {
+        if (text.length < 1) {
             setSearch('');
         }
     })
-    
+
     return (
         <div className='previous-searches section'>
             <h2>Previous Searches</h2>

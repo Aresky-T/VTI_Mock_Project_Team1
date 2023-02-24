@@ -21,7 +21,7 @@ public class RecipeFormForUpdate {
 
     private String processingSteps;
 
-    private Integer points;
+    private Integer point;
 
     private String note;
 

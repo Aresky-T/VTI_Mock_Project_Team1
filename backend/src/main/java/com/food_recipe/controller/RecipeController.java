@@ -1,9 +1,6 @@
 package com.food_recipe.controller;
 
-import com.food_recipe.dto.CommentDTO;
-import com.food_recipe.dto.RecipeDTO;
-import com.food_recipe.dto.RecipeFormForCreating;
-import com.food_recipe.dto.RecipeFormForUpdate;
+import com.food_recipe.dto.*;
 import com.food_recipe.dto.filter.RecipeFilter;
 import com.food_recipe.entity.Recipe;
 import com.food_recipe.entity.RecipeExchangeHistory;
@@ -83,7 +80,8 @@ public class RecipeController {
             RecipeDTO dto = modelMapper.map(recipe, RecipeDTO.class);
             return new ResponseEntity<>(dto, HttpStatus.OK);
         }else{
-            return new ResponseEntity<>("Vui lòng đăng nhập ", HttpStatus.OK);
+            RecipeHalfDTO dto = modelMapper.map(recipe, RecipeHalfDTO.class);
+            return new ResponseEntity<>(dto, HttpStatus.OK);
         }
     }
 

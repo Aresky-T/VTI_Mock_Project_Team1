@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { MdStarRate } from 'react-icons/md'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createVotingApi, getStarsApi, updateStarsApi, getAllUsersVotedApi, getAverageStarsApi } from '../../api/voting.api';
 import ModalLoginForVoting from '../ProfileComponent/ModalLogin';
+import { showSignInPopup } from '../../redux/auth.slice';
 
 const colors = {
     pink: "var(--primary-color)",
@@ -18,6 +19,7 @@ const Voting = ({ recipe, toast }) => {
     const [allUsers, setAllUsers] = useState(0);
 
     const currentUser = useSelector(state => state.auth.signIn.currentUser);
+    const dispatch = useDispatch();
     const stars = Array(5).fill(0);
     const token = currentUser?.token;
 
@@ -54,26 +56,30 @@ const Voting = ({ recipe, toast }) => {
     }
 
     function handleClickVoting() {
-        const data = {
-            userId: currentUser.id,
-            recipeId: recipe.id,
-            stars: currentValue
-        };
-        if (currentUser) {
-            createVotingApi(data, token)
-                .then(res => {
-                    if (res.data === "Failed") {
-                        // toast.error('You have rated!');
-                        handleUpdateStars(data, token)
-                    } else {
-                        toast.success('Rating success!');
-                    }
-                })
-                .catch((err) => {
-                    toast.error('Rating error!');
-                })
+        if(currentUser){
+            const data = {
+                userId: currentUser.id,
+                recipeId: recipe.id,
+                stars: currentValue
+            };
+            if (currentUser) {
+                createVotingApi(data, token)
+                    .then(res => {
+                        if (res.data === "Failed") {
+                            // toast.error('You have rated!');
+                            handleUpdateStars(data, token)
+                        } else {
+                            toast.success('Rating success!');
+                        }
+                    })
+                    .catch((err) => {
+                        toast.error('Rating error!');
+                    })
+            } else {
+                setShowModal(true);
+            }
         } else {
-            setShowModal(true);
+            dispatch(showSignInPopup());
         }
     }
 

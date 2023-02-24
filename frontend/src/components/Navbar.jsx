@@ -7,6 +7,7 @@ import DropdownNavbar from './DropdownNavbar';
 import logoUser from '../imgs/user-128.png';
 import { getProfile } from '../api/user.api';
 import { getAvatar, getProfileError, getProfileStart, getProfileSuccess } from '../redux/user.slice';
+import { getListForCurrentUserSuccess } from '../redux/recipes.slide';
 const Navbar = () => {
 
     const currentUser = useSelector(state => state.auth.signIn.currentUser);
@@ -66,12 +67,13 @@ const Navbar = () => {
             .then((response) => {
                 dispatch(getProfileSuccess(response.data));
                 dispatch(getAvatar(response.data.avatarUrl))
+                dispatch(getListForCurrentUserSuccess([...response.data.recipes]))
             })
             .catch((err) => {
                 dispatch(getProfileError("Error getting profile"));
                 console.log(err)
             })
-    }, [currentUser])
+    }, [currentUser]);
 
     //----------------------------------List links for routers--------------------
     const links = [
