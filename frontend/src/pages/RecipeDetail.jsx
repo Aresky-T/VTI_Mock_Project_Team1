@@ -7,6 +7,7 @@ import { toast, Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRecipeDetailAfterLoginApi, getRecipeDetailBeforeLoginApi } from '../api/recipe.api';
 import { showSignInPopup } from '../redux/auth.slice';
+import swal from 'sweetalert';
 
 const RecipeDetail = () => {
 
@@ -34,9 +35,13 @@ const RecipeDetail = () => {
             getRecipeDetailAfterLoginApi(recipe.id, currentUser.token)
                 .then(res => {
                     const data = res.data;
-                    console.log(data);
                     typeof (data) !== "string" && setRecipe(res.data);
-                    typeof (data) === "string" && toast.error(data);
+                    typeof (data) === "string" && swal({
+                        // title: "Failed!",
+                        text: "If you want to viewing recipe details, you must use your points to exchange this recipe!",
+                        icon: "warning",
+                        buttons: "OK",
+                    });
                 })
                 .catch(err => {
                     console.log(err)

@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useState } from 'react'
-import { getAllRecipes } from '../../api/recipe.api';
+import { getAllRecipesApi } from '../../api/recipe.api';
 import PreviousSearch from './PreviousSearch'
 import RecipeCard from './RecipeCard';
 import ReactPaginate from 'react-paginate';
@@ -13,7 +13,7 @@ const HomeBody = (props, ref) => {
   const itemsPerPage = 9;
 
   function getAllRecipesForShow() {
-    getAllRecipes(search, pageId, itemsPerPage)
+    getAllRecipesApi(search, pageId, itemsPerPage)
       .then(res => {
         setRecipes(res.data.content);
         setTotalPage(res.data.totalPages)

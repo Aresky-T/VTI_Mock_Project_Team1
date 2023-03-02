@@ -1,24 +1,23 @@
 import React, { useState } from 'react'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
-import { signInUser } from '../../api/auth.api'
+import { signInUserApi } from '../../api/auth.api'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
-import { signInEnd, signInSuccess, clearRedux, hiddenSignInPopup} from '../../redux/auth.slice'
-import Loading from '../Loading'
+import { signInSuccess, clearRedux, hiddenSignInPopup, signInError } from '../../redux/auth.slice'
 import swal from 'sweetalert'
 import * as yup from 'yup'
+import { offLoading } from '../../redux/loading.slice'
 
 const ModalLogin = () => {
 
     const [showPassword, setShowPassword] = useState(false);
-    const isLoading = useSelector(state => state.auth.signIn.isLoading);
     const errorMessage = useSelector(state => state.auth.signIn.signInErrorMessage)
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const location = useLocation();
 
-    if(errorMessage){
+    if (errorMessage) {
         setTimeout(() => {
             dispatch(clearRedux())
         }, 2000)
@@ -26,7 +25,7 @@ const ModalLogin = () => {
 
     const closeModal = () => {
         dispatch(hiddenSignInPopup());
-        if(location.pathname === "/create-recipe"){
+        if (location.pathname === "/create-recipe") {
             navigate(-1);
         }
     }
@@ -45,10 +44,10 @@ const ModalLogin = () => {
             password: yup.string().required("required")
         }),
         onSubmit: (values) => {
-            signInUser(values, dispatch)
-                .then((account) => {
-                    if (!account.token) {
-                        dispatch(signInEnd());
+            signInUserApi(values, dispatch)
+                .then((res) => {
+                    if (!res.data.token) {
+                        dispatch(offLoading());
                         const warning = "Your account is not active. Please check your email to activate account!"
                         swal({
                             title: "Warning!",
@@ -57,13 +56,16 @@ const ModalLogin = () => {
                             buttons: "OK",
                         });
                     } else {
-                        localStorage.setItem("userLoggedIn", JSON.stringify(account));
-                        dispatch(signInSuccess(account));
+                        localStorage.setItem("userLoggedIn", JSON.stringify(res.data));
+                        dispatch(signInSuccess(res.data));
+                        dispatch(offLoading());
                         dispatch(hiddenSignInPopup())
                     }
                 })
                 .catch((err) => {
                     console.log(err);
+                    dispatch(offLoading());
+                    dispatch(signInError("Username or password invalid. Please try again!"))
                 });
         }
     })
@@ -113,7 +115,7 @@ const ModalLogin = () => {
                 </div>
                 <span id='err-message'>
                     {errorMessage}
-                    {(formik.errors.username || formik.errors.password)  && <> Account can't be blank! </>}
+                    {(formik.errors.username || formik.errors.password) && <> Account can't be blank! </>}
                 </span>
                 <div className='modal-footer'>
                     <button onClick={closeModal} type="button" className="btn-close">
@@ -124,7 +126,6 @@ const ModalLogin = () => {
                     </button>
                 </div>
             </div>
-            <Loading isLoading={isLoading} />
         </div>
     )
 }

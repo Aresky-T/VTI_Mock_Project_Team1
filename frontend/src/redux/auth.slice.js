@@ -5,35 +5,25 @@ const authSlice = createSlice({
     initialState: {
         signIn: {
             currentUser: JSON.parse(localStorage.getItem('userLoggedIn')),
-            isLoading: false,
             isError: false,
             signInErrorMessage: null,
             isShowPopup: false
         },
         signUp: {
-            isLoading: false,
             isSuccess: false,
             isError: false,
             signUpSuccessMessage: null,
             signUpErrorMessage: null
         }
     }, reducers: {
-        signInStart: state => {
-            state.signIn.isLoading = true;
-        },
         signInSuccess: (state, action) => {
-            state.signIn.isLoading = false;
             state.signIn.isError = false;
             state.signIn.signInErrorMessage = null;
             state.signIn.currentUser = action.payload;
         },
         signInError: (state, action) => {
-            state.signIn.isLoading = false;
             state.signIn.isError = true;
             state.signIn.signInErrorMessage = action.payload;
-        },
-        signInEnd: (state) => {
-            state.signIn.isLoading = false;
         },
         showSignInPopup: (state) => {
             state.signIn.isShowPopup = true
@@ -41,18 +31,15 @@ const authSlice = createSlice({
         hiddenSignInPopup: (state) => {
             state.signIn.isShowPopup = false
         },
-        signUpStart: state => {
-            state.signUp.isLoading = true;
-        },
-        signUpSuccess: (state, action) => {
-            state.signUp.isLoading = false;
+        signUpStart: (state) => {
             state.signUp.isError = false;
             state.signUp.signUpErrorMessage = null;
+        },
+        signUpSuccess: (state, action) => {
             state.signUp.isSuccess = true;
             state.signUp.signUpSuccessMessage = action.payload;
         },
         signUpError: (state, action) => {
-            state.signUp.isLoading = false;
             state.signUp.isSuccess = false;
             state.signUp.isError = true;
             state.signUp.signUpSuccessMessage = null;
@@ -60,7 +47,6 @@ const authSlice = createSlice({
         },
         signOut: state => {
             state.signIn.currentUser = null;
-            state.signIn.isLoading = false;
             state.signIn.isError = false;
             state.signUp.signUpSuccessMessage = null;
             state.signIn.signInErrorMessage = null;
@@ -73,17 +59,15 @@ const authSlice = createSlice({
 });
 
 export const {
-    signInStart,
-    signInSuccess,
-    signInError,
-    signInEnd,
-    showSignInPopup,
+    clearRedux,
     hiddenSignInPopup,
-    signUpStart,
-    signUpSuccess,
-    signUpError,
+    showSignInPopup,
+    signInError,
+    signInSuccess,
     signOut,
-    clearRedux
+    signUpError,
+    signUpStart,
+    signUpSuccess
 } = authSlice.actions;
 
 export default authSlice.reducer;

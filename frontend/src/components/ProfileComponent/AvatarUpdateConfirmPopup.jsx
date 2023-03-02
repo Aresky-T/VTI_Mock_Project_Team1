@@ -3,6 +3,7 @@ import { MdClose } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateAvatarApi } from '../../api/user.api';
 import { updateAvatarSuccess } from '../../redux/user.slice';
+import { offLoading } from '../../redux/loading.slice';
 
 const AvatarUpdateConfirmPopup = ({ avatar, setShowPopup, toast }) => {
 
@@ -19,7 +20,8 @@ const AvatarUpdateConfirmPopup = ({ avatar, setShowPopup, toast }) => {
                 dispatch(updateAvatarSuccess(response.data));
             })
             .then(() => {
-                toast.success("Avatar updated successfully!");
+                dispatch(offLoading());
+                setTimeout(() => toast.success("Avatar updated successfully!"), 100);
             })
             .then(() => {
                 setTimeout(() => { setShowPopup(false) }, 500);

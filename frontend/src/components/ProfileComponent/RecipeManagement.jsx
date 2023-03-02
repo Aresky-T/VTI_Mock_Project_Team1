@@ -2,10 +2,12 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import CustomPaginationActionsTable from './MaterialUITable';
 import RecipeUpdateModal from './RecipeUpdateModal';
+import RecipeDeleteModal from './RecipeDeleteModal';
 
 const RecipeManagement = () => {
 
-  const isShow = useSelector(state => state.recipes.recipe.isShowPopup)
+  const isShowForUpdate = useSelector(state => state.recipes.recipe.isShowPopupUpdate);
+  const isShowForDelete = useSelector(state => state.recipes.recipe.isShowPopupDelete);
 
   return (
     <div className='profile-body recipes-management'>
@@ -13,7 +15,8 @@ const RecipeManagement = () => {
         <h3>Your recipes</h3>
       </div>
       <CustomPaginationActionsTable/>
-      {isShow && <RecipeUpdateModal/>}
+      {isShowForUpdate && <RecipeUpdateModal/>}
+      {isShowForDelete && <RecipeDeleteModal/>}
     </div>
   )
 }

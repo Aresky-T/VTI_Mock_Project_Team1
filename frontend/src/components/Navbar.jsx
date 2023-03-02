@@ -6,8 +6,8 @@ import Sidebar from './Sidebar';
 import DropdownNavbar from './DropdownNavbar';
 import logoUser from '../imgs/user-128.png';
 import { getProfile } from '../api/user.api';
-import { getAvatar, getProfileError, getProfileStart, getProfileSuccess } from '../redux/user.slice';
-import { getListForCurrentUserSuccess } from '../redux/recipes.slide';
+import { setAvatarForShow, getProfileError, getProfileStart, getProfileSuccess } from '../redux/user.slice';
+import { getListRecipeForCurrentUserSuccess } from '../redux/recipes.slide';
 const Navbar = () => {
 
     const currentUser = useSelector(state => state.auth.signIn.currentUser);
@@ -66,8 +66,8 @@ const Navbar = () => {
         currentUser && getProfile(currentUser.token)
             .then((response) => {
                 dispatch(getProfileSuccess(response.data));
-                dispatch(getAvatar(response.data.avatarUrl))
-                dispatch(getListForCurrentUserSuccess([...response.data.recipes]))
+                dispatch(setAvatarForShow(response.data.avatarUrl))
+                dispatch(getListRecipeForCurrentUserSuccess([...response.data.recipes]))
             })
             .catch((err) => {
                 dispatch(getProfileError("Error getting profile"));

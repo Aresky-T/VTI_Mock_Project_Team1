@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
-import { signInUser } from '../../api/auth.api'
-import { useNavigate } from 'react-router-dom'
+import { signInUserApi } from '../../api/auth.api'
 import { useFormik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
-import { signInEnd, signInSuccess, clearRedux } from '../../redux/auth.slice'
-import Loading from '../Loading'
+import { signInSuccess, clearRedux } from '../../redux/auth.slice'
 import swal from 'sweetalert'
 import * as yup from 'yup'
+import { offLoading } from '../../redux/loading.slice'
 
 const ModalLoginForVoting = ({ setShowModal }) => {
 
     const [showPassword, setShowPassword] = useState(false);
-    const isLoading = useSelector(state => state.auth.signIn.isLoading);
     const errorMessage = useSelector(state => state.auth.signIn.signInErrorMessage)
     const dispatch = useDispatch()
 
@@ -41,11 +39,10 @@ const ModalLoginForVoting = ({ setShowModal }) => {
         }),
         onSubmit: (values) => {
             console.log(values);
-            signInUser(values, dispatch)
-                .then((account) => {
-                    console.log(account);
-                    if (!account.token) {
-                        dispatch(signInEnd());
+            signInUserApi(values, dispatch)
+                .then((res) => {
+                    if (!res.data.token) {
+                        dispatch(offLoading());
                         const warning = "Your account is not active. Please check your email to activate account!"
                         swal({
                             title: "Warning!",
@@ -54,8 +51,9 @@ const ModalLoginForVoting = ({ setShowModal }) => {
                             buttons: "OK",
                         });
                     } else {
-                        localStorage.setItem("userLoggedIn", JSON.stringify(account));
-                        dispatch(signInSuccess(account));
+                        localStorage.setItem("userLoggedIn", JSON.stringify(res.data));
+                        dispatch(signInSuccess(res.data));
+                        dispatch(offLoading());
                         setShowModal(false);
                     }
                 })
@@ -121,7 +119,6 @@ const ModalLoginForVoting = ({ setShowModal }) => {
                     </button>
                 </div>
             </div>
-            <Loading isLoading={isLoading} />
         </div>
     )
 }

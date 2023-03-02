@@ -19,9 +19,9 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import { useDispatch, useSelector } from 'react-redux';
 import { RiEditBoxFill, RiDeleteBin4Fill } from 'react-icons/ri';
-import { compareString, compareDate } from '../../utils/compare';
-import RecipeUpdateModal from './RecipeUpdateModal';
-import { showUpdateRecipePopup, updateRecipe } from '../../redux/recipes.slide';
+import { compareString } from '../../utils/compare';
+import { deleteRecipeStart, updateRecipeStart } from '../../redux/recipes.slide';
+import { getAllRecipesForCreatorApi } from '../../api/recipe.api';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -99,10 +99,12 @@ const getAllRows = (data) => {
 }
 
 export default function CustomPaginationActionsTable() {
-    const recipes = useSelector(state => state.recipes.listOfCurrentUser.data);
+    const currentUser = useSelector(state => state.auth.signIn.currentUser);
+    const time = useSelector(state => state.time.value);
+    const [list, setList] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
-    const rows = getAllRows([...recipes].sort(compareString('name', 'desc')));
+    const rows = getAllRows([...list].sort(compareString('name', 'desc')));
     const dispatch = useDispatch();
 
     // Avoid a layout jump when reaching the last page with empty rows.
@@ -119,9 +121,19 @@ export default function CustomPaginationActionsTable() {
     };
 
     const toggleShowUpdateRecipePopup = (data) => {
-        dispatch(updateRecipe(data));
-        dispatch(showUpdateRecipePopup());
+        dispatch(updateRecipeStart(data));
     }
+
+    const toggleShowConfirmDeleteRecipePopup = (data) => {
+        dispatch(deleteRecipeStart(data));
+    }
+
+    React.useEffect(() => {
+        getAllRecipesForCreatorApi(currentUser)
+        .then(res => {
+            setList(res.data);
+        })
+    }, [time])
 
     return (
         <TableContainer component={Paper}>
@@ -167,7 +179,9 @@ export default function CustomPaginationActionsTable() {
                                     ><RiEditBoxFill /></span>
                                 </TableCell>
                                 <TableCell style={{ width: 50 }} align="center">
-                                    <span className='row-recipe-icon'><RiDeleteBin4Fill /></span>
+                                    <span className='row-recipe-icon'
+                                        onClick={() => toggleShowConfirmDeleteRecipePopup(row)}
+                                    ><RiDeleteBin4Fill /></span>
                                 </TableCell>
                             </TableRow>
                         </React.Fragment>

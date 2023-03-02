@@ -15,10 +15,13 @@ import RecipeManagement from "./components/ProfileComponent/RecipeManagement";
 import ExchangeHistory from "./components/ProfileComponent/ExchangeHistory";
 import { useSelector } from "react-redux";
 import ModalLogin from "./components/auth/ModalLogin";
+import Loading from "./components/Loading";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
 
    const isShowPopup = useSelector(state => state.auth.signIn.isShowPopup);
+   const isLoading = useSelector(state => state.loading.isLoading);
 
    return (
       <Router>
@@ -43,7 +46,11 @@ const App = () => {
             </Routes>
          </div>
          <Footer/>
+         <Toaster
+            position="top center"
+         />
          {isShowPopup && <ModalLogin/>}
+         {isLoading && <Loading isLoading={isLoading}/>}
       </Router>
    );
 };

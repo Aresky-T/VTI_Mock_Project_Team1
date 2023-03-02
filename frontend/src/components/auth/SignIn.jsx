@@ -3,20 +3,20 @@ import { useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-import { signInUser } from '../../api/auth.api';
+import { signInUserApi } from '../../api/auth.api';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { MdError } from 'react-icons/md';
-import Loading from '../Loading';
-import { signInSuccess, signInEnd, clearRedux } from '../../redux/auth.slice'
+import { signInSuccess, clearRedux, signInError } from '../../redux/auth.slice'
 import swal from 'sweetalert';
+import { offLoading } from '../../redux/loading.slice';
+import userImage from '../../imgs/user-128.png'
 
 const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const errorMessage = useSelector(state => state.auth.signIn.signInErrorMessage)
-    const isLoading = useSelector(state => state.auth.signIn.isLoading);
 
     const formik = useFormik({
         initialValues: {
@@ -28,11 +28,12 @@ const SignIn = () => {
             password: yup.string().required('Required')
         }),
         onSubmit: values => {
-            signInUser(values, dispatch)
-                .then(account => {
-                    if (!account.token) {
+            signInUserApi(values, dispatch)
+                .then(res => {
+                    console.log("then...login...")
+                    if (!res.data.token) {
                         const warning = "Your account is not active. Please check your email to activate account!"
-                        dispatch(signInEnd());
+                        dispatch(offLoading());
                         swal({
                             title: "Warning!",
                             text: warning,
@@ -41,19 +42,22 @@ const SignIn = () => {
                             // timer: 3000,
                         });
                     } else {
-                        localStorage.setItem("userLoggedIn", JSON.stringify(account));
-                        dispatch(signInSuccess(account));
+                        localStorage.setItem("userLoggedIn", JSON.stringify(res.data));
+                        dispatch(signInSuccess(res.data));
+                        dispatch(offLoading());
                         navigate("/");
                     }
                 })
                 .catch((err) => {
                     console.log(err);
+                    dispatch(offLoading());
+                    dispatch(signInError("Username or password invalid. Please try again!"));
                 });
         }
     })
 
     return (
-        <div className='container-signin'>
+        <div className='container-signin' >
             <div className='container-signin-img'>
                 <img src='https://6f3ebe2ff971707.cmccloud.com.vn/tour/wp-content/uploads/2021/12/banh-trang-cuon-thit-heo.jpg' alt="" />
             </div>
@@ -61,7 +65,7 @@ const SignIn = () => {
                 <form className='signin-form' onSubmit={formik.handleSubmit}>
                     <span className='signin-form-title'>Sign In</span>
                     <span className='signin-form-avatar'>
-                        <img src={require('../../imgs/user-128.png')} alt='' />
+                        <img src={userImage} alt='' />
                     </span>
                     <div className='wrap-input'>
                         <input
@@ -121,9 +125,8 @@ const SignIn = () => {
                     </ul>
                 </form>
             </div>
-            <Loading isLoading={isLoading} />
             {/* <ToastContainer /> */}
-        </div>
+        </div >
     )
 }
 

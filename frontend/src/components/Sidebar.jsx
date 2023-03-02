@@ -11,24 +11,6 @@ function Sidebar({ links, closeSidebar }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // const sidebarRef = useRef();
-
-    // useEffect(() => {
-
-    //     /**
-    //      * If the sidebar is open and the user clicks outside of the sidebar, close the sidebar.
-    //      */
-    //     let onClick = (e) => {
-    //         if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
-    //             closeSidebar();
-    //         }
-    //     }
-    //     document.addEventListener('mousedown', onClick,);
-    //     return () => {
-    //         document.removeEventListener('mousedown', onClick, true);
-    //     }
-    // })
-
     return (
         <div className='sidebar'>
             {

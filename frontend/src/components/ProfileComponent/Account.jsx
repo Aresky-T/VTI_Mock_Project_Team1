@@ -29,20 +29,6 @@ const Account = () => {
 
   return (
     <div className='profile-body account'>
-      {/* <div className="change-username">
-        <div className='change-username-top'>
-          Change Username
-          <hr />
-        </div>
-        <div className='change-username-bottom'>
-          <p className="change-username-warning">
-            Changing your username can have unintended side effects.
-          </p>
-          <button className="change-username-btn">
-            Change username
-          </button>
-        </div>
-      </div> */}
       <div className="change-password">
         <div className='change-password-top'>
           <h3>Change password</h3>

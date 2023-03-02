@@ -303,9 +303,10 @@
 
                 li.review-item {
                     p.review-content{
-                        font-family: Georgia, helvetica, 'Times New Roman', Times, serif;
+                        // font-family: Georgia, helvetica, 'Times New Roman', Times, serif;
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                         font-feature-settings: normal;
-                        font-size: 15px;
+                        font-size: 13px;
                         font-weight: 400;
                         overflow-wrap: normal;
                         letter-spacing: normal;
@@ -314,6 +315,7 @@
                         line-break: auto;
                         text-transform: none;
                         color: var(--text-color);
+                        white-space: pre-wrap;
                     }
     
                     ul.review-item-info{

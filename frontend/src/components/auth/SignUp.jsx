@@ -3,21 +3,18 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-import { signUpUser } from '../../api/auth.api';
-import { ToastContainer, toast } from 'react-toastify';
+import { signUpUserApi } from '../../api/auth.api';
+import { toast } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
-import Loading from '../Loading';
 import ConfirmSignUpSuccess from '../ConfirmSignUpSuccess';
 import { MdError } from 'react-icons/md';
-import {REGEX_EMAIL, REGEX_USERNAME, REGEX_PASSWORD} from './../../constant/Regex'
+import { REGEX_EMAIL, REGEX_USERNAME, REGEX_PASSWORD } from './../../constant/Regex'
 
 const SignUp = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
     const dispatch = useDispatch();
-    const isLoading = useSelector(state => state.auth.signUp.isLoading);
-    const signUpErrorMessage = useSelector(state => state.auth.signUp.signUpErrorMessage);
     const signUpSuccessMessage = useSelector(state => state.auth.signUp.signUpSuccessMessage);
 
     const formik = useFormik({
@@ -38,8 +35,14 @@ const SignUp = () => {
             lastName: yup.string().required('Required')
         }),
         onSubmit: values => {
-            const { firstName, lastName, username, email, password } = values;
-            signUpUser({ firstName, lastName, username, email, password }, dispatch, toast, setShowPopup);
+            const data = {
+                firstName: values.firstName,
+                lastName: values.lastName,
+                username: values.username,
+                email: values.email,
+                password: values.password
+            }
+            signUpUserApi(data, dispatch, toast, setShowPopup);
         }
     })
 
@@ -198,9 +201,7 @@ const SignUp = () => {
                     </form>
                 </div>
             </div>}
-            <Loading isLoading={isLoading} />
             {showPopup && <ConfirmSignUpSuccess signUpSuccessMessage={signUpSuccessMessage} setShowPopup={setShowPopup} showPopup={showPopup} />}
-            <ToastContainer />
         </>
     )
 }

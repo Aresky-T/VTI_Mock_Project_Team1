@@ -5,52 +5,50 @@ const recipesSlide = createSlice({
     initialState: {
         listOfCurrentUser: {
             data: [],
-            isLoading: false,
             isError: false,
             isSuccess: false,
             errorMessage: null
         },
         recipe: {
             data: null,
-            isShowPopup: false,
+            isShowPopupUpdate: false,
+            isShowPopupDelete: false
         }
     },
     reducers: {
-        getListForCurrentUserStart: (state) => {
-            state.listOfCurrentUser.isLoading = true;
-            state.listOfCurrentUser.isSuccess = false;
-            state.listOfCurrentUser.isError = false;;
-            state.listOfCurrentUser.errorMessage = null;
-        },
-        getListForCurrentUserSuccess: (state, action) => {
+        getListRecipeForCurrentUserSuccess: (state, action) => {
             state.listOfCurrentUser.data = action.payload;
-            state.listOfCurrentUser.isLoading = false;
             state.listOfCurrentUser.isSuccess = true;
         },
-        getListForCurrentUserFail: (state, action) => {
-            state.listOfCurrentUser.isLoading = false;
+        getListRecipeForCurrentUserFail: (state, action) => {
             state.listOfCurrentUser.isError = true;
             state.listOfCurrentUser.errorMessage = action.payload
         },
-        updateRecipe: (state, action) => {
+        updateRecipeStart: (state, action) => {
             state.recipe.data = action.payload;
+            state.recipe.isShowPopupUpdate = true;
         },
-        showUpdateRecipePopup: (state) => {
-            state.recipe.isShowPopup = true;
-        },
-        hiddenUpdateRecipePopup: (state) => {
-            state.recipe.isShowPopup = false;
+        updateRecipeEnd: (state) => {
             state.recipe.data = null;
+            state.recipe.isShowPopupUpdate = false;
+        },
+        deleteRecipeStart: (state, action) => {
+            state.recipe.data = action.payload;
+            state.recipe.isShowPopupDelete = true;
+        },
+        deleteRecipeEnd: (state) => {
+            state.recipe.data = null;
+            state.recipe.isShowPopupDelete = false;
         }
     }
 })
 
 export default recipesSlide.reducer;
 export const {
-    getListForCurrentUserStart,
-    getListForCurrentUserSuccess,
-    getListForCurrentUserFail,
-    updateRecipe,
-    showUpdateRecipePopup,
-    hiddenUpdateRecipePopup
+    deleteRecipeEnd,
+    deleteRecipeStart,
+    getListRecipeForCurrentUserFail,
+    getListRecipeForCurrentUserSuccess,
+    updateRecipeEnd,
+    updateRecipeStart
 } = recipesSlide.actions

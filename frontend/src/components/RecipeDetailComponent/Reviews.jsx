@@ -4,6 +4,7 @@ import { createCommentApi, getCommentsApi } from '../../api/comment.api';
 import ReviewType from './ReviewType';
 import { showSignInPopup } from '../../redux/auth.slice';
 import { compareDate } from '../../utils/compare';
+import { toastStyle } from '../../configs/toastStyleConfig';
 
 const Reviews = ({ recipe, toast, toggleScroll }) => {
 
@@ -45,37 +46,19 @@ const Reviews = ({ recipe, toast, toggleScroll }) => {
 
   async function handleSubmitComment(e) {
     e.preventDefault();
-    if(currentUser){
+    if (currentUser) {
       const data = {
         userId: currentUser.id,
         recipeId: recipe.id,
         comment: comment
       };
-    
+
       await createCommentApi(data, currentUser.token)
         .then(res => {
           if (res.data === "This comment already existed!") {
-            toast.error('You have commented before!',
-              {
-                style: {
-                  fontSize: '13px',
-                  borderRadius: '15px',
-                  background: '#333',
-                  color: '#fff',
-                },
-              }
-            );
+            toast.error('You have commented before!', toastStyle);
           } else {
-            toast('Comment successfully!',
-              {
-                icon: '✅',
-                style: {
-                  borderRadius: '10px',
-                  background: '#333',
-                  color: '#fff',
-                },
-              }
-            );
+            toast.success('Comment successfully!');
           }
         })
         .then(() => {
@@ -83,7 +66,7 @@ const Reviews = ({ recipe, toast, toggleScroll }) => {
         })
         .catch(err => {
           toast.error('Comment Failed!');
-        }) 
+        })
     } else {
       dispatch(showSignInPopup());
     }
@@ -115,7 +98,7 @@ const Reviews = ({ recipe, toast, toggleScroll }) => {
       </form>
       {currentUser &&
         <>
-          <ReviewType list={currentUserList} label="Your" recipe={recipe} toggleScroll={toggleScroll}/>
+          <ReviewType list={currentUserList} label="Your" recipe={recipe} toggleScroll={toggleScroll} />
           <ReviewType list={otherUserList} label="Other" />
         </>
       }

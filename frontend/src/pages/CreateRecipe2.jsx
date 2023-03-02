@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { MdDelete } from 'react-icons/md'
 import { uploadImageCloudinaryApi } from '../api/file.api';
 import ModalLogin from '../components/auth/ModalLogin'
-import { createRecipe } from "../api/recipe.api";
+import { createRecipeApi } from "../api/recipe.api";
 import swal from 'sweetalert';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -13,6 +13,7 @@ import { addListIngredients } from '../api/recipeIngredient.api';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
 import { RiErrorWarningFill } from 'react-icons/ri';
+import { offLoading } from '../redux/loading.slice';
 
 const CreateRecipe2 = () => {
 
@@ -22,7 +23,7 @@ const CreateRecipe2 = () => {
     const [showModal, setShowModal] = useState(false);
     const [imageURL, setImageURL] = useState('');
     const [ingredients, setIngredients] = useState([]);
-    const [isLoading, setLoading] = useState(false);
+    const dispatch = useDispatch();
 
     const handleFocus = () => {
         const image = document.getElementById('input-image');
@@ -30,16 +31,16 @@ const CreateRecipe2 = () => {
     }
 
     const upLoadFilesForCreate = (formData, token) => {
-        setLoading(true);
-        uploadImageCloudinaryApi(formData, token)
+        uploadImageCloudinaryApi(formData, token, dispatch)
             .then((response) => {
                 setImageURL(response.data);
             })
             .then(() => {
-                setLoading(false);
+                dispatch(offLoading());
             })
             .catch((err) => {
-                console.log('err: ', err);
+                dispatch(offLoading());
+                toast.error("Failed upload image!")
             })
     }
 
@@ -71,7 +72,7 @@ const CreateRecipe2 = () => {
         onSubmit: values => {
             const recipe = { ...values };
             if (ingredients.length > 0 && imageURL !== '') {
-                createRecipe({
+                createRecipeApi({
                     name: String(recipe.name),
                     description: String(recipe.description),
                     imageUrl: String(imageURL),
@@ -102,7 +103,7 @@ const CreateRecipe2 = () => {
                     .then(() => {
                         addListIngredients(ingredients, currentUser.token)
                             .then((res) => {
-                                console.log(res.data)
+                                // console.log(res.data)
                             })
                             .catch((err) => {
                                 console.log(err);
@@ -144,6 +145,9 @@ const CreateRecipe2 = () => {
             const ingredient = { ...values };
             const list = [...ingredients, ingredient];
             setIngredients(list);
+            values.name = '';
+            values.amount = '';
+            values.unit = '';
         }
     })
 
@@ -251,6 +255,7 @@ const CreateRecipe2 = () => {
                                                         type="text" name="name"
                                                         value={formikIngredient.values.name}
                                                         onChange={formikIngredient.handleChange}
+                                                        placeholder='Ex: sugar...'
                                                     />
                                                 </td>
                                                 <td>
@@ -258,12 +263,14 @@ const CreateRecipe2 = () => {
                                                         type="text" name="amount"
                                                         value={formikIngredient.values.amount}
                                                         onChange={formikIngredient.handleChange}
+                                                        placeholder='Ex: 200'
                                                     />
                                                 </td>
                                                 <td>
                                                     <input type="text" name="unit"
                                                         value={formikIngredient.values.unit}
                                                         onChange={formikIngredient.handleChange}
+                                                        placeholder='Ex: gram'
                                                     />
                                                 </td>
                                                 <td>
@@ -360,7 +367,6 @@ const CreateRecipe2 = () => {
                 </div>
             </div>
             {showModal && <ModalLogin setShowModal={setShowModal} />}
-            {isLoading && <Loading isLoading={isLoading} />}
             <Toaster
                 position='top-right'
                 reverseOrder={true}

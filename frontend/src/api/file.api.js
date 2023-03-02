@@ -1,4 +1,5 @@
 import axios from "axios";
+import { onLoading } from "../redux/loading.slice";
 
 const baseURL = 'http://localhost:8080/api/v1/files';
 
@@ -23,7 +24,8 @@ export const getImage = async (imageName) => {
     })
 }
 
-export const uploadImageCloudinaryApi = async (file, token) => {
+export const uploadImageCloudinaryApi = async (file, token, dispatch) => {
+    dispatch(onLoading())
     const config = {
         headers: {
             'Content-Type': 'multipart/form-data',
