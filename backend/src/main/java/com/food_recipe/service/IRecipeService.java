@@ -14,6 +14,7 @@ import java.util.List;
 
 public interface IRecipeService {
 
+    List<Recipe> getListForCreator(Integer creatorId);
 
     List<Recipe> findByNameLike(String name);
 
@@ -31,11 +32,13 @@ public interface IRecipeService {
 
     // ------------- Update recipe ----------------------------
 
-    void updateRecipe(Integer id, RecipeFormForUpdate form);
+    String updateRecipe(Integer id, RecipeFormForUpdate form);
 
     // ------------- Delete recipe ----------------------------
 
     void deleteRecipe(List<Integer> ids);
+
+    String deleteRecipeById (Integer recipeId, Integer creatorId);
 
 }
 

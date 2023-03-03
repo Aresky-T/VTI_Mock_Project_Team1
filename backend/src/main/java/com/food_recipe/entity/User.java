@@ -60,7 +60,7 @@ public class User implements Serializable {
 
     }
 
-    public User(String firstName, String lastName, String username, String email, String password) {
+    public User(String username, String email, String password, String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;

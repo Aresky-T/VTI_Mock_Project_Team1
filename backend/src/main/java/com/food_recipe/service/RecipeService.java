@@ -1,6 +1,5 @@
 package com.food_recipe.service;
 
-
 import com.food_recipe.dto.RecipeFormForCreating;
 import com.food_recipe.dto.RecipeFormForUpdate;
 import com.food_recipe.dto.filter.RecipeFilter;
@@ -17,8 +16,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
+import javax.validation.ConstraintViolationException;
 
 @Component
 @Transactional
@@ -29,13 +32,23 @@ public class RecipeService implements IRecipeService {
     private final RecipeIngredientRepository recipeIngredientRepository;
     private final RecipeExchangeRepository recipeExchangeRepository;
 
-    public RecipeService(RecipeRepository recipeRepository, RecipeIngredientRepository recipeIngredientRepository, RecipeExchangeRepository recipeExchangeRepository) {
+    public RecipeService(RecipeRepository recipeRepository, RecipeIngredientRepository recipeIngredientRepository,
+            RecipeExchangeRepository recipeExchangeRepository) {
         this.recipeRepository = recipeRepository;
         this.recipeIngredientRepository = recipeIngredientRepository;
         this.recipeExchangeRepository = recipeExchangeRepository;
     }
-
-
+    @Override
+    public List<Recipe> getListForCreator(Integer creatorId){
+        List<Recipe> recipes = recipeRepository.findAll();
+        List<Recipe> newList = new ArrayList<>();
+        for (Recipe recipe: recipes) {
+            if(recipe.getCreator().getId().equals(creatorId)){
+                newList.add(recipe);
+            }
+        }
+        return  newList;
+    }
     @Override
     public List<Recipe> findByNameLike(String name) {
         return recipeRepository.findAllByNameLike(name);
@@ -50,7 +63,6 @@ public class RecipeService implements IRecipeService {
     public Recipe createRecipe(RecipeFormForCreating form) {
         return recipeRepository.save(form.toEntity());
     }
-
 
     @Override
     public Page<Recipe> getAllRecipes(Pageable pageable, RecipeFilter filter, String search) {
@@ -74,20 +86,57 @@ public class RecipeService implements IRecipeService {
     }
 
     @Override
-    public void updateRecipe(Integer id, RecipeFormForUpdate form) {
+    @Transactional
+    public String updateRecipe(Integer id, RecipeFormForUpdate form) {
         Recipe recipe = recipeRepository.findById(id).get();
-        recipe.setName(form.getName());
-        recipe.setDescription(form.getDescription());
-        recipe.setImageUrl(form.getImageUrl());
-        recipe.setProcessingSteps(form.getProcessingSteps());
-        recipe.setNote(form.getNote());
-        recipe.setPoint(form.getPoint());
-        recipeRepository.save(recipe);
+        try {
+            if(form.getCreatorId() == null){
+                return "creatorId is null, update failed;";
+            }
+    
+            if (recipe.getCreator().getId() == form.getCreatorId()) {
+                recipe.setName(form.getName());
+                recipe.setDescription(form.getDescription());
+                recipe.setImageUrl(form.getImageUrl());
+                recipe.setProcessingSteps(form.getProcessingSteps());
+                recipe.setNote(form.getNote());
+                recipe.setPoint(form.getPoint());
+                recipeRepository.save(recipe);
+    
+                return "success";
+            }
+    
+            return "Failed";
+        } catch (ConstraintViolationException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
     }
 
     @Override
     public void deleteRecipe(List<Integer> ids) {
         recipeRepository.deleteAllByIdInBatch(ids);
+    }
+
+    @Override
+    @Transactional
+    public String deleteRecipeById (Integer recipeId, Integer creatorId) {
+        var existRecipe = recipeRepository.existsById(recipeId);
+        try {
+            if(Boolean.TRUE.equals(existRecipe)){
+                Optional<Recipe> recipe = recipeRepository.findById(recipeId);
+                if (recipe.isPresent() && Objects.equals(recipe.get().getCreator().getId(), creatorId)){
+                    recipeRepository.deleteById(recipeId);
+                    return "success";
+                } else {
+                    return "you are not this recipe creator";
+                }
+            }
+            return "delete failed";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "delete failed";
+        }
     }
 
 }

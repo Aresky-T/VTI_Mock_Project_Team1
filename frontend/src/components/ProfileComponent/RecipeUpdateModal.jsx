@@ -69,7 +69,7 @@ const RecipeUpdateModal = () => {
                 return res.data
             })
             .then((image) => {
-                const data = {...formik.values, imageUrl: image};
+                const data = { ...formik.values, imageUrl: image };
                 updateRecipe(recipe.id, data, currentUser.token);
             })
             .catch(err => {

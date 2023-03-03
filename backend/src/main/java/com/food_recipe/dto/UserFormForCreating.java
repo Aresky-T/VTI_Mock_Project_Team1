@@ -39,6 +39,6 @@ public class UserFormForCreating {
 
 
 	public User toEntity() {
-		return new User( firstName, lastName, username, email, password);
+		return new User(username, email, password, firstName, lastName);
 	}
 }

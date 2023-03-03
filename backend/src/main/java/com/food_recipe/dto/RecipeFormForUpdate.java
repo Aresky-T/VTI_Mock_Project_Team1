@@ -1,17 +1,15 @@
 package com.food_recipe.dto;
 
-import com.food_recipe.entity.Recipe;
-import com.food_recipe.entity.RecipeIngredient;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import java.util.Date;
-import java.util.List;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class RecipeFormForUpdate {
+
+    private Integer creatorId;
 
     private String name;
 
@@ -21,13 +19,9 @@ public class RecipeFormForUpdate {
 
     private String processingSteps;
 
-    private Integer point;
-
     private String note;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "`create_date`", nullable = false)
-    private Date createDate;
+    private Integer point;
 
 
 }

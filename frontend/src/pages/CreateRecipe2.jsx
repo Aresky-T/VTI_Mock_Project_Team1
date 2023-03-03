@@ -11,7 +11,6 @@ import * as yup from 'yup';
 import { Toaster, toast } from 'react-hot-toast';
 import { addListIngredients } from '../api/recipeIngredient.api';
 import { useNavigate } from 'react-router-dom';
-import Loading from '../components/Loading';
 import { RiErrorWarningFill } from 'react-icons/ri';
 import { offLoading } from '../redux/loading.slice';
 

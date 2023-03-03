@@ -61,7 +61,12 @@ public class RecipeController {
         Page<RecipeDTO> dtoPage = new PageImpl<>(dtos, pageable, entities.getTotalElements());
         return new ResponseEntity<>(dtoPage, HttpStatus.OK);
     }
-
+    @GetMapping("/get-list-for-creator/{id}")
+    ResponseEntity<?> getListForCreator(@PathVariable(name = "id") Integer creatorId){
+        List<Recipe> recipes = recipeService.getListForCreator(creatorId);
+        List<RecipeDTO> dtos = modelMapper.map(recipes, new TypeToken<List<RecipeDTO>>(){}.getType());
+        return  new ResponseEntity<>(dtos, HttpStatus.OK);
+    }
     @GetMapping("/search-by-name")
     ResponseEntity<?> findByRecipeName(
             @RequestParam(name = "name") String name) {
@@ -106,8 +111,8 @@ public class RecipeController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<?> updateRecipe(@PathVariable(name = "id") Integer id, @RequestBody RecipeFormForUpdate form) {
-        recipeService.updateRecipe(id, form);
-        return new ResponseEntity<String>("Update Recipe successfully!", HttpStatus.OK);
+        var response = recipeService.updateRecipe(id, form);
+        return new ResponseEntity<String>(response, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{ids}")
@@ -116,5 +121,10 @@ public class RecipeController {
         return new ResponseEntity<String>("Delete Recipe successfully!", HttpStatus.OK);
     }
 
-
+    @DeleteMapping(value = "/delete-by-id")
+    public ResponseEntity<?> deleteRecipeById (@RequestParam(name = "recipeId") Integer recipeId,
+                                               @RequestParam(name = "creatorId") Integer creatorId) {
+        var response = recipeService.deleteRecipeById(recipeId, creatorId);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }
