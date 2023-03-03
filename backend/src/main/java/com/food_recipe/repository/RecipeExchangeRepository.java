@@ -18,4 +18,8 @@ public interface RecipeExchangeRepository extends
     public boolean existsByUserIdAndRecipeId(Integer userId, Integer recipeId);
 
     RecipeExchangeHistory findByUserId(Integer userId);
+
+    List<RecipeExchangeHistory> findExchangeByRecipeId(Integer recipeId);
+
+    List<RecipeExchangeHistory> findExchangeByUserId(Integer userId);
 }
