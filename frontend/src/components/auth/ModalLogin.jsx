@@ -67,8 +67,6 @@ const ModalLogin = ({ setShowModal }) => {
         }
     })
 
-    console.log(formik.errors);
-
     return (
         <div className='modal-page'>
             <div

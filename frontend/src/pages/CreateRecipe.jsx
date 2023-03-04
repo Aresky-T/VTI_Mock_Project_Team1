@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { uploadImageCloudinary } from '../api/file.api';
-import { getAllIngredients } from "../api/ingredient.api";
 import ModalLogin from '../components/auth/ModalLogin'
 import Select from 'react-select'
 import { GrClose } from "react-icons/gr";
 import { createRecipe, createRecipeIngredient } from "../api/recipe.api";
-import { useFormik } from "formik";
 import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 
 const CreateRecipe = () => {
 
@@ -150,19 +150,9 @@ const CreateRecipe = () => {
         }
     })
 
-    useEffect(() => {
-        getAllIngredients()
-            .then((response) => {
-                setListIngreDropBox(response.data);
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }, [])
-
-    useEffect(() => {
-        setIngredient({ ...ingredient, amount: amount })
-    }, [setAmount, amount]);
+    // useEffect(() => {
+    //     setIngredient({ ...ingredient, amount: amount })
+    // }, [setAmount, amount]);
 
     if (!currentUser) {
         setTimeout(() => {
@@ -170,175 +160,193 @@ const CreateRecipe = () => {
         }, 500)
     }
 
-    return (<div className='create-recipe section'>
-        <div className='create-container'>
-            <div className='create-container-title'>
-                <h2>🧑🏻‍🍳 Share your recipe 🍔</h2>
-            </div>
-            <div className='create-container-form'>
-                <form encType='multipart/form-data'>
-                    <ul>
-                        <li className='form-line'>
-                            <label className='form-label'>Recipe Name: </label>
-                            <div className='form-input'>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={name}
-                                    onChange={handleChangeForm}
-                                    placeholder='Enter recipe name' />
-                            </div>
-                        </li>
-                        <li className='form-line'>
-                            <label className='form-label'>Description: </label>
-                            <div className='form-input'>
-                                <textarea
-                                    className='form-textarea'
-                                    placeholder='Enter description'
-                                    name="description"
-                                    value={description}
-                                    onChange={handleChangeForm}
-                                >
-                                </textarea>
-                            </div>
-                        </li>
-                        <li className='form-line'>
-                            <label className='form-label'>Ingredients:</label>
-                            <div className='form-input ingredient-form'>
-                                <div className="input-ingredient-name">
-                                    <label className="form-label">Name:</label>
-                                    <Select
-                                        required
-                                        placeholder="Search..."
-                                        options={mockup_ingredients}
-                                        onChange={(e) => {
-                                            handleChangeIngredient(e);
-                                        }}
-                                    />
-                                </div>
-                                <div className="input-ingredient-amount">
-                                    <label className="form-label">Amount:</label>
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            amount: '',
+            unit: ''
+        },
+        validationSchema: yup.object().shape({
+            name: yup.string().required('Required'),
+            amount: yup.number().required('Required'),
+            unit: yup.string().required('Required')
+        }),
+        onSubmit: values => {
+
+        }
+    })
+
+    return (
+        <div className='create-recipe section'>
+            <div className='create-container'>
+                <div className='create-container-title'>
+                    <h2>🧑🏻‍🍳 Share your recipe 🍔</h2>
+                </div>
+                <div className='create-container-form'>
+                    <form encType='multipart/form-data'>
+                        <ul>
+                            <li className='form-line'>
+                                <label className='form-label'>Recipe Name: </label>
+                                <div className='form-input'>
                                     <input
-                                        id="amount-input"
-                                        min={1}
-                                        type="number"
-                                        value={amount}
-                                        onChange={(e) => {
-                                            handleChangeAmount(e);
-                                        }}
-                                    />
+                                        type="text"
+                                        name="name"
+                                        value={name}
+                                        onChange={handleChangeForm}
+                                        placeholder='Enter recipe name' />
                                 </div>
-                            </div>
-                            <button
-                                id="btn-add-ingredient"
-                                type="button"
-                                onClick={() => {
-                                    if (ingredient.name !== "") {
-                                        setListIngreForAdd([...listIngreForAdd, ingredient])
-                                        setAmount(0);
-                                        setIngredient({ ingredient: 0, name: "", amount: 0 })
-                                    }
-                                }}
-                            >
-                                Add
-                            </button>
-                        </li>
-                        <li className="form-line list-ingredients">
-                            <label>List Ingredients:</label>
-                            <ul className="list-tag">
-                                {listIngreForAdd.map((ingredient, index) => (
-                                    <li key={index} className="ingredient-for-add-item">
-                                        <span className="index">{index + 1}</span>
-                                        <span>
-                                            {ingredient.name} : {ingredient.amount}
-                                        </span>
-                                        <GrClose
-                                            className="btn-remove-tag"
-                                            onClick={() => deleteTagIngredient(index)}
-                                        />
-                                    </li>))}
-                            </ul>
-                        </li>
-                        <li className='form-line'>
-                            <label className='form-label processing'>Steps:</label>
-                            <div className='form-input'>
-                                <div className='step-container'>
+                            </li>
+                            <li className='form-line'>
+                                <label className='form-label'>Description: </label>
+                                <div className='form-input'>
                                     <textarea
-                                        placeholder='Enter step 1...'
-                                        name="processingSteps"
-                                        value={processingSteps}
+                                        className='form-textarea'
+                                        placeholder='Enter description'
+                                        name="description"
+                                        value={description}
+                                        onChange={handleChangeForm}
+                                    >
+                                    </textarea>
+                                </div>
+                            </li>
+                            <li className='form-line'>
+                                <label className='form-label'>Ingredients:</label>
+                                <div className='form-input ingredient-form'>
+                                    <div className="input-ingredient-name">
+                                        <label className="form-label">Name:</label>
+                                        <Select
+                                            required
+                                            placeholder="Search..."
+                                            options={mockup_ingredients}
+                                            onChange={(e) => {
+                                                handleChangeIngredient(e);
+                                            }}
+                                        />
+                                    </div>
+                                    <div className="input-ingredient-amount">
+                                        <label className="form-label">Amount:</label>
+                                        <input
+                                            id="amount-input"
+                                            min={1}
+                                            type="number"
+                                            value={amount}
+                                            onChange={(e) => {
+                                                handleChangeAmount(e);
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                                <button
+                                    id="btn-add-ingredient"
+                                    type="button"
+                                    onClick={() => {
+                                        if (ingredient.name !== "") {
+                                            setListIngreForAdd([...listIngreForAdd, ingredient])
+                                            setAmount(0);
+                                            setIngredient({ ingredient: 0, name: "", amount: 0 })
+                                        }
+                                    }}
+                                >
+                                    Add
+                                </button>
+                            </li>
+                            <li className="form-line list-ingredients">
+                                <label>List Ingredients:</label>
+                                <ul className="list-tag">
+                                    {listIngreForAdd.map((ingredient, index) => (
+                                        <li key={index} className="ingredient-for-add-item">
+                                            <span className="index">{index + 1}</span>
+                                            <span>
+                                                {ingredient.name} : {ingredient.amount}
+                                            </span>
+                                            <GrClose
+                                                className="btn-remove-tag"
+                                                onClick={() => deleteTagIngredient(index)}
+                                            />
+                                        </li>))}
+                                </ul>
+                            </li>
+                            <li className='form-line'>
+                                <label className='form-label processing'>Steps:</label>
+                                <div className='form-input'>
+                                    <div className='step-container'>
+                                        <textarea
+                                            placeholder='Enter step 1...'
+                                            name="processingSteps"
+                                            value={processingSteps}
+                                            onChange={handleChangeForm}
+                                        ></textarea>
+                                    </div>
+                                </div>
+                            </li>
+                            <li className='form-line'>
+                                <label className='form-label'>Note: </label>
+                                <div className='form-input'>
+                                    <textarea
+                                        placeholder='Enter Note'
+                                        name="note"
+                                        value={note}
                                         onChange={handleChangeForm}
                                     ></textarea>
                                 </div>
-                            </div>
-                        </li>
-                        <li className='form-line'>
-                            <label className='form-label'>Note: </label>
-                            <div className='form-input'>
-                                <textarea
-                                    placeholder='Enter Note'
-                                    name="note"
-                                    value={note}
-                                    onChange={handleChangeForm}
-                                ></textarea>
-                            </div>
-                        </li>
-                        <li className='form-line'>
-                            <label className='form-label'>Price: </label>
-                            <div className='form-input'>
-                                <input
-                                    type="number"
-                                    placeholder='Ex: 100'
-                                    name="price"
-                                    value={price}
-                                    onChange={handleChangeForm}
-                                />
-                            </div>
-                        </li>
-                        <li className='form-line'>
-                            <label className='form-label image' htmlFor='input-image'>Image: </label>
-                            <div className='form-input upload-image-container'>
-                                <div className='upload-image'
-                                    title='Upload your image'
-                                    ref={uploadRef}
-                                >
-                                    Browse Files
-                                    <div>Drag and drop files here</div>
-                                </div>
-                                <div className='input-image-container'>
-                                    <input type="file"
-                                        id='input-image'
-                                        name='file'
-                                        // multiple="multiple"
-                                        onChange={handleChangeImage}
+                            </li>
+                            <li className='form-line'>
+                                <label className='form-label'>Price: </label>
+                                <div className='form-input'>
+                                    <input
+                                        type="number"
+                                        placeholder='Ex: 100'
+                                        name="price"
+                                        value={price}
+                                        onChange={handleChangeForm}
                                     />
                                 </div>
-                                <ul className='upload-list'>
-                                    {imageURL && (<li className='image-container'>
-                                        <div className='image-container-item'>
-                                            <img src={imageURL} alt='' />
-                                        </div>
-                                        <span>Recipe Image</span>
-                                        <span
-                                            className='delete-icon'
-                                            onClick={() => setImageURL(null)}
-                                        >
-                                            <AiOutlineDelete />
-                                        </span>
-                                    </li>
-                                    )}
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                    <div className='submit-button'>
-                        <button type='button' onClick={handleCreateRecipe}>Submit</button>
-                    </div>
-                </form>
+                            </li>
+                            <li className='form-line'>
+                                <label className='form-label image' htmlFor='input-image'>Image: </label>
+                                <div className='form-input upload-image-container'>
+                                    <div className='upload-image'
+                                        title='Upload your image'
+                                        ref={uploadRef}
+                                    >
+                                        Browse Files
+                                        <div>Drag and drop files here</div>
+                                    </div>
+                                    <div className='input-image-container'>
+                                        <input type="file"
+                                            id='input-image'
+                                            name='file'
+                                            // multiple="multiple"
+                                            onChange={handleChangeImage}
+                                        />
+                                    </div>
+                                    <ul className='upload-list'>
+                                        {imageURL && (<li className='image-container'>
+                                            <div className='image-container-item'>
+                                                <img src={imageURL} alt='' />
+                                            </div>
+                                            <span>Recipe Image</span>
+                                            <span
+                                                className='delete-icon'
+                                                onClick={() => setImageURL(null)}
+                                            >
+                                                <AiOutlineDelete />
+                                            </span>
+                                        </li>
+                                        )}
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <div className='submit-button'>
+                            <button type='button' onClick={handleCreateRecipe}>Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
+            {showModal && <ModalLogin setShowModal={setShowModal} />}
         </div>
-        {showModal && <ModalLogin setShowModal={setShowModal} />}
-    </div>)
+    )
 }
 
 export default CreateRecipe

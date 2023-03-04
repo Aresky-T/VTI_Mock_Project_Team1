@@ -1,17 +1,22 @@
 import { faHome, faPlusSquare, faSignInAlt, faRegistered, faCog, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Sidebar from './Sidebar';
 import DropdownNavbar from './DropdownNavbar';
 import logoUser from '../imgs/user-128.png';
-
+import { getProfile } from '../api/user.api';
+import { getAvatar, getProfileError, getProfileStart, getProfileSuccess } from '../redux/user.slice';
 const Navbar = () => {
 
-    const [showSidebar, setShowSidebar] = useState(false);
     const currentUser = useSelector(state => state.auth.signIn.currentUser);
-    const [height, setHeight] = useState(0);
+    const profile = useSelector(state => state.user.user.data);
+    const avatarUrl = useSelector(state => state.user.user.avatarUrl);
     const location = useLocation();
+    const dispatch = useDispatch();
+
+    const [showSidebar, setShowSidebar] = useState(false);
+    const [height, setHeight] = useState(0);
 
     let dropdownRef = useRef();
     const sidebarRef = useRef();
@@ -54,6 +59,20 @@ const Navbar = () => {
         }
     })
 
+    //-------------------------------Get Profile For Logged in User---------------
+    useEffect(() => {
+        dispatch(getProfileStart());
+        currentUser && getProfile(currentUser.token)
+            .then((response) => {
+                dispatch(getProfileSuccess(response.data));
+                dispatch(getAvatar(response.data.avatarUrl))
+            })
+            .catch((err) => {
+                dispatch(getProfileError("Error getting profile"));
+                console.log(err)
+            })
+    }, [currentUser])
+
     //----------------------------------List links for routers--------------------
     const links = [
         {
@@ -78,7 +97,7 @@ const Navbar = () => {
         },
         {
             name: "Profile",
-            path: "/profile",
+            path: "/profile/information",
             icon: faUser
         },
         {
@@ -108,13 +127,15 @@ const Navbar = () => {
                     <div className='nav-links-main'>
                         {currentUser ?
                             <div ref={dropdownRef}>
-                                <img src={currentUser.avatarUrl ? currentUser.avatarUrl : logoUser}
-                                    alt=''
-                                    className='user-pic'
-                                    aria-expanded={height !== 0}
-                                    onClick={() => setHeight(height === 0 ? "auto" : 0)}
-                                />
-                                <DropdownNavbar height={height} currentUser={currentUser} closeDropdown={closeDropdown} />
+                                {profile &&
+                                    <><img src={avatarUrl ? avatarUrl : logoUser}
+                                        alt=''
+                                        className='user-pic'
+                                        aria-expanded={height !== 0}
+                                        onClick={() => setHeight(height === 0 ? "auto" : 0)}
+                                    />
+                                        <DropdownNavbar height={height} currentUser={profile} closeDropdown={closeDropdown} />
+                                    </>}
                             </div> :
                             <>
                                 {[links[5], links[2], links[3]].map(link => (

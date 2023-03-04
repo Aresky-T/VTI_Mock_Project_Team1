@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { getAllRecipes } from "../api/recipe.api";
 import ReactPaginate from 'react-paginate';
+import { useSelector, useDispatch } from 'react-redux';
+import { getProfileStart, getProfileSuccess, getProfileError, getAvatar } from '../redux/user.slice';
+import { getProfile } from '../api/user.api';
 
 import { Link } from 'react-router-dom';
 function Home(props) {
+
+    const currentUser = useSelector(state => state.auth.signIn.currentUser);
+    const dispatch = useDispatch();
 
     const [listRecipes, setListRecipes] = useState([]);
     const [itemOffset, setItemOffset] = useState(0);
@@ -37,7 +43,18 @@ function Home(props) {
         )
     }, [])
 
-    // console.log("list", listRecipes);
+    useEffect(() => {
+        dispatch(getProfileStart());
+        currentUser && getProfile(currentUser.token)
+            .then((response) => {
+                dispatch(getProfileSuccess(response.data));
+                dispatch(getAvatar(response.data.avatarUrl))
+            })
+            .catch((err) => {
+                dispatch(getProfileError("Error getting profile"));
+                console.log(err)
+            })
+    }, [currentUser])
 
     return (
         <div className='home-page-container'>

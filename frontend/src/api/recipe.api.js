@@ -23,10 +23,10 @@ export const createRecipeIngredient = async (dataObj, tokenUser) => {
     return await axios.post(`${baseURL}/recipe-ingredient`, dataObj, config);
 }
 
-export const getRecipe = async (id, tokenUser) => {
-    return axios.get(baseURL);
+export const getRecipeDetail = async (id) => {
+    return axios.get(`${baseURL}/recipes/${id}`);
 }
 
-export const getAllRecipes = async () => {
-    return await axios.get(`${baseURL}/recipes`);
+export const getAllRecipes = async (search, page, size) => {
+    return await axios.get(`${baseURL}/recipes`, {params: {search, page, size}});
 }

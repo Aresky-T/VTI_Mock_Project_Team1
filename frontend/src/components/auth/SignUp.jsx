@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../Loading';
 import ConfirmSignUpSuccess from '../ConfirmSignUpSuccess';
 import { MdError } from 'react-icons/md';
+import {REGEX_EMAIL, REGEX_USERNAME, REGEX_PASSWORD} from './../../constant/Regex'
 
 const SignUp = () => {
 
@@ -29,9 +30,9 @@ const SignUp = () => {
             lastName: '',
         },
         validationSchema: yup.object().shape({
-            username: yup.string().min(5, 'Too Short').required('Required').matches(/^[a-z0-9_-]{5,30}$/, 'Username may include _ and – having a length of 5 to 30 characters'),
-            email: yup.string().required('Required').matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Email invalid'),
-            password: yup.string().required('Required').matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$/, 'Password must be 8 to 20 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character!'),
+            username: yup.string().min(5, 'Too Short').required('Required').matches(REGEX_USERNAME, 'Username may include _ and – having a length of 5 to 30 characters'),
+            email: yup.string().required('Required').matches(REGEX_EMAIL, 'Email invalid'),
+            password: yup.string().required('Required').matches(REGEX_PASSWORD, 'Password must be 8 to 20 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character!'),
             confirmPassword: yup.string().required('Required').oneOf([yup.ref("password"), null], 'Confirmed password must match password'),
             firstName: yup.string().required('Required'),
             lastName: yup.string().required('Required')

@@ -28,18 +28,18 @@ const DropdownNavbar = ({ height, currentUser, closeDropdown }) => {
             <div className='sub-menu'>
                 <div className='user-info'
                     onClick={() => {
-                        navigate('/profile')
+                        navigate('/profile/information')
                         closeDropdownNavbar();
                     }}
                 >
                     <img src={currentUser.avatarUrl ? currentUser.avatarUrl : logo} alt="" />
-                    <h3>{currentUser.username}</h3>
+                    <h3>{currentUser.firstName + " " + currentUser.lastName}</h3>
                 </div>
                 <hr />
 
                 <div className='sub-menu-link'
                     onClick={() => {
-                        navigate('/profile')
+                        navigate('/profile/information')
                         closeDropdownNavbar();
                     }}
                 >
