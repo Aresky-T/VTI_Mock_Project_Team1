@@ -43,6 +43,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET,"/api/v1/recipes/get-list-for-creator/**").authenticated()
 				.antMatchers("/api/v1/comment").authenticated()
 				.antMatchers(HttpMethod.POST,"/api/v1/users/forgot").permitAll()
+				.antMatchers("/api/v1/point").authenticated()
+				.antMatchers("/api/v1/exchange").authenticated()
 				.antMatchers(HttpMethod.GET).permitAll()
 				.anyRequest().permitAll()
 				.and()

@@ -57,10 +57,10 @@ public class RecipeExchangeService implements IRecipeExchangeService{
                     pointRepository.save(point);
                     pointRepository.save(pointAuthor);
                 }else{
-                    return "Bạn không đủ point , mời bạn tích thêm điểm khi công thức khác";
+                    return "You do not have enough points, invite you to accumulate more points by doing events!";
                 }
                     recipeExchangeRepository.save(obj.toEntity());
-                    return "Create Exchange successfully!";
+                    return "success";
 
             }
         } catch (Exception e) {
