@@ -1,7 +1,8 @@
 package com.food_recipe.repository;
 
-import com.food_recipe.entity.Recipe;
-import com.food_recipe.entity.Voting;
+import com.food_recipe.entity.voting.Voting;
+import com.food_recipe.entity.voting.VotingPK;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VotingRepository extends
-        JpaRepository<Voting, Integer>,
+        JpaRepository<Voting, VotingPK>,
         JpaSpecificationExecutor<Voting> {
     void deleteByRecipeIdAndUserId(Integer recipeId, Integer userId);
 
@@ -21,5 +22,5 @@ public interface VotingRepository extends
     Float getAverageStarsByRecipeId(Integer recipeId);
 
     @Query("SELECT COUNT(V.user) FROM Voting V WHERE V.recipe.id = ?1")
-    Integer getAllUsersVotedForRecipe (Integer recipeId);
+    Integer getAllUsersVotedForRecipe(Integer recipeId);
 }

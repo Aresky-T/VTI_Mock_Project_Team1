@@ -1,7 +1,7 @@
 package com.food_recipe.repository;
 
 
-import com.food_recipe.entity.ResetPasswordToken;
+import com.food_recipe.entity.user.ResetPasswordToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
