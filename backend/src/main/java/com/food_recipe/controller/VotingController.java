@@ -1,20 +1,21 @@
 package com.food_recipe.controller;
 
-import com.food_recipe.dto.CommentDTO;
-import com.food_recipe.dto.RecipeFormForCreating;
-import com.food_recipe.dto.VotingDTO;
-import com.food_recipe.dto.VotingFormForUpdate;
-import com.food_recipe.entity.Recipe;
-import com.food_recipe.entity.Voting;
-import com.food_recipe.service.IVotingService;
+import com.food_recipe.dto.request.CreateVotingRequest;
+import com.food_recipe.dto.request.UpdateVotingRequest;
+import com.food_recipe.dto.response.VotingStatisticResponse;
+import com.food_recipe.entity.recipe.Recipe;
+import com.food_recipe.entity.user.User;
+import com.food_recipe.entity.voting.VotingStatistic;
+import com.food_recipe.exception.CommonException;
+import com.food_recipe.service.recipe.IRecipeService;
+import com.food_recipe.service.user.IUserService;
+import com.food_recipe.service.voting.IVotingService;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @CrossOrigin("*")
 @RestController
@@ -24,13 +25,16 @@ public class VotingController {
     private IVotingService votingService;
 
     @Autowired
-    private ModelMapper modelMapper;
+    private IUserService userService;
+
+    @Autowired
+    private IRecipeService recipeService;
 
     @GetMapping
     public ResponseEntity<?> getStars (@RequestParam Integer userId, @RequestParam Integer recipeId){
         Integer stars = votingService.getStars(userId, recipeId);
         if(stars == null){
-            return new ResponseEntity<>("You have never rated this recipe before!", HttpStatus.OK);
+            throw new CommonException("You have never rated this recipe before!");
         }
         return new ResponseEntity<>(votingService.getStars(userId, recipeId), HttpStatus.OK);
     }
@@ -46,19 +50,19 @@ public class VotingController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createVoting (@RequestBody VotingDTO voting) {
-        Voting obj = votingService.createVoting(voting);
-        if (obj == null) {
-            return new ResponseEntity<>("Failed", HttpStatus.OK);
-        }
-        VotingDTO dto = modelMapper.map(obj, VotingDTO.class);
-        return new ResponseEntity<>(dto, HttpStatus.OK);
+    public ResponseEntity<VotingStatisticResponse> createVoting (Authentication authentication, @RequestBody CreateVotingRequest form) {
+        User user = userService.findUserByUsername(authentication.getName());
+        Recipe recipe = recipeService.getRecipeById(form.getRecipeId());
+        VotingStatistic statistic = votingService.createVoting(user, recipe, form);
+        return new ResponseEntity<>(new VotingStatisticResponse(statistic), HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<?> updateVoting(@RequestBody VotingDTO voting) {
-        String response = votingService.updateVoting(voting);
-        return new ResponseEntity<String>(response, HttpStatus.OK);
+    public ResponseEntity<VotingStatisticResponse> updateVoting(Authentication authentication, @RequestBody UpdateVotingRequest form) {
+        User user = userService.findUserByUsername(authentication.getName());
+        Recipe recipe = recipeService.getRecipeById(form.getRecipeId());
+        VotingStatistic statistic = votingService.updateVoting(user, recipe, form);
+        return new ResponseEntity<>(new VotingStatisticResponse(statistic), HttpStatus.OK);
     }
 
     @DeleteMapping

@@ -1,13 +1,13 @@
 package com.food_recipe.controller;
 
-import java.io.File;
+// import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Map;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import com.food_recipe.service.IFileService;
+import com.food_recipe.service.file.IFileService;
 import com.food_recipe.utils.FileManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -46,7 +46,7 @@ public class FileController {
 
 		// TODO validate
 
-		File imageFile = fileService.downloadImage(nameImage);
+		// File imageFile = fileService.downloadImage(nameImage);
 		InputStreamResource imageStream = new InputStreamResource(new FileInputStream(nameImage));
 
 		HttpHeaders headers = new HttpHeaders();
@@ -63,6 +63,7 @@ public class FileController {
 				.body(imageStream);
 	}
 
+	@SuppressWarnings("rawtypes")
 	@PostMapping("/cloudinary/upload")
 	public ResponseEntity<?> uploadImageCloudinary (@RequestParam(name = "image") MultipartFile image) throws IOException {
 		String img = null;
