@@ -22,7 +22,7 @@ public class WebCorsFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         final HttpServletResponse res = (HttpServletResponse) response;
         res.setHeader("Access-Control-Allow-Origin", "*");
-        res.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
+        res.setHeader("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, OPTIONS, DELETE");
         res.setHeader("Access-Control-Allow-Headers", ((HttpServletRequest) request).getHeader(
                 HttpHeaders.ACCESS_CONTROL_REQUEST_HEADERS));
         res.setHeader("Access-Control-Max-Age", "3600");

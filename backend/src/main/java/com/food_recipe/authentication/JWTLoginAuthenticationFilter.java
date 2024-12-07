@@ -1,9 +1,9 @@
 package com.food_recipe.authentication;
 
 
-import com.food_recipe.entity.User;
-import com.food_recipe.service.IUserService;
-import com.food_recipe.service.JWTTokenService;
+import com.food_recipe.entity.user.User;
+import com.food_recipe.service.user.IUserService;
+import com.food_recipe.service.jwt.JWTTokenService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,15 +15,12 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.io.IOException;
-import java.util.Collections;
 
-public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
+public class JWTLoginAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
+    private final IUserService userService;
 
-    private IUserService userService;
-
-    protected JWTAuthenticationFilter(String url, AuthenticationManager authManager, IUserService userService) {
+    protected JWTLoginAuthenticationFilter(String url, AuthenticationManager authManager, IUserService userService) {
         super(new AntPathRequestMatcher(url));
         setAuthenticationManager(authManager);
         this.userService = userService;
@@ -35,13 +32,9 @@ public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFil
             HttpServletResponse response)
             throws AuthenticationException, IOException, ServletException {
 
-        return getAuthenticationManager().authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getParameter("username"),
-                        request.getParameter("password"),
-                        Collections.emptyList()
-                )
-        );
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        return getAuthenticationManager().authenticate(new UsernamePasswordAuthenticationToken(username, password));
     }
 
     @Override
@@ -50,10 +43,13 @@ public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFil
             HttpServletResponse response,
             FilterChain chain,
             Authentication authResult) throws IOException, ServletException{
-        // infor user
-        User user = userService.findUserByUsername(authResult.getName());
 
+        User user = userService.findUserByUsername(authResult.getName());
         JWTTokenService.addJWTTokenAndUserInfoToBody(response, user);
     }
 
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+        super.unsuccessfulAuthentication(request, response, failed);
+    }
 }
