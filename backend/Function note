@@ -1,0 +1,213 @@
+(*)  Các chức năng mới
+1. Ẩm thực theo loại (ví dụ: cơm, bún, lẩu, món ăn mặn,...)
+2. Ẩm thực theo vùng (ví dụ: món ăn châu á, châu âu, việt nam, trung quốc,...)
+3. Ẩm thực theo nguyên liệu (ví dụ: món ăn làm từ thịt gà, ...)
+4. Ẩm thực theo mùa
+5. Thống kê công thức được đánh giá cao nhất
+6. Thống kê công thức được mua nhiều nhất (sử dụng điểm cá nhân để mua)
+7. Ẩn/hiện công thức
+8. Gửi góp ý tới admin
+9. Chế độ nấu ăn theo từng bước có bấm giờ
+10. Tính toán lại nguyên liệu dựa theo khẩu phần ăn (số lượng người ăn)
+11. Recipe Collection - bộ sưu tập công thức
+12. Recipe Transaction - Mua, trao đổi công thức
+13. Point History - Nhật ký, lịch sử tăng giảm điểm của User
+14. Point Tasks (Nhiệm vụ kiếm điểm)
+15. Recipe comment (Bình luận ở công thức)
+16. Recipe privacy: Công khai hoặc ẩn công thức
+
+(*) Các chức năng cải tiến
+
+1. Tạo, cập nhật công thức
+- Các thuộc tính bắt buộc:
+    + name
+    + description
+    + imageUrl (String)
+    + point (Integer)
+    + views (Integer)
+    + creator (User)
+    + ingredients (List<String>)
+    + steps (List<RecipeStep>)
+
+- Các thuộc tính không bắt buộc:
+    + note (String)
+    + group (FoodGroup)
+    + region (FoodRegion)
+
+- Mỗi công thức phải có một mã riêng biệt (thay cho index)
+- Mỗi bước ứng với một bản ghi => "RecipeStep" entity
+- Mỗi công thức "bắt buộc" phải thuộc một hoặc nhiều nhóm (loại) cụ thể => "FoodGroup" entity
+- Mỗi công thức có thể thuộc một vùng địa lý nào đó => "FoodRegion" entity
+
+2. Quản lý công thức
+- Công thức đã tạo
+- Công thức đã mua ( bao gồm cả lịch sử mua, số điểm đã mua, v.v.)
+
+3. Xoá công thức
+- Thêm yêu cầu nhập vào input mã code của công thức cần xoá để xác nhận
+
+4. Cấp bậc của user trong hệ thống (User Levels)
+Conditional Options:
+    - Dựa trên số điểm
+    - Dựa trên số lượng công thức
+    - Dựa trên thống kế chung đánh giá công thức
+
+                             ************ BEGIN ***********
+===============================================================================
+======      12. Recipe Transaction - Mua, trao đổi công thức ==================
+===============================================================================
+I. Mô tả chức năng:
+    - Người dùng sử dụng điểm để mua (trao đổi công thức)
+    - Người dùng sẽ có quyền sở hữu công thức đó - RecipeOwner (quyền xem toàn bộ công thức)
+    - Người dùng có thể huỷ quyền sở hữu công thức nếu muốn
+    - Người dùng có thể giao dịch lại công thức sau khi huỷ quyền sở hữu
+    - Nếu tác giả của công thức xoá công thức đi => toàn bộ người có quyền sở hữu cũng sẽ mất đi
+    - Sau khi huỷ quyền sở hữu công thức, lịch sử giao dịch vẫn tồn tại
+
+II. Thực thể:
+1. RecipeTransaction: Thông tin giao dịch công thức của người dùng
+    +) User: thông tin người dùng (người thực hiện giao dịch)
+    +) Recipe: thông tin công thức (công thức mà người đó muốn giao dịch với tác giả)
+    +) Cost: chi phí giao dịch, tức điểm của công thức
+    +) Date: ngày thực hiện giao dịch
+===============================================================================
+                              ************ END ***********
+
+
+                             ************ BEGIN ***********
+===============================================================================
+======    13. Point History - Nhật ký, lịch sử tăng giảm điểm của User ========
+===============================================================================
+
+1. PointHistory: chứa thông tin giao dịch điểm
+    +) Tên các Giao dịch, nhiệm vụ đã hoàn thành
+    +) Số điểm kiếm được / mất đi
+    +) Thời điểm biến động số điểm
+    
+2. Table:
+	CREATE TABLE IF NOT EXISTS `point_history` (
+		id INT NOT NULL AUTO_INCREMENT,
+		`user_id` INT NOT NULL,
+		`activity_name` VARCHAR(255) NOT NULL,
+		`description` VARCHAR(255) NOT NULL,
+		`point_changed` INT NOT NULL DEFAULT 0,
+		`changed_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		PRIMARY KEY(`id`),
+		CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
+	);
+===============================================================================
+                              ************ END ***********
+
+
+                             ************ BEGIN ***********
+===============================================================================
+======    14. Point Tasks - Kiếm điểm để đổi công thức           ==============
+===============================================================================
+
+I. Kiếm điểm ở đâu?
+    + Nhiệm vụ hàng ngày (tích luỹ điểm nhiều lần):
+        -> Đăng nhập hàng ngày (đăng nhập liên tục sẽ được thưởng thêm)
+        -> Xem công thức trong trọn vẹn 30 giây
+
+    + Nhiệm vụ đặc biệt (tích luỹ điểm số lần giới hạn):
+        -> Đăng Ký Tài Khoản
+        -> Mời Bạn Bè Tham Gia
+        -> Đóng góp công thức mới
+        -> Tăng lên cấp độ người dùng mới
+        -> Đánh giá tốt cho công thức của người khác
+            +) Bản thận được cộng điểm
+            +) Tác giả của công thức cũng được cộng điểm
+        -> Chia sẻ công thức của mình hoặc của người khác lên mạng xã hội
+        -> Gửi góp ý để cải thiện trang web
+
+II. Xây dựng thực thể:
+    1. DailyTask: Nhiệm vụ hàng ngày
+    2. SpecialTask: Nhiệm vụ đặc biệt
+
+    (*) Một Task có thể bao gồm các thông tin:
+            +) id: id nhiệm vụ
+            +) type: Loại nhiệm vụ
+            +) name: Tên nhiệm vụ
+            +) description: Mô tả nhiệm vụ
+            +) frequency: Số lượt làm nhiệm vụ, hay tần suất thực hiện
+            +) rewardPoints: Số điểm nhận được nếu hoàn thành
+            +) status: Trạng thái nhiệm vụ (kích hoạt, không kích hoạt, bảo trì,...)
+
+    4. UserTask: Thông tin giữa user và task
+            +) userId: Thông tin user (id)
+            +) taskId: Thông tin task (id)
+            +) pointEarned: Điểm kiếm được sau khi hoàn thành
+            +) completionStatus: Trạng thái hoàn thành (hoàn thành hoặc chưa hoàn thành)
+            +) completionDate: Thời điểm hoàn thành (nếu đã hoàn thành)
+
+III. Các bảng trong database:
+===============================================================================
+                              ************ END ***********
+
+
+
+                             ************ BEGIN ***********
+===============================================================================
+======    15. Recipe comment - Bình luận công thức           ==============
+===============================================================================
+(*) Mô tả:
+
+- Danh sách bình luận có "show more" sử dụng phân trang để tăng hiệu suất
+	+) page: chỉ số bắt đầu từ 1
+	+) size: số phần tử trong mỗi page
+	+) sort: sắp xếp danh sách các phần tử trong page
+	+) lastCommentId: id của phần tử cuối cùng trong page (sử dụng khi xem thêm các bình luận phía sau)
+	+) firstCommentId: id của phần tử đầu tiên trong page (sử dụng khi xem thêm các bình luận phía trước)
+
+- Sắp xếp bình luận
+	+) Mới nhất xếp trước
+	+) Cũ nhất xếp trước
+	+) Nhiều like nhất xếp trước
+	+) Nhiều phản hồi nhất xếp trước
+
+- 3 loại cấp độ bình luận:
+    +) TOP: cấp cao nhất, bao gồm các bình luận con cấp MID, không có bình luận cha
+    +) MID: cấp thứ 2, có bình luận cha cấp TOP, bình luận con cấp LOW
+    +) LOW: cấp thấp nhất, có bình luận cha cấp MID, bình luận con cũng cấp LOW
+
+- Khi tạo bình luận:
+	+) Bình luận mới được thên vào đầu danh sách bình luận cùng cấp
+
+- Khi xoá bình luận:
+	+) Làm mới danh sách bình luận cùng cấp: các phần tử bên dưới dịch chuyên lên trên 1 vị trí
+	+) Các cách làm mới danh sách:
+		*) Splice: thay đổi trực tiếp mảng gốc dựa vào index làm mốc và số lượng phần tử muốn xoá
+		*) Filter: không thay đổi mảng gốc, trả về mảng mới dựa vào điều kiện đã cung cấp
+		*) Slice: không thay đổi mảng gốc, trả về mảng mới dựa vào chỉ số index bắt đầu và kết thúc đã cung cấp
+		*) Recude: không thay đổi mảng gốc, trả về mảng mới dựa vào logic trong hàm callback
+		
+		=> Hiệu suất tốt nhất: Slice
+		=> An toàn nhất: Filter
+
+I. Tác nhân
+    - Xem bình luận: All user
+    
+    - Bình luận: Logged in user
+        +) Creator: Logged in user
+        +) Edit: Comment creator
+        +) Delete: Comment creator
+
+II. Mô tả chức năng
+    1. Xem bình luận
+        +) Người dùng xem bình luận trong trang "Chi tiết công thức"
+        +) Áp dụng pagination cho bình luận
+
+    2. Tạo bình luận (loại TOP)
+    3. Trả lời bình luận (loại MID, LOW)
+    4. Sửa bình luận (TOP, MID, LOW)
+    5. Xoá bình luận
+
+
+II. Entities
+    1. Comment Entity
+
+
+
+III. Các bảng trong database:
+===============================================================================
+                              ************ END ***********
