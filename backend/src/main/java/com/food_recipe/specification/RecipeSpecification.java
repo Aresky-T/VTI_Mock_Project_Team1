@@ -5,7 +5,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import com.food_recipe.entity.Recipe;
+import com.food_recipe.entity.recipe.Recipe;
 import org.springframework.data.jpa.domain.Specification;
 
 public class RecipeSpecification implements Specification<Recipe> {
