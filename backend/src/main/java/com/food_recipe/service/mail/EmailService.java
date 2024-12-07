@@ -1,9 +1,10 @@
-package com.food_recipe.service;
+package com.food_recipe.service.mail;
 
 
-import com.food_recipe.entity.User;
+import com.food_recipe.entity.user.User;
 import com.food_recipe.repository.RegistrationUserTokenRepository;
 import com.food_recipe.repository.ResetPasswordTokenRepository;
+import com.food_recipe.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

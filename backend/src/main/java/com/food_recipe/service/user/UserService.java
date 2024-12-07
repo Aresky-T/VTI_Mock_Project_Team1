@@ -1,25 +1,27 @@
-package com.food_recipe.service;
+package com.food_recipe.service.user;
 
-import com.food_recipe.dto.ChangePublicProfileDTO;
-import com.food_recipe.dto.UserDTO;
-import com.food_recipe.entity.*;
+import com.food_recipe.dto.user.request.ChangePublicProfileDTO;
+import com.food_recipe.entity.user.RegistrationUserToken;
+import com.food_recipe.entity.user.ResetPasswordToken;
+import com.food_recipe.entity.user.User;
+import com.food_recipe.entity.user.UserStatus;
 import com.food_recipe.event.OnResetPasswordViaEmailEvent;
 import com.food_recipe.event.OnSendRegistrationUserConfirmViaEmailEvent;
+import com.food_recipe.exception.CommonException;
 import com.food_recipe.repository.RegistrationUserTokenRepository;
 import com.food_recipe.repository.ResetPasswordTokenRepository;
 import com.food_recipe.repository.UserRepository;
+import com.food_recipe.service.mail.SendMailService;
+import com.food_recipe.service.point.IPointService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
-@Component
+@Service
 @Transactional
 public class UserService implements IUserService {
 
@@ -41,8 +43,13 @@ public class UserService implements IUserService {
 	@Autowired
 	private SendMailService sendMailService;
 
+	@Autowired
+	private IPointService pointService;
+
 	@Override
 	public void createUser(User user) {
+		checkEmailExists(user.getEmail());
+		checkUsernameExists(user.getUsername());
 		// encode password
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 
@@ -100,7 +107,12 @@ public class UserService implements IUserService {
 		// active user
 		User user = registrationUserToken.getUser();
 		user.setStatus(UserStatus.ACTIVE);
-		userRepository.save(user);
+		User activatedUser = userRepository.save(user);
+
+		// add user point
+		Integer earnedPoints = 1000;
+		pointService.createPoint(activatedUser, earnedPoints);
+		pointService.logRegisterAccount(activatedUser, earnedPoints);
 
 		// remove Registration User Token
 		registrationUserTokenRepository.deleteById(registrationUserToken.getId());
@@ -152,19 +164,6 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// Check user exists by username
-		User user = userRepository.findByUsername(username);
-
-		if (user == null) {
-			throw new UsernameNotFoundException(username);
-		}
-
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-				AuthorityUtils.createAuthorityList(user.getUsername()));
-	}
-
-	@Override
 	public User ChangePublicProfileDTO(String username, ChangePublicProfileDTO dto) {
 		User user = userRepository.findByUsername(username);
 
@@ -188,37 +187,49 @@ public class UserService implements IUserService {
 		}
 	}
 
+	@Transactional
 	@Override
-	public String deleteAvatarForUser (Integer userId) {
-		Boolean exists = userRepository.existsById(userId);
-		try {
-			if (Boolean.FALSE.equals(exists)) {
-				return "Deleted fail!";
-			}
-			User user = userRepository.findById(userId).get();
-			user.setAvatarUrl(null);
-			userRepository.save(user);
-			return "Delete avatar successfully!";
-		} catch (Exception e) {
-			return "Delete failed!";
+	public String deleteAvatarForUser (User user) {
+		if (user.getAvatarUrl() == null) {
+			throw new CommonException("Avatar does not exist!");
+		}
+
+		user.setAvatarUrl(null);
+		userRepository.save(user);
+
+		return "Delete avatar successfully!";
+	}
+
+	@Override
+	public void checkEmailExists(String email) {
+		if(existsUserByEmail(email)){
+			throw new CommonException("This email already exists, please enter another email address!");
 		}
 	}
 
 	@Override
-	public User updateUserAvatar(Integer userId, String avatar) {
-		Boolean userExists = userRepository.existsById(userId);
-		if (!userExists) {
-			return null;
-		} else {
-			User user = userRepository.findById(userId).get();
-			String avatarURL = avatar.trim();
-			if (avatarURL.length() < 1) {
-				return null;
-			} else {
-				user.setAvatarUrl(avatarURL);
-				return userRepository.save(user);
-			}
+	public void checkUsernameExists(String username) {
+		if(existsUserByUsername(username)){
+			throw new CommonException("This username already exists, please enter another username!");
 		}
+	}
+
+	@Override
+	public void save(User user) {
+		if(user != null){
+			userRepository.save(user);
+		}
+	}
+
+	@Transactional
+	@Override
+	public void updateUserAvatar(User user, String newAvatar) {
+			if (newAvatar == null || newAvatar.trim().isEmpty()) {
+				throw new CommonException("New avatar url cannot be empty!");
+			}
+
+			user.setAvatarUrl(newAvatar.trim());
+			userRepository.save(user);
 	}
 
 }

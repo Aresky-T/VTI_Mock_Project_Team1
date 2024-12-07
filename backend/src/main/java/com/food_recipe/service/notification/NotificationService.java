@@ -1,15 +1,15 @@
-package com.food_recipe.service;
+package com.food_recipe.service.notification;
 
-import com.food_recipe.entity.Notification;
+import com.food_recipe.entity.notification.Notification;
 import com.food_recipe.repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.food_recipe.dto.NotificationFormCreating;
-import com.food_recipe.entity.SystemNotification;
-import com.food_recipe.entity.User;
-import com.food_recipe.entity.UserNotification;
+import com.food_recipe.dto.notification.request.NotificationFormCreating;
+import com.food_recipe.entity.notification.SystemNotification;
+import com.food_recipe.entity.user.User;
+import com.food_recipe.entity.notification.UserNotification;
 import com.food_recipe.repository.SystemNotificationRepository;
 import com.food_recipe.repository.UserNotificationRepository;
 
@@ -18,7 +18,7 @@ import java.util.Objects;
 
 @Service
 @Component
-public class NotificationService implements INotificationService{
+public class NotificationService implements INotificationService {
 
     @Autowired
     private NotificationRepository notificationRepository;

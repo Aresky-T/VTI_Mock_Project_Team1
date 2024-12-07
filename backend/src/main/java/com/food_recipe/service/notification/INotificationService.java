@@ -1,7 +1,7 @@
-package com.food_recipe.service;
+package com.food_recipe.service.notification;
 
-import com.food_recipe.dto.NotificationFormCreating;
-import com.food_recipe.entity.Notification;
+import com.food_recipe.dto.notification.request.NotificationFormCreating;
+import com.food_recipe.entity.notification.Notification;
 
 import java.util.List;
 

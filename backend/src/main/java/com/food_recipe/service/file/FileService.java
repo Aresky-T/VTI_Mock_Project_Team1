@@ -1,4 +1,4 @@
-package com.food_recipe.service;
+package com.food_recipe.service.file;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.food_recipe.service;
+package com.food_recipe.service.mail;
 
 public interface IEmailService {
 
