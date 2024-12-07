@@ -1,4 +1,4 @@
-package com.food_recipe.entity;
+package com.food_recipe.entity.notification;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

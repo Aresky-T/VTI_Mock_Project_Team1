@@ -1,4 +1,4 @@
-package com.food_recipe.entity;
+package com.food_recipe.entity.notification;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,13 +18,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.food_recipe.entity.user.User;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "`Notification`")
+@Table(name = "`notification`")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "`type`", discriminatorType = DiscriminatorType.STRING)
 public class Notification implements Serializable {

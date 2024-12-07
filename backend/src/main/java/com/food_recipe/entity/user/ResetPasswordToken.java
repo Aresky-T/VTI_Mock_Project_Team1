@@ -1,4 +1,4 @@
-package com.food_recipe.entity;
+package com.food_recipe.entity.user;
 
 import lombok.Data;
 
@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "`Reset_Password_Token`")
+@Table(name = "`reset_password_token`")
 public class ResetPasswordToken implements Serializable {
 
     private static final long serialVersionUID = 1L;

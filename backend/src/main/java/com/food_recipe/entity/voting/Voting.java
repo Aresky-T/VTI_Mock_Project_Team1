@@ -1,6 +1,8 @@
-package com.food_recipe.entity;
+package com.food_recipe.entity.voting;
 
-import lombok.Data;
+import com.food_recipe.entity.recipe.Recipe;
+import com.food_recipe.entity.user.User;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -8,8 +10,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Data
-@Table(name = "`Voting`")
+@Getter
+@Setter
+@Builder
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "`voting`")
 public class Voting implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -33,14 +40,4 @@ public class Voting implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date createDate;
-
-    public Voting() {
-    }
-
-    public Voting(Integer userId, Integer recipeId, Integer stars) {
-        this.id = new VotingPK(userId, recipeId);
-        this.user = new User(userId);
-        this.recipe = new Recipe(recipeId);
-        this.stars = stars;
-    }
 }

@@ -1,4 +1,4 @@
-package com.food_recipe.entity;
+package com.food_recipe.entity.user;
 
 
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "`Registration_User_Token`")
+@Table(name = "`registration_user_token`")
 public class RegistrationUserToken implements Serializable {
 
     private static final long serialVersionUID = 1L;
