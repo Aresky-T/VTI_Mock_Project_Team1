@@ -1,6 +1,6 @@
 package com.food_recipe.event;
 
-import com.food_recipe.service.IEmailService;
+import com.food_recipe.service.mail.IEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
