@@ -1,121 +1,65 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { createCommentApi, getCommentsApi } from '../../api/comment.api';
-import ReviewType from './ReviewType';
-import { showSignInPopup } from '../../redux/auth.slice';
-import { compareDate } from '../../utils/compare';
-import { toastStyle } from '../../configs/toastStyleConfig';
+import React from "react";
+import ReviewType from "./ReviewType";
+import StyledTextarea from "../styled/textarea";
 
-const Reviews = ({ recipe, toast, toggleScroll }) => {
-
-  const [comment, setComment] = useState('');
-  const [comments, setComments] = useState([]);
-  const [currentUserList, setCurrentUserList] = useState([]);
-  const [otherUserList, setOtherUserList] = useState([]);
-  const currentUser = useSelector(state => state.auth.signIn.currentUser);
-  const dispatch = useDispatch();
-  let commentValid = comment.trim().length;
-
-  const handleChangeComment = (event) => {
-    setComment(event.target.value);
-  }
-
-  const getComments = (recipe) => {
-    getCommentsApi(recipe.id)
-      .then(res => {
-        const list = [...res.data];
-        let list1 = new Set();
-        let list2 = new Set();
-
-        list.forEach(element => {
-          if (currentUser?.id === element.user.id) {
-            list1.add(element)
-          } else {
-            list2.add(element)
-          }
-        });
-
-        setComments([...list].sort(compareDate("updateDate", "desc")))
-        setCurrentUserList([...list1].sort(compareDate("updateDate", "desc")))
-        setOtherUserList([...list2].sort(compareDate("updateDate", "desc")))
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-
-  async function handleSubmitComment(e) {
-    e.preventDefault();
-    if (currentUser) {
-      const data = {
-        userId: currentUser.id,
-        recipeId: recipe.id,
-        comment: comment
-      };
-
-      await createCommentApi(data, currentUser.token)
-        .then(res => {
-          if (res.data === "This comment already existed!") {
-            toast.error('You have commented before!', toastStyle);
-          } else {
-            toast.success('Comment successfully!');
-          }
-        })
-        .then(() => {
-          getComments(recipe);
-        })
-        .catch(err => {
-          toast.error('Comment Failed!');
-        })
-    } else {
-      dispatch(showSignInPopup());
-    }
-    setComment('');
-  }
-
-  useEffect(() => {
-    recipe && getComments(recipe);
-  }, [recipe, currentUser])
-
+const Reviews = ({
+  recipe,
+  toggleScroll,
+  comment,
+  comments,
+  commentValid,
+  currentUser,
+  currentUserList,
+  otherUserList,
+  handleChangeComment,
+  handleSubmitComment,
+}) => {
   return (
-    <div className='reviews'>
-      <form className='form-reviews'>
-        <p className="input-label">Leave a review</p>
-        <textarea
-          name="comment"
-          id='comment-input'
-          value={comment}
-          placeholder='Let us know your thoughts...'
-          onChange={handleChangeComment}
-        />
-        <button className="submit-comment"
-          type="submit"
-          style={commentValid > 0 ? styles.active : styles.block}
-          onClick={(e) => handleSubmitComment(e)}
-        >
-          SUBMIT
-        </button>
-      </form>
-      {currentUser &&
+    <div className="reviews">
+      {currentUser ? (
         <>
-          <ReviewType list={currentUserList} label="Your" recipe={recipe} toggleScroll={toggleScroll} />
+          <form className="form-reviews" onSubmit={handleSubmitComment}>
+            <p className="input-label">Leave a review</p>
+            <StyledTextarea
+              name="comment"
+              id="comment-input"
+              value={comment}
+              placeholder="Let us know your thoughts..."
+              onChange={handleChangeComment}
+              rows={10}
+            />
+            <button
+              className="submit-comment"
+              type="submit"
+              style={commentValid > 0 ? styles.active : styles.block}
+            >
+              SUBMIT
+            </button>
+          </form>
+          <ReviewType
+            list={currentUserList}
+            label="Your"
+            recipe={recipe}
+            toggleScroll={toggleScroll}
+          />
           <ReviewType list={otherUserList} label="Other" />
         </>
-      }
-      {!currentUser && <ReviewType list={comments} label="" />}
+      ) : (
+        <ReviewType list={comments} label="" />
+      )}
     </div>
-  )
-}
+  );
+};
 
 const styles = {
   block: {
-    pointerEvents: "none"
+    pointerEvents: "none",
   },
   active: {
     pointerEvents: "auto",
     backgroundColor: "#333333",
-    cursor: "pointer"
-  }
+    cursor: "pointer",
+  },
 };
 
-export default Reviews
+export default Reviews;
