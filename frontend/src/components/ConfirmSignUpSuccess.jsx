@@ -1,39 +1,37 @@
-import React from 'react'
-import { BsCheck } from 'react-icons/bs';
-import { useNavigate } from 'react-router-dom';
-const ConfirmSignUpSuccess = ({ signUpSuccessMessage, setShowPopup, showPopup }) => {
+import React from "react";
+import { BsCheck } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { clearSignUpState } from "../redux/auth.slice";
+const ConfirmSignUpSuccess = ({ successMessage, active }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-    const navigate = useNavigate();
+  const closePopup = () => {
+    dispatch(clearSignUpState());
+    navigate("/auth/sign-in");
+  };
 
-    const closePopup = () => {
-        setTimeout(() => {
-            setShowPopup(false);
-            navigate('/auth/sign-in')
-        }, 300)
-    }
+  return (
+    <>
+      {successMessage && (
+        <div className="popup-container">
+          <div className={active ? "popup active" : "popup"}>
+            <div className="icon">
+              <BsCheck id="bsCheck" size={50} />
+            </div>
+            <div className="title">Success!</div>
+            <div className="description">{successMessage}</div>
+            <div className="accept-btn">
+              <button type="button" onClick={closePopup}>
+                Accept
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
-    return (
-        <>
-            {signUpSuccessMessage && (
-                <div className='popup-container'>
-                    <div className={showPopup ? 'popup active' : 'popup'}>
-                        <div className='icon'>
-                            <BsCheck id='bsCheck' size={50} />
-                        </div>
-                        <div className='title'>
-                            Success!!
-                        </div>
-                        <div className='description'>
-                            {signUpSuccessMessage}
-                        </div>
-                        <div className='accept-btn'>
-                            <button type="button" onClick={closePopup}>Accept</button>
-                        </div>
-                    </div>
-                </div>
-            )}
-        </>
-    )
-}
-
-export default ConfirmSignUpSuccess
+export default ConfirmSignUpSuccess;
