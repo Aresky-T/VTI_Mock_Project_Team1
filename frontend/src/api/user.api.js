@@ -1,5 +1,5 @@
 import axios from "axios";
-import { updateAvatarStart, updateProfileStart } from "../redux/user.slice";
+import { updateProfileStart } from "../redux/user.slice";
 import { configApi } from "./config";
 import { onLoading } from "../redux/loading.slice";
 
@@ -18,14 +18,12 @@ export const updateProfile = (data, token, dispatch) => {
 }
 
 
-export const updateAvatarApi = (data, token, dispatch) => {
+export const updateAvatarApi = (formData, token) => {
     const config = configApi(token);
-    dispatch(onLoading());
-    dispatch(updateAvatarStart());
-    return axios.put(`${baseUrl}/profile/avatar`, data, config);
+    return axios.patch(`${baseUrl}/profile/avatar`, formData, config);
 }
 
-export const deleteAvatarApi = (userId, token) => {
+export const deleteAvatarApi = (token) => {
     const config = configApi(token);
-    return axios.put(`${baseUrl}/delete-avatar/${userId}`, config);
+    return axios.delete(`${baseUrl}/profile/avatar`, config);
 }
