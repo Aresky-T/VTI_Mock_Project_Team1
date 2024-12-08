@@ -1,133 +1,167 @@
-import React, { useState } from 'react'
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
-import { signInUserApi } from '../../api/auth.api'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { useFormik } from 'formik'
-import { useDispatch, useSelector } from 'react-redux'
-import { signInSuccess, clearRedux, hiddenSignInPopup, signInError } from '../../redux/auth.slice'
-import swal from 'sweetalert'
-import * as yup from 'yup'
-import { offLoading } from '../../redux/loading.slice'
+import React, { useCallback, useEffect, useState } from "react";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { signInUserApi } from "../../api/auth.api";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signInSuccess } from "../../redux/auth.slice";
+import { MdClose } from "react-icons/md";
+import ValidateUtils from "../../utils/validate2";
+import { toast } from "react-toastify";
 
-const ModalLogin = () => {
+const ModalLogin = ({ isActive, onClose, redirectTo }) => {
+  const [formLogin, setFormLogin] = useState({
+    username: "",
+    password: "",
+  });
+  const [isValid, setIsValid] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
-    const [showPassword, setShowPassword] = useState(false);
-    const errorMessage = useSelector(state => state.auth.signIn.signInErrorMessage)
-    const navigate = useNavigate();
-    const dispatch = useDispatch()
-    const location = useLocation();
+  const [showPassword, setShowPassword] = useState(false);
+  // const [activeSubmitButton, setActiveSubmitButton] = useState(false);
 
-    if (errorMessage) {
-        setTimeout(() => {
-            dispatch(clearRedux())
-        }, 2000)
-    }
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-    const closeModal = () => {
-        dispatch(hiddenSignInPopup());
-        if (location.pathname === "/create-recipe") {
-            navigate(-1);
+  const handleChangeForm = (e) => {
+    const { name, value } = e.target;
+    setFormLogin((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  };
+
+  const handleValidateForm = useCallback(() => {
+    const validator = new ValidateUtils(formLogin);
+
+    validator.required("username");
+    validator.notEmpty("username");
+
+    validator.required("password");
+    validator.notEmpty("password");
+
+    const { isValid } = validator.validate();
+    setIsValid(isValid);
+  }, [formLogin]);
+
+  const closeModal = () => {
+    onClose();
+    redirectTo && navigate(redirectTo);
+  };
+
+  const handleSubmitLogin = () => {
+    setIsProcessing(true);
+    signInUserApi(formLogin)
+      .then((res) => {
+        if (res.data.status !== "ACTIVE") {
+          toast.error(
+            "Your account is not active. Please check your email to activate account!"
+          );
+          // const warning =
+          //   "Your account is not active. Please check your email to activate account!";
+          // swal({
+          //   title: "Warning!",
+          //   text: warning,
+          //   icon: "warning",
+          //   buttons: "OK",
+          // });
+        } else {
+          localStorage.setItem("userLoggedIn", JSON.stringify(res.data));
+          dispatch(signInSuccess(res.data));
+          toast.success("Login success!", { position: "top-center" });
         }
+      })
+      .catch((err) => {
+        toast.error("Invalid username or password. Please try again!");
+      });
+  };
+
+  useEffect(() => {
+    if (isProcessing) {
+      const timeout = setTimeout(() => {
+        setIsProcessing(false);
+      }, 1000);
+
+      return () => clearTimeout(timeout);
     }
+  }, [isProcessing]);
 
-    const onClickToSignIn = () => {
-        formik.handleSubmit();
-    }
+  useEffect(() => {
+    handleValidateForm();
+  }, [handleValidateForm]);
 
-    const formik = useFormik({
-        initialValues: {
-            username: '',
-            password: '',
-        },
-        validationSchema: yup.object().shape({
-            username: yup.string().required("required"),
-            password: yup.string().required("required")
-        }),
-        onSubmit: (values) => {
-            signInUserApi(values, dispatch)
-                .then((res) => {
-                    if (!res.data.token) {
-                        dispatch(offLoading());
-                        const warning = "Your account is not active. Please check your email to activate account!"
-                        swal({
-                            title: "Warning!",
-                            text: warning,
-                            icon: "warning",
-                            buttons: "OK",
-                        });
-                    } else {
-                        localStorage.setItem("userLoggedIn", JSON.stringify(res.data));
-                        dispatch(signInSuccess(res.data));
-                        dispatch(offLoading());
-                        dispatch(hiddenSignInPopup())
-                    }
-                })
-                .catch((err) => {
-                    console.log(err);
-                    dispatch(offLoading());
-                    dispatch(signInError("Username or password invalid. Please try again!"))
-                });
-        }
-    })
-
-    return (
-        <div className='modal-page'>
-            <div
-                className='modal-container'
-            >
-                <div className='modal-header'>
-                    SIGN IN
-                </div>
-                <div className='modal-body'>
-                    <div>
-                        <label>Username: </label>
-                        <input
-                            name='username'
-                            type='text'
-                            value={formik.values.username}
-                            placeholder='Enter your username'
-                            onChange={(e) => {
-                                formik.handleChange(e);
-                                dispatch(clearRedux());
-                            }}
-                        />
-                    </div>
-                    <div>
-                        <label>Password: </label>
-                        <input
-                            name='password'
-                            type={showPassword ? "text" : "password"}
-                            value={formik.values.password}
-                            onChange={(e) => {
-                                formik.handleChange(e);
-                                dispatch(clearRedux());
-                            }}
-                            placeholder='Enter your password'
-                        />
-                        <span className='eye-icon'>
-                            {showPassword ?
-                                <AiFillEye onClick={() => setShowPassword(!showPassword)} />
-                                :
-                                <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} />
-                            }
-                        </span>
-                    </div>
-                </div>
-                <span id='err-message'>
-                    {errorMessage}
-                    {(formik.errors.username || formik.errors.password) && <> Account can't be blank! </>}
-                </span>
-                <div className='modal-footer'>
-                    <button onClick={closeModal} type="button" className="btn-close">
-                        Cancel
-                    </button>
-                    <button onClick={onClickToSignIn} type="button" className="btn-submit" >
-                        Sign In
-                    </button>
-                </div>
-            </div>
+  return (
+    <div className={`modal-page${isActive ? " active" : ""}`}>
+      <div className="modal-container">
+        <button className="modal-close-btn" onClick={closeModal}>
+          <MdClose />
+        </button>
+        <div className="modal-header">
+          <h2>Sign in</h2>
         </div>
-    )
-}
+        <form className="modal-body">
+          <div>
+            <label>Username: </label>
+            <input
+              name="username"
+              type="text"
+              value={formLogin.username}
+              autoComplete="username"
+              placeholder="Enter your username"
+              onChange={handleChangeForm}
+            />
+          </div>
+          <div>
+            <label>Password: </label>
+            <input
+              name="password"
+              type={showPassword ? "text" : "password"}
+              autoComplete="current-password"
+              value={formLogin.password}
+              onChange={handleChangeForm}
+              placeholder="Enter your password"
+            />
+            <span className="eye-icon">
+              {showPassword ? (
+                <AiFillEye onClick={() => setShowPassword(!showPassword)} />
+              ) : (
+                <AiFillEyeInvisible
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+              )}
+            </span>
+          </div>
+        </form>
+        <div className="modal-footer">
+          <button
+            onClick={handleSubmitLogin}
+            type="button"
+            className={`btn-submit${isValid && !isProcessing ? " active" : ""}`}
+          >
+            Sign In
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default ModalLogin
+const useLoginModal = (redirect) => {
+  const [isActive, setIsActive] = useState(false);
+  const actions = {
+    onActive: () => setIsActive(true),
+    onClose: () => setIsActive(false),
+  };
+
+  return {
+    actions,
+    ModalLogin: () => (
+      <ModalLogin
+        isActive={isActive}
+        redirectTo={redirect}
+        onClose={actions.onClose}
+      />
+    ),
+  };
+};
+
+export default useLoginModal;
