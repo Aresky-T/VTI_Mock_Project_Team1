@@ -2,8 +2,11 @@ package com.food_recipe.utils;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.food_recipe.exception.CommonException;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 public class FileManager {
 
@@ -12,7 +15,11 @@ public class FileManager {
     }
 
     public boolean isTypeFileImage(MultipartFile file) {
-        return file.getContentType().toLowerCase().contains("image");
+        return Optional.ofNullable(file)
+                .map(f -> Optional.ofNullable(f.getContentType())
+                        .map(type -> type.toLowerCase().contains("image"))
+                        .orElse(false))
+                .orElseThrow(() -> new CommonException("file cannot be null!"));
     }
 
     public void createNewMultiPartFile(String path, MultipartFile multipartFile)

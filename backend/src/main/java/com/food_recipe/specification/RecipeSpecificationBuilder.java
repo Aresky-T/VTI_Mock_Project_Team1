@@ -1,7 +1,7 @@
 package com.food_recipe.specification;
 
 import com.food_recipe.dto.filter.RecipeFilter;
-import com.food_recipe.entity.Recipe;
+import com.food_recipe.entity.recipe.Recipe;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 

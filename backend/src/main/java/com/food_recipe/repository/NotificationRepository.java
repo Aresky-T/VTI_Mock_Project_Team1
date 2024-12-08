@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.food_recipe.entity.Notification;
+import com.food_recipe.entity.notification.Notification;
 
 import java.util.List;
 

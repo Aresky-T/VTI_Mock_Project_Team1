@@ -1,0 +1,9 @@
+docker run -p 8080:8080 \
+    --name food-recipe-backend \
+    --env SQL_HOST=food-recipe-database \
+    --env SQL_POST=3306 \
+    --env SQL_USER=root \
+    --env SQL_PASSWORD=root \
+    --mount type=bind,source="$(pwd)",target=/app \
+    --network food-recipe-application-network \
+    recipe-backend-image:v1.0.0

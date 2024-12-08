@@ -1,9 +1,7 @@
 package com.food_recipe.controller;
 
-import com.food_recipe.dto.NotificationDTO;
-import com.food_recipe.entity.Notification;
-import com.food_recipe.entity.UserNotification;
-import com.food_recipe.service.NotificationService;
+import com.food_recipe.dto.notification.response.NotificationDTO;
+import com.food_recipe.entity.notification.Notification;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import com.food_recipe.dto.NotificationFormCreating;
-import com.food_recipe.service.INotificationService;
+import com.food_recipe.dto.notification.request.NotificationFormCreating;
+import com.food_recipe.service.notification.INotificationService;
 
 import java.util.List;
 

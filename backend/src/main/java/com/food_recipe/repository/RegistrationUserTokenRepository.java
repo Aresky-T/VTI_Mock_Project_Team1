@@ -1,6 +1,6 @@
 package com.food_recipe.repository;
 
-import com.food_recipe.entity.RegistrationUserToken;
+import com.food_recipe.entity.user.RegistrationUserToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

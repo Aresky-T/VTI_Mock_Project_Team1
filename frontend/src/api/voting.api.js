@@ -8,12 +8,14 @@ export const createVotingApi = (data, token) => {
     return axios.post(baseURL, data, config)
 }
 
-export const getStarsApi = (data, token) => {
+export const getStarsApi = (params, token) => {
     const config = configApi(token);
-    return axios.get(baseURL, {params: {
-        userId: data.userId,
-        recipeId: data.recipeId
-    }}, config)
+    return axios.get(baseURL, {
+        params: {
+            userId: params.userId,
+            recipeId: params.recipeId
+        }
+    }, config)
 }
 
 export const updateStarsApi = (data, token) => {

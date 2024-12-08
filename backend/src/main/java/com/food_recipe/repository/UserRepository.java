@@ -1,7 +1,7 @@
 package com.food_recipe.repository;
 
-import com.food_recipe.entity.User;
-import com.food_recipe.entity.UserStatus;
+import com.food_recipe.entity.user.User;
+import com.food_recipe.entity.user.UserStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
