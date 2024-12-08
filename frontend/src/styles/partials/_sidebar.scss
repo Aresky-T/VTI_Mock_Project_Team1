@@ -1,46 +1,58 @@
-.sidebar {
-    position: fixed;
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 0;
+  z-index: 1000;
+  background-color: transparent;
+
+  &.active {
+    width: 100vw;
+  }
+
+  .sidebar {
+    position: absolute;
     top: 0;
     left: 0;
     height: 100vh;
     width: 260px;
-    z-index: 999;
     background-color: var(--background-color);
     box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.2), 3px 0 5px var(--shadow-color);
-    animation: getAnimationDuration(.3s) slideInLeft;
+    animation: getAnimationDuration(0.3s) slideInLeft;
 
     .sidebar-link {
-        display: block;
-        padding: .5em 1em;
-        border-left: .4em solid transparent;
-        margin-bottom: 1em;
-        color: var(--text-color);
-        font-size: 1.1em;
-        cursor: pointer;
-        transform: translateX(-100%);
-        animation: getAnimationDuration(.3s) slideInLeft forwards;
+      display: block;
+      padding: 0.5em 1em;
+      border-left: 0.4em solid transparent;
+      margin-bottom: 1em;
+      color: var(--text-color);
+      font-size: 1.1em;
+      cursor: pointer;
+      transform: translateX(-100%);
+      animation: getAnimationDuration(0.3s) slideInLeft forwards;
+      user-select: none;
 
-        @for $i from 1 through 5 {
-            &:nth-child(#{$i}) {
-                animation-delay: #{$i * .1}s;
-            }
+      @for $i from 1 through 5 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{$i * 0.1}s;
         }
+      }
 
-        &.active {
-            border-left-color: var(--primary-color);
-        }
+      &.active {
+        border-left-color: var(--primary-color);
+      }
 
-        &:hover {
-            border-left-color: var(--primary-color);
-            background-color: rgba(0, 0, 0, 0.05);
-            transition: 0.2s ease;
-        }
+      &:hover {
+        border-left-color: var(--primary-color);
+        background-color: rgba(0, 0, 0, 0.05);
+        transition: 0.2s ease;
+      }
 
-        svg {
-            width: 1.2em;
-            margin-right: .5em;
-        }
+      svg {
+        width: 1.2em;
+        margin-right: 0.5em;
+      }
     }
+  }
 }
-
-

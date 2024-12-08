@@ -1,0 +1,113 @@
+.image-upload {
+  width: fit-content;
+  height: fit-content;
+  $gray1: #b2b2b2;
+  $gray2: #ccc;
+  user-select: none;
+
+  &__frame {
+    width: 100px;
+    height: 100px;
+    background-color: var(--gray-color);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  &__frame--empty {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    .icon {
+      font-size: 25px;
+      color: $gray1;
+    }
+
+    .title1 {
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: $gray1;
+    }
+
+    .title2 {
+      font-weight: 500;
+      font-size: 0.7rem;
+      color: $gray2;
+    }
+
+    p {
+      text-align: center;
+    }
+  }
+
+  &__frame--present {
+    width: inherit;
+    height: inherit;
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+
+    &:hover {
+      .options {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.1) 40%,
+          rgba(0, 0, 0, 0.6) 100%
+        );
+        button {
+          transform: translateY(0);
+        }
+      }
+    }
+
+    .options {
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      z-index: 101;
+      width: inherit;
+      height: inherit;
+      background: transparent;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding-bottom: 5px;
+      padding-right: 5px;
+
+      button {
+        border: none;
+        outline: none;
+        text-align: center;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1rem;
+        padding: 5px;
+        transform: translateY(100%);
+        transition: transform 100ms linear;
+      }
+
+      &--delete:hover {
+        color: red;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 100;
+    }
+  }
+
+  &__input {
+    display: none;
+  }
+}

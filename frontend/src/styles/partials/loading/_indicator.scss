@@ -1,0 +1,22 @@
+.lds-indicator {
+  display: none;
+  width: 100%;
+  font-family: "Dancing Script", cursive;
+  font-size: 1.5rem;
+  text-align: center;
+
+  &-text {
+    width: fit-content;
+    text-wrap: nowrap;
+    position: relative;
+
+    .dots {
+      position: absolute;
+      left: calc(100% + 3px);
+    }
+  }
+
+  &.active {
+    display: block;
+  }
+}
