@@ -1,72 +1,79 @@
-import React, { forwardRef, useEffect, useState } from 'react'
-import { getAllRecipesApi } from '../../api/recipe.api';
-import PreviousSearch from './PreviousSearch'
-import RecipeCard from './RecipeCard';
-import ReactPaginate from 'react-paginate';
+import React, { forwardRef, useCallback, useEffect, useState } from "react";
+import { getAllRecipesApi } from "../../api/recipe.api";
+import PreviousSearch from "./PreviousSearch";
+import RecipeCard from "./RecipeCard";
+import ReactPaginate from "react-paginate";
 
 const HomeBody = (props, ref) => {
-
   const [recipes, setRecipes] = useState([]);
-  const [search, setSearch] = useState('');
-  const [totalPage, setTotalPage] = useState(0);
-  const [pageId, setPageId] = useState(1);
-  const itemsPerPage = 9;
+  const [search, setSearch] = useState("");
+  const [prevSearch, setPrevSearch] = useState("");
 
-  function getAllRecipesForShow() {
-    getAllRecipesApi(search, pageId, itemsPerPage)
-      .then(res => {
-        setRecipes(res.data.content);
-        setTotalPage(res.data.totalPages)
+  const [totalPage, setTotalPage] = useState(1);
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 8;
+
+  const handleGetRecipesWithSearching = useCallback(() => {
+    if (search !== prevSearch && page !== 1) {
+      setPage(1);
+      return;
+    }
+    getAllRecipesApi(search, page, itemsPerPage)
+      .then((res) => {
+        const dataWithPagination = res.data;
+        setRecipes(dataWithPagination.content);
+        setTotalPage(dataWithPagination.totalPages);
+        setPrevSearch(search);
       })
-      .catch()
+      .catch((err) => {});
+  }, [search, prevSearch, page]);
+
+  const handleChangePage = (event) => {
+    setPage(event.selected + 1);
   };
 
-  const handlePageClick = (event) => {
-    setPageId(event.selected + 1);
-  }
-
   useEffect(() => {
-    setPageId(1);
-    getAllRecipesForShow();
-  }, [search])
-
-  useEffect(() => {
-    getAllRecipesForShow();
-  }, [pageId])
+    handleGetRecipesWithSearching();
+    //eslint-disable-next-line
+  }, [handleGetRecipesWithSearching]);
 
   return (
-    <div ref={ref} style={{ paddingTop: '60px' }}>
+    <div ref={ref} style={{ paddingTop: "60px" }}>
       <PreviousSearch search={search} setSearch={setSearch} />
-      <div className="recipes-container">
-        {/* <RecipeCard /> */}
-        {recipes.map((recipe, index) => (
-          <RecipeCard key={index} recipe={recipe} />
-        ))}
-      </div>
-      {recipes.length === 0 && (
-        <div className='no-recipe'>There are no recipes named "{search}"</div>
+      {recipes.length ? (
+        <>
+          <div className="recipes-container">
+            {recipes.map((recipe, index) => (
+              <RecipeCard key={recipe.code} recipe={recipe} />
+            ))}
+          </div>
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel=">"
+            previousLabel="<"
+            pageRangeDisplayed={3}
+            renderOnZeroPageCount={null}
+            containerClassName="pagination"
+            pageLinkClassName="page-num"
+            previousLinkClassName="page-num"
+            nextLinkClassName="page-num"
+            activeClassName="active"
+            onPageChange={handleChangePage}
+            pageCount={totalPage}
+            forcePage={page - 1}
+          />
+        </>
+      ) : (
+        <div className="no-recipe">
+          {search.trim() ? (
+            <>There are no recipes named "{search}"</>
+          ) : (
+            "No recipes available"
+          )}
+        </div>
       )}
-      <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
-        previousLabel="< previous"
-        pageRangeDisplayed={3}
-        renderOnZeroPageCount={null}
-        containerClassName='pagination'
-        pageLinkClassName='page-num'
-        previousLinkClassName='page-num'
-        nextLinkClassName='page-num'
-        activeClassName='active'
-        onPageChange={handlePageClick}
-        pageCount={totalPage}
-      />
-      {/* <div className="show-more">
-        <button className="btn-show-more">
-          Show more
-        </button>
-      </div> */}
     </div>
-  )
-}
+  );
+};
 
 export default forwardRef(HomeBody);
