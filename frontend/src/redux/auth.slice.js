@@ -51,6 +51,12 @@ const authSlice = createSlice({
             state.signUp.signUpSuccessMessage = null;
             state.signIn.signInErrorMessage = null;
         },
+        clearSignUpState: (state) => {
+            state.signUp.isSuccess = false;
+            state.signUp.isError = false;
+            state.signUp.signUpSuccessMessage = null;
+            state.signUp.signUpErrorMessage = null;
+        },
         clearRedux: (state) => {
             state.signIn.signInErrorMessage = null;
             state.signUp.signUpErrorMessage = null;
@@ -60,6 +66,7 @@ const authSlice = createSlice({
 
 export const {
     clearRedux,
+    clearSignUpState,
     hiddenSignInPopup,
     showSignInPopup,
     signInError,
