@@ -1,0 +1,52 @@
+version: '3.8'
+services:
+  food-recipe-database:
+    container_name: food-recipe-database
+    image: mysql:8.3.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=aresky
+      - MYSQL_PASSWORD=11052000
+    volumes:
+      - food-recipe-database-volume:/var/lib/mysql
+      - food-recipe-database-config-daemon:/etc/mysql/conf.d
+    networks:
+      - food-recipe-application-network
+  food-recipe-backend:
+    image: food-recipe-backend-image:v1.0.0
+    container_name: food-recipe-backend
+    depends_on:
+      - food-recipe-database
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SQL_HOST=food-recipe-database
+      - SQL_DATABASE=food_recipe_database
+      - SQL_POST=3306
+      - SQL_USER=root
+      - SQL_PASSWORD=root
+    volumes:
+      - type: bind
+        source: ./backend
+        target: /app
+    networks:
+      - food-recipe-application-network
+  # recipe-frontend:
+  #   image: recipe-frontend-image:v1.0.0
+  #   container_name: recipe-frontend
+networks:
+  food-recipe-application-network:
+    name: food-recipe-application-network
+    driver: bridge
+    external: true
+volumes:
+  food-recipe-database-volume:
+    name: food-recipe-database-volume
+  food-recipe-database-config-daemon:
+    name: food-recipe-database-config-daemon
+  
